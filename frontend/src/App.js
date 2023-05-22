@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
+import routes from "./utils/routes";
+
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Error404 from "./pages/Error404";
@@ -20,49 +22,57 @@ function App() {
         <Router>
             <Header />
             <Routes>
-                <Route exact path="" element={<Home />} />
+                <Route exact path={routes.home} element={<Home />} />
 
-                <Route exact path="login" element={<Login />} />
-                <Route exact path="signup" element={<Signup />} />
-
-                <Route exact path="profile/:id_profile" element={<Profile />} />
+                <Route exact path={routes.login} element={<Login />} />
+                <Route exact path={routes.signup} element={<Signup />} />
 
                 <Route
                     exact
-                    path="data-challenges/:id"
+                    path={`${routes.profile}/:id_profile`}
+                    element={<Profile />}
+                />
+
+                <Route
+                    exact
+                    path={`${routes.dataChallenge}/:id`}
                     element={<DataChallengeDetail />}
                 />
                 <Route
                     exact
-                    path="my-data-challenges"
+                    path={routes.myDataChallenges}
                     element={<MyDataChallenges />}
                 />
                 <Route
                     exact
-                    path="my-data-challenges/:id_equipe/:id_data_challenge"
+                    path={`${routes.myDataChallenges}/:id_equipe/:id_data_challenge`}
                     element={<DataChallengeRendu />}
                 />
 
-                <Route exact path="team-view/:id_team" element={<TeamView />} />
+                <Route
+                    exact
+                    path={`${routes.teamView}/:id_team`}
+                    element={<TeamView />}
+                />
 
                 <Route
                     exact
-                    path="MCQ/:id_MCQ/:id_question"
+                    path={`${routes.MCQ}/:id_MCQ/:id_question`}
                     element={<MCQ />}
                 />
                 <Route
                     exact
-                    path="evaluate_MCQ/:id_MCQ/:id_team"
+                    path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
                     element={<EvaluateMCQ />}
                 />
 
                 <Route
                     exact
-                    path="data-challenges/edit/:id_data_challenge"
+                    path={`${routes.dataChallenge}/edit/:id_data_challenge`}
                     element={<DataChallengeEdition />}
                 />
 
-                <Route exact path="admin" element={<Admin />} />
+                <Route exact path={routes.admin} element={<Admin />} />
 
                 <Route path="*" element={<Error404 />} />
             </Routes>
