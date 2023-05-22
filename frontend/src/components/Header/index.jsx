@@ -1,5 +1,8 @@
+import routes from "../../utils/routes";
 import Logo from "../../assets/iapau_logo.png";
 import styled from "styled-components";
+
+import MyNavLink from "../MyNavLink";
 
 const StyledHeader = styled.header`
     display: flex;
@@ -19,7 +22,12 @@ function Header() {
             <nav>
                 <ul>
                     <li>
-                        <a href="/">Accueil</a>
+                        <MyNavLink to={routes.home}>Home</MyNavLink>
+                    </li>
+                    <li>
+                        <MyNavLink to={routes.myDataChallenges}>
+                            DataChallenges
+                        </MyNavLink>
                     </li>
                 </ul>
             </nav>
