@@ -1,5 +1,12 @@
+import LoginForm from "../../components/Form/Login";
+import CenterContainer from "../../containers/CenterContainer";
+
 function Login() {
-    return <div>Login</div>;
+    return (
+        <CenterContainer style={{minWidth: "500px"}}>
+            <LoginForm />
+        </CenterContainer>
+    )
 }
 
 export default Login;
