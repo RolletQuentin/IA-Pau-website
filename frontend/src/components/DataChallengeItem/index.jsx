@@ -11,10 +11,7 @@ const StyledDataChallengeItem = styled.div`
 function DataChallengeItem({ id, title }) {
     return (
         <StyledDataChallengeItem>
-            <ButtonLink
-                className="data-challenge"
-                to={`${routes.dataChallenge}/${id}`}
-            >
+            <ButtonLink to={`${routes.dataChallenge}/${id}`}>
                 {title}
             </ButtonLink>
         </StyledDataChallengeItem>
