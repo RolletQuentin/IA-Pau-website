@@ -1,22 +1,23 @@
 import React from "react";
+import styled from "styled-components";
 
 const InputTextDefault = ({
     placeholder="this is a default placeholder",
     style,
     type="text"
 }) => {
-    const styleInput = {
-        borderRadius: "10px",
-        backgroundColor: "var(--primary)",
-        padding: "10px",
-        border: "none",
-        ...style
-    }
+    
+    const StyledInput = styled.input`
+        border-radius: 10px;
+        background-color: var(--primary);
+        padding: 10px;
+        border: none;
+    `;
 
     return (
-        <input className="inputTextDefault" type={type} style={styleInput} placeholder={placeholder}>
+        <StyledInput className="inputTextDefault" type={type} style={style} placeholder={placeholder}>
 
-        </input>
+        </StyledInput>
     )
 }
 
