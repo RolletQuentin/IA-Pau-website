@@ -100,9 +100,3 @@ sudo service apache2 restart
 
 # Lance le site
 echo 'Tout est bon. Profitez bien de votre visite sur IA-Pau !'
-read -n 1 -s -r -p "Appuyez sur n'importe quelle touche pour lancer le site (NON IMPLEMENTE)"
-# npm start
-# Récupère l'ID du processus du terminal
-terminal_pid=$(ps -o ppid= -p $$)
-# Ferme la fenêtre du terminal
-kill -9 $terminal_pid
