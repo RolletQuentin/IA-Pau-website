@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "_________________________________________________________________________________"
-echo "Bonjour et bienvenu sur l'assistant de démarage d'IA-Pau ! V1.0 (A FINIR)"
-echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm (NON IMPLEMENTEE) et Firefox !"
+echo "Bonjour et bienvenu sur l'assistant de démarage d'IA-Pau ! V1.0"
+echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm (18.16.0) et Firefox !"
 echo "---------------------------------------------------------------------------------"
 
 # -------------------------------------------- VERIF ----------------------------------------
@@ -18,11 +18,11 @@ if ! command -v mysql &> /dev/null; then
     exit 1
 fi
 
-# Vérifie si Npm est installé
-# if ! command -v npm &> /dev/null; then
-#     echo "Npm n'est pas installé. Veuillez installer Npm et réessayer."
-#     exit 1
-# fi
+Vérifie si Npm est installé
+if ! command -v npm &> /dev/null; then
+    echo "Npm n'est pas installé. Veuillez installer Npm et réessayer."
+    exit 1
+fi
 
 # Vérifie si Firefox est installé
 if ! command -v firefox &> /dev/null; then
@@ -92,11 +92,9 @@ fi
 sudo service apache2 restart
 
 #------------------------------------ Npm ---------------------------------------------
-# Récupère le chemin du dossier frontend
-# chemin=$(pwd)
-# $chemin = $chemin + "/frontend"
-# # Vérifie si les dépendances sont installées
-# npm i
+# Vérifie si les dépendances sont installées
+npm i frontend/
 
 # Lance le site
 echo 'Tout est bon. Profitez bien de votre visite sur IA-Pau !'
+npm start --prefix frontend/
