@@ -6,8 +6,11 @@ import HBox from "../../../containers/HBox";
 import CheckBox from "../../Input/CheckBox";
 import BasicButton from "../../BasicButton";
 import SectionAuthContainer from "../../../containers/SectionAuthContainer";
+import { useLogin } from "../../../hooks/auth/useLogin";
 
-const LoginForm = ({}) => {
+const LoginForm = () => {
+
+    const {login} = useLogin();
 
     const styleOption = {
         justifyContent: "space-between"
@@ -29,10 +32,8 @@ const LoginForm = ({}) => {
         margin: 0
     }
 
-
-
     return (
-        <SectionAuthContainer title="Connexion">
+        <SectionAuthContainer title="Connexion" onSubmit={login}>
             <VBox style={{display: "flex"}}>
                 <InputTextDefault placeholder="Email" style={styleInputText}/>
                 <InputTextDefault placeholder="Password" style={styleInputText} type="password"/>
