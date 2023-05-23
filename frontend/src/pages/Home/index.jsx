@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
-import routes from "../../utils/routes";
-
-import ButtonLink from "../../components/ButtonLink";
 import DataChallengeItem from "../../components/DataChallengeItem";
+import NavbarOffset from "../../components/NavbarOffset";
 
 const StyledHome = styled.div`
     border: 1px solid red;
@@ -23,6 +21,7 @@ const StyledHome = styled.div`
 function Home() {
     return (
         <StyledHome>
+            <NavbarOffset />
             <h2>Data Challenges</h2>
 
             <DataChallengeItem title="Data Challenge 1" id="1" />
