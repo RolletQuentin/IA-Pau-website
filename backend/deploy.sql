@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS User(
     Identifiant INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     Email VARCHAR(128),
     Nom VARCHAR(32),
+    Img VARCHAR(256),
     Prenom VARCHAR(32),
     NumTel INTEGER(10),
     Mdp VARCHAR(32)
@@ -134,3 +135,11 @@ CREATE TABLE IF NOT EXISTS Gerer(
     CONSTRAINT fk9 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
     CONSTRAINT fk10 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
 );
+
+
+INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('arthur.rimaudiere@free.fr', 'Rimaudiere', 'Arthur', 769030682, 'trivialMDP');
+INSERT INTO Etudiant VALUES (1156189481, "L3", "CyTech", "Pau", 1);
+/*
+INSERT INTO Gestionnaire VALUES (151, "IAPAU", "Pau", NOW(), NOW(), 1);
+INSERT INTO Administrateur VALUES (1, 1);
+*/
