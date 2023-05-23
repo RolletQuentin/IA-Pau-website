@@ -11,8 +11,15 @@ const StyledButton = styled.button`
     border-radius: 20px;
     box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
-function Button({ children }) {
-    return <StyledButton>{children}</StyledButton>;
+function Button({
+    children
+}) {
+
+    return (
+        <StyledButton>
+            {children}
+        </StyledButton>
+    );
 }
 
 export default Button;
