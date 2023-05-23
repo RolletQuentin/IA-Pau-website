@@ -5,6 +5,7 @@ import styled from "styled-components";
 import MyNavLink from "../MyNavLink";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import { useLogout } from "../../hooks/auth/useLogout";
 
 const StyledHeader = styled.header`
     background: var(--background-color);
@@ -36,11 +37,9 @@ const StyledHeader = styled.header`
 `;
 
 function Header() {
-    // const { user } = useAuthContext();
-    const user = {
-        id: "015",
-        role: "Administrateur",
-    };
+    const { user } = useAuthContext();
+
+    const {logout} = useLogout();
 
     return (
         <StyledHeader>
@@ -83,7 +82,7 @@ function Header() {
 
             {/* if the user is conected or not*/}
             {user ? (
-                <div>Déconnexion</div>
+                <div onClick={logout} style={{cursor: "pointer"}}>Déconnexion</div>
             ) : (
                 <MyNavLink to={routes.login}>Connexion</MyNavLink>
             )}
