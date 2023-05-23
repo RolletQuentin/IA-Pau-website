@@ -2,20 +2,22 @@
     --primary: #c3ece2;
     --dark-primary: #47cdac;
 
-    --secondary: #829A94;
+    --secondary: #829a94;
 
     --light-color: #333;
     --dark-color: #ddd;
-    
+
     --background-color: #fff;
     --negative-background-color: #333;
-    
+
     --error: #e7195a;
 
     --pastel1: #47cdac;
     --pastel2: #e85050;
     --pastel3: #e8bd50;
     --pastel4: #829a94;
+
+    --font-color: #000000;
 }
 
 body {
@@ -32,19 +34,21 @@ code {
         monospace;
 }
 
-html, body, #root ,.App{
+html,
+body,
+#root,
+.App {
     margin: 0;
     padding: 0;
     background-color: var(--primary);
     color: var(--light-color);
-
 }
 
-a{
+a {
     text-decoration: none;
     color: inherit;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
