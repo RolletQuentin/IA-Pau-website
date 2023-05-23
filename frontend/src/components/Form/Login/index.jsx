@@ -6,10 +6,12 @@ import HBox from "../../../containers/HBox";
 import CheckBox from "../../Input/CheckBox";
 import BasicButton from "../../BasicButton";
 import SectionAuthContainer from "../../../containers/SectionAuthContainer";
-import { Link } from "react-router-dom";
-import routes from "../../../utils/routes";
+import { useLogin } from "../../../hooks/auth/useLogin";
 
 const LoginForm = () => {
+
+    const {login} = useLogin();
+
     const styleOption = {
         justifyContent: "space-between",
     };
@@ -27,12 +29,13 @@ const LoginForm = () => {
         textDecoration: "underline",
         color: "var(--dark-primary)",
         cursor: "pointer",
+
         margin: "auto",
         fontSize: "1.75em",
     };
 
     return (
-        <SectionAuthContainer title="Connexion">
+        <SectionAuthContainer title="Connexion" onSubmit={login}>
             <VBox style={{ display: "flex" }}>
                 <InputTextDefault placeholder="Email" style={styleInputText} />
                 <InputTextDefault

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 import routes from "./utils/routes";
 
@@ -16,15 +16,17 @@ import MCQ from "./pages/MCQ";
 import EvaluateMCQ from "./pages/EvaluateMCQ";
 import DataChallengeEdition from "./pages/DataChallengeEdition";
 import Admin from "./pages/Admin";
+import { useAuthContext } from "./hooks/auth/useAuthContext";
 
 function App() {
+    const {user} = useAuthContext();
     return (
         <Router>
             <Header />
             <Routes>
                 <Route exact path={routes.home} element={<Home />} />
 
-                <Route exact path={routes.login} element={<Login />} />
+                <Route exact path={routes.login} element={user ? <Navigate to={routes.home}/> : <Login />} />
                 <Route exact path={routes.signup} element={<Signup />} />
 
                 <Route
