@@ -5,8 +5,12 @@ import VBox from "../../../containers/VBox";
 import CenterContainer from "../../../containers/CenterContainer";
 import HBox from "../../../containers/HBox";
 import CheckBox from "../../Input/CheckBox";
+import MarginContainer from "../../../containers/MarginContainer";
+import BasicButton from "../../BasicButton";
 
-const LoginForm = () => {
+const LoginForm = ({
+    iconWidth = 100
+}) => {
 
     const styleOption = {
         justifyContent: "space-between"
@@ -33,7 +37,7 @@ const LoginForm = () => {
         top: 0,
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: "100px",
+        width: iconWidth,
         fill: true
     }
 
@@ -41,29 +45,38 @@ const LoginForm = () => {
 
     return (
         <form>
-            <SectionContainer style={{position: "relative"}}>
-                <img style={styleIconAccount} src="https://fonts.gstatic.com/s/i/short-term/release/materialsymbolssharp/account_circle/fill1/48px.svg" alt="Account Circle Icon" />
-                <CenterContainer>
-                    <h1>Connexion</h1>
-                </CenterContainer>
-                <VBox style={{display: "flex"}}>
-                    <InputTextDefault placeholder="Email" style={styleInputText}/>
-                    <InputTextDefault placeholder="Password" style={styleInputText} type="password"/>
-                </VBox>
-                <HBox style={styleOption}>
-                    <HBox>
-                        <CheckBox style={styleCheckBox} />                    
-                        <p>Remember me</p>
-                    </HBox>
-                    <p>Mot de passe oublié ?</p>
-                </HBox>
-                <CenterContainer>
-                    <VBox gap={0}>
-                        <p style={{marginBottom: 0}}>Pas encore de compte ?</p>
-                        <h2 style={styleCreerCompte}>Crée un compte</h2>
+            <MarginContainer margin="30px">
+                <SectionContainer style={{position: "relative", marginTop: iconWidth / 2}}>
+                    <img style={styleIconAccount} src="https://cdn.discordapp.com/attachments/1107599629882765374/1110304728212062208/abstract-user-icon-31.png" alt="Account Circle Icon" />
+                    <CenterContainer>
+                        <h1>Connexion</h1>
+                    </CenterContainer>
+                    <VBox style={{display: "flex"}}>
+                        <InputTextDefault placeholder="Email" style={styleInputText}/>
+                        <InputTextDefault placeholder="Password" style={styleInputText} type="password"/>
                     </VBox>
-                </CenterContainer>
-            </SectionContainer>
+                    <HBox style={styleOption}>
+                        <HBox>
+                            <CheckBox style={styleCheckBox} />                    
+                            <p>Remember me</p>
+                        </HBox>
+                        <p>Mot de passe oublié ?</p>
+                    </HBox>
+                    <BasicButton style={{
+                        padding: "20px",
+                        width: "100%",
+                        borderRadius: "20px"
+                    }}>
+                        <h1 style={{margin: "0"}}>Connexion</h1>
+                    </BasicButton>
+                    <CenterContainer>
+                        <VBox gap={0}>
+                            <p style={{marginBottom: 0}}>Pas encore de compte ?</p>
+                            <h2 style={styleCreerCompte}>Crée un compte</h2>
+                        </VBox>
+                    </CenterContainer>
+                </SectionContainer>
+            </MarginContainer>
         </form>
     )
 }

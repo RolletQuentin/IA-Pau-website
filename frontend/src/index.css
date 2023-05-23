@@ -4,8 +4,8 @@
 
     --secondary: #829a94;
 
-    --light-color: #333;
-    --dark-color: #ddd;
+    --dark-color: #333;
+    --light-color: #fff;
 
     --background-color: #fff;
     --negative-background-color: #333;
@@ -41,7 +41,7 @@ body,
     margin: 0;
     padding: 0;
     background-color: var(--primary);
-    color: var(--light-color);
+    color: var(--dark-color);
 }
 
 a {
