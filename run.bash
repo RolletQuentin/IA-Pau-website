@@ -65,7 +65,7 @@ fi
 # On paramètre le serveur Apache2
 # On récupère le chemin du site
 current_path=$(pwd)
-backend_path="${current_path}/backend/api/"
+backend_path="${current_path}/backend/api"
 # Donner les droits à l'utilisateur www-data
 chown www-data $backend_path -Rf
 # Attribuer l'accès total à l'utilisateur "Simple"
@@ -83,8 +83,8 @@ else
 fi
 if [ -f "/etc/apache2/apache2.conf" ]; then
     # Recherche la ligne contenant "<Directory var/www/" (si on ne l'a jamais modifié) ou "<Directory /home/*" si on l'a déjà modifié et remplace la ligne entière par le nouveau chemin
-    sudo sed -i "s|^\s*<Directory /home/.*|<Directory $backend_path>|" /etc/apache2/apache2.conf
-    sudo sed -i "s|^\s*<Directory /var/www>|<Directory $backend_path>|" /etc/apache2/apache2.conf
+    sudo sed -i "s|^\s*<Directory /home.*|<Directory $backend_path>|" /etc/apache2/apache2.conf
+    sudo sed -i "s|^\s*<Directory var/www>|<Directory $backend_path>|" /etc/apache2/apache2.conf
     echo "La valeur de Directory dans apache2.conf a été mise à jour."
 else
     echo "Le fichier de configuration apache2.conf n'existe pas."
