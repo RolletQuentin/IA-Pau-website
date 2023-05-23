@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const LoginForm = () => {
 
-    const {login} = useLogin();
+    const {login} = useLogin("Administrateur");
 
     const styleOption = {
         justifyContent: "space-between",
@@ -65,7 +65,7 @@ const LoginForm = () => {
             <CenterContainer>
                 <VBox gap={0} style={{ alignSelf: "center" }}>
                     <p style={{ marginBottom: 0 }}>Pas encore de compte ?</p>
-                    <Link to={routes.signup} style={styleCreerCompte}>
+                    <Link to={routes.signup} style={styleCreerCompte} >
                         Crée un compte
                     </Link>
                 </VBox>
