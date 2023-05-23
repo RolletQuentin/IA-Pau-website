@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "_________________________________________________________________________________"
 echo "Bonjour et bienvenu sur l'assistant de démarage d'IA-Pau ! V1.0 (A FINIR)"
-echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm et Firefox !"
+echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm (NON IMPLEMENTEE) et Firefox !"
 echo "---------------------------------------------------------------------------------"
 
 # -------------------------------------------- VERIF ----------------------------------------
@@ -19,10 +19,10 @@ if ! command -v mysql &> /dev/null; then
 fi
 
 # Vérifie si Npm est installé
-if ! command -v npm &> /dev/null; then
-    echo "Npm n'est pas installé. Veuillez installer Npm et réessayer."
-    exit 1
-fi
+# if ! command -v npm &> /dev/null; then
+#     echo "Npm n'est pas installé. Veuillez installer Npm et réessayer."
+#     exit 1
+# fi
 
 # Vérifie si Firefox est installé
 if ! command -v firefox &> /dev/null; then
@@ -94,15 +94,15 @@ sudo service apache2 restart
 
 #------------------------------------ Npm ---------------------------------------------
 # Récupère le chemin du dossier frontend
-chemin=$(pwd)
-$chemin = $chemin + "/frontend"
-# Vérifie si les dépendances sont installées
-npm i
+# chemin=$(pwd)
+# $chemin = $chemin + "/frontend"
+# # Vérifie si les dépendances sont installées
+# npm i
 
 # Lance le site
 echo 'Tout est bon. Profitez bien de votre visite sur IA-Pau !'
-read -n 1 -s -r -p "Appuyez sur n'importe quelle touche pour lancer le site"
-npm start
+read -n 1 -s -r -p "Appuyez sur n'importe quelle touche pour lancer le site (NON IMPLEMENTE)"
+# npm start
 # Récupère l'ID du processus du terminal
 terminal_pid=$(ps -o ppid= -p $$)
 # Ferme la fenêtre du terminal
