@@ -71,7 +71,7 @@ fi
 # On paramètre le serveur Apache2
 # On récupère le chemin du site
 current_path=$(pwd)
-backend_path="${current_path}/backend/api"
+backend_path="${current_path}/backend"
 # Donner les droits à l'utilisateur www-data
 chown www-data $backend_path -Rf
 # Attribuer l'accès total à l'utilisateur "Simple"
