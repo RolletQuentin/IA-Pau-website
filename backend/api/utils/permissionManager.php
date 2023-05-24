@@ -13,16 +13,31 @@
         $serverName = "api.iapau.cytech";
         // Le serveur qui a généré la clef n'est pas le notre
         if($token->iss !== $serverName){
+            $array = array(
+                "error"=>"Session expired"
+            );
+            $json = json_encode($array);
+            echo $json;
             http_response_code(401);
             return false;
         }
         // la date de création de la clef est "dans le futur" (invalide)
         if($token->nbf > $now->getTimestamp()){
+            $array = array(
+                "error"=>"Session expired"
+            );
+            $json = json_encode($array);
+            echo $json;
             http_response_code(401);
             return false;
         }
         // La date d'expiration de la clef est passée.
         if($token->exp < $now->getTimestamp()){
+            $array = array(
+                "error"=>"Session expired"
+            );
+            $json = json_encode($array);
+            echo $json;
             http_response_code(401);
             return false;
         }

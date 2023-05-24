@@ -1,0 +1,12 @@
+/!\ Ce site utilise SweetAlert2 et le fait par accès au script
+    en ligne, il est donc impératif d'activer la connexion pour
+    pouvoir utiliser correctement le site web.
+
+J'avais déjà modifié le TP en fonction des attendus du TP4. il
+est donc possible qu'il reste des parties de code sql. Normalement
+ces parties sont juste présentes mais pas utilisées.
+
+Pour la connection. L'utilisateur reconnu est:
+    - Identifiant: Arthur
+    - MotDePasse: password
+
