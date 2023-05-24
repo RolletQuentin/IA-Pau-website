@@ -1,0 +1,111 @@
+.title{
+    font-family: 'Franklin Gothic Medium';
+    color: #4f2b07;
+    font-style: oblique;
+}
+
+.policestyle{
+    font-family: 'Franklin Gothic Medium';
+    color: #4f2b07;
+    font-style: oblique;
+}
+
+table{
+    border-collapse: collapse;
+    margin-left: 250px;
+}
+th,td{
+    border: 1px solid #4f2b07;
+}
+
+.ref{
+    width: 50px;
+}
+
+.description{
+    width: 450px;
+}
+
+.image{
+    width: 320px;
+}
+
+.prix{
+    width: 80px;
+}
+
+
+
+
+.ref-produit{
+    width: 30px;
+}
+
+.description-produit{
+    width: 450px;
+}
+
+.image-produit{
+    width: 320px;
+    height: 204px;
+
+}
+
+.prix-produit{
+    width: 80px;
+}
+
+.image-int-produit{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-left: 30px;
+}
+.centered-table{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hiderButton{
+    font-size: 22px;
+    color: #f8f8c5;
+    font-style: oblique;
+    background-color: #4f2b04;
+    border-style: inset;
+    border-radius: 10px;
+    width: 250px;
+    height: 40px;
+}
+
+.add-to-panier{
+    color: #f8f8c5;
+    background-color: #4f2b04;
+    border-radius: 5px;
+    border-color: #f8f8c5;
+    border-width: 2px;
+    border-style: solid;
+    width: 80%;
+    height: 100%;
+}
+
+.buttonQuantity{
+    color: #f8f8c5;
+    background-color: #4f2b04;
+    border-radius: 5px;
+    border-color: #f8f8c5;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.Qty{
+    font-size: 15px;
+    color: #f8f8c5;
+    background-color: #4f2b04;
+    border-radius: 3px;
+    border-color: #f8f8c5;
+    border-width: 2px;
+    border-style: solid;
+}
