@@ -52,7 +52,6 @@ const styleEndButton = {
 
 const SignupForm = () => {
     return (
-
         <SectionAuthContainer title="Créer Compte">
             <CenterContainer>
                 <HBox>
