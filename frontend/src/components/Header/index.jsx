@@ -6,17 +6,24 @@ import MyNavLink from "../MyNavLink";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 
+import { useLogout } from "../../hooks/auth/useLogout";
+import { useEffect, useState } from "react";
+
+
 const StyledHeader = styled.header`
+    width: calc(100% - 60px);
     background: var(--background-color);
-    padding: 10px 30px;
+    padding: ${(props) => (props.isFixed ? "5px 30px" : "10px 30px")};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: fixed;
+    transition: 0.4s;
+    z-index: 1;
 
     & nav {
-        justify-self: start;
         flex: 2;
     }
 
@@ -30,20 +37,36 @@ const StyledHeader = styled.header`
     }
 
     & img {
-        width: 70px;
-        height: 70px;
+        transition: 0.4s;
+        width: ${(props) => (props.isFixed ? "40px" : "70px")};
+        height: ${(props) => (props.isFixed ? "40px" : "70px")};
     }
 `;
 
 function Header() {
-    // const { user } = useAuthContext();
-    const user = {
-        id: "015",
-        role: "Administrateur",
-    };
+    const { user } = useAuthContext();
+
+    const {logout} = useLogout();
+
+    // to add an animation when we scroll on the page
+    const [isFixed, setIsFixed] = useState(false);
+    function scrollFunction() {
+        var scrollTop = window.pageYOffset || document.body.scrollTop;
+        if (scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            setIsFixed(true);
+        } else {
+            setIsFixed(false);
+        }
+    }
+    useEffect(() => {
+        window.addEventListener("scroll", scrollFunction);
+        return () => {
+            window.removeEventListener("scroll", scrollFunction);
+        };
+    }, []);
 
     return (
-        <StyledHeader>
+        <StyledHeader isFixed={isFixed}>
             <Link to={routes.home}>
                 <img src={Logo} alt="Logo d'IA Pau" />
             </Link>
@@ -83,7 +106,7 @@ function Header() {
 
             {/* if the user is conected or not*/}
             {user ? (
-                <div>Déconnexion</div>
+                <div onClick={logout} style={{cursor: "pointer"}}>Déconnexion</div>
             ) : (
                 <MyNavLink to={routes.login}>Connexion</MyNavLink>
             )}
