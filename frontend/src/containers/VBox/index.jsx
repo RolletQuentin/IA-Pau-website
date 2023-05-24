@@ -12,9 +12,8 @@ const VBox = ({
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: gap,
+                gap,
             }}
-            {...content}
         >
             {children.map((child, index) => {
                 return (
