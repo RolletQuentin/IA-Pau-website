@@ -1,0 +1,17 @@
+/!\ Ce site utilise SweetAlert2 et le fait par accès au script
+    en ligne, il est donc impératif d'activer la connexion pour
+    pouvoir utiliser correctement le site web.
+
+Pour la connexion. L'Administrateur reconnu est:
+    - Identifiant: Root
+    - mail : Root@cy-tech.fr
+    - MotDePasse: passwordRoot
+
+Les scripts de mise en place sql sont disponibles dans le
+dossier sql. Et a éxécuter dans l'ordre suivant:
+ 1- rimart.sql
+ 2- rimartidata.sql
+
+Le dossier image se situe dans un sous dossier du dossier assets.
+
+
