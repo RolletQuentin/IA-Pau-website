@@ -93,14 +93,16 @@ try {
     mysqli_close($conn);
     if($existeDeja){
         http_response_code(400);
-        mysqli_close($conn);
         throw new Exception ("Le mail est déjà utilisé dans la bdd");
     } else {
+
+        $conn = getConnection();
+
         $encoded_password = password_hash($mdp, PASSWORD_DEFAULT);
 
         $query = "INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('". $email ."', '". $nom ."', '". $firstname ."', ". $phone ." , '". $encoded_password ."');";
         
-        mysqli_query($conn, $query);
+        $result = mysqli_query($conn, $query);
         $query = "SELECT * From User WHERE Email='" . $email . "';";
         $result = mysqli_query($conn, $query);
         $id = -1;
@@ -110,7 +112,7 @@ try {
             }
         }
         $query = "INSERT INTO Etudiant (NumeroEtudiant, NiveauEtude, Ecole, Ville, Identifiant) VALUES (". $numEtudiant .", '". $level ."', '". $ecole ."', '". $ville ."' , ". $id .");";
-        mysqli_query($conn, $query);
+        $result = mysqli_query($conn, $query);
         
         $secretKey  = '2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12';
         $issuedAt   = new DateTimeImmutable();
