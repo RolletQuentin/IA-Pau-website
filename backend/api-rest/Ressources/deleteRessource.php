@@ -22,16 +22,16 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
 
     // On récupère l'id de la ressource à supprimer
     $donnees = json_decode(file_get_contents("php://input"));
-    
-    // Ici on a reçu les données
-    // On hydrate notre objet
-    $ressource->IdRessource = $donnees->IdRessource;
 
-    if(!empty($donnees->IdRessource)){
+    if(!empty($donnees->IdRessource)) {
+        // Ici on a reçu les données
+        // On hydrate notre objet
+        $ressource->IdRessource = $donnees->IdRessource;
+
         if($ressource->deleteRessource()) {
             // Ici la suppression à fonctionné
-            // On envoi un code 201 (ajout)
-            http_response_code(201);
+            // On envoi un code 200
+            http_response_code(200);
             echo json_encode(["message" => "La suppression a été effectué"]);
         } else{
             // La suppression n'a pas fonctionné
