@@ -91,7 +91,7 @@ sudo chmod 777 -R $backend_path
 #   Vérifie si le fichier de configuration existe
 if [ -f "/etc/apache2/sites-available/000-default.conf" ]; then
     # Recherche la ligne contenant "DocumentRoot" et remplace la ligne entière par le nouveau chemin
-    sudo sed -i "s|^\s*DocumentRoot.*|DocumentRoot $backend_path|"
+    sudo sed -i "s|^\s*DocumentRoot.*|DocumentRoot $backend_path|" /etc/apache2/sites-available/000-default.conf
     echo "La valeur de DocumentRoot dans 000-default.conf a été mise à jour."
 else
     echo "Le fichier de configuration 000-default.conf n'existe pas."
