@@ -20,9 +20,18 @@ fi
 
 # Vérifie si Npm est installé
 if ! command -v npm &> /dev/null; then
-    echo "Npm n'est pas installé. Installer version 18.16.0"
+    echo "Npm n'est pas installé. Installez le."
     exit 1
 fi
+
+# Vérifie la version de Nvm et installa la bonne sinon
+# if [[ "$(nvm current)" != "v18.16.0" ]]; then
+#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
+#     # Source le fichier de configuration de Nvm
+#     source ~/.nvm/nvm.sh
+#     nvm install v18.16.0
+#     nvm use v18.16.0
+# fi
 
 # Vérifie si Composer est installé
 if ! command -v composer &> /dev/null; then
@@ -71,7 +80,7 @@ fi
 # On paramètre le serveur Apache2
 # On récupère le chemin du site
 current_path=$(pwd)
-backend_path="${current_path}/backend/api"
+backend_path="${current_path}/backend"
 # Donner les droits à l'utilisateur www-data
 chown www-data $backend_path -Rf
 # Attribuer l'accès total à l'utilisateur "Simple"
@@ -82,7 +91,7 @@ sudo chmod 777 -R $backend_path
 #   Vérifie si le fichier de configuration existe
 if [ -f "/etc/apache2/sites-available/000-default.conf" ]; then
     # Recherche la ligne contenant "DocumentRoot" et remplace la ligne entière par le nouveau chemin
-    sudo sed -i "s|^\s*DocumentRoot.*|DocumentRoot $backend_path|" /etc/apache2/sites-available/000-default.conf
+    sudo sed -i "s|^\s*DocumentRoot.*|DocumentRoot $backend_path|"
     echo "La valeur de DocumentRoot dans 000-default.conf a été mise à jour."
 else
     echo "Le fichier de configuration 000-default.conf n'existe pas."
@@ -103,6 +112,8 @@ cd backend/
 composer install
 cd ..
 #------------------------------------ Npm ---------------------------------------------
+
+
 # Vérifie si les dépendances sont installées
 cd frontend/
 npm i
