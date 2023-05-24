@@ -1,10 +1,11 @@
 import React from "react";
 
-const HBox = ({children, style, ...content}) => {
+const HBox = ({children, style,gap="0px", ...content}) => {
     return (
         <div style={{
                 ...style,
                 display:"flex",
+                gap,
             }}
             {...content}
         >
