@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS User(
 
 -- USER
 CREATE TABLE IF NOT EXISTS Etudiant(
-    NumeroEtudiant INTEGER(16) PRIMARY KEY,
+    NumeroEtudiant INTEGER(128) PRIMARY KEY,
     NiveauEtude VARCHAR(4),
     Ecole VARCHAR(32),
     Ville VARCHAR(32),
