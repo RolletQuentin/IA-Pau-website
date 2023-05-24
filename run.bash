@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "_________________________________________________________________________________"
 echo "Bonjour et bienvenu sur l'assistant de démarage d'IA-Pau ! V1.0"
-echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm (18.16.0) et Firefox !"
+echo "IMPORTANT : Vous devez impérativement avoir installé Apache2, MySQL, Npm (18.16.0), Composer et Firefox !"
 echo "---------------------------------------------------------------------------------"
 
 # -------------------------------------------- VERIF ----------------------------------------
@@ -18,10 +18,16 @@ if ! command -v mysql &> /dev/null; then
     exit 1
 fi
 
-Vérifie si Npm est installé
+# Vérifie si Npm est installé
 if ! command -v npm &> /dev/null; then
-    echo "Npm n'est pas installé. Veuillez installer Npm et réessayer."
+    echo "Npm n'est pas installé. Installer version 18.16.0"
     exit 1
+fi
+
+# Vérifie si Composer est installé
+if ! command -v composer &> /dev/null; then
+    echo "Composer n'est pas installé. Nous l'installons."
+    sudo apt install -y composer
 fi
 
 # Vérifie si Firefox est installé
@@ -91,10 +97,15 @@ else
 fi
 sudo service apache2 restart
 
+#------------------------------------ Composer ---------------------------------------------
+# Vérifie si les dépendances sont installées
+cd backend/
+composer install
+cd ..
 #------------------------------------ Npm ---------------------------------------------
 # Vérifie si les dépendances sont installées
-npm i frontend/
-
+cd frontend/
+npm i
 # Lance le site
 echo 'Tout est bon. Profitez bien de votre visite sur IA-Pau !'
-npm start --prefix frontend/
+npm start
