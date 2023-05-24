@@ -211,10 +211,10 @@
         if(!(empty($array["end"])) && $type_of_user == "Gestionnaire"){
             patchValueUser($conn, $id, "Gestionnaire", "Fin", "'" . checkStringValidity($array["end"]) . "'");
         }
-        $array = array(
+        $arrayRetour = array(
             "success"=>true
         );
-        $json = json_encode($array);
+        $json = json_encode($arrayRetour);
         http_response_code(200);
         echo $json;
         mysqli_close($conn);
@@ -227,13 +227,13 @@
     */
     function deleteUser($id){
         $conn = getConnection();
-        $query = "DELETE FROM User WHERE Identifiant=" . $id . ";";
-        $result = mysqli_query($conn, $query);
         $query = "DELETE FROM Etudiant WHERE Identifiant=" . $id . ";";
         $result = mysqli_query($conn, $query);
         $query = "DELETE FROM Gestionnaire WHERE Identifiant=" . $id . ";";
         $result = mysqli_query($conn, $query);
         $query = "DELETE FROM Administrateur WHERE Identifiant=" . $id . ";";
+        $result = mysqli_query($conn, $query);
+        $query = "DELETE FROM User WHERE Identifiant=" . $id . ";";
         $result = mysqli_query($conn, $query);
         $array = array(
             "success"=>true
