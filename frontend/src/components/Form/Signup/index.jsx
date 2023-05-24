@@ -90,8 +90,8 @@ const SignupForm = () => {
                 <InputTextDefault placeholder="Ville" style={{ marginBottom: "20px" }} />
             </HBox>
             <VBox style={{ display: "flex" }}>
-                <InputTextDefault placeholder="Mot de passe" style={styleInputText} type="passeword" />
-                <InputTextDefault placeholder="Confirmation mot de passe" style={{...styleInputText, marginBottom : "20px"}} type="passeword" />
+                <InputTextDefault placeholder="Mot de passe" style={styleInputText} type="password" />
+                <InputTextDefault placeholder="Confirmation mot de passe" style={{...styleInputText, marginBottom : "20px"}} type="password" />
             </VBox>
             <CenterContainer>
                 <BasicButton style={{ styleEndButton }}>
