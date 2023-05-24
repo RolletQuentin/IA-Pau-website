@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
     IdProjet INTEGER(16),
     CONSTRAINT pPR PRIMARY KEY (IdRessource, IdProjet),
     CONSTRAINT fkPR1 FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet),
-    CONSTRAINT fkPR2 FOREIGN KEY (IdRessource) REFERENCES Ressources (IdRessource)
+    CONSTRAINT fkPR2 FOREIGN KEY (IdRessource) REFERENCES Ressources (IdRessource) ON DELETE CASCADE
 );
 -- ------------------------------------------------
 
