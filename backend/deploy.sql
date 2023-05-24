@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS User(
     Img VARCHAR(256),
     Prenom VARCHAR(32),
     NumTel INTEGER(10),
-    Mdp VARCHAR(128)
+    Mdp VARCHAR(255)
 );
 
 -- USER
