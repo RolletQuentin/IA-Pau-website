@@ -1,0 +1,63 @@
+#logo{
+    width: 100px;
+    height: 100px;
+}
+
+
+header {
+    position: fixed;
+    padding: 0.75%;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-bottom: 3px solid grey;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+
+body{
+    background-color: #C3ECE2;
+}
+
+button{
+    margin-top: 75px;
+    margin-left: 30px;    
+    border-radius: 50px;
+    background-color: white; /* Couleur de fond du bouton */
+    color: #000; /* Couleur du texte du bouton */
+    width: 95%;
+    height: 80px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-decoration: none; /* Pas de soulignement du texte */
+    font-size: 16px; /* Taille de police du texte */
+    border-radius: 20px; /* Coins arrondis du bouton */
+    border: 1px solid #000; /* Bordure de 1 pixel solide */
+    text-align: left;
+
+}
+
+h2{
+    margin-top: 150px;
+    text-align: center;
+}
+
+body.button:hover {
+    background-color: #999;
+  }
+
+#connexion{
+    position: absolute;
+    right: 70px;
+    top: 50px;
+    font-size: larger;
+}
+
+#accueil{
+    position: absolute;
+    left: 500px;
+    top: 50px;
+    font-size: larger;
+    text-decoration: underline;
+}
