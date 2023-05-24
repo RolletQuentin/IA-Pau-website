@@ -1,0 +1,16 @@
+Pour start le back
+
+cd ./backend
+
+mysql -u root -p
+
+## ENTRER LE PASSWORD
+
+source deploy.sql
+exit
+
+composer install
+
+## SI COMPOSER FAIL CHANGER DANS COMPOSER.JSON "monolog/monolog": "2.1.\*",
+
+php -S localhost:8000
