@@ -145,6 +145,7 @@ try {
 
 
 } catch (Exception $e){
+    http_response_code(400);
     echo "Erreur : " . $e->getMessage();
 }
 

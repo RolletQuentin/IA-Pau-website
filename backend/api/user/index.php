@@ -69,6 +69,7 @@ try {
         throw new Exception ("Methode de récupération de donnée non prise en charge.");
     }
 } catch (Exception $e) {
+    http_response_code(400);
     echo "Erreur: ". $e->getMessage();
 }
 
