@@ -1,4 +1,18 @@
 <?php
+// TEST PATRICE DEPANAGE
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+// ------------ FIN TEST
+
+
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 
 error_reporting(E_ALL & ~E_DEPRECATED);
 ini_set("display_errors", 1);
@@ -20,21 +34,26 @@ include '../../utils/database.php';
 include '../methods.php';
 
 $conn = getConnection();
-$query = "SELECT * From User WHERE Email='" . $email . "' AND Mdp='" . $mdp . "';";
+$query = "SELECT * From User WHERE Email='" . $email . "';";
 $result = mysqli_query($conn, $query);
 
 if(mysqli_num_rows($result) > 0){
-    if($row = mysqli_fetch_assoc($result)){
-        $validCredentials = true;
-        $userId = $row["Identifiant"];
+    while($row = mysqli_fetch_assoc($result)){
+        
+        if(password_verify($mdp, $row["Mdp"])){
+            $validCredentials = true;
+            $userId = $row["Identifiant"];
+        }
     }
 }
+mysqli_close($conn);
+
 try {
     if($validCredentials){
 
         $secretKey  = '2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12';
         $issuedAt   = new DateTimeImmutable();
-        $expire     = $issuedAt->modify('+6 minutes')->getTimestamp();      // Add 60 seconds
+        $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      // Add 60 seconds
         $serverName = "api.iapau.cytech";
 
         $data = [

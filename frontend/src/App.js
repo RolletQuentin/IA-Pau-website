@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Route,
+    Routes,
+    Navigate,
+} from "react-router-dom";
 
 import routes from "./utils/routes";
 
@@ -17,24 +22,28 @@ import EvaluateMCQ from "./pages/EvaluateMCQ";
 import DataChallengeEdition from "./pages/DataChallengeEdition";
 import Admin from "./pages/Admin";
 import { useAuthContext } from "./hooks/auth/useAuthContext";
+import AdminUsers from "./pages/AdminUsers";
+import AdminDataChallenges from "./pages/AdminDataChallenges";
+import AdminRessources from "./pages/AdminRessources";
 
 function App() {
-    const {user} = useAuthContext();
+    const { user } = useAuthContext();
     return (
         <Router>
             <Header />
             <Routes>
                 <Route exact path={routes.home} element={<Home />} />
-
-                <Route exact path={routes.login} element={user ? <Navigate to={routes.home}/> : <Login />} />
+                <Route
+                    exact
+                    path={routes.login}
+                    element={user ? <Navigate to={routes.home} /> : <Login />}
+                />
                 <Route exact path={routes.signup} element={<Signup />} />
-
                 <Route
                     exact
                     path={`${routes.profile}/:id_profile`}
                     element={<Profile />}
                 />
-
                 <Route
                     exact
                     path={`${routes.dataChallenge}/:id`}
@@ -50,13 +59,11 @@ function App() {
                     path={`${routes.myDataChallenges}/:id_equipe/:id_data_challenge`}
                     element={<DataChallengeRendu />}
                 />
-
                 <Route
                     exact
                     path={`${routes.teamView}/:id_team`}
                     element={<TeamView />}
                 />
-
                 <Route
                     exact
                     path={`${routes.MCQ}/:id_MCQ/:id_question`}
@@ -67,15 +74,27 @@ function App() {
                     path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
                     element={<EvaluateMCQ />}
                 />
-
                 <Route
                     exact
                     path={`${routes.dataChallenge}/edit/:id_data_challenge`}
                     element={<DataChallengeEdition />}
                 />
-
                 <Route exact path={routes.admin} element={<Admin />} />
-
+                <Route
+                    exact
+                    path={routes.adminUsers}
+                    element={<AdminUsers />}
+                />{" "}
+                <Route
+                    exact
+                    path={routes.adminDataChallenges}
+                    element={<AdminDataChallenges />}
+                />{" "}
+                <Route
+                    exact
+                    path={routes.adminRessources}
+                    element={<AdminRessources />}
+                />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </Router>

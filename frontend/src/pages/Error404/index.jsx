@@ -1,5 +1,13 @@
+import NavbarOffset from "../../components/NavbarOffset";
+import CenterContainer from "../../containers/CenterContainer";
+
 function Error404() {
-    return <div> Oups, cette page n'existe pas !</div>;
+    return(
+    <CenterContainer style = {{minWidth: "500px"}}>
+        <NavbarOffset></NavbarOffset>
+        <h1>Oups Erreur 404</h1>
+    </CenterContainer>
+    )
 }
 
 export default Error404;
