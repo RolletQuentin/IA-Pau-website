@@ -20,9 +20,18 @@ fi
 
 # Vérifie si Npm est installé
 if ! command -v npm &> /dev/null; then
-    echo "Npm n'est pas installé. Installer version 18.16.0"
+    echo "Npm n'est pas installé. Installez le."
     exit 1
 fi
+
+# Vérifie la version de Nvm et installa la bonne sinon
+# if [[ "$(nvm current)" != "v18.16.0" ]]; then
+#     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
+#     # Source le fichier de configuration de Nvm
+#     source ~/.nvm/nvm.sh
+#     nvm install v18.16.0
+#     nvm use v18.16.0
+# fi
 
 # Vérifie si Composer est installé
 if ! command -v composer &> /dev/null; then
@@ -103,6 +112,8 @@ cd backend/
 composer install
 cd ..
 #------------------------------------ Npm ---------------------------------------------
+
+
 # Vérifie si les dépendances sont installées
 cd frontend/
 npm i
