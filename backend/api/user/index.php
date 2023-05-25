@@ -1,7 +1,9 @@
 <?php
 
-error_reporting(E_ALL & ~E_DEPRECATED);
-ini_set("display_errors", 1);
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include '../utils/database.php';
 include 'methods.php';
@@ -11,6 +13,28 @@ require_once('../../vendor/autoload.php');
 
 try {
     if($_SERVER['REQUEST_METHOD'] == "GET"){
+        /*
+        $entityBody = file_get_contents('php://input');
+        $body = json_decode($entityBody, true);
+
+        
+        $token = $body["token"];
+        $role = getRoleFromJwt($token);
+        $idToken = getUserIdFromJWT($token);
+        
+        if(!(empty($_GET["id"]))){
+            if(($id == $_GET["id"]) || ($role == "Administrateur")){
+                getUserFromId($_GET["id"]);
+            } else {
+                throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
+            }
+        } else {
+            if($role == "Administrateur"){
+                getAllUsers();
+            } else {
+                throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
+            }
+        }*/
         if(!(empty($_GET["id"]))){
             getUserFromId($_GET["id"]);
         } else {
