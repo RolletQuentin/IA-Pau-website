@@ -69,9 +69,7 @@ try {
         throw new Exception ("Email ou Mot de passe incorrect");
     }
 } catch (Exception $e) {
-
     http_response_code(400);
     echo "Erreur: ". $e->getMessage();
-    
 }
 ?>
