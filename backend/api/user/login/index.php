@@ -24,7 +24,12 @@ include_once('../../utils/patchs/php8.php');
 
 if(!(str_contains($email, "@"))){
     http_response_code(400);
-    echo "Erreur: Format de l'email invalide !";
+    $array = array(
+        "error"=>"Le format de l'email n'est pas valide !"
+    );
+    $json = json_encode($array);
+    echo $json;
+    http_response_code(400);
     
 } else {
 
@@ -79,8 +84,12 @@ if(!(str_contains($email, "@"))){
             throw new Exception ("Email ou Mot de passe incorrect");
         }
     } catch (Exception $e) {
+        $array = array(
+            "error"=>$e->getMessage()
+        );
+        $json = json_encode($array);
+        echo $json;
         http_response_code(400);
-        echo "Erreur: ". $e->getMessage();
     }
 }
 ?>
