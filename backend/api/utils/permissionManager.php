@@ -106,4 +106,21 @@
         return $userId;
     }
 
+    function hasExpired($jwt){
+        $secretKey = "2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12";
+        $token = JWT::decode($jwt, new Key($secretKey, 'HS512'));
+        $now = new DateTimeImmutable();
+        $serverName = "api.iapau.cytech";
+        if($token->iss !== $serverName){
+            return true;
+        }
+        if($token->nbf > $now->getTimestamp()){
+           return true;
+        }
+        if($token->exp < $now->getTimestamp()){
+            return true;
+        }
+        return false;
+    }
+
 ?>

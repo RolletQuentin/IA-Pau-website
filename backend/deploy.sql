@@ -34,6 +34,19 @@ CREATE TABLE IF NOT EXISTS Evenement (
     Entreprise VARCHAR(64)
 );
 
+-- ------------------------- MODIF PATRICE --------------------------------
+-- EVENEMENT (Projet) MODIFICATION POUR LIER A EVENEMENT
+CREATE TABLE IF NOT EXISTS Projet(
+    IdProjet INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
+    IdEvenement INTEGER(16),
+    Libele VARCHAR(64),
+    Description VARCHAR(2048),
+    Consigne VARCHAR(8192),
+    Conseil VARCHAR(2048),
+    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+
+);
+
 -- USER ?
 CREATE TABLE IF NOT EXISTS Equipe (
     IdEquipe INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
@@ -42,8 +55,8 @@ CREATE TABLE IF NOT EXISTS Equipe (
     CodeEquipe VARCHAR(16),
     Score INTEGER(16),
     LienProjet VARCHAR(512),
-    IdEvenement INTEGER(16),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+    IdProjet INTEGER(16),
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
 );
 
 -- USER
@@ -96,19 +109,6 @@ CREATE TABLE IF NOT EXISTS Message(
     IdEquipe INTEGER(16),
     CONSTRAINT fk1 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement),
     CONSTRAINT fk2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
-);
-
--- ------------------------- MODIF PATRICE --------------------------------
--- EVENEMENT (Projet) MODIFICATION POUR LIER A EVENEMENT
-CREATE TABLE IF NOT EXISTS Projet(
-    IdProjet INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    IdEvenement INTEGER(16),
-    Libele VARCHAR(64),
-    Description VARCHAR(2048),
-    Consigne VARCHAR(8192),
-    Conseil VARCHAR(2048),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
-
 );
 
 -- RESSOURCES Doit pouvoir etre lié a plusieurs projets il nous manque le lien posseder
@@ -165,11 +165,11 @@ CREATE TABLE IF NOT EXISTS Gerer(
 
 
 -- ON CHARGE DONNEES TEST -----------------
-
-INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('arthur.rimaudiere@free.fr', 'Rimaudiere', 'Arthur', 769030682, 'trivialMDP');
-INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('soulier.patrice@orangeCMieuxQueFree.fr', 'SOULIER', 'Patrice', 985469236, 'trivialMDP');
-
-INSERT INTO Etudiant VALUES (115618941, "L3", "CyTech", "Pau", 1);
+-- Administrateur: --
+INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('root@root.fr', 'Root', 'Root', 769030682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
+INSERT INTO Administrateur (Identifiant) VALUES (1);
+-- Etudiant --
+INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('etudiant@etudiant.fr', 'Etudiant', 'Etudiant', 769590682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
 INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
 INSERT INTO Evenement VALUES (1, "image", '2023-01-01', '2023-01-02', "Recompense", "DataChallenge", "Entreprise");
