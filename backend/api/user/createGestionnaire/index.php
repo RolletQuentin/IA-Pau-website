@@ -22,8 +22,23 @@ $ville = verifyStringToDatabaseInsertion($values["city"]);
 $debut = verifyStringToDatabaseInsertion($values["debut"]);
 $fin = verifyStringToDatabaseInsertion($values["fin"]);
 
-
+$header = apache_request_headers();
+$token = "";
+if(!(empty($header["Authorization"]))){
+    $token = str_replace("Bearer ", "", $header["Authorization"]);
+}
 try {
+
+    include_once('../../utils/permissionManager.php');
+    $role = getRoleFromJwt($token);
+    if($role != "Administrateur"){
+        throw new Exception (" Vous n'avez pas la permission d'éxécuter cette requete !");
+    }
+
+    if(hasExpired($token)){
+        throw new Exception (" Votre token a expiré !");
+    }
+
     if(! isset($nom)){
         http_response_code(400);
         throw new Exception ("Nom de famille non saisit !");
