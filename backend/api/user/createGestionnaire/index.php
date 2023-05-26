@@ -36,6 +36,11 @@ try {
         http_response_code(400);
         throw new Exception ("Email non saisit !");
     }
+    require_once('../../utils/patchs/php8.php');
+    if(!(str_contains($email, "@"))){
+        http_response_code(400);
+        throw new Exception ("Format Email invalide !");
+    }
     
     if(! isset($mdp)){
         http_response_code(400);

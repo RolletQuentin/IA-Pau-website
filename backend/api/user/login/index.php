@@ -20,6 +20,8 @@ include_once('../../utils/StringCorrection.php');
 $email = verifyStringToDatabaseInsertion($array["email"]);
 $mdp = verifyStringToDatabaseInsertion($array["password"]);
 
+include_once('../../utils/patchs/php8.php');
+
 if(!(str_contains($email, "@"))){
     http_response_code(400);
     echo "Erreur: Format de l'email invalide !";
