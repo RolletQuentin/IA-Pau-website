@@ -178,7 +178,8 @@
         if(!(empty($array["phone"]))){
             patchValueUser($conn, $id, "User", "NumTel", $array["phone"]);
         }
-        if(!(empty($array["email"]))){
+        require_once('../../utils/patchs/php8.php');
+        if(!(empty($array["email"])) && str_contains($array["email"], "@")){
             patchValueUser($conn, $id, "User", "Email", "'" . checkStringValidity($array["email"]) . "'");
         }
         if(!(empty($array["img"]))){
