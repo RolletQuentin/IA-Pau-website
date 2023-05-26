@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import InputTextDefault from "../../Input/Text/Default";
 import VBox from "../../../containers/VBox";
 import CenterContainer from "../../../containers/CenterContainer";
@@ -13,8 +13,6 @@ import { Link } from "react-router-dom";
 const LoginForm = () => {
 
     const {login} = useLogin();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
     const styleOption = {
         justifyContent: "space-between",
@@ -39,23 +37,13 @@ const LoginForm = () => {
     };
 
     return (
-        <SectionAuthContainer title="Connexion" onSubmit={() => login(email, password)}>
+        <SectionAuthContainer title="Connexion" onSubmit={login}>
             <VBox style={{ display: "flex" }}>
-                <InputTextDefault
-                    placeholder="Email"
-                    style={styleInputText}
-                    type="email"
-                    name="email"
-                    value={email}
-                    setValue={setEmail}
-                />
+                <InputTextDefault placeholder="Email" style={styleInputText} />
                 <InputTextDefault
                     placeholder="Password"
                     style={styleInputText}
                     type="password"
-                    name="password"
-                    value={password}
-                    setValue={setPassword}
                 />
             </VBox>
             <HBox style={styleOption}>
