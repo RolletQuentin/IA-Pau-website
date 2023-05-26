@@ -44,6 +44,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
@@ -66,6 +67,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
@@ -88,6 +90,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
