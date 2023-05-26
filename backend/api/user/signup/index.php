@@ -11,7 +11,10 @@ include_once('../../utils/StringCorrection.php');
 
 $entityBody = file_get_contents('php://input');
 $values = json_decode($entityBody, true);
-    
+
+$errors = array();
+$last_error = "";
+
 $nom = verifyStringToDatabaseInsertion($values["lastname"]);
 $firstname = verifyStringToDatabaseInsertion($values["firstname"]);
 $email = verifyStringToDatabaseInsertion($values["email"]);
@@ -23,46 +26,99 @@ $ville = verifyStringToDatabaseInsertion($values["city"]);
 $numEtudiant = verifyStringToDatabaseInsertion($values["numEtudiant"]);
 
 try {
-    if(! isset($nom)){
-        http_response_code(400);
-        throw new Exception ("Nom de famille non saisit !");
+    if(empty($nom)){
+        array_push($errors, array("error" => "lastname"));
+        if($last_error == ""){
+            $last_error = "Nom de famille non saisi";
+        }
     } 
-    if(! isset($firstname)){
-        http_response_code(400);
-        throw new Exception ("Prénom non saisit !");
+    if(empty($firstname)){
+        array_push($errors, array("error" => "firstname"));
+        if($last_error == ""){
+            $last_error = "Prénom non saisi";
+        }
     }
-    if(! isset($email)){
-        http_response_code(400);
-        throw new Exception ("Email non saisit !");
+    if(empty($email)){
+        array_push($errors, array("error" => "email"));
+        if($last_error == ""){
+            $last_error = "Email non saisi";
+        }
+    } else {
+        require_once('../../utils/patchs/php8.php');
+        if(!(str_contains($email, "@"))){
+            if(!(in_array(array("error" => "email"), $errors))){
+                array_push($errors, array("error" => "email"));
+            }
+            if($last_error == ""){
+                $last_error = "Il manque un @ a votre email";
+            }
+            
+        } else {
+            $exploded_mail = explode("@", $email);
+            if(empty($exploded_mail[1])){
+                if(!(in_array(array("error" => "email"), $errors))){
+                    array_push($errors, array("error" => "email"));
+                }
+                if($last_error == ""){
+                    $last_error = "Il n'y a rien après votre @";
+                }
+            } else {
+                if(!(str_contains($exploded_mail[1], "."))){
+                    if(!(in_array(array("error" => "email"), $errors))){
+                        array_push($errors, array("error" => "email"));
+                    }
+                    if($last_error == ""){
+                        $last_error = "Merci de saisir le domaine a la fin du mail.";
+                    }
+                }
+            }
+        }
+        if(str_contains($email, " ")){
+            if(!(str_contains($exploded_mail[1], "."))){
+                if(!(in_array(array("error" => "email"), $errors))){
+                    array_push($errors, array("error" => "email"));
+                }
+                if($last_error == ""){
+                    $last_error = "Pas d'espaces dans un email.";
+                }
+            }
+        }
     }
-    require_once('../../utils/patchs/php8.php');
-    if(!(str_contains($email, "@"))){
-        http_response_code(400);
-        throw new Exception ("Format de l'email non valide !");
+    if(empty($mdp)){
+        array_push($errors, array("error" => "password"));
+        if($last_error == ""){
+            $last_error = "Mot de passe non saisi";
+        }
     }
-    if(! isset($mdp)){
-        http_response_code(400);
-        throw new Exception ("Mot de passe non saisit");
+    if(empty($phone)){
+        array_push($errors, array("error" => "phone"));
+        if($last_error == ""){
+            $last_error = "Numéro de téléphone non saisi";
+        }
     }
-    if(! isset($phone)){
-        http_response_code(400);
-        throw new Exception ("Telephone non saisit !");
+    if(empty($level)){
+        array_push($errors, array("error" => "level"));
+        if($last_error == ""){
+            $last_error = "Niveau d'études non saisi";
+        }
     }
-    if(! isset($level)){
-        http_response_code(400);
-        throw new Exception ("Niveau d'étude non saisit !");
-    }
-    if(! isset($ville)){
-        http_response_code(400);
-        throw new Exception ("ville non saisit !");
+    if(empty($ville)){
+        array_push($errors, array("error" => "city"));
+        if($last_error == ""){
+            $last_error = "Ville non saisie";
+        }
     } 
-    if(! isset($ecole)){
-        throw new Exception ("Ecole non saisit !");
-        http_response_code(400);
+    if(empty($ecole)){
+        array_push($errors, array("error" => "school"));
+        if($last_error == ""){
+            $last_error = "Ecole non saisie";
+        }
     } 
-    if(! isset($numEtudiant)){
-        throw new Exception ("Numéro etudiant non saisit !");
-        http_response_code(400);
+    if(empty($numEtudiant)){
+        array_push($errors, array("error" => "numEtudiant"));
+        if($last_error == ""){
+            $last_error = "Numéro étudiant non saisi";
+        }
     }
 
     include '../../utils/database.php';
@@ -78,8 +134,12 @@ try {
     }
 
     if($numEtudiantDejaPresent){
-        throw new Exception ("Numéro etudiant déjà présent dans la BDD");
-        http_response_code(400);
+        if(!(in_array(array("error" => "numEtudiant"), $errors))){
+            array_push($errors, array("error" => "numEtudiant"));
+        }
+        if($last_error == ""){
+            $last_error = "Numéro étudiant déjà dans la base de donnée.";
+        }
     }
 
     $existeDeja = false;
@@ -94,8 +154,21 @@ try {
     }
     mysqli_close($conn);
     if($existeDeja){
+        if(!(in_array(array("error" => "numEtudiant"), $errors))){
+            array_push($errors, array("error" => "numEtudiant"));
+        }
+        if($last_error == ""){
+            $last_error = "Numéro étudiant déjà dans la base de donnée.";
+        }
+    }
+    if($last_error != ""){
+        $retour = array(
+            "error" => $last_error,
+            "errors" => $errors
+        );
+        $json = json_encode($retour);
+        echo $json;
         http_response_code(400);
-        throw new Exception ("Le mail est déjà utilisé dans la bdd");
     } else {
 
         $conn = getConnection();

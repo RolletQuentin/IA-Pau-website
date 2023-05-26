@@ -20,6 +20,9 @@ include_once('../../utils/StringCorrection.php');
 $email = verifyStringToDatabaseInsertion($array["email"]);
 $mdp = verifyStringToDatabaseInsertion($array["password"]);
 
+$errors = array();
+$last_error = "";
+
 include_once('../../utils/patchs/php8.php');
 
 if(!(str_contains($email, "@"))){
