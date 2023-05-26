@@ -34,6 +34,19 @@ CREATE TABLE IF NOT EXISTS Evenement (
     Entreprise VARCHAR(64)
 );
 
+-- ------------------------- MODIF PATRICE --------------------------------
+-- EVENEMENT (Projet) MODIFICATION POUR LIER A EVENEMENT
+CREATE TABLE IF NOT EXISTS Projet(
+    IdProjet INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
+    IdEvenement INTEGER(16),
+    Libele VARCHAR(64),
+    Description VARCHAR(2048),
+    Consigne VARCHAR(8192),
+    Conseil VARCHAR(2048),
+    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+
+);
+
 -- USER ?
 CREATE TABLE IF NOT EXISTS Equipe (
     IdEquipe INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
@@ -42,8 +55,8 @@ CREATE TABLE IF NOT EXISTS Equipe (
     CodeEquipe VARCHAR(16),
     Score INTEGER(16),
     LienProjet VARCHAR(512),
-    IdEvenement INTEGER(16),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+    IdProjet INTEGER(16),
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
 );
 
 -- USER
@@ -96,19 +109,6 @@ CREATE TABLE IF NOT EXISTS Message(
     IdEquipe INTEGER(16),
     CONSTRAINT fk1 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement),
     CONSTRAINT fk2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
-);
-
--- ------------------------- MODIF PATRICE --------------------------------
--- EVENEMENT (Projet) MODIFICATION POUR LIER A EVENEMENT
-CREATE TABLE IF NOT EXISTS Projet(
-    IdProjet INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    IdEvenement INTEGER(16),
-    Libele VARCHAR(64),
-    Description VARCHAR(2048),
-    Consigne VARCHAR(8192),
-    Conseil VARCHAR(2048),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
-
 );
 
 -- RESSOURCES Doit pouvoir etre lié a plusieurs projets il nous manque le lien posseder
