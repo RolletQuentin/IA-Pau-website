@@ -165,11 +165,11 @@ CREATE TABLE IF NOT EXISTS Gerer(
 
 
 -- ON CHARGE DONNEES TEST -----------------
-
-INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('arthur.rimaudiere@free.fr', 'Rimaudiere', 'Arthur', 769030682, 'trivialMDP');
-INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('soulier.patrice@orangeCMieuxQueFree.fr', 'SOULIER', 'Patrice', 985469236, 'trivialMDP');
-
-INSERT INTO Etudiant VALUES (115618941, "L3", "CyTech", "Pau", 1);
+-- Administrateur: --
+INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('root@root.fr', 'Root', 'Root', 769030682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
+INSERT INTO Administrateur (Identifiant) VALUES (1);
+-- Etudiant --
+INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('etudiant@etudiant.fr', 'Etudiant', 'Etudiant', 769590682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
 INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
 INSERT INTO Evenement VALUES (1, "image", '2023-01-01', '2023-01-02', "Recompense", "DataChallenge", "Entreprise");

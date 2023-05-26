@@ -6,7 +6,7 @@ const StyledButton = styled.div`
     width: 100%;
     background: var(--background-color);
     color: var(--font-color);
-    height: 80px;
+    min-height: 80px;
     padding: 0px 30px 0px 30px;
     border-radius: 30px;
     box-shadow: 1px 4px 4px 0px rgba(0, 0, 0, 0.25);
