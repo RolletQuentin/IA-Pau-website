@@ -10,10 +10,15 @@ import routes from "../../../utils/routes";
 import { useLogin } from "../../../hooks/auth/useLogin";
 import { Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({
+    defaultRememberMe = false
+}) => {
     const {login} = useLogin();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const [rememberMe, setRememberMe] = useState(defaultRememberMe);
 
     const styleOption = {
         justifyContent: "space-between",
@@ -38,7 +43,7 @@ const LoginForm = () => {
     };
 
     return (
-        <SectionAuthContainer title="Connexion" onSubmit={() => login(email, password)}>
+        <SectionAuthContainer title="Connexion" onSubmit={() => login(email, password, rememberMe)}>
             <VBox style={{ display: "flex" }}>
                 <InputTextDefault
                     placeholder="Email"
@@ -59,7 +64,7 @@ const LoginForm = () => {
             </VBox>
             <HBox style={styleOption}>
                 <HBox>
-                    <CheckBox style={styleCheckBox} />
+                    <CheckBox style={styleCheckBox} defaultState={rememberMe} setDefaultState={setRememberMe}/>
                     <p>Remember me</p>
                 </HBox>
                 <p>Mot de passe oublié ?</p>
