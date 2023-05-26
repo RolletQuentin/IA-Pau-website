@@ -11,8 +11,8 @@ header('HTTP/1.1 200 OK');
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
-    include_once '../config/Database.php';
-    include_once '../models/Ressources.php';
+    include_once '../../config/Database.php';
+    include_once '../../models/Ressources.php';
 
     // On instancie la base de données
     $database = new Database();
