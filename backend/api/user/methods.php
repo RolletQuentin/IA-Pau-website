@@ -44,6 +44,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
@@ -66,6 +67,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
@@ -88,6 +90,7 @@
             if(mysqli_num_rows($result) > 0) {
                 if($row = mysqli_fetch_assoc($result)){
                     $array = array(
+                        "id"=>$id,
                         "email"=>$row["Email"],
                         "lastname" => $row["Nom"],
                         "firstname" => $row["Prenom"],
@@ -133,8 +136,10 @@
             echo $json;
             mysqli_close($conn);
         } else {
-            http_response_code(404);
-            throw new Exception ("Aucun utilisateur trouvé !");
+            $array = array();
+            $json = json_encode($array);
+            http_response_code(200);
+            echo $json;
         }
     }
 
