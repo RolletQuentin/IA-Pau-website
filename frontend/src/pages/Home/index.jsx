@@ -28,7 +28,7 @@ function Home() {
         <StyledHome>
             <NavbarOffset />
             <h2>Data Challenges</h2>
-            {isLoading ? (
+            {/* {isLoading ? (
                 <Loader />
             ) : (
                 <>
@@ -36,7 +36,7 @@ function Home() {
                         <DataChallengeItem key={id} title={title} id={id} />
                     ))}
                 </>
-            )}
+            )} */}
             <DataChallengeItem title="Data Challenge 1" id="1" />
             <DataChallengeItem title="Data Challenge 2" id="2" />
             <DataChallengeItem title="Data Challenge 3" id="3" />
