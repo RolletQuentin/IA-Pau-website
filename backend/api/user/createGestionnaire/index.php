@@ -129,7 +129,11 @@ try {
 
 
 } catch (Exception $e){
+    $array = array(
+        "error"=>$e->getMessage()
+    );
+    $json = json_encode($array);
+    echo $json;
     http_response_code(400);
-    echo "Erreur : " . $e->getMessage();
 }
 ?>
