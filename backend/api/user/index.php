@@ -4,6 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header('HTTP/1.1 200 OK');
 
 error_reporting(E_ALL & ~E_DEPRECATED);
 ini_set("display_errors", 1);
@@ -13,6 +14,12 @@ include 'methods.php';
 include '../utils/permissionManager.php';
 
 require_once('../../vendor/autoload.php');
+
+$header = apache_request_headers();
+$token = "";
+if(!(empty($header["Authorization"]))){
+    $token = str_replace("Bearer ", "", $header["Authorization"]);
+}
 
 try {
     if($_SERVER['REQUEST_METHOD'] == "GET"){
@@ -50,7 +57,7 @@ try {
             http_response_code(400);
             throw new Exception ("Il faut préciser un id d'utilisateur pour la requete");
         } else {
-            if(hasPermUser($body["token"], $_GET["id"])){
+            if(hasPermUser($token, $_GET["id"])){
                 EditUserFromId($_GET["id"], $body);
             } else {
                 http_response_code(400);
@@ -60,7 +67,7 @@ try {
     } else if ($_SERVER['REQUEST_METHOD'] == "DELETE"){
         $entityBody = file_get_contents('php://input');
         $array = json_decode($entityBody, true);
-        if(hasPermUser($array["token"], $_GET["id"])){
+        if(hasPermUser($token, $_GET["id"])){
             deleteUser($_GET["id"]);
         } else {
             throw new Exception ("Pas la permission de supprimer cette ressource !");
