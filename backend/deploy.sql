@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS Equipe (
     CodeEquipe VARCHAR(16),
     Score INTEGER(16),
     LienProjet VARCHAR(512),
-    IdEvenement INTEGER(16),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+    IdProjet INTEGER(16),
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
 );
 
 -- USER
