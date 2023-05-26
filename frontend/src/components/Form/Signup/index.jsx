@@ -23,11 +23,8 @@ const StyledSelect = styled.select`
     color : rgb(117,117,117);
 `;
 
-
-
 const styleOption = {
     justifyContent: "space-between"
-
 }
 
 const styleCreerCompte = {
@@ -64,7 +61,6 @@ const SignupForm = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [numEtudiant, setNumEtudiant] = useState("");
-
 
     return (
         <SectionAuthContainer title="Créer Compte" onSubmit={() => signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )}>

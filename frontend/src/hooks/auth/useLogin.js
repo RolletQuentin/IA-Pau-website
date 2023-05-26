@@ -11,7 +11,7 @@ export const useLogin = (fakeRole = null) => {
     // dispatch
     const { dispatch } = useAuthContext();
 
-    const login = async (email, password) => {
+    const login = async (email, password, rememberMe) => {
         setIsLoading(true);
         setEmailError('');
         setPasswordError('');
@@ -36,7 +36,9 @@ export const useLogin = (fakeRole = null) => {
             }
     
             if (response.ok) {
-                localStorage.setItem('user', JSON.stringify(json)); // save the user to the local storage
+                if (rememberMe) {
+                    localStorage.setItem('user', JSON.stringify(json)); // save the user to the local storage
+                }
                 dispatch({type: 'LOGIN', payload: json}); // update the auth context
             }
         }else{
