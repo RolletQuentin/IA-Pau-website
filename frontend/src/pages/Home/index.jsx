@@ -22,7 +22,7 @@ const StyledHome = styled.div`
 
 function Home() {
     const { data, isLoading } = useFetch(
-        process.env.REACT_APPA_PROXY + "api/event/"
+        process.env.REACT_APP_PROXY + "api/event/"
     );
     return (
         <StyledHome>

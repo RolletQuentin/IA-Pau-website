@@ -11,7 +11,7 @@ ini_set("display_errors", 1);
 
 include '../utils/database.php';
 include 'methods.php';
-include '../utils/permissionManager.php';
+include_once '../utils/permissionManager.php';
 
 require_once('../../vendor/autoload.php');
 
@@ -23,32 +23,22 @@ if(!(empty($header["Authorization"]))){
 
 try {
     if($_SERVER['REQUEST_METHOD'] == "GET"){
-        /*
-        $entityBody = file_get_contents('php://input');
-        $body = json_decode($entityBody, true);
-
         
-        $token = $body["token"];
         $role = getRoleFromJwt($token);
         $idToken = getUserIdFromJWT($token);
         
-        if(!(empty($_GET["id"]))){
-            if(($id == $_GET["id"]) || ($role == "Administrateur")){
-                getUserFromId($_GET["id"]);
-            } else {
-                throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
-            }
-        } else {
+        if(empty($_GET["id"])){
             if($role == "Administrateur"){
                 getAllUsers();
             } else {
                 throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
             }
-        }*/
-        if(!(empty($_GET["id"]))){
-            getUserFromId($_GET["id"]);
         } else {
-            getAllUsers();
+            if(($id == $_GET["id"]) || ($role == "Administrateur")){
+                getUserFromId($_GET["id"]);
+            } else {
+                throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
+            }
         }
     } else if ($_SERVER['REQUEST_METHOD'] == "PATCH"){
         $entityBody = file_get_contents('php://input');
@@ -70,7 +60,7 @@ try {
         if(hasPermUser($token, $_GET["id"])){
             deleteUser($_GET["id"]);
         } else {
-            throw new Exception ("Pas la permission de supprimer cette ressource !");
+            throw new Exception ("Vous n'avez pas la permission de supprimer cette ressource !");
             http_response_code(400);
         }
 
@@ -79,8 +69,12 @@ try {
         throw new Exception ("Methode de récupération de donnée non prise en charge.");
     }
 } catch (Exception $e) {
+    $array = array(
+        "error"=>$e->getMessage()
+    );
+    $json = json_encode($array);
+    echo $json;
     http_response_code(400);
-    echo "Erreur: ". $e->getMessage();
 }
 
 ?>

@@ -6,8 +6,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 header('HTTP/1.1 200 OK');
 
 use Firebase\JWT\JWT;
-
 require_once('../../../vendor/autoload.php');
+include_once('../../utils/StringCorrection.php');
 
 $entityBody = file_get_contents('php://input');
 $values = json_decode($entityBody, true);
@@ -35,6 +35,7 @@ try {
         http_response_code(400);
         throw new Exception ("Email non saisit !");
     }
+    require_once('../../utils/patchs/php8.php');
     if(!(str_contains($email, "@"))){
         http_response_code(400);
         throw new Exception ("Format de l'email non valide !");
@@ -146,8 +147,12 @@ try {
 
 
 } catch (Exception $e){
+    $array = array(
+        "error"=>$e->getMessage()
+    );
+    $json = json_encode($array);
+    echo $json;
     http_response_code(400);
-    echo "Erreur : " . $e->getMessage();
 }
 
 ?>
