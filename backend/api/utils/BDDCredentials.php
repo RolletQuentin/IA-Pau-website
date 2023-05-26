@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
-$username = "Arthur";
+$username = "user";
 $password = "password";
 $dbname = "IA_Pau_database";
 ?>
