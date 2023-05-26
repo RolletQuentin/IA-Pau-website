@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const LoginForm = () => {
 
-    const {login} = useLogin();
+    const {login} = useLogin("Administrateur");
 
     const styleOption = {
         justifyContent: "space-between",
