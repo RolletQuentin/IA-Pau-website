@@ -12,6 +12,7 @@ include '../utils/permissionManager.php';
 require_once('../../vendor/autoload.php');
 
 $header = apache_request_headers();
+$token = "";
 if(!(empty($header["Authorization"]))){
     $token = str_replace("Bearer ", "", $header["Authorization"]);
 }
