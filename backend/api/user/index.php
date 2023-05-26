@@ -60,7 +60,7 @@ try {
         if(hasPermUser($token, $_GET["id"])){
             deleteUser($_GET["id"]);
         } else {
-            throw new Exception ("Pas la permission de supprimer cette ressource !");
+            throw new Exception ("Vous n'avez pas la permission de supprimer cette ressource !");
             http_response_code(400);
         }
 
@@ -69,8 +69,12 @@ try {
         throw new Exception ("Methode de récupération de donnée non prise en charge.");
     }
 } catch (Exception $e) {
+    $array = array(
+        "error"=>$e->getMessage()
+    );
+    $json = json_encode($array);
+    echo $json;
     http_response_code(400);
-    echo "Erreur: ". $e->getMessage();
 }
 
 ?>
