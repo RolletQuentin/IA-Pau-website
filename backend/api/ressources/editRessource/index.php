@@ -1,4 +1,5 @@
 <?php
+// Exemple utilisation : http://localhost/api/ressources/editRessource/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
