@@ -12,15 +12,15 @@ require_once('../../../vendor/autoload.php');
 $entityBody = file_get_contents('php://input');
 $values = json_decode($entityBody, true);
     
-$nom = $values["lastname"];
-$firstname = $values["firstname"];
-$email = $values["email"];
-$mdp = $values["password"];
-$phone = $values["phone"];
-$level = $values["level"];
-$ecole = $values["school"];
-$ville = $values["city"];
-$numEtudiant = $values["numEtudiant"];
+$nom = verifyStringToDatabaseInsertion($values["lastname"]);
+$firstname = verifyStringToDatabaseInsertion($values["firstname"]);
+$email = verifyStringToDatabaseInsertion($values["email"]);
+$mdp = verifyStringToDatabaseInsertion($values["password"]);
+$phone = verifyStringToDatabaseInsertion($values["phone"]);
+$level = verifyStringToDatabaseInsertion($values["level"]);
+$ecole = verifyStringToDatabaseInsertion($values["school"]);
+$ville = verifyStringToDatabaseInsertion($values["city"]);
+$numEtudiant = verifyStringToDatabaseInsertion($values["numEtudiant"]);
 
 try {
     if(! isset($nom)){
@@ -34,6 +34,10 @@ try {
     if(! isset($email)){
         http_response_code(400);
         throw new Exception ("Email non saisit !");
+    }
+    if(!(str_contains($email, "@"))){
+        http_response_code(400);
+        throw new Exception ("Format de l'email non valide !");
     }
     if(! isset($mdp)){
         http_response_code(400);
