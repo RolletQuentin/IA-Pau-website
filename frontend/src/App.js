@@ -38,11 +38,15 @@ function App() {
                     path={routes.login}
                     element={user ? <Navigate to={routes.home} /> : <Login />}
                 />
-                <Route exact path={routes.signup} element={<Signup />} />
+                <Route
+                    exact
+                    path={routes.signup}
+                    element={user ? <Navigate to={routes.home} /> : <Signup />}
+                />
                 <Route
                     exact
                     path={`${routes.profile}/:id_profile`}
-                    element={<Profile />}
+                    element={!user ? <Navigate to={routes.login} /> : <Profile />}
                 />
                 <Route
                     exact
