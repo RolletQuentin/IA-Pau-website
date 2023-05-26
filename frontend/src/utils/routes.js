@@ -9,6 +9,9 @@ const routes = {
     MCQ: "/MCQ",
     evaluateMCQ: "/evaluate_MCQ",
     admin: "/admin",
+    adminUsers: "/admin/users",
+    adminDataChallenges: "/admin/data-challenges",
+    adminRessources: "/admin/ressources",
 };
 
 export default routes;

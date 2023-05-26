@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputTextDefault from "../../Input/Text/Default";
 import VBox from "../../../containers/VBox";
 import SectionAuthContainer from "../../../containers/SectionAuthContainer";
@@ -6,6 +6,7 @@ import HBox from "../../../containers/HBox";
 import CenterContainer from "../../../containers/CenterContainer";
 import BasicButton from "../../BasicButton";
 import styled from "styled-components";
+import { useSignup } from "../../../hooks/auth/useSignup";
 
 const styleInputText = {
     flexGrow: 1
@@ -51,8 +52,22 @@ const styleEndButton = {
 
 
 const SignupForm = () => {
+
+    const {signup} = useSignup();
+    const [lastname, setLastname] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [level, setLevel] = useState("ing1");
+    const [phone, setPhone] = useState("");
+    const [school, setSchool] = useState("");
+    const [city, setCity] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [numEtudiant, setNumEtudiant] = useState("");
+
+
     return (
-        <SectionAuthContainer title="Créer Compte">
+        <SectionAuthContainer title="Créer Compte" onSubmit={() => signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )}>
             <CenterContainer>
                 <HBox>
                     <p style={styleDejaCompte}>Déjà un compte?</p>
@@ -61,19 +76,47 @@ const SignupForm = () => {
             </CenterContainer>
 
             <HBox gap="20px" style={styleOption}>
-                <InputTextDefault placeholder="Nom" style={{ marginBottom: "20px" }} />
-                <InputTextDefault placeholder="Prénom" style={{ marginBottom: "20px" }} />
+                <InputTextDefault
+                    placeholder="Nom"
+                    style={{ marginBottom: "20px" }}
+                    name="lastname"
+                    value={lastname}
+                    setValue={setLastname}
+                />
+                <InputTextDefault
+                    placeholder="Prénom"
+                    style={{ marginBottom: "20px" }}
+                    name="firstname"
+                    value={firstname}
+                    setValue={setFirstname}
+                />
             </HBox>
 
-            
-
             <VBox style={{ display: "flex" }}>
-                <InputTextDefault placeholder="Email" style={styleInputText} />
+                <InputTextDefault
+                    placeholder="Email"
+                    style={styleInputText}
+                    type="email"
+                    name="email"
+                    value={email}
+                    setValue={setEmail}
+                />
 
                 <HBox gap="20px" style={styleOption}>
-                <InputTextDefault placeholder="Numéro étudiant"/>
-                <InputTextDefault placeholder="Numéro de téléphone"/>
+                    <InputTextDefault
+                        placeholder="Numéro étudiant"
+                        name="numEtudiant"
+                        value={numEtudiant}
+                        setValue={setNumEtudiant}
+                    />
+                    <InputTextDefault
+                        placeholder="Numéro de téléphone"
+                        name="phone"
+                        value={phone}
+                        setValue={setPhone}
+                    />
                 </HBox>
+
                 <StyledSelect style = {{marginBottom : "20px"}}>
                     <option >Niveau d'étude</option>
                     <option >L1</option>
@@ -86,13 +129,40 @@ const SignupForm = () => {
             </VBox>
 
             <HBox gap="20px" style={styleOption}>
-                <InputTextDefault placeholder="École" style={{ marginBottom: "20px" }} />
-                <InputTextDefault placeholder="Ville" style={{ marginBottom: "20px" }} />
+                <InputTextDefault
+                    placeholder="École"
+                    style={{ marginBottom: "20px" }}
+                    name="school"
+                    value={school}
+                    setValue={setSchool}
+                    
+                />
+                <InputTextDefault
+                    placeholder="Ville"
+                    style={{ marginBottom: "20px" }}
+                    name="city"
+                    value={city}
+                    setValue={setCity}
+                />
             </HBox>
+
             <VBox style={{ display: "flex" }}>
-                <InputTextDefault placeholder="Mot de passe" style={styleInputText} type="password" />
-                <InputTextDefault placeholder="Confirmation mot de passe" style={{...styleInputText, marginBottom : "20px"}} type="password" />
+                <InputTextDefault
+                    placeholder="Mot de passe" style={styleInputText}
+                    type="password"
+                    name="password"
+                    value={password}
+                    setValue={setPassword}
+                />
+                <InputTextDefault
+                    placeholder="Confirmation mot de passe"
+                    style={{...styleInputText, marginBottom : "20px"}}
+                    type="password"
+                    value={confirmPassword}
+                    setValue={setConfirmPassword}
+                />
             </VBox>
+
             <CenterContainer>
                 <BasicButton style={{ styleEndButton }}>
                     <h2 style={{ margin: "0" }}>S'enregistrer</h2>
