@@ -2,7 +2,7 @@
 class Projets {
     //connexion
     private $connexion;
-    private $table = "Projets";
+    private $table = "Projet";
 
 
     //object properties
@@ -10,8 +10,8 @@ class Projets {
     public $IdEvenement;
     public $Libele;
     public $Description;
-    public $Consigne;
-    public $Conseil;
+    public $Image;
+    public $Entreprise;
 
 
     /**
@@ -23,18 +23,12 @@ class Projets {
         $this->connexion = $db;
     }
 
-
-
-// -----------------------------------------------
-// ------- A FINIR -------------------------------
-// -----------------------------------------------
-
     /**
-     * Lecture des ressources
+     * Lecture des Projets
      *
      * @return void
      */
-    public function getAllRessources(){
+    public function getAllProjets(){
         // On écrit la requête
         $sql = "SELECT * FROM " . $this->table;
 
@@ -49,19 +43,19 @@ class Projets {
     }
 
     /**
-     * Lire une ressource
+     * Lire un projet
      *
      * @return void
      */
-    public function getRessource(){
+    public function getProjet(){
         // On écrit la requête
-        $sql = "SELECT * FROM " . $this->table . " WHERE IdRessource = ?";
+        $sql = "SELECT * FROM " . $this->table . " WHERE IdProjet = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare( $sql );
 
         // On attache l'id
-        $query->bindParam(1, $this->IdRessource);
+        $query->bindParam(1, $this->IdProjet);
 
         // On exécute la requête
         $query->execute();
@@ -70,30 +64,46 @@ class Projets {
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
         // On hydrate l'objet
-        $this->IdRessource = $row['IdRessource'];
-        $this->UrlRessource = $row['UrlRessource'];
+        $this->IdProjet = $row['IdProjet'];
+        $this->IdEvenement = $row['IdEvenement'];
+        $this->Libele = $row['Libele'];
+        $this->Description = $row['Description'];
+        $this->Image = $row['Image'];
+        $this->Entreprise = $row['Entreprise'];
     }
 
     /**
-     * Créer une ressource
+     * Créer un Projet
      *
      * @return void
      */
-    public function createRessource(){
+    public function createProjet(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdRessource=:IdRessource, UrlRessource=:UrlRessource";
+        $sql = "INSERT INTO " . $this->table . " SET IdProjet=:IdProjet, IdEvenement=:IdEvenement,
+        Libele=:Libele,
+        Description=:Description,
+        Image=:Image,
+        Entreprise=:Entreprise";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
-        $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->IdProjet=htmlspecialchars(strip_tags($this->IdProjet));
+        $this->IdEvenement=htmlspecialchars(strip_tags($this->IdEvenement));
+        $this->Libele=htmlspecialchars(strip_tags($this->Libele));
+        $this->Description=htmlspecialchars(strip_tags($this->Description));
+        $this->Image=htmlspecialchars(strip_tags($this->Image));
+        $this->Entreprise=htmlspecialchars(strip_tags($this->Entreprise));
 
         // Ajout des données protégées
-        $query->bindParam(":IdRessource", $this->IdRessource);
-        $query->bindParam(":UrlRessource", $this->UrlRessource);
+        $query->bindParam(":IdProjet", $this->IdProjet);
+        $query->bindParam(":IdEvenement", $this->IdEvenement);
+        $query->bindParam(":Libele", $this->Libele);
+        $query->bindParam(":Description", $this->Description);
+        $query->bindParam(":Image", $this->Image);
+        $query->bindParam(":Entreprise", $this->Entreprise);
 
         // Exécution de la requête
         if($query->execute()){
@@ -103,22 +113,22 @@ class Projets {
     }
 
     /**
-     * Supprimer une ressource
+     * Supprimer un Projet
      *
      * @return void
      */
-    public function deleteRessource(){
+    public function deleteProjet(){
         // On écrit la requête
-        $sql = "DELETE FROM " . $this->table . " WHERE IdRessource = ?";
+        $sql = "DELETE FROM " . $this->table . " WHERE IdProjet = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare( $sql );
 
         // On sécurise les données
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
+        $this->IdProjet=htmlspecialchars(strip_tags($this->IdProjet));
 
         // On attache l'id
-        $query->bindParam(1, $this->IdRessource);
+        $query->bindParam(1, $this->IdProjet);
 
         // On exécute la requête
         if($query->execute()){
@@ -129,24 +139,36 @@ class Projets {
     }
 
     /**
-     * Mettre à jour une ressource
+     * Mettre à jour un Projet
      *
      * @return void
      */
-    public function editRessource(){
+    public function editProjet(){
         // On écrit la requête
-        $sql = "UPDATE " . $this->table . " SET UrlRessource = :UrlRessource WHERE IdRessource = :IdRessource";
+        $sql = "UPDATE " . $this->table . " SET IdEvenement=:IdEvenement,
+        Libele=:Libele,
+        Description=:Description,
+        Image=:Image,
+        Entreprise=:Entreprise WHERE IdProjet = :IdProjet";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
         
         // On sécurise les données
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
-        $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->IdProjet=htmlspecialchars(strip_tags($this->IdProjet));
+        $this->IdEvenement=htmlspecialchars(strip_tags($this->IdEvenement));
+        $this->Libele=htmlspecialchars(strip_tags($this->Libele));
+        $this->Description=htmlspecialchars(strip_tags($this->Description));
+        $this->Image=htmlspecialchars(strip_tags($this->Image));
+        $this->Entreprise=htmlspecialchars(strip_tags($this->Entreprise));
         
         // On attache les variables
-        $query->bindParam(':IdRessource', $this->IdRessource);
-        $query->bindParam(':UrlRessource', $this->UrlRessource);
+        $query->bindParam(":IdProjet", $this->IdProjet);
+        $query->bindParam(":IdEvenement", $this->IdEvenement);
+        $query->bindParam(":Libele", $this->Libele);
+        $query->bindParam(":Description", $this->Description);
+        $query->bindParam(":Image", $this->Image);
+        $query->bindParam(":Entreprise", $this->Entreprise);
         
         // On exécute
         if($query->execute()){

@@ -43,8 +43,7 @@ CREATE TABLE IF NOT EXISTS Projet(
     Description VARCHAR(2048),
     Image VARCHAR(2048),
     Entreprise VARCHAR(128),
-    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
-
+    FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE
 );
 
 -- USER ?
@@ -129,7 +128,7 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
     IdRessource INTEGER(16) AUTO_INCREMENT,
     IdProjet INTEGER(16),
     CONSTRAINT pPR PRIMARY KEY (IdRessource, IdProjet),
-    CONSTRAINT fkPR1 FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet),
+    CONSTRAINT fkPR1 FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet) ON DELETE CASCADE,
     CONSTRAINT fkPR2 FOREIGN KEY (IdRessource) REFERENCES Ressources (IdRessource) ON DELETE CASCADE
 );
 -- ------------------------------------------------
