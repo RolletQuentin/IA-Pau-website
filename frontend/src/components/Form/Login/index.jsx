@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const LoginForm = ({
     defaultRememberMe = false
 }) => {
-    const {login} = useLogin();
+    const {login, globalError} = useLogin();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -77,6 +77,7 @@ const LoginForm = ({
                 }}
             >
                 <h1 style={{ margin: "0" }}>Connexion</h1>
+                {globalError}
             </BasicButton>
             <CenterContainer>
                 <VBox gap={0} style={{ alignSelf: "center" }}>
