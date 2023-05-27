@@ -26,12 +26,12 @@ CREATE TABLE IF NOT EXISTS Question(
 -- EVENEMENT (DataChallenge ou DataBattle)
 CREATE TABLE IF NOT EXISTS Evenement (
     IdEvenement INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    Image VARCHAR(256),
-    Debut DATE,
-    Fin DATE,
-    Recompense VARCHAR(128),
     TypeEvenement VARCHAR(32),
-    Entreprise VARCHAR(64)
+    Libele VARCHAR(64),
+    Description VARCHAR(2048),
+    Recompenses VARCHAR(2048),
+    Debut DATE,
+    Fin DATE
 );
 
 -- ------------------------- MODIF PATRICE --------------------------------
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS Projet(
     IdEvenement INTEGER(16),
     Libele VARCHAR(64),
     Description VARCHAR(2048),
-    Consigne VARCHAR(8192),
-    Conseil VARCHAR(2048),
+    Image VARCHAR(2048),
+    Entreprise VARCHAR(128),
     FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
 
 );
@@ -52,7 +52,6 @@ CREATE TABLE IF NOT EXISTS Equipe (
     IdEquipe INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     Nom VARCHAR(128),
     IdLeader INTEGER(16),
-    CodeEquipe VARCHAR(16),
     Score INTEGER(16),
     LienProjet VARCHAR(512),
     IdProjet INTEGER(16),
@@ -68,6 +67,15 @@ CREATE TABLE IF NOT EXISTS User(
     Prenom VARCHAR(32),
     NumTel INTEGER(10),
     Mdp VARCHAR(255)
+);
+
+-- USER
+CREATE TABLE IF NOT EXISTS Preinscription(
+    Identifiant INTEGER(16),
+    IdEquipe INTEGER(16),
+    CONSTRAINT fkPréInsc1 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant),
+    CONSTRAINT fkPréInsc2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe),
+    CONSTRAINT pkPréInsc PRIMARY KEY (Identifiant, IdEquipe)
 );
 
 -- USER
@@ -172,11 +180,12 @@ INSERT INTO Administrateur (Identifiant) VALUES (1);
 INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('etudiant@etudiant.fr', 'Etudiant', 'Etudiant', 769590682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
 INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
-INSERT INTO Evenement VALUES (1, "image", '2023-01-01', '2023-01-02', "Recompense", "DataChallenge", "Entreprise");
-INSERT INTO Evenement VALUES (2, "image", '2023-01-01', '2023-01-02', "Recompense", "DataChallenge", "Entreprise");
+INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire","2023-01-01", "2023-01-02");
+INSERT INTO Evenement VALUES (2, "DataBattle", "DataBattle1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire", "2023-01-03", "2023-01-04");
 
-INSERT INTO Projet VALUES (1, 1, "Projet 1", "Description", "Consigne", "Conseil");
-INSERT INTO Projet VALUES (2, 1, "Projet 2", "Description", "Consigne", "Conseil");
+INSERT INTO Projet VALUES (1, 1, "Projet 1", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (2, 1, "Projet 2", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (3, 2, "Projet 3", "Description", "Image", "Entreprise");
 
 INSERT INTO Ressources VALUES (1,"test.com");
 INSERT INTO Ressources VALUES (2,"test.com");
