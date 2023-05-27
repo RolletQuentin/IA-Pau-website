@@ -3,8 +3,6 @@ import { useAuthContext } from "./useAuthContext";
 
 
 export const useSignup = () => {
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
     const [globalError, setGlobalError] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +11,6 @@ export const useSignup = () => {
 
     const signup = async (lastname, firstname, level, phone, school, city, email, password, numEtudiant) => {
         setIsLoading(true);
-        setEmailError('');
-        setPasswordError('');
         setGlobalError('');
 
         const response = await fetch(process.env.REACT_APP_PROXY + '/api/user/signup/', {
@@ -38,9 +34,7 @@ export const useSignup = () => {
         const json = await response.json();
 
         if (!response.ok) {       
-            setEmailError(json.errors.email);
-            setPasswordError(json.errors.password);
-            setGlobalError(json.errors.global);
+            setGlobalError(json.error);
         }
 
         if (response.ok) {
@@ -52,5 +46,5 @@ export const useSignup = () => {
         setIsLoading(false);
     }
 
-    return {signup, isLoading, emailError, passwordError, globalError};
+    return {signup, isLoading, globalError};
 }

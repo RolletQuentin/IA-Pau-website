@@ -50,7 +50,7 @@ const styleEndButton = {
 
 const SignupForm = () => {
 
-    const {signup} = useSignup();
+    const {signup, globalError} = useSignup();
     const [lastname, setLastname] = useState("");
     const [firstname, setFirstname] = useState("");
     const [level, setLevel] = useState("ing1");
@@ -163,6 +163,7 @@ const SignupForm = () => {
                 <BasicButton style={{ styleEndButton }}>
                     <h2 style={{ margin: "0" }}>S'enregistrer</h2>
                 </BasicButton>
+                {globalError}
             </CenterContainer>
 
         </SectionAuthContainer>
