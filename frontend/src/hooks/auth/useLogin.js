@@ -3,8 +3,6 @@ import { useAuthContext } from "./useAuthContext";
 
 export const useLogin = (fakeRole = null) => {
     // error
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
     const [globalError, setGlobalError] = useState('');
     // state
     const [isLoading, setIsLoading] = useState(false);
@@ -13,8 +11,6 @@ export const useLogin = (fakeRole = null) => {
 
     const login = async (email, password, rememberMe) => {
         setIsLoading(true);
-        setEmailError('');
-        setPasswordError('');
         setGlobalError('');
 
         if (!fakeRole){
@@ -30,8 +26,6 @@ export const useLogin = (fakeRole = null) => {
             const json = await response.json();
     
             if (!response.ok) {       
-                setEmailError(json.errors.email);
-                setPasswordError(json.errors.password);
                 setGlobalError(json.errors.global);
             }
     
@@ -52,5 +46,5 @@ export const useLogin = (fakeRole = null) => {
         console.log("fetched")
     }
 
-    return {login, isLoading, emailError, passwordError, globalError};
+    return {login, isLoading, globalError};
 }
