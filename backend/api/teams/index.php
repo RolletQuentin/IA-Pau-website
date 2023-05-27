@@ -21,10 +21,11 @@ if(!(empty($header["Authorization"]))){
 
 try {
     if($_SERVER['REQUEST_METHOD'] == "GET"){
-
-        if($_SERVER['REQUEST_METHOD'] == "GET"){
+        if(!(empty($_GET["IdEvent"]))){
+            getAllTeamsOfEvent($_GET["IdEvent"]);
+        } else {
             if(empty($_GET["IdEquipe"])){
-                throw new Exception ("Merci de choisir un id d'équipe");
+                getAllTeams();
             } else {
                 getTeamInformation($_GET["IdEquipe"]);
             }
