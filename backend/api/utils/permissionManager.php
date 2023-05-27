@@ -135,7 +135,7 @@
         return false;
     }
 
-    function AccoundIsActive($id){
+    function AccountIsActive($id){
         $role = getTypeOfUser($id);
         if($role == "Etudiant" || $role == "Administrateur"){
             return true;
@@ -160,6 +160,37 @@
                 return false;
             }
 
+        }
+    }
+
+    function getArrayOfGestionnaireOfEvent($IdEvenement){
+        $retour = array();
+        $conn = getConnection();
+        $query = "SELECT * From Gerer AS g INNER JOIN Gestionnaire AS ge ON g.IdGestionnaire = ge.IdGestionnaire WHERE g.IdEvenement=". $IdEvenement . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)){
+                array_push($retour, $row["Identifiant"]);
+            }
+        }
+        mysqli_close($conn);
+        return $retour;
+    }
+
+    function getIdOfLeader($IdEquipe){
+        $conn = getConnection();
+        $query = "SELECT * From Equipe WHERE IdEquipe=". $IdEquipe .";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0) {
+            if($row = mysqli_fetch_assoc($result)){
+                $id = $row["IdLeader"];
+                mysqli_close($conn);
+                return $id;
+            } else {
+                throw new Exception ("Il n'y a pas d'équipe avec cet identifiant !");
+            }
+        } else {
+            throw new Exception ("Il n'y a pas d'équipe avec cet identifiant !");
         }
     }
 

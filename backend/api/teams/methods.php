@@ -52,4 +52,21 @@
         http_response_code(200);
     }
 
+    function getIdEvenementFromProjet($IdProjet){
+        $conn = getConnection();
+        $query = "SELECT * From Projet WHERE IdProjet=". $IdProjet . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0) {
+            if($row = mysqli_fetch_assoc($result)){
+                $idEvenement = $row["IdEvenement"];
+                mysqli_close($conn);
+                return $idEvenement;
+            } else {
+                throw new Exception ("Projet inexistant !");
+            }
+        } else {
+            throw new Exception ("Projet inexistant !");
+        }
+    }
+
 ?>
