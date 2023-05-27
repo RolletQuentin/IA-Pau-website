@@ -1,4 +1,5 @@
 <?php
+// Exemple utilisation : http://localhost/api/ressources/deleteRessource/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -11,8 +12,8 @@ header('HTTP/1.1 200 OK');
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     // On inclut les fichiers de configuration et d'accès aux données
-    include_once '../config/Database.php';
-    include_once '../models/Ressources.php';
+    include_once '../../config/Database.php';
+    include_once '../../models/Ressources.php';
 
     // On instancie la base de données
     $database = new Database();
