@@ -5,10 +5,11 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 header('HTTP/1.1 200 OK');
+include_once '../../utils/database.php';
+include_once 'methods.php';
+include_once '../../utils/permissionManager.php';
 
 require_once('../../../vendor/autoload.php');
-
-include_once('methods.php');
 
 $header = apache_request_headers();
 $token = "";
@@ -17,11 +18,15 @@ if(!(empty($header["Authorization"]))){
 }
 
 try {
+    if($_SERVER['REQUEST_METHOD'] == "PATCH"){
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $entityBody = file_get_contents('php://input');
-        $body = json_decode($entityBody, true);
-        createEquipe($token, $body);
+        if(empty($_GET["IdEquipe"])){
+            throw new Exception ("Merci de choisir un id d'équipe");
+        } else {
+            $entityBody = file_get_contents('php://input');
+            $body = json_decode($entityBody, true);
+            editTeamInformations($token, verifyStringToDatabaseInsertion($_GET["IdEquipe"]), $body);
+        }
     }
 
 } catch (Exception $e) {
