@@ -9,6 +9,7 @@ header('HTTP/1.1 200 OK');
 include_once '../utils/database.php';
 include_once 'methods.php';
 include_once '../utils/permissionManager.php';
+include_once '../utils/StringCorrection.php';
 
 require_once('../../vendor/autoload.php');
 
@@ -18,14 +19,16 @@ if(!(empty($header["Authorization"]))){
     $token = str_replace("Bearer ", "", $header["Authorization"]);
 }
 
-
 try {
-
     if($_SERVER['REQUEST_METHOD'] == "GET"){
-        if(empty($_GET["id"])){
-            throw new Exception ("Merci de choisir un id d'équipe");
+        if(!(empty($_GET["IdEvent"]))){
+            getAllTeamsOfEvent($_GET["IdEvent"]);
         } else {
-            getTeamInformation($_GET["id"]);
+            if(empty($_GET["IdEquipe"])){
+                getAllTeams();
+            } else {
+                getTeamInformation($_GET["IdEquipe"]);
+            }
         }
     }
 
