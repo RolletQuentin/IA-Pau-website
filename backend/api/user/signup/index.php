@@ -121,7 +121,7 @@ try {
         }
     }
 
-    include '../../utils/database.php';
+    include_once('../../utils/database.php');
 
     $numEtudiantDejaPresent = false;
     $conn = getConnection();
@@ -138,7 +138,7 @@ try {
             array_push($errors, array("error" => "numEtudiant"));
         }
         if($last_error == ""){
-            $last_error = "Numéro étudiant déjà dans la base de donnée.";
+            $last_error = "Numéro étudiant déjà dans la base de donnée. ";
         }
     }
 
@@ -154,11 +154,11 @@ try {
     }
     mysqli_close($conn);
     if($existeDeja){
-        if(!(in_array(array("error" => "numEtudiant"), $errors))){
-            array_push($errors, array("error" => "numEtudiant"));
+        if(!(in_array(array("error" => "email"), $errors))){
+            array_push($errors, array("error" => "email"));
         }
         if($last_error == ""){
-            $last_error = "Numéro étudiant déjà dans la base de donnée.";
+            $last_error = "Email déjà présent dans la base de donnée.";
         }
     }
     if($last_error != ""){
