@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/ressources/getRessource/?id=2
+// Exemple utilisation : http://localhost/api/evenements/getEvenement/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -12,30 +12,35 @@ header('HTTP/1.1 200 OK');
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Ressources.php';
+    include_once '../../models/Evenements.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les ressources
-    $ressource = new Ressources($db);
+    // On instancie les evenements
+    $evenement = new Evenements($db);
 
     // On récupère l'Id passé en paramètre 
-    $IdRessource = $_GET['id'];
+    $IdEvenement = $_GET['id'];
 
-    if(!empty($IdRessource)){
-        $ressource->IdRessource = $IdRessource;
+    if(!empty($IdEvenement)){
+        $evenement->IdEvenement = $IdEvenement;
 
-        // On récupère la ressource
-        $ressource->getRessource();
+        // On récupère l'evenement
+        $evenement->getEvenement();
 
-        // On vérifie si la ressource existe
-        if($ressource->UrlRessource != null){
+        // On vérifie si l'evenement existe
+        if(($evenement->TypeEvenement != null) && ($evenement->Libele != null) && ($evenement->Description != null) && ($evenement->Recompenses != null) && ($evenement->Debut != null) && ($evenement->Fin != null)){
 
             $prod = [
-                "IdRessource" => $ressource->IdRessource,
-                "UrlRessource" => $ressource->UrlRessource
+                "IdEvenement" => $evenement->IdEvenement,
+                "TypeEvenement" => $evenement->TypeEvenement,
+                "Libele" => $evenement->Libele,
+                "Description" => $evenement->Description,
+                "Recompenses" => $evenement->Recompenses,
+                "Debut" => $evenement->Debut,
+                "Fin" => $evenement->Fin
             ];
             // On envoie le code réponse 200 OK
             http_response_code(200);
@@ -46,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             // 404 Not found
             http_response_code(404);
          
-            echo json_encode(array("message" => "La ressource n'existe pas."));
+            echo json_encode(array("message" => "L'evenement n'existe pas."));
         }
         
     }
