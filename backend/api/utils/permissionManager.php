@@ -1,10 +1,22 @@
 <?php
+    if(file_exists('../vendor/autoload.php')){
+        require_once('../vendor/autoload.php');
+        include_once('user/methods.php');
+    } else if(file_exists('../../vendor/autoload.php')){
+        require_once('../../vendor/autoload.php');
+        include_once('../user/methods.php');
+    } else if(file_exists('../../../vendor/autoload.php')){
+        require_once('../../../vendor/autoload.php');
+        include_once('../../user/methods.php');
+    } else if(file_exists('../../../../vendor/autoload.php')){
+        require_once('../../../../vendor/autoload.php');
+        include_once('../../../user/methods.php');
+    }
 
     use Firebase\JWT\JWT;
     use Firebase\JWT\Key;
 
-    require_once('../../vendor/autoload.php');
-    include_once('../user/methods.php');
+    include_once('database.php');
 
     function hasPermUser($jwt, $id){
         $secretKey = "2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12";
@@ -121,6 +133,34 @@
             return true;
         }
         return false;
+    }
+
+    function AccoundIsActive($id){
+        $role = getTypeOfUser($id);
+        if($role == "Etudiant" || $role == "Administrateur"){
+            return true;
+        } else {
+            $now = new DateTimeImmutable();
+            $debut = new DateTimeImmutable();
+            $fin = new DateTimeImmutable();
+            $conn = getConnection();
+            $query = "SELECT * From Gestionnaire WHERE Identifiant=". $id . ";";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0) {
+                if($row = mysqli_fetch_assoc($result)){
+                    $debut = $row["debut"];
+                    $fin = $row["fin"]; 
+                }
+            }
+            mysqli_close($conn);
+            if($now > $debut && $now < $fin){
+                return true;
+            } else {
+                throw new Exception ("Compte non actif");
+                return false;
+            }
+
+        }
     }
 
 ?>
