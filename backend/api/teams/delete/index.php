@@ -18,10 +18,12 @@ if(!(empty($header["Authorization"]))){
 
 try {
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        $entityBody = file_get_contents('php://input');
-        $body = json_decode($entityBody, true);
-        createEquipe($token, $body);
+    if($_SERVER['REQUEST_METHOD'] == "DELETE"){
+        if(empty($_GET["IdEquipe"])){
+            throw new Exception ("Merci de choisir une équipe");
+        } else {
+            deleteTeam($token, $_GET["IdEquipe"]);
+        }
     }
 
 } catch (Exception $e) {
