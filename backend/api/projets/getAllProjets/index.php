@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/getAllEvenementsDataChallenge/
+// Exemple utilisation : http://localhost/api/projets/getAllProjets/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -13,46 +13,45 @@ header('HTTP/1.1 200 OK');
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Evenements.php';
+    include_once '../../models/Projets.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les evenements
-    $evenement = new Evenements($db);
+    // On instancie les projets
+    $projet = new Projets($db);
 
     // On récupère les données
-    $stmt = $evenement->getAllEvenementsDataChallenge();
+    $stmt = $projet->getAllProjets();
 
     // On vérifie si on a au moins 1 produit
     if($stmt->rowCount() > 0){
         // On initialise un tableau associatif
-        $tableauEvenements = [];
-        $tableauEvenements['Evenements DataChallenge'] = [];
+        $tableauProjets = [];
+        $tableauProjets['Projets'] = [];
 
         // On parcourt les produits
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
 
             $prod = [
+                "IdProjet" => $IdProjet,
                 "IdEvenement" => $IdEvenement,
-                "TypeEvenement" => $TypeEvenement,
                 "Libele" => $Libele,
                 "Description" => $Description,
-                "Recompenses" => $Recompenses,
-                "Debut" => $Debut,
-                "Fin" => $Fin
+                "Image" => $Image,
+                "Entreprise" => $Entreprise
             ];
 
-            $tableauEvenements['Evenements DataChallenge'][] = $prod;
+            $tableauProjets['Projets'][] = $prod;
         }
 
         // On envoie le code réponse 200 OK
         http_response_code(200);
 
         // On encode en json et on envoie
-        echo json_encode($tableauEvenements);
+        echo json_encode($tableauProjets);
     }
 
 }else{
