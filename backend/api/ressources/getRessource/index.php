@@ -1,4 +1,5 @@
 <?php
+// Exemple utilisation : http://localhost/api/ressources/getRessource/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -10,8 +11,8 @@ header('HTTP/1.1 200 OK');
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
-    include_once '../config/Database.php';
-    include_once '../models/Ressources.php';
+    include_once '../../config/Database.php';
+    include_once '../../models/Ressources.php';
 
     // On instancie la base de données
     $database = new Database();
@@ -20,10 +21,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On instancie les ressources
     $ressource = new Ressources($db);
 
-    $donnees = json_decode(file_get_contents("php://input"));
+    // On récupère l'Id passé en paramètre 
+    $IdRessource = $_GET['id'];
 
-    if(!empty($donnees->IdRessource)){
-        $ressource->IdRessource = $donnees->IdRessource;
+    if(!empty($IdRessource)){
+        $ressource->IdRessource = $IdRessource;
 
         // On récupère la ressource
         $ressource->getRessource();
