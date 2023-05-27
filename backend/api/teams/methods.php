@@ -3,7 +3,9 @@
         include_once('../utils/database.php');
     } else if(file_exists('../../utils/database.php')){
         include_once('../../utils/database.php');
-    }  
+    } 
+    
+    include_once('../utils/StringCorrection.php');
 
     function getTeamInformationArray($idEquipe){
         $conn = getConnection();
@@ -18,7 +20,7 @@
                 if(!(empty($row["LienProjet"]))){
                     $lienProjet = $row["LienProjet"];
                 }
-                $idEvenement = $row["IdEvenement"];
+                $IdProjet = $row["IdProjet"];
                 $arrayUsers = array();
                 $query2 = "SELECT * From Appartenir WHERE IdEquipe=". $idEquipe . ";";
                 $r2 = mysqli_query($conn, $query2);
@@ -33,7 +35,7 @@
                     "IdLeader"=>$idLeader,
                     "Score"=>$score,
                     "LienProjet"=>$lienProjet,
-                    "IdEvenement"=>$idEvenement,
+                    "IdProjet"=>$IdProjet,
                     "Users"=>$arrayUsers
                 );
                 mysqli_close($conn);
@@ -66,6 +68,41 @@
             }
         } else {
             throw new Exception ("Projet inexistant !");
+        }
+    }
+
+    function getAllTeams(){
+        $conn = getConnection();
+        $array = array();
+        $query = "SELECT * From Equipe;";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)){
+                $IdEquipe = $row["IdEquipe"];
+                array_push($array, getTeamInformationArray($IdEquipe));
+            } 
+        }
+        echo json_encode($array);
+        mysqli_close($conn);
+        http_response_code(200);
+    }
+
+    function getAllTeamsOfEvent($IdEvent){
+        $IdEvenement = verifyStringToDatabaseInsertion($IdEvent);
+        $conn = getConnection();
+        $array = array();
+        $query = "SELECT * From Equipe AS e INNER JOIN Projet AS p ON p.IdProjet = e.IdProjet INNER JOIN Evenement AS ev ON ev.IdEvenement = p.IdEvenement WHERE p.IdEvenement = " . $IdEvenement . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)){
+                $IdEquipe = $row["IdEquipe"];
+                array_push($array, getTeamInformationArray($IdEquipe));
+            } 
+            echo json_encode($array);
+            mysqli_close($conn);
+            http_response_code(200);
+        } else {
+            throw new Exception ("Cet événement n'existe pas !");
         }
     }
 
