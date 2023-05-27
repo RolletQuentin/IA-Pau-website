@@ -3,36 +3,40 @@ import React, { useEffect, useState } from "react";
 const CheckBox = ({
     checkedIcon = "check_box",
     uncheckedIcon = "check_box_outline_blank",
+    
     defaultState = true,
-    checkedIconName = "defaultCheckedIconName",
+    setDefaultState = null,
+    
     style,
 }) => {
+    const [isCheck, setIsCheck] = useState(defaultState);
+    const [checkBoxIcon, setCheckBoxIcon] = useState(defaultState ? checkedIcon : uncheckedIcon);
+
     const styleCheckBox = {
         cursor: "pointer",
         userSelect: "none",
         ...style,
     };
 
-    const [isCheck, setIsCheck] = useState(defaultState);
-    const [checkBoxIcon, setCheckBoxIcon] = useState(
-        defaultState ? checkedIcon : uncheckedIcon
-    );
 
     useEffect(() => {
-        setCheckBoxIcon(isCheck ? checkedIcon : uncheckedIcon);
-    }, [isCheck, checkedIcon, uncheckedIcon]);
+        if (setDefaultState !== null){
+            setCheckBoxIcon(defaultState ? checkedIcon : uncheckedIcon);
+        }else{
+            setCheckBoxIcon(isCheck ? checkedIcon : uncheckedIcon);
+        }
+    }, [defaultState, isCheck, checkedIcon, uncheckedIcon]);
 
     const toggleChecked = () => {
-        setIsCheck(!isCheck);
+        if (setDefaultState !== null) {
+            setDefaultState(!defaultState)
+        } else{
+            setIsCheck(!isCheck);
+        }
     };
 
     return (
         <div style={styleCheckBox}>
-            <input
-                type="checkbox"
-                name={checkedIconName}
-                style={{ display: "none" }}
-            ></input>
             <span className="material-symbols-outlined" onClick={toggleChecked}>
                 {checkBoxIcon}
             </span>
