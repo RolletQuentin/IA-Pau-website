@@ -1,9 +1,10 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
-header("Access-Control-Allow-Methods : GET, POST, OPTIONS, PUT, DELETE, PATCH");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
 header('HTTP/1.1 200 OK');
 
 use Firebase\JWT\JWT;
@@ -81,9 +82,10 @@ if(!(str_contains($email, "@"))){
                 "jwt"=>$jwt
             );
             $json = json_encode($array);
-            header('HTTP/1.1 200 OK');
+            http_response_code(200);
             echo $json;
         } else {
+            http_response_code(401);
             throw new Exception ("Email ou Mot de passe incorrect");
         }
     } catch (Exception $e) {
@@ -92,7 +94,7 @@ if(!(str_contains($email, "@"))){
         );
         $json = json_encode($array);
         echo $json;
-        header('HTTP/10.4.1 400 Bad Request');
+        http_response_code(400);
     }
 }
 ?>
