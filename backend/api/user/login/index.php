@@ -81,10 +81,9 @@ if(!(str_contains($email, "@"))){
                 "jwt"=>$jwt
             );
             $json = json_encode($array);
-            http_response_code(200);
+            header('HTTP/1.1 200 OK');
             echo $json;
         } else {
-            http_response_code(401);
             throw new Exception ("Email ou Mot de passe incorrect");
         }
     } catch (Exception $e) {
@@ -93,7 +92,7 @@ if(!(str_contains($email, "@"))){
         );
         $json = json_encode($array);
         echo $json;
-        http_response_code(400);
+        header('HTTP/10.4.1 400 Bad Request');
     }
 }
 ?>
