@@ -71,7 +71,7 @@ function AdminUsers() {
             const fetchData = async () => {
                 try {
                     const response = await fetch(
-                        process.env.REACT_APP_PROXY + "api/user/",
+                        process.env.REACT_APP_PROXY + "/api/user/",
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -122,7 +122,7 @@ function AdminUsers() {
                                         onPress={() =>
                                             toggleDelete(
                                                 process.env.REACT_APP_PROXY +
-                                                    `api/user/?id=${id}/`,
+                                                    `/api/user/?id=${id}/`,
                                                 user
                                             )
                                         }
