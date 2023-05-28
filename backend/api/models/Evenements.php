@@ -13,7 +13,6 @@ class Evenements {
     public $Recompenses;
     public $Debut;
     public $Fin;
-    
 
 
     /**
@@ -26,17 +25,12 @@ class Evenements {
     }
 
 
-
-// -----------------------------------------------
-// ------- A FINIR -------------------------------
-// -----------------------------------------------
-
     /**
-     * Lecture des ressources
+     * Lecture des evenements
      *
      * @return void
      */
-    public function getAllRessources(){
+    public function getAllEvenements(){
         // On écrit la requête
         $sql = "SELECT * FROM " . $this->table;
 
@@ -51,19 +45,57 @@ class Evenements {
     }
 
     /**
-     * Lire une ressource
+     * Lecture des evenements de type DataChallenge
      *
      * @return void
      */
-    public function getRessource(){
+    public function getAllEvenementsDataChallenge(){
         // On écrit la requête
-        $sql = "SELECT * FROM " . $this->table . " WHERE IdRessource = ?";
+        $sql = "SELECT * FROM " . $this->table . " WHERE TypeEvenement = 'DataChallenge'";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+    /**
+     * Lecture des evenements de type DataBattle
+     *
+     * @return void
+     */
+    public function getAllEvenementsDataBattle(){
+        // On écrit la requête
+        $sql = "SELECT * FROM " . $this->table . " WHERE TypeEvenement = 'DataBattle'";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+    /**
+     * Lire un evenement
+     *
+     * @return void
+     */
+    public function getEvenement(){
+        // On écrit la requête
+        $sql = "SELECT * FROM " . $this->table . " WHERE IdEvenement = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare( $sql );
 
         // On attache l'id
-        $query->bindParam(1, $this->IdRessource);
+        $query->bindParam(1, $this->IdEvenement);
 
         // On exécute la requête
         $query->execute();
@@ -72,30 +104,52 @@ class Evenements {
         $row = $query->fetch(PDO::FETCH_ASSOC);
 
         // On hydrate l'objet
-        $this->IdRessource = $row['IdRessource'];
-        $this->UrlRessource = $row['UrlRessource'];
+        $this->IdEvenement = $row['IdEvenement'];
+        $this->TypeEvenement = $row['TypeEvenement'];
+        $this->Libele = $row['Libele'];
+        $this->Description = $row['Description'];
+        $this->Recompenses = $row['Recompenses'];
+        $this->Debut = $row['Debut'];
+        $this->Fin = $row['Fin'];
     }
 
     /**
-     * Créer une ressource
+     * Créer un evenement
      *
      * @return void
      */
-    public function createRessource(){
+    public function createEvenement(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdRessource=:IdRessource, UrlRessource=:UrlRessource";
+        $sql = "INSERT INTO " . $this->table . " SET IdEvenement=:IdEvenement, 
+        TypeEvenement=:TypeEvenement,
+        Libele=:Libele,
+        Description=:Description,
+        Recompenses=:Recompenses,
+        Debut=:Debut,
+        Fin=:Fin";
+
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
-        $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->IdEvenement = htmlspecialchars(strip_tags($this->IdEvenement));
+        $this->TypeEvenement = htmlspecialchars(strip_tags($this->TypeEvenement));
+        $this->Libele = htmlspecialchars(strip_tags($this->Libele));
+        $this->Description = htmlspecialchars(strip_tags($this->Description));
+        $this->Recompenses = htmlspecialchars(strip_tags($this->Recompenses));
+        $this->Debut = htmlspecialchars(strip_tags($this->Debut));
+        $this->Fin = htmlspecialchars(strip_tags($this->Fin));
 
         // Ajout des données protégées
-        $query->bindParam(":IdRessource", $this->IdRessource);
-        $query->bindParam(":UrlRessource", $this->UrlRessource);
+        $query->bindParam(":IdEvenement", $this->IdEvenement);
+        $query->bindParam(":TypeEvenement", $this->TypeEvenement);
+        $query->bindParam(":Libele", $this->Libele);
+        $query->bindParam(":Description", $this->Description);
+        $query->bindParam(":Recompenses", $this->Recompenses);
+        $query->bindParam(":Debut", $this->Debut);
+        $query->bindParam(":Fin", $this->Fin);
 
         // Exécution de la requête
         if($query->execute()){
@@ -105,22 +159,22 @@ class Evenements {
     }
 
     /**
-     * Supprimer une ressource
+     * Supprimer un evenement
      *
      * @return void
      */
-    public function deleteRessource(){
+    public function deleteEvenement(){
         // On écrit la requête
-        $sql = "DELETE FROM " . $this->table . " WHERE IdRessource = ?";
+        $sql = "DELETE FROM " . $this->table . " WHERE IdEvenement = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare( $sql );
 
         // On sécurise les données
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
+        $this->IdEvenement=htmlspecialchars(strip_tags($this->IdEvenement));
 
         // On attache l'id
-        $query->bindParam(1, $this->IdRessource);
+        $query->bindParam(1, $this->IdEvenement);
 
         // On exécute la requête
         if($query->execute()){
@@ -131,25 +185,40 @@ class Evenements {
     }
 
     /**
-     * Mettre à jour une ressource
+     * Mettre à jour un evenement
      *
      * @return void
      */
-    public function editRessource(){
+    public function editEvenement(){
         // On écrit la requête
-        $sql = "UPDATE " . $this->table . " SET UrlRessource = :UrlRessource WHERE IdRessource = :IdRessource";
+        $sql = "UPDATE " . $this->table . " SET TypeEvenement=:TypeEvenement,
+        Libele=:Libele,
+        Description=:Description,
+        Recompenses=:Recompenses,
+        Debut=:Debut,
+        Fin=:Fin WHERE IdEvenement = :IdEvenement";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
         
         // On sécurise les données
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
-        $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->IdEvenement = htmlspecialchars(strip_tags($this->IdEvenement));
+        $this->TypeEvenement = htmlspecialchars(strip_tags($this->TypeEvenement));
+        $this->Libele = htmlspecialchars(strip_tags($this->Libele));
+        $this->Description = htmlspecialchars(strip_tags($this->Description));
+        $this->Recompenses = htmlspecialchars(strip_tags($this->Recompenses));
+        $this->Debut = htmlspecialchars(strip_tags($this->Debut));
+        $this->Fin = htmlspecialchars(strip_tags($this->Fin));
         
         // On attache les variables
-        $query->bindParam(':IdRessource', $this->IdRessource);
-        $query->bindParam(':UrlRessource', $this->UrlRessource);
-        
+        $query->bindParam(":IdEvenement", $this->IdEvenement);
+        $query->bindParam(":TypeEvenement", $this->TypeEvenement);
+        $query->bindParam(":Libele", $this->Libele);
+        $query->bindParam(":Description", $this->Description);
+        $query->bindParam(":Recompenses", $this->Recompenses);
+        $query->bindParam(":Debut", $this->Debut);
+        $query->bindParam(":Fin", $this->Fin);
+
         // On exécute
         if($query->execute()){
             return true;

@@ -11,9 +11,15 @@ const StyledBasicButton = styled.button`
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
-const BasicButton = ({ children, className, style}) => {
+const BasicButton = ({ children, className, style, onPress }) => {
     return (
-        <StyledBasicButton className={className} style={style}>{children}</StyledBasicButton>
+        <StyledBasicButton
+            className={className}
+            style={style}
+            onClick={onPress}
+        >
+            {children}
+        </StyledBasicButton>
     );
 };
 
