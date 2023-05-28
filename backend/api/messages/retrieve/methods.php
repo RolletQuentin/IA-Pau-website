@@ -1,16 +1,15 @@
 <?php
+    require_once('../../../vendor/autoload.php');
     include_once('../../utils/permissionManager.php');
     include_once('../../utils/StringCorrection.php');
 
     include_once('../../utils/database.php');
     
-    function deleteTeam($token, $IdEquipe){
-
+    function retrieveMessage($token, $IdEquipe){
         $IdEquipe = verifyStringToDatabaseInsertion($IdEquipe);
-
-        $role = getRoleFromJwt($token);
+        $role = getRoleFromJWT($token);
         $id = getUserIdFromJWT($token);
-        
+
         $IdEvenement = -1;
         $conn = getConnection();
         $query = "SELECT * FROM Equipe AS eq INNER JOIN Projet AS p ON p.IdProjet = eq.IdProjet INNER JOIN Evenement AS e ON e.IdEvenement = p.IdEvenement WHERE eq.IdEquipe = ". $IdEquipe . ";";
@@ -37,31 +36,37 @@
                 $typeOfPerm = "Not manager of this event";
             }
         } else if ($role == "Etudiant"){
-            $idLeader = getIdOfLeader($IdEquipe);
-            if($idLeader == $id){
+
+            $query = "SELECT * FROM Appartenir WHERE IdEquipe = " . $IdEquipe . " AND Identifiant = ". $id . ";";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0){
                 $hasPerm = true;
             } else {
-                $typeOfPerm = "Not leader of this event";
+                $typeOfPerm = "not member of this team.";
             }
         }
 
         if($hasPerm == false){
-            throw new Exception ("Vous n'avez pas la permission de supprimer cette équipe. (" . $typeOfPerm .")");
+            throw new Exception ("Vous n'avez pas récupérer les messages de cette équipe. (" . $typeOfPerm .")");
         }
 
-        $conn = getConnection();
-        $query = "DELETE FROM Appartenir WHERE IdEquipe=". $IdEquipe .";";
-        mysqli_query($conn, $query);
-        $query = "DELETE FROM Message WHERE IdEquipe=". $IdEquipe .";";
-        mysqli_query($conn, $query);
-        $query = "DELETE FROM Equipe WHERE IdEquipe=". $IdEquipe .";";
-        mysqli_query($conn, $query);
+        $arrayOfMessages = array();
+        $query = "SELECT * FROM `Message` as m INNER JOIN User AS u ON m.IdSender = u.Identifiant WHERE IdEquipe = ". $IdEquipe . " ORDER BY IdMessage ASC;";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                $nom = $row["Prenom"] . " " . $row["Nom"];
+                array_push($arrayOfMessages, array(
+                    "DateMessage"=>$row["DateMessage"],
+                    "sender"=>$nom,
+                    "IdSender"=>$row["Identifiant"],
+                    "content"=>$row["Contenu"]
+                ));
+            }
+        }
 
-        $array = array("sucess"=>true);
-        $json = json_encode($array);
-        mysqli_close($conn);
-        echo $json;
         http_response_code(200);
+        echo json_encode($arrayOfMessages);
 
     }
 
