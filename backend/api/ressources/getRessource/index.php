@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $prod = [
                 "IdRessource" => $ressource->IdRessource,
-                "UrlRessource" => $ressource->UrlRessource,
+                "UrlRessource" => $ressource->UrlRessource
             ];
             // On envoie le code réponse 200 OK
             http_response_code(200);
