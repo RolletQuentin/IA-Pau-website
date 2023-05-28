@@ -19,13 +19,11 @@ if(!(empty($header["Authorization"]))){
 
 try {
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        if(empty($_GET["IdEquipe"])){
-            throw new Exception ("Merci de choisir une équipe");
+    if($_SERVER['REQUEST_METHOD'] == "GET"){
+        if(empty($_GET["IdEvent"])){
+            getMyTeams($token);
         } else {
-            $entityBody = file_get_contents('php://input');
-            $body = json_decode($entityBody, true);
-            inviteUserInEvent($token, $body, $_GET["IdEquipe"]);
+            getMyTeamForEvent($token, $_GET["IdEvent"]);
         }
     }
 
