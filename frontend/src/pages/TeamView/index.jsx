@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import AbstractUser from "../../assets/abstract-user.png";
 import BasicButton from "../../components/BasicButton";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 
 const StyledTeamView = styled.div`
     margin: auto;
@@ -56,8 +57,15 @@ const StyledTeamView = styled.div`
 `;
 
 function TeamView() {
+    const { user } = useAuthContext();
     const { data, isLoading, error } = useFetch(
-        process.env.REACT_APP_PROXY + "api/user/"
+        process.env.REACT_APP_PROXY + "api/user/",
+        {
+            headers: {
+                Authorization: "Bearer " + user.jwt,
+                "Content-Type": "apllication/json",
+            },
+        }
     );
     const isCaptain = true;
     return (
