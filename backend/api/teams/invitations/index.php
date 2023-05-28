@@ -19,13 +19,21 @@ if(!(empty($header["Authorization"]))){
 
 try {
 
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if($_SERVER['REQUEST_METHOD'] == "GET"){
         if(empty($_GET["IdEquipe"])){
-            throw new Exception ("Merci de choisir une équipe");
+            throw new Exception ("Merci de choisir une id d'équipe !");
+        } else {
+            getTeamInvitations($token, $_GET["IdEquipe"]);
+        }
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == "DELETE"){
+        if(empty($_GET["IdEquipe"])){
+            throw new Exception ("Merci de choisir une id d'équipe !");
         } else {
             $entityBody = file_get_contents('php://input');
             $body = json_decode($entityBody, true);
-            inviteUserInEvent($token, $body, $_GET["IdEquipe"]);
+            deleteTeamInvitation($token, $body, $_GET["IdEquipe"]);
         }
     }
 
