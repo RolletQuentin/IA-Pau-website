@@ -14,7 +14,6 @@ export const useLogin = (fakeRole = null) => {
         setGlobalError('');
 
         if (!fakeRole){
-            console.log(process.env.REACT_APP_PROXY)
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/user/login/', {
                 method: 'POST',
                 body: JSON.stringify({email, password}),
@@ -25,8 +24,9 @@ export const useLogin = (fakeRole = null) => {
     
             const json = await response.json();
     
-            if (!response.ok) {       
-                setGlobalError(json.errors.global);
+            if (!response.ok) {      
+                console.log(json)
+                setGlobalError(json.error);
             }
     
             if (response.ok) {
@@ -43,7 +43,6 @@ export const useLogin = (fakeRole = null) => {
             dispatch({type: 'LOGIN', payload: json}); // update the auth context
         }
         setIsLoading(false);
-        console.log("fetched")
     }
 
     return {login, isLoading, globalError};

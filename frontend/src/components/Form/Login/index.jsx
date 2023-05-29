@@ -9,6 +9,7 @@ import SectionAuthContainer from "../../../containers/SectionAuthContainer";
 import routes from "../../../utils/routes";
 import { useLogin } from "../../../hooks/auth/useLogin";
 import { Link } from "react-router-dom";
+import MarginContainer from "../../../containers/MarginContainer";
 
 const LoginForm = ({
     defaultRememberMe = false
@@ -77,11 +78,14 @@ const LoginForm = ({
                 }}
             >
                 <h1 style={{ margin: "0" }}>Connexion</h1>
-                {globalError}
             </BasicButton>
+            {globalError && <CenterContainer style={{color: "var(--error"}}><MarginContainer margin={"30px"}>
+
+                {globalError}
+            </MarginContainer></CenterContainer>}
             <CenterContainer>
                 <VBox gap={0} style={{ alignSelf: "center" }}>
-                    <p style={{ marginBottom: 0 }}>Pas encore de compte ?</p>
+                    <p style={{ margin: 0 }}>Pas encore de compte ?</p>
                     <Link to={routes.signup} style={styleCreerCompte} >
                         Crée un compte
                     </Link>
