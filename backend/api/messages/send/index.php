@@ -7,6 +7,10 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
 header('HTTP/1.1 200 OK');
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once('../../../vendor/autoload.php');
 
 include_once('methods.php');
@@ -20,10 +24,13 @@ if(!(empty($header["Authorization"]))){
 try {
 
     if($_SERVER['REQUEST_METHOD'] == "POST"){
-        if(empty($_GET["IdEquipe"])){
-            throw new Exception ("Merci de choisir une équipe");
-        } else {
-            denyTeam($token, $_GET["IdEquipe"]);
+        $entityBody = file_get_contents('php://input');
+        $body = json_decode($entityBody, true);
+        if(!(empty($_GET["IdEquipe"]))){
+            sendMessage($token, $body, $_GET["IdEquipe"]);
+        }
+        if(!(empty($_GET["IdEvent"]))){
+            sendGlobalMessage($token, $body, $_GET["IdEvent"]);
         }
     }
 
