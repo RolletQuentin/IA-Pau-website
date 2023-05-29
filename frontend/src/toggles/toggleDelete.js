@@ -1,21 +1,22 @@
-// suppression d'une des données
-const toggleDelete = (url, user) => {
+import axios from "axios";
+
+const toggleDelete = async (url, user) => {
     console.log("salut");
     // eslint-disable-next-line no-restricted-globals
     const confirmResponse = confirm(
-        `Êtes-vous sûr de vouloir supprimer cet élément ??`
+        `Êtes-vous sûr de vouloir supprimer cet élément ?`
     );
     if (confirmResponse) {
         try {
-            fetch(url, {
+            await axios.delete(url, {
                 headers: {
-                    method: "DELETE",
-                    Authorization: "Bearer " + user.jwt,
+                    Authorization: `Bearer ${user.jwt}`,
                     "Content-Type": "application/json",
                 },
             });
-        } catch (err) {
-            console.err(err);
+            console.log("Élément supprimé avec succès");
+        } catch (error) {
+            console.error(error);
         }
     }
 };
