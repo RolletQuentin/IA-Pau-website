@@ -25,7 +25,6 @@ export const useLogin = (fakeRole = null) => {
     
             const json = await response.json();
             if (!response.ok) {      
-                console.log(json)
                 setGlobalError(json.error);
             }
     
