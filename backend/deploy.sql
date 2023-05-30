@@ -43,7 +43,6 @@ CREATE TABLE IF NOT EXISTS Questionnaire(
 CREATE TABLE IF NOT EXISTS Question(
     IdQuestion INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     Question VARCHAR(512),
-    Reponse VARCHAR(256),
     IdQuestionnaire INTEGER(16),
     FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire)
 );
@@ -139,6 +138,7 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
 CREATE TABLE IF NOT EXISTS NoteQuestionnaire(
     IdQuestionnaire INTEGER(16),
     IdEquipe INTEGER(16),
+    Reponse VARCHAR(256),
     Score INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (IdQuestionnaire, IdEquipe),
     CONSTRAINT fk3 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
