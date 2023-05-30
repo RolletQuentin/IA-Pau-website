@@ -25,13 +25,31 @@
 
         $idEvenement = getIdEvenementFromProjet($IdProjet);
 
-
-        $query = "SELECT a.Identifiant FROM Projet AS p JOIN Equipe AS e ON e.IdProjet = p.IdProjet JOIN Appartenir AS a ON a.IdEquipe = e.IdEquipe WHERE p.IdEvenement = ". $idEvenement .";";
-
+        $teamsOfUser = array();
+        $query = "SELECT * FROM Appartenir WHERE Identifiant = " . $id . ";";
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0) {
-            throw new Exception ("L'utilisateur fait déjà parti d'une équipe inscrite à cet événement.");
+            while($row = mysqli_fetch_array($result)){
+                array_push($teamsOfUser, $row["IdEquipe"]);
+            }
         }
+
+        $arrayOfTeamsInEvent = array();
+        $query = "SELECT * FROM Evenement as e INNER JOIN Projet AS p ON p.IdEvenement = e.IdEvenement INNER JOIN Equipe as eq ON eq.IdProjet = p.IdProjet WHERE e.IdEvenement = " . $idEvenement . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                array_push($arrayOfTeamsInEvent, $row["IdEquipe"]);
+            }
+        }
+
+        foreach($teamsOfUser as $teamID){
+            if(in_array($teamID, $arrayOfTeamsInEvent)){
+                throw new Exception ("Vous êtes déjà dans une équipe inscrite a cet événement !");
+            }
+        }
+
+    
         $IdLeader = $id;
         $query = "INSERT INTO Equipe (Nom, IdLeader, Score, IdProjet) VALUES ('". $nom ."', ". $IdLeader .", 0, " . $IdProjet . ");";
         mysqli_query($conn, $query);
