@@ -56,7 +56,7 @@ const SignupForm = () => {
     const {signup, globalError, setGlobalError, emptyField, setEmptyField} = useSignup();
     const [lastname, setLastname] = useState("");
     const [firstname, setFirstname] = useState("");
-    const [level, setLevel] = useState("ing1");
+    const [level, setLevel] = useState("");
     const [phone, setPhone] = useState("");
     const [school, setSchool] = useState("");
     const [city, setCity] = useState("");
@@ -138,14 +138,15 @@ const SignupForm = () => {
                     />
                 </HBox>
 
-                <Select>
-                    <option >L1</option>
-                    <option >L2</option>
-                    <option >L3</option>
-                    <option >M1</option>
-                    <option >M2</option>
-                    <option >Doctorat</option>
-                </Select>
+                <Select
+                    style={{flexGrow: 1}}
+                    options={["L1", "L2", "L3", "M1", "M2", "D", "BTS"]}
+                    name="level"
+                    value={level}
+                    setValue={setLevel}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
+                />
             </VBox>
 
             <HBox gap="20px" style={styleOption}>
