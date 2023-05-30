@@ -8,7 +8,7 @@ header('HTTP/1.1 200 OK');
 use Firebase\JWT\JWT;
 
 require_once('../../../vendor/autoload.php');
-include_once('../../utils/permissionManager.php');
+include_once('../../utils/StringCorrection.php');
 
 $entityBody = file_get_contents('php://input');
 $values = json_decode($entityBody, true);
