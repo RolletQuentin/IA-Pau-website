@@ -14,7 +14,7 @@ import MarginContainer from "../../../containers/MarginContainer";
 const LoginForm = ({
     defaultRememberMe = false
 }) => {
-    const {login, globalError} = useLogin();
+    const {login, globalError, setEmptyField, emptyField} = useLogin();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -80,7 +80,6 @@ const LoginForm = ({
                 <h1 style={{ margin: "0" }}>Connexion</h1>
             </BasicButton>
             {globalError && <CenterContainer style={{color: "var(--error"}}><MarginContainer margin={"30px"}>
-
                 {globalError}
             </MarginContainer></CenterContainer>}
             <CenterContainer>

@@ -7,11 +7,13 @@ import CenterContainer from "../../../containers/CenterContainer";
 import BasicButton from "../../BasicButton";
 import styled from "styled-components";
 import { useSignup } from "../../../hooks/auth/useSignup";
+import MarginContainer from "../../../containers/MarginContainer";
+import { Link } from "react-router-dom";
+import routes from "../../../utils/routes";
 
 const styleInputText = {
     flexGrow: 1
 }
-
 
 const StyledSelect = styled.select`
     flex-grow: 1;
@@ -50,7 +52,7 @@ const styleEndButton = {
 
 const SignupForm = () => {
 
-    const {signup, globalError} = useSignup();
+    const {signup, globalError, emptyField, setEmptyField} = useSignup();
     const [lastname, setLastname] = useState("");
     const [firstname, setFirstname] = useState("");
     const [level, setLevel] = useState("ing1");
@@ -65,19 +67,23 @@ const SignupForm = () => {
     return (
         <SectionAuthContainer title="Créer Compte" onSubmit={() => signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )}>
             <CenterContainer>
-                <HBox>
+                <HBox gap="10px">
                     <p style={styleDejaCompte}>Déjà un compte?</p>
-                    <p style={styleCreerCompte}>Connectez-vous</p>
+                    <Link to={routes.login}><p style={styleCreerCompte}>Connectez-vous</p></Link>
                 </HBox>
             </CenterContainer>
 
             <HBox gap="20px" style={styleOption}>
                 <InputTextDefault
                     placeholder="Nom"
-                    style={{ marginBottom: "20px" }}
+                    emptyField={emptyField}
+                    style={{
+                        marginBottom: "20px",
+                    }}
                     name="lastname"
                     value={lastname}
                     setValue={setLastname}
+                    setEmptyField={setEmptyField}
                 />
                 <InputTextDefault
                     placeholder="Prénom"
@@ -159,12 +165,16 @@ const SignupForm = () => {
                 />
             </VBox>
 
-            <CenterContainer>
-                <BasicButton style={{ styleEndButton }}>
-                    <h2 style={{ margin: "0" }}>S'enregistrer</h2>
-                </BasicButton>
-                {globalError}
-            </CenterContainer>
+            <VBox>
+                <CenterContainer>
+                    <BasicButton style={{ styleEndButton }}>
+                        <h2 style={{ margin: "0" }}>S'enregistrer</h2>
+                    </BasicButton>
+                </CenterContainer>
+                {globalError && <CenterContainer style={{color: "var(--error"}}>
+                    {globalError}
+                </CenterContainer>}
+            </VBox>
 
         </SectionAuthContainer>
     )

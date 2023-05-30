@@ -6,12 +6,14 @@ export const useSignup = () => {
     const [globalError, setGlobalError] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
+    const [emptyField, setEmptyField] = useState([]);
 
     const { dispatch } = useAuthContext();
 
     const signup = async (lastname, firstname, level, phone, school, city, email, password, numEtudiant) => {
         setIsLoading(true);
         setGlobalError('');
+        setEmptyField([]);
 
         const response = await fetch(process.env.REACT_APP_PROXY + '/api/user/signup/', {
             method: 'POST',
@@ -35,6 +37,8 @@ export const useSignup = () => {
 
         if (!response.ok) {       
             setGlobalError(json.error);
+            setEmptyField(json.errors);
+            console.log(json.errors)
         }
 
         if (response.ok) {
@@ -46,5 +50,5 @@ export const useSignup = () => {
         setIsLoading(false);
     }
 
-    return {signup, isLoading, globalError};
+    return {signup, isLoading, globalError, setEmptyField, emptyField};
 }
