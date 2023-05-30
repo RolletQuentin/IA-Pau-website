@@ -109,6 +109,11 @@ function App() {
                     path={routes.modifyRessource}
                     element={<AdminModifyRessource />}
                 />
+                <Route
+                    exact
+                    path={routes.modifyRessource + `/:id`}
+                    element={<AdminModifyRessource />}
+                />
                 <Route path="*" element={<Error404 />} />
             </Routes>
         </Router>
