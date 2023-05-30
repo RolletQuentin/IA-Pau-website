@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Questionnaire(
     Sujet VARCHAR(2048),
     Debut DATE,
     Fin DATE,
-    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet) ON DELETE CASCADE
 );
 
 -- EVENEMENT
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS Question(
     IdQuestion INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     IdQuestionnaire INTEGER(16),
     Question VARCHAR(512),
-    FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire)
+    FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire) ON DELETE CASCADE
 );
 
 -- USER ?
