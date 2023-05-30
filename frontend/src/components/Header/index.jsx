@@ -77,6 +77,10 @@ function Header() {
                         <MyNavLink to={routes.home}>Accueil</MyNavLink>
                     </li>
 
+                    <li>
+                        <MyNavLink to={routes.analyseur}>Analyseur</MyNavLink>
+                    </li>
+
                     {/* if the user is connected*/}
                     {user ? (
                         <>
