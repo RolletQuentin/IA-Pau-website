@@ -4,6 +4,7 @@ import { useAuthContext } from "./useAuthContext";
 export const useLogin = (fakeRole = null) => {
     // error
     const [globalError, setGlobalError] = useState('');
+    const [emptyField, setEmptyField] = useState([]);
     // state
     const [isLoading, setIsLoading] = useState(false);
     // dispatch
@@ -23,7 +24,6 @@ export const useLogin = (fakeRole = null) => {
             })
     
             const json = await response.json();
-    
             if (!response.ok) {      
                 console.log(json)
                 setGlobalError(json.error);
