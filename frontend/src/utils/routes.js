@@ -17,6 +17,7 @@ const routes = {
     modifyDataChallenge: "/admin/modify-data-challenge",
     analyseur: "/analyseur",
     modifyProject: "/admin/modify-project",
+    modifyUser: "/admin/modify-user",
 };
 
 export default routes;
