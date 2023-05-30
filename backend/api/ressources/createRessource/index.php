@@ -23,10 +23,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->IdRessource) && !empty($donnees->UrlRessource)) {
+    if(!empty($donnees->UrlRessource)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $ressource->IdRessource = $donnees->IdRessource;
         $ressource->UrlRessource = $donnees->UrlRessource;
 
         if($ressource->createRessource()) {
