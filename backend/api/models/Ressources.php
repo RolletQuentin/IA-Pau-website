@@ -73,17 +73,15 @@ class Ressources {
     public function createRessource(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdRessource=:IdRessource, UrlRessource=:UrlRessource";
+        $sql = "INSERT INTO " . $this->table . " SET UrlRessource=:UrlRessource";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
         $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
 
         // Ajout des données protégées
-        $query->bindParam(":IdRessource", $this->IdRessource);
         $query->bindParam(":UrlRessource", $this->UrlRessource);
 
         // Exécution de la requête
