@@ -121,8 +121,7 @@ class Evenements {
     public function createEvenement(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdEvenement=:IdEvenement, 
-        TypeEvenement=:TypeEvenement,
+        $sql = "INSERT INTO " . $this->table . " SET TypeEvenement=:TypeEvenement,
         Libele=:Libele,
         Description=:Description,
         Recompenses=:Recompenses,
@@ -134,7 +133,6 @@ class Evenements {
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdEvenement = htmlspecialchars(strip_tags($this->IdEvenement));
         $this->TypeEvenement = htmlspecialchars(strip_tags($this->TypeEvenement));
         $this->Libele = htmlspecialchars(strip_tags($this->Libele));
         $this->Description = htmlspecialchars(strip_tags($this->Description));
@@ -143,7 +141,6 @@ class Evenements {
         $this->Fin = htmlspecialchars(strip_tags($this->Fin));
 
         // Ajout des données protégées
-        $query->bindParam(":IdEvenement", $this->IdEvenement);
         $query->bindParam(":TypeEvenement", $this->TypeEvenement);
         $query->bindParam(":Libele", $this->Libele);
         $query->bindParam(":Description", $this->Description);

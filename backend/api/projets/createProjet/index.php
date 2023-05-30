@@ -5,8 +5,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
-header('HTTP/1.1 200 OK');
+header("Access-Control-Allow-Methods: POST");
 
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -24,10 +23,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->IdProjet) && !empty($donnees->IdEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Image) && !empty($donnees->Entreprise)) {
+    if(!empty($donnees->IdEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Image) && !empty($donnees->Entreprise)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $projet->IdProjet = $donnees->IdProjet;
         $projet->IdEvenement = $donnees->IdEvenement;
         $projet->Libele = $donnees->Libele;
         $projet->Description = $donnees->Description;
@@ -42,11 +40,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         } else{
             // La création n'a pas fonctionné
             http_response_code(503);
-            echo json_encode(["message" => "L'ajout n'a pas été effectué"]);
+            echo json_encode(["error" => "L'ajout n'a pas été effectué"]);
         }
     }
 }else{
     // On gère l'erreur
     http_response_code(405);
-    echo json_encode(["message" => "La méthode n'est pas autorisée"]);
+    echo json_encode(["error" => "La méthode n'est pas autorisée"]);
 }
