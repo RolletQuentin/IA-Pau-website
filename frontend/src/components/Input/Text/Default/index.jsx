@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
@@ -15,14 +15,27 @@ const InputTextDefault = ({
     value = "",
     setValue = null,
     name = "",
-    emptyFields = [],
-    removeClassError = () => {},
+    emptyField = [],
+    setEmptyField,
 }) => {
     const [defaultValue, setDefaultValue] = useState(value);
 
+    const removeClassError = (name) => {
+        if (setEmptyField) {
+            setEmptyField(emptyField.filter((f) => f !== name))
+        }
+    }
+
+    useEffect(() => {
+        console.log(emptyField)
+        console.log(name)
+        console.log(emptyField.includes(name))
+        console.log("-----------------")
+    }, [emptyField])
+
     return (
         <StyledInput
-            className={"inputTextDefault" + (emptyFields.includes(name) ? 'error' : '')}
+            className={"inputTextDefault " + (emptyField.includes(name) ? 'error' : '')}
             type={type}
             style={style}
             placeholder={placeholder}
