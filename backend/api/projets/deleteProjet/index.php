@@ -5,8 +5,7 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
-header('HTTP/1.1 200 OK');
+header("Access-Control-Allow-Methods: DELETE");
 
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
@@ -22,12 +21,12 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     $projet = new Projets($db);
 
     // On récupère l'id du projet à supprimer
-    $donnees = json_decode(file_get_contents("php://input"));
+    $IdProjet = $_GET['id'];
 
-    if(!empty($donnees->IdProjet)) {
+    if(!empty($IdProjet)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $projet->IdProjet = $donnees->IdProjet;
+        $projet->IdProjet = $IdProjet;
 
         if($projet->deleteProjet()) {
             // Ici la suppression à fonctionné
@@ -37,12 +36,12 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
         } else{
             // La suppression n'a pas fonctionné
             http_response_code(503);
-            echo json_encode(["message" => "La suppression n'a pas été effectué"]);
+            echo json_encode(["error" => "La suppression n'a pas été effectué"]);
         }
     }
 
 }else{
     // On gère l'erreur
     http_response_code(405);
-    echo json_encode(["message" => "La méthode n'est pas autorisée"]);
+    echo json_encode(["error" => "La méthode n'est pas autorisée"]);
 }
