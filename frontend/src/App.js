@@ -22,9 +22,11 @@ import EvaluateMCQ from "./pages/EvaluateMCQ";
 import DataChallengeEdition from "./pages/DataChallengeEdition";
 import Admin from "./pages/Admin";
 import { useAuthContext } from "./hooks/auth/useAuthContext";
-import AdminUsers from "./pages/AdminUsers";
-import AdminDataChallenges from "./pages/AdminDataChallenges";
-import AdminRessources from "./pages/AdminRessources";
+import AdminUsers from "./pages/Admin/AdminUsers";
+import AdminDataChallenges from "./pages/Admin/AdminDataChallenges";
+import AdminRessources from "./pages/Admin/AdminRessources";
+import AdminAddUser from "./pages/Admin/AdminAddUser";
+import AdminModifyRessource from "./pages/Admin/AdminModifyRessource";
 
 function App() {
     const { user } = useAuthContext();
@@ -46,7 +48,9 @@ function App() {
                 <Route
                     exact
                     path={`${routes.profile}/:id_profile`}
-                    element={!user ? <Navigate to={routes.login} /> : <Profile />}
+                    element={
+                        !user ? <Navigate to={routes.login} /> : <Profile />
+                    }
                 />
                 <Route
                     exact
@@ -98,6 +102,12 @@ function App() {
                     exact
                     path={routes.adminRessources}
                     element={<AdminRessources />}
+                />
+                <Route exact path={routes.addUser} element={<AdminAddUser />} />
+                <Route
+                    exact
+                    path={routes.modifyRessource}
+                    element={<AdminModifyRessource />}
                 />
                 <Route path="*" element={<Error404 />} />
             </Routes>
