@@ -1,25 +1,17 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
-const StyledInput = styled.input`
-    border-radius: 10px;
-    background-color: var(--primary);
-    padding: 10px;
-    border: none;
-`;
-
-const InputTextDefault = ({
-    placeholder = "this is a default placeholder",
-    style,
-    type = "text",
+const Select = ({
     value = "",
     setValue = null,
     name = "",
     emptyField = [],
     setEmptyField,
+    style,
+    children,
 }) => {
-    const [defaultValue, setDefaultValue] = useState(value);
 
+    const [defaultValue, setDefaultValue] = useState(value);
+    
     const removeClassError = (name) => {
         if (setEmptyField) {
             setEmptyField(emptyField.filter((f) => f !== name))
@@ -27,19 +19,19 @@ const InputTextDefault = ({
     }
 
     return (
-        <StyledInput
+        <select
             className={"inputTextDefault"}
-            type={type}
             style={{
                 ...style,
                 border: emptyField.includes(name) ? 'solid 2px var(--error)' : 'none'
             }}
-            placeholder={placeholder}
             onChange={(e) => setValue !== null ? setValue(e.target.value) : setDefaultValue(e.target.value)}
             value={setValue !== null ? value : defaultValue}
             onClick={() => removeClassError(name)}
-        ></StyledInput>
-    );
-};
+        >
+            {children}
+        </select>
+    )
+}
 
-export default InputTextDefault;
+export default Select;
