@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import NavbarOffset from "../../components/NavbarOffset";
 import Button from "../../components/Button";
-import { useFetch } from "../../hooks/useFetch";
 import { Loader } from "../../utils/Atoms";
 import AbstractUser from "../../assets/abstract-user.png";
 import BasicButton from "../../components/BasicButton";
 import { Link } from "react-router-dom";
 import routes from "../../utils/routes";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import { useEffect } from "react";
+import { useState } from "react";
+import toggleDelete from "../../toggles/toggleDelete";
 
 const StyledAdminUsers = styled.div`
     margin: auto;
@@ -57,9 +60,39 @@ const StyledAdminUsers = styled.div`
 `;
 
 function AdminUsers() {
-    const { data, isLoading, error } = useFetch(
-        process.env.REACT_APP_PROXY + "/api/user/"
-    );
+    const { user } = useAuthContext();
+    const [data, setData] = useState(null);
+    const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    // récupération des données pour récuper tout les utilisateurs
+    useEffect(() => {
+        if (user) {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch(
+                        process.env.REACT_APP_PROXY + "/api/user/",
+                        {
+                            headers: {
+                                Authorization: "Bearer " + user.jwt,
+                                "Content-Type": "application/json",
+                            },
+                        }
+                    );
+                    const json = await response.json();
+                    setData(json);
+                } catch (err) {
+                    setError(err);
+                    console.error(err);
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            setIsLoading(true);
+            fetchData();
+        }
+    }, [user]);
 
     return (
         <StyledAdminUsers>
@@ -69,32 +102,41 @@ function AdminUsers() {
                 <Loader />
             ) : (
                 <Button className="section">
-                    {data.map(({ id, email, lastname, firstname }) => (
-                        // TODO : replace key email -> id
-                        <Button key={email} className="button">
-                            <div className="left">
-                                <img
-                                    src={AbstractUser}
-                                    alt="Icone utilisateur"
-                                    className="icon"
-                                />
-                                <span>
-                                    {firstname} {lastname}
-                                </span>
-                            </div>
-                            <span>{email}</span>
-                            <div>
-                                <BasicButton className="delete">
-                                    Supprimer
-                                </BasicButton>
-                                <Link>
-                                    <BasicButton className="update">
-                                        Modifier
+                    {data &&
+                        data.map(({ id, email, lastname, firstname }) => (
+                            <Button key={id} className="button">
+                                <div className="left">
+                                    <img
+                                        src={AbstractUser}
+                                        alt="Icone utilisateur"
+                                        className="icon"
+                                    />
+                                    <span>
+                                        {firstname} {lastname}
+                                    </span>
+                                </div>
+                                <span>{email}</span>
+                                <div>
+                                    <BasicButton
+                                        className="delete"
+                                        onPress={() =>
+                                            toggleDelete(
+                                                process.env.REACT_APP_PROXY +
+                                                    `/api/user/?id=${id}`,
+                                                user
+                                            )
+                                        }
+                                    >
+                                        Supprimer
                                     </BasicButton>
-                                </Link>
-                            </div>
-                        </Button>
-                    ))}
+                                    <Link>
+                                        <BasicButton className="update">
+                                            Modifier
+                                        </BasicButton>
+                                    </Link>
+                                </div>
+                            </Button>
+                        ))}
                     <Link className="add-member">
                         <BasicButton>Ajouter membre</BasicButton>
                     </Link>

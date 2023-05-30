@@ -232,7 +232,37 @@
      * Retour: affiche un json avec le statut de le succès de la requete: true || false
     */
     function deleteUser($id){
+        $id = checkStringValidity($id);
         $conn = getConnection();
+        $query = "DELETE FROM Preinscription WHERE Identifiant=" . $id . ";";
+        $result = mysqli_query($conn, $query);
+
+        $query = "DELETE FROM Appartenir WHERE Identifiant=" . $id . ";";
+        $result = mysqli_query($conn, $query);
+
+        $query = "SELECT * FROM Equipe WHERE IdLeader=" . $id . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0){
+            while($row = mysqli_fetch_array($result)){
+                $IdEquipe = $row["IdEquipe"];
+                $query2 = "SELECT * FROM Appartenir WHERE Identifiant !=" . $id . " AND IdEquipe = " . $IdEquipe . ";";
+                $result2 = mysqli_query($conn, $query2);
+                $newCapitaine = -1;
+                if(mysqli_num_rows($result2) > 0){
+                    if($row2 = mysqli_fetch_array($result2)){
+                        $newCapitaine = $row2["Identifiant"];
+                    }
+                }
+                if($newCapitaine = -1){
+                    $query2 = "DELETE FROM Equipe WHERE IdEquipe = " . $IdEquipe . ";";
+                    mysqli_query($conn, $query2);
+                } else {
+                    $query2 = "UPDATE Equipe SET IdLeader = " . $newCapitaine . " WHERE IdEquipe = " . $IdEquipe . ";";
+                    mysqli_query($conn, $query2);
+                }
+            }
+        }
+
         $query = "DELETE FROM Etudiant WHERE Identifiant=" . $id . ";";
         $result = mysqli_query($conn, $query);
         $query = "DELETE FROM Gestionnaire WHERE Identifiant=" . $id . ";";
