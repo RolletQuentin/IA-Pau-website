@@ -22,12 +22,12 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     $ressource = new Ressources($db);
 
     // On récupère l'id de la ressource à supprimer
-    $donnees = json_decode(file_get_contents("php://input"));
+    $IdRessource = $_GET['id'];
 
-    if(!empty($donnees->IdRessource)) {
+    if(!empty(IdRessource)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $ressource->IdRessource = $donnees->IdRessource;
+        $ressource->IdRessource = $IdRessource;
 
         if($ressource->deleteRessource()) {
             // Ici la suppression à fonctionné
