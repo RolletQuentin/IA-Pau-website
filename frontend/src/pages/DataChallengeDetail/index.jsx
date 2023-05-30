@@ -1,13 +1,11 @@
-import styled from "styled-components";
-
 import SectionContainer from "../../containers/SectionContainer";
-import ButtonLink from "../../components/ButtonLink";
 import NavbarOffset from "../../components/NavbarOffset";
 import BasicButton from "../../components/BasicButton";
 import VBox from "../../containers/VBox";
 import CenterContainer from "../../containers/CenterContainer";
 import { useEffect, useState } from "react";
 import { Loader } from "../../utils/Atoms";
+import MarginContainer from "../../containers/MarginContainer";
 
 function DataChallengeDetail() {
     const [globalError, setGlobalError] = useState("")
@@ -16,7 +14,7 @@ function DataChallengeDetail() {
     useEffect(() => {
         const fetchDataChallengeData = async () => {
             setGlobalError("")
-            const response = await fetch(process.env.REACT_APP_PROXY + '/api/user/login/')
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getEvenement/?id=' + 1)
     
             const json = await response.json();
             if (!response.ok) {     
@@ -33,6 +31,7 @@ function DataChallengeDetail() {
 
     return (
         <CenterContainer>
+            <NavbarOffset/>
             {data_challenge ? 
             <VBox style={{
                 width: "80vw",
@@ -48,7 +47,13 @@ function DataChallengeDetail() {
                     <BasicButton style={{padding: "5px 20px", marginLeft: "auto"}}>Participer</BasicButton>
                 </div>
             </VBox> :
+            <MarginContainer margin={"30px"}>
+                {globalError ?
+                <h2 style={{color: "var(--error)"}}>Erreur : [{globalError}]</h2>
+                :
                 <Loader/>
+                }
+            </MarginContainer>
             }
         </CenterContainer>
     );

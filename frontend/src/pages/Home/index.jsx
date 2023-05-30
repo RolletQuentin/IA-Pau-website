@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 import DataChallengeItem from "../../components/DataChallengeItem";
 import NavbarOffset from "../../components/NavbarOffset";
-import { useFetch } from "../../hooks/useFetch";
-import { Loader } from "../../utils/Atoms";
 import VBox from "../../containers/VBox";
 
 const StyledHome = styled.div`
@@ -21,9 +19,7 @@ const StyledHome = styled.div`
 `;
 
 function Home() {
-    const { data, isLoading } = useFetch(
-        process.env.REACT_APP_PROXY + "api/event/"
-    );
+
     return (
         <StyledHome>
             <NavbarOffset />
