@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/createEvenement/
+// Exemple utilisation : http://localhost/api/questionnaires/createQuestionnaire/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -11,29 +11,28 @@ header("Access-Control-Allow-Methods: POST");
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Evenements.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie l'evenement
-    $evenement = new Evenements($db);
+    // On instancie l'questionnaire
+    $questionnaire = new Questionnaires($db);
 
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->TypeEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Recompenses) && !empty($donnees->Debut) && !empty($donnees->Fin)) {
+    if(!empty($donnees->IdProjet) && !empty($donnees->Titre) && !empty($donnees->Sujet) && !empty($donnees->Debut) && !empty($donnees->Fin)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $evenement->TypeEvenement = $donnees->TypeEvenement;
-        $evenement->Libele = $donnees->Libele;
-        $evenement->Description = $donnees->Description;
-        $evenement->Recompenses = $donnees->Recompenses;
-        $evenement->Debut = $donnees->Debut;
-        $evenement->Fin = $donnees->Fin;
+        $questionnaire->IdProjet = $donnees->IdProjet;
+        $questionnaire->Titre = $donnees->Titre;
+        $questionnaire->Sujet = $donnees->Sujet;
+        $questionnaire->Debut = $donnees->Debut;
+        $questionnaire->Fin = $donnees->Fin;
 
-        if($evenement->createEvenement()) {
+        if($questionnaire->createQuestionnaire()) {
             // Ici la création à fonctionné
             // On envoi un code 201 (ajout)
             http_response_code(201);

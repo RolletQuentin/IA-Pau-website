@@ -5,24 +5,6 @@ CREATE DATABASE IF NOT EXISTS IA_Pau_database;
 
 USE IA_Pau_database;
 
--- EVENEMENT
-CREATE TABLE IF NOT EXISTS Questionnaire(
-    IdQuestionnaire INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    Titre VARCHAR(64),
-    Sujet VARCHAR(2048),
-    Debut DATE,
-    Fin DATE
-);
-
--- EVENEMENT
-CREATE TABLE IF NOT EXISTS Question(
-    IdQuestion INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    Question VARCHAR(512),
-    Reponse VARCHAR(256),
-    IdQuestionnaire INTEGER(16),
-    FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire)
-);
-
 -- EVENEMENT (DataChallenge ou DataBattle)
 CREATE TABLE IF NOT EXISTS Evenement (
     IdEvenement INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
@@ -44,6 +26,26 @@ CREATE TABLE IF NOT EXISTS Projet(
     Image VARCHAR(2048),
     Entreprise VARCHAR(128),
     FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE
+);
+
+-- EVENEMENT
+CREATE TABLE IF NOT EXISTS Questionnaire(
+    IdQuestionnaire INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
+    IdProjet INTEGER(16),
+    Titre VARCHAR(64),
+    Sujet VARCHAR(2048),
+    Debut DATE,
+    Fin DATE,
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
+);
+
+-- EVENEMENT
+CREATE TABLE IF NOT EXISTS Question(
+    IdQuestion INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
+    Question VARCHAR(512),
+    Reponse VARCHAR(256),
+    IdQuestionnaire INTEGER(16),
+    FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire)
 );
 
 -- USER ?
@@ -134,7 +136,7 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
 -- ------------------------------------------------
 
 -- EVENEMENT (Notes Questionnaire)
-CREATE TABLE IF NOT EXISTS RepondreQuestionnaire(
+CREATE TABLE IF NOT EXISTS NoteQuestionnaire(
     IdQuestionnaire INTEGER(16),
     IdEquipe INTEGER(16),
     Score INTEGER(16),
@@ -196,3 +198,7 @@ INSERT INTO PossederRessource VALUES (2,2);
 INSERT INTO PossederRessource VALUES (3,1);
 INSERT INTO PossederRessource VALUES (4,1);
 
+-- Questionnaires --
+INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
+INSERT INTO Questionnaire VALUES (2, 2, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
+INSERT INTO Questionnaire VALUES (3, 3, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
