@@ -132,7 +132,7 @@ function AdminGestionnaires({ id }) {
                                 </div>
                             </Button>
                         ))}
-                    <Link className="add-member" to={routes.profile}>
+                    <Link className="add-member" to={routes.modifyUser}>
                         <BasicButton>Ajouter gestionnaire</BasicButton>
                     </Link>
                 </Button>

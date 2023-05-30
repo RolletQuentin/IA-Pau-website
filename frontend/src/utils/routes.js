@@ -16,6 +16,7 @@ const routes = {
     modifyRessource: "/admin/modify-ressource",
     modifyDataChallenge: "/admin/modify-data-challenge",
     modifyProject: "/admin/modify-project",
+    modifyUser: "/admin/modify-user",
 };
 
 export default routes;
