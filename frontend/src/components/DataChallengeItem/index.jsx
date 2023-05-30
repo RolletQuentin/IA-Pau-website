@@ -1,7 +1,5 @@
-import styled from "styled-components";
 import routes from "../../utils/routes";
 
-import ButtonLink from "../ButtonLink";
 import SectionContainer from "../../containers/SectionContainer";
 import BasicButton from "../BasicButton";
 import HBox from "../../containers/HBox";
