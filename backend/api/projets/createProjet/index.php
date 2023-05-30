@@ -23,10 +23,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->IdProjet) && !empty($donnees->IdEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Image) && !empty($donnees->Entreprise)) {
+    if(!empty($donnees->IdEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Image) && !empty($donnees->Entreprise)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $projet->IdProjet = $donnees->IdProjet;
         $projet->IdEvenement = $donnees->IdEvenement;
         $projet->Libele = $donnees->Libele;
         $projet->Description = $donnees->Description;
