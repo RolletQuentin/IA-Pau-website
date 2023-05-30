@@ -134,6 +134,28 @@ class Evenements {
         // On retourne le résultat
         return $query;
     }
+    
+    /**
+     * Lecture de tous les projets d'un evenement
+     *
+     * @return void
+     */
+    public function getAllRessourcesByEvent(){
+        // On écrit la requête
+        $sql = "SELECT * FROM PossederRessource NATURAL JOIN Ressources NATURAL JOIN Projet WHERE IdEvenement = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdEvenement);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
 
     /**
      * Créer un evenement

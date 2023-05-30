@@ -42,6 +42,30 @@ class Projets {
         return $query;
     }
 
+
+    /**
+     * Lecture de tous les projets d'un evenement
+     *
+     * @return void
+     */
+    public function getAllRessourcesByProjet(){
+        // On écrit la requête
+        $sql = "SELECT * FROM PossederRessource NATURAL JOIN Ressources WHERE IdProjet = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdProjet);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+
     /**
      * Lire un projet
      *
