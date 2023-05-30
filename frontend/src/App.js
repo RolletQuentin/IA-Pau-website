@@ -147,7 +147,8 @@ function App() {
                     <Route
                         exact
                         path={routes.analyseur}
-                        element={<Analyseur/>}
+                        element={<Analyseur />}
+                    />
                     <Route
                         exact
                         path={routes.modifyProject + `/:idEvent`}
