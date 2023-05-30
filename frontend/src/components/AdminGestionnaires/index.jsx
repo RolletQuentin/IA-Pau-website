@@ -57,7 +57,7 @@ const StyledAdminProjects = styled.div`
     }
 `;
 
-function AdminProjects({ id }) {
+function AdminGestionnaires({ id }) {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
@@ -99,7 +99,7 @@ function AdminProjects({ id }) {
                 <Loader />
             ) : (
                 <Button className="section">
-                    <h2>Projet(s)</h2>
+                    <h2>Gestionnaire(s)</h2>
                     {data &&
                         data.map(({ IdProjet, Libele }) => (
                             <Button key={IdProjet} className="button">
@@ -144,4 +144,4 @@ function AdminProjects({ id }) {
     );
 }
 
-export default AdminProjects;
+export default AdminGestionnaires;
