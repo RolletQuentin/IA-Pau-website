@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/question/editQuestion/
+// Exemple utilisation :    
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -33,11 +33,11 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
     if(!empty($donnees->IdQuestion) && !empty($donnees->Question) && !empty($donnees->IdQuestionnaire)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $this->IdQuestion = $row['IdQuestion'];
-        $this->Question = $row['Question'];
-        $this->IdQuestionnaire = $row['IdQuestionnaire'];
+        $question->IdQuestion = $donnees->IdQuestion;
+        $question->Question = $donnees->Question;
+        $question->IdQuestionnaire = $donnees->IdQuestionnaire;
 
-        if($questionnaire->editQuestion()) {
+        if($question->editQuestion()) {
 
             // Ici la création à fonctionné
             // On envoi un code 200 (modification)
