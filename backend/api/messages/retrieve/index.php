@@ -7,10 +7,6 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
 header('HTTP/1.1 200 OK');
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 require_once('../../../vendor/autoload.php');
 
 include_once('methods.php');
