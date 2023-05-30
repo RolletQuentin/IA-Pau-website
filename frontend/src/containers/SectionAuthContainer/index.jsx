@@ -10,6 +10,7 @@ const SectionAuthContainer = ({
     title = "default",
     iconWidth = 100,
     style,
+    icon = true,
 }) => {
     const styleIconAccount = {
         position: "absolute",
@@ -33,15 +34,15 @@ const SectionAuthContainer = ({
                 <SectionContainer
                     style={{
                         position: "relative",
-                        marginTop: iconWidth / 2,
+                        marginTop: icon ? iconWidth / 2 : 0,
                         ...style,
                     }}
                 >
-                    <img
+                    {icon && <img
                         style={styleIconAccount}
                         src={IconAccount}
                         alt="Account Circle Icon"
-                    />
+                    />}
                     <CenterContainer>
                         <h1>{title}</h1>
                     </CenterContainer>
