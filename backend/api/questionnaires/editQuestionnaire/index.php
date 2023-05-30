@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/projets/editProjet/
+// Exemple utilisation : http://localhost/api/questionnaires/editQuestionnaire/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,37 +18,36 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'PUT'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Projets.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les projets
-    $projet = new Projets($db);
+    // On instancie les questionnaires
+    $questionnaire = new Questionnaires($db);
 
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->IdProjet) && !empty($donnees->IdEvenement) && !empty($donnees->Libele) && !empty($donnees->Description) && !empty($donnees->Image) && !empty($donnees->Entreprise)) {
+    if(!empty($donnees->IdQuestionnaire) && !empty($donnees->IdProjet) && !empty($donnees->Titre) && !empty($donnees->Sujet) && !empty($donnees->Debut) && !empty($donnees->Fin)) {
         // Ici on a reçu les données
         // On hydrate notre objet
+        $questionnaire->IdQuestionnaire = $donnees->IdQuestionnaire;
+        $questionnaire->IdProjet = $donnees->IdProjet;
+        $questionnaire->Titre = $donnees->Titre;
+        $questionnaire->Sujet = $donnees->Sujet;
+        $questionnaire->Debut = $donnees->Debut;
+        $questionnaire->Fin = $donnees->Fin;
 
-        $projet->IdProjet = $donnees->IdProjet;
-        $projet->IdEvenement = $donnees->IdEvenement;
-        $projet->Libele = $donnees->Libele;
-        $projet->Description = $donnees->Description;
-        $projet->Image = $donnees->Image;
-        $projet->Entreprise = $donnees->Entreprise;
+        if($questionnaire->editQuestionnaire()) {
 
-        if($projet->editProjet()) {
-
-            // Ici la modicifation à fonctionné
+            // Ici la création à fonctionné
             // On envoi un code 200 (modification)
             http_response_code(200);
             echo json_encode(["message" => "La modification a été effectué"]);
         } else{
-            // La modification n'a pas fonctionné
+            // La création n'a pas fonctionné
             http_response_code(503);
             echo json_encode(["error" => "La modification n'a pas été effectué"]);
         }

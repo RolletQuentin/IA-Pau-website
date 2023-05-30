@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/ressources/getAllRessources/
+// Exemple utilisation : http://localhost/api/questionnaires/getAllQuestionnaires/
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,41 +18,45 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Ressources.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les ressources
-    $ressource = new Ressources($db);
+    // On instancie les questionnaires
+    $questionnaire = new Questionnaires($db);
 
     // On récupère les données
-    $stmt = $ressource->getAllRessources();
+    $stmt = $questionnaire->getAllQuestionnaires();
 
     // On vérifie si on a au moins 1 produit
     if($stmt->rowCount() > 0){
         // On initialise un tableau associatif
-        $tableauRessources = [];
-        $tableauRessources['Ressources'] = [];
+        $tableauQuestionnaires = [];
+        $tableauQuestionnaires['Questionnaires'] = [];
 
         // On parcourt les produits
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
 
             $prod = [
-                "IdRessource" => $IdRessource,
-                "UrlRessource" => $UrlRessource
+                "IdQuestionnaire" => $IdQuestionnaire,
+                "IdProjet" => $IdProjet,
+                "Titre" => $Titre,
+                "Sujet" => $Sujet,
+                "Debut" => $Debut,
+                "Fin" => $Fin
             ];
 
-            $tableauRessources['Ressources'][] = $prod;
+            $tableauQuestionnaires['Questionnaires'][] = $prod;
         }
 
         // On envoie le code réponse 200 OK
         http_response_code(200);
 
         // On encode en json et on envoie
-        echo json_encode($tableauRessources);
+        echo json_encode($tableauQuestionnaires);
     }
 
 }else{
