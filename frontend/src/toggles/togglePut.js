@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 export const togglePut = async (url, user, data) => {
     const config = {
