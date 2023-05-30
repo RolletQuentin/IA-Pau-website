@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/deleteEvenement/
+// Exemple utilisation : http://localhost/api/questionnaires/deleteQuestionnaire/?id=3
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,24 +18,24 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Evenements.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les evenements
-    $evenement = new Evenements($db);
+    // On instancie les questionnaires
+    $questionnaire = new Questionnaires($db);
 
-    // On récupère l'id de l'evenement à supprimer
-    $IdEvenement = $_GET['id'];
+    // On récupère l'id du questionnaire à supprimer
+    $IdQuestionnaire = $_GET['id'];
 
-    if(!empty($IdEvenement)) {
+    if(!empty($IdQuestionnaire)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $evenement->IdEvenement = $IdEvenement;
+        $questionnaire->IdQuestionnaire = $IdQuestionnaire;
 
-        if($evenement->deleteEvenement()) {
+        if($questionnaire->deleteQuestionnaire()) {
             // Ici la suppression à fonctionné
             // On envoi un code 200
             http_response_code(200);

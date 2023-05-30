@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/ressources/getRessource/?id=2
+// Exemple utilisation : http://localhost/api/questionnaires/getQuestionnaire/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,30 +18,34 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Ressources.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les ressources
-    $ressource = new Ressources($db);
+    // On instancie les questionnaires
+    $questionnaire = new Questionnaires($db);
 
     // On récupère l'Id passé en paramètre 
-    $IdRessource = $_GET['id'];
+    $IdQuestionnaire = $_GET['id'];
 
-    if(!empty($IdRessource)){
-        $ressource->IdRessource = $IdRessource;
+    if(!empty($IdQuestionnaire)){
+        $questionnaire->IdQuestionnaire = $IdQuestionnaire;
 
-        // On récupère la ressource
-        $ressource->getRessource();
+        // On récupère l'questionnaire
+        $questionnaire->getQuestionnaire();
 
-        // On vérifie si la ressource existe
-        if($ressource->UrlRessource != null){
+        // On vérifie si le questionnaire existe
+        if(($questionnaire->IdProjet != null) && ($questionnaire->Titre != null) && ($questionnaire->Sujet != null) && ($questionnaire->Debut != null) && ($questionnaire->Fin != null)){
 
             $prod = [
-                "IdRessource" => $ressource->IdRessource,
-                "UrlRessource" => $ressource->UrlRessource
+                "IdQuestionnaire" => $questionnaire->IdQuestionnaire,
+                "IdProjet" => $questionnaire->IdProjet,
+                "Titre" => $questionnaire->Titre,
+                "Sujet" => $questionnaire->Sujet,
+                "Debut" => $questionnaire->Debut,
+                "Fin" => $questionnaire->Fin
             ];
             // On envoie le code réponse 200 OK
             http_response_code(200);
@@ -52,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             // 404 Not found
             http_response_code(404);
          
-            echo json_encode(array("error" => "La ressource n'existe pas."));
+            echo json_encode(array("error" => "Le questionnaire n'existe pas."));
         }
         
     }

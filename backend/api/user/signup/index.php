@@ -5,12 +5,14 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
 
+// --Pour fix les CORS 
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method == "OPTIONS") {
     http_response_code(200);
     exit(0);
 }
+// --
 
 use Firebase\JWT\JWT;
 require_once('../../../vendor/autoload.php');
