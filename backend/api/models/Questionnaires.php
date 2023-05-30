@@ -154,12 +154,13 @@ class Questionnaires {
         Titre=:Titre,
         Sujet=:Sujet,
         Debut=:Debut,
-        Fin=:Fin";
+        Fin=:Fin WHERE IdQuestionnaire=:IdQuestionnaire";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
         
         // On sécurise les données
+        $this->IdQuestionnaire=htmlspecialchars(strip_tags($this->IdQuestionnaire));
         $this->IdProjet=htmlspecialchars(strip_tags($this->IdProjet));
         $this->Titre=htmlspecialchars(strip_tags($this->Titre));
         $this->Sujet=htmlspecialchars(strip_tags($this->Sujet));
@@ -167,6 +168,7 @@ class Questionnaires {
         $this->Fin=htmlspecialchars(strip_tags($this->Fin));
         
         // On attache les variables
+        $query->bindParam(":IdQuestionnaire", $this->IdQuestionnaire);
         $query->bindParam(":IdProjet", $this->IdProjet);
         $query->bindParam(":Titre", $this->Titre);
         $query->bindParam(":Sujet", $this->Sujet);
