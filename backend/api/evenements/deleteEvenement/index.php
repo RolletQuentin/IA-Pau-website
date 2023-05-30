@@ -6,6 +6,13 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
 header("Access-Control-Allow-Methods: DELETE");
+// --Pour fix les CORS 
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == "OPTIONS") {
+    http_response_code(200);
+    exit(0);
+}
+// --
 
 // On vérifie que la méthode utilisée est correcte
 if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
@@ -17,10 +24,10 @@ if($_SERVER['REQUEST_METHOD'] == 'DELETE'){
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les ressources
+    // On instancie les evenements
     $evenement = new Evenements($db);
 
-    // On récupère l'id de la ressource à supprimer
+    // On récupère l'id de l'evenement à supprimer
     $IdEvenement = $_GET['id'];
 
     if(!empty($IdEvenement)) {
