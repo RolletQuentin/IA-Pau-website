@@ -4,7 +4,6 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, method");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE, PATCH");
-header('HTTP/1.1 200 OK');
 
 use Firebase\JWT\JWT;
 require_once('../../../vendor/autoload.php');
@@ -28,27 +27,27 @@ $numEtudiant = verifyStringToDatabaseInsertion($values["numEtudiant"]);
 
 try {
     if(empty($nom)){
-        array_push($errors, array("error" => "lastname"));
+        array_push($errors, "lastname");
         if($last_error == ""){
             $last_error = "Nom de famille non saisi";
         }
     } 
     if(empty($firstname)){
-        array_push($errors, array("error" => "firstname"));
+        array_push($errors, "firstname");
         if($last_error == ""){
             $last_error = "Prénom non saisi";
         }
     }
     if(empty($email)){
-        array_push($errors, array("error" => "email"));
+        array_push($errors, "email");
         if($last_error == ""){
             $last_error = "Email non saisi";
         }
     } else {
         require_once('../../utils/patchs/php8.php');
         if(!(str_contains($email, "@"))){
-            if(!(in_array(array("error" => "email"), $errors))){
-                array_push($errors, array("error" => "email"));
+            if(!(in_array("email", $errors))){
+                array_push($errors, "email");
             }
             if($last_error == ""){
                 $last_error = "Il manque un @ a votre email";
@@ -57,16 +56,16 @@ try {
         } else {
             $exploded_mail = explode("@", $email);
             if(empty($exploded_mail[1])){
-                if(!(in_array(array("error" => "email"), $errors))){
-                    array_push($errors, array("error" => "email"));
+                if(!(in_array("email", $errors))){
+                    array_push($errors, "email");
                 }
                 if($last_error == ""){
                     $last_error = "Il n'y a rien après votre @";
                 }
             } else {
                 if(!(str_contains($exploded_mail[1], "."))){
-                    if(!(in_array(array("error" => "email"), $errors))){
-                        array_push($errors, array("error" => "email"));
+                    if(!(in_array("email", $errors))){
+                        array_push($errors, "email");
                     }
                     if($last_error == ""){
                         $last_error = "Merci de saisir le domaine a la fin du mail.";
@@ -76,8 +75,8 @@ try {
         }
         if(str_contains($email, " ")){
             if(!(str_contains($exploded_mail[1], "."))){
-                if(!(in_array(array("error" => "email"), $errors))){
-                    array_push($errors, array("error" => "email"));
+                if(!(in_array("email", $errors))){
+                    array_push($errors, "email");
                 }
                 if($last_error == ""){
                     $last_error = "Pas d'espaces dans un email.";
@@ -86,37 +85,37 @@ try {
         }
     }
     if(empty($mdp)){
-        array_push($errors, array("error" => "password"));
+        array_push($errors, "password");
         if($last_error == ""){
             $last_error = "Mot de passe non saisi";
         }
     }
     if(empty($phone)){
-        array_push($errors, array("error" => "phone"));
+        array_push($errors, "phone");
         if($last_error == ""){
             $last_error = "Numéro de téléphone non saisi";
         }
     }
     if(empty($level)){
-        array_push($errors, array("error" => "level"));
+        array_push($errors, "level");
         if($last_error == ""){
             $last_error = "Niveau d'études non saisi";
         }
     }
     if(empty($ville)){
-        array_push($errors, array("error" => "city"));
+        array_push($errors, "city");
         if($last_error == ""){
             $last_error = "Ville non saisie";
         }
     } 
     if(empty($ecole)){
-        array_push($errors, array("error" => "school"));
+        array_push($errors, "school");
         if($last_error == ""){
             $last_error = "Ecole non saisie";
         }
     } 
     if(empty($numEtudiant)){
-        array_push($errors, array("error" => "numEtudiant"));
+        array_push($errors, "numEtudiant");
         if($last_error == ""){
             $last_error = "Numéro étudiant non saisi";
         }
@@ -135,8 +134,8 @@ try {
     }
 
     if($numEtudiantDejaPresent){
-        if(!(in_array(array("error" => "numEtudiant"), $errors))){
-            array_push($errors, array("error" => "numEtudiant"));
+        if(!(in_array(array("numEtudiant", $errors)))){
+            array_push($errors, "numEtudiant");
         }
         if($last_error == ""){
             $last_error = "Numéro étudiant déjà dans la base de donnée. ";
@@ -155,8 +154,8 @@ try {
     }
     mysqli_close($conn);
     if($existeDeja){
-        if(!(in_array(array("error" => "email"), $errors))){
-            array_push($errors, array("error" => "email"));
+        if(!(in_array("email", $errors))){
+            array_push($errors, "email");
         }
         if($last_error == ""){
             $last_error = "Email déjà présent dans la base de donnée.";
