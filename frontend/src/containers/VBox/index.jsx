@@ -15,7 +15,7 @@ const VBox = ({
                 gap,
             }}
         >
-            {children.map((child, index) => {
+            {children && children.map((child, index) => {
                 return (
                     <div style={{...style}} key={index}>
                         {child}
