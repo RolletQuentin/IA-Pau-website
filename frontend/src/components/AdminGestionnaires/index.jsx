@@ -70,7 +70,7 @@ function AdminGestionnaires({ id }) {
                 try {
                     const response = await fetch(
                         process.env.REACT_APP_PROXY +
-                            `/api/projets/getAllGestionnairesByEvent/?id=${id}`,
+                            `/api/evenements/getGestionnaire/?IdEvent=${id}`,
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -132,10 +132,7 @@ function AdminGestionnaires({ id }) {
                                 </div>
                             </Button>
                         ))}
-                    <Link
-                        className="add-member"
-                        to={routes.modifyDataChallenge}
-                    >
+                    <Link className="add-member" to={routes.profile}>
                         <BasicButton>Ajouter gestionnaire</BasicButton>
                     </Link>
                 </Button>
