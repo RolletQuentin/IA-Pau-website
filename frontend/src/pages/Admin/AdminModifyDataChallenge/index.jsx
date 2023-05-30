@@ -7,6 +7,7 @@ import { togglePost } from "../../../toggles/togglePost";
 import { togglePut } from "../../../toggles/togglePut";
 import Button from "../../../components/Button";
 import InputTextDefault from "../../../components/Input/Text/Default";
+import AdminProjects from "../../../components/AdminProjects";
 
 const StyledModifyDataChallenge = styled.div`
     display: flex;
@@ -100,6 +101,7 @@ function AdminModifyDataChallenge() {
                     </>
                 </form>
             </Button>
+            <AdminProjects id={id} />
         </StyledModifyDataChallenge>
     );
 }

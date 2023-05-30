@@ -45,11 +45,6 @@ function AdminModifyRessource() {
         }
     }, [id, user]);
 
-    let data = JSON.stringify({
-        "IdRessource": id,
-        "UrlRessource": urlRessource,
-    });
-
     return (
         <StyledAdminRessources>
             <NavbarOffset />
@@ -69,7 +64,10 @@ function AdminModifyRessource() {
                               process.env.REACT_APP_PROXY +
                                   `/api/ressources/editRessource/`,
                               user,
-                              data
+                              {
+                                  "IdRessource": id,
+                                  "UrlRessource": urlRessource,
+                              }
                           )
                 }
             >
