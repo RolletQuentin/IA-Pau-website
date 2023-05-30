@@ -70,7 +70,7 @@ function AdminProjects({ id }) {
                 try {
                     const response = await fetch(
                         process.env.REACT_APP_PROXY +
-                            `/api/projets/getAllProjetsByEvent/?id=${id}`,
+                            `/api/evenements/getAllProjetsByEvent/?id=${id}`,
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -117,7 +117,7 @@ function AdminProjects({ id }) {
                                         onPress={() =>
                                             toggleDelete(
                                                 process.env.REACT_APP_PROXY +
-                                                    `/api/evenements/deleteEvenement/?id=${IdProjet}`,
+                                                    `/api/projets/deleteProjet/?id=${IdProjet}`,
                                                 user
                                             )
                                         }
@@ -126,8 +126,8 @@ function AdminProjects({ id }) {
                                     </BasicButton>
                                     <Link
                                         to={
-                                            routes.modifyDataChallenge +
-                                            `/${IdProjet}`
+                                            routes.modifyProject +
+                                            `/${id}/${IdProjet}`
                                         }
                                     >
                                         <BasicButton className="update">
@@ -139,7 +139,7 @@ function AdminProjects({ id }) {
                         ))}
                     <Link
                         className="add-member"
-                        to={routes.modifyDataChallenge}
+                        to={routes.modifyProject + `/${id}`}
                     >
                         <BasicButton>Ajouter projet</BasicButton>
                     </Link>

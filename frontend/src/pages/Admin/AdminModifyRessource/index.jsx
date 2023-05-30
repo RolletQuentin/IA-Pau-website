@@ -7,6 +7,7 @@ import { useAuthContext } from "../../../hooks/auth/useAuthContext";
 import BasicButton from "../../../components/BasicButton";
 import { togglePut } from "../../../toggles/togglePut";
 import { togglePost } from "../../../toggles/togglePost";
+import Button from "../../../components/Button";
 
 const StyledAdminRessources = styled.div`
     display: flex;
@@ -49,35 +50,37 @@ function AdminModifyRessource() {
         <StyledAdminRessources>
             <NavbarOffset />
             <h1>Ajouter / Modifier une ressource</h1>
-            <form
-                onSubmit={() =>
-                    id === undefined
-                        ? togglePost(
-                              process.env.REACT_APP_PROXY +
-                                  `/api/ressources/createRessource/`,
-                              user,
-                              {
-                                  "UrlRessource": urlRessource,
-                              }
-                          )
-                        : togglePut(
-                              process.env.REACT_APP_PROXY +
-                                  `/api/ressources/editRessource/`,
-                              user,
-                              {
-                                  "IdRessource": id,
-                                  "UrlRessource": urlRessource,
-                              }
-                          )
-                }
-            >
-                <InputTextDefault
-                    placeholder="URL ressource"
-                    value={urlRessource}
-                    setValue={setUrlRessource}
-                />
-                <BasicButton>Envoyer</BasicButton>
-            </form>
+            <Button>
+                <form
+                    onSubmit={() =>
+                        id === undefined
+                            ? togglePost(
+                                  process.env.REACT_APP_PROXY +
+                                      `/api/ressources/createRessource/`,
+                                  user,
+                                  {
+                                      "UrlRessource": urlRessource,
+                                  }
+                              )
+                            : togglePut(
+                                  process.env.REACT_APP_PROXY +
+                                      `/api/ressources/editRessource/`,
+                                  user,
+                                  {
+                                      "IdRessource": id,
+                                      "UrlRessource": urlRessource,
+                                  }
+                              )
+                    }
+                >
+                    <InputTextDefault
+                        placeholder="URL ressource"
+                        value={urlRessource}
+                        setValue={setUrlRessource}
+                    />
+                    <BasicButton>Envoyer</BasicButton>
+                </form>
+            </Button>
         </StyledAdminRessources>
     );
 }
