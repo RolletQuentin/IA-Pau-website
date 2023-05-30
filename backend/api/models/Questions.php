@@ -1,5 +1,5 @@
 <?php
-class Question {
+class Questions {
     //connexion
     private $connexion;
     private $table = "Question";
@@ -75,8 +75,7 @@ class Question {
     public function createQuestion(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdQuestion=:IdQuestion,
-        Question=:Question,
+        $sql = "INSERT INTO " . $this->table . " SET Question=:Question,
         IdQuestionnaire=:IdQuestionnaire";
 
         // Préparation de la requête
