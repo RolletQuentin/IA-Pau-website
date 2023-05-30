@@ -1,7 +1,7 @@
 <?php
     require_once('../../../vendor/autoload.php');
     include_once('../../utils/permissionManager.php');
-    include_once('../methods.php');
+    include_once('../../user/methods.php');
     include_once('../../utils/StringCorrection.php');
 
     include_once('../../utils/database.php');
