@@ -20,8 +20,6 @@ function AdminModifyRessource() {
     const { user } = useAuthContext();
     const { id } = useParams();
     const [urlRessource, setUrlRessource] = useState("");
-    const [error, setError] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         if (id !== undefined && user) {
@@ -40,17 +38,17 @@ function AdminModifyRessource() {
                     const json = await response.json();
                     setUrlRessource(json["UrlRessource"]);
                 } catch (err) {
-                    setError(err);
                     console.error(err);
-                } finally {
-                    setIsLoading(false);
                 }
             };
-
-            setIsLoading(true);
             fetchData();
         }
     }, [id, user]);
+
+    let data = JSON.stringify({
+        "IdRessource": id,
+        "UrlRessource": urlRessource,
+    });
 
     return (
         <StyledAdminRessources>
@@ -71,10 +69,7 @@ function AdminModifyRessource() {
                               process.env.REACT_APP_PROXY +
                                   `/api/ressources/editRessource/`,
                               user,
-                              {
-                                  "UrlRessource": urlRessource,
-                                  "IdRessource": id,
-                              }
+                              data
                           )
                 }
             >
