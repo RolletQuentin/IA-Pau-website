@@ -13,6 +13,14 @@ if ($method == "OPTIONS") {
 }
 // --
 
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method == "OPTIONS") {
+    http_response_code(200);
+    exit(0);
+}
+
+
 use Firebase\JWT\JWT;
 
 require_once('../../../vendor/autoload.php');
@@ -39,9 +47,7 @@ if(!(str_contains($email, "@"))){
         "error"=>"Le format de l'email n'est pas valide !"
     );
     $json = json_encode($array);
-    echo $json;
-    http_response_code(400);
-    
+    echo $json;    
 } else {
 
     include '../../utils/database.php';
@@ -64,6 +70,7 @@ if(!(str_contains($email, "@"))){
 
     try {
         if($validCredentials){
+            http_response_code(200);
 
             $secretKey  = '2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12';
             $issuedAt   = new DateTimeImmutable();
@@ -88,19 +95,18 @@ if(!(str_contains($email, "@"))){
                 "jwt"=>$jwt
             );
             $json = json_encode($array);
-            http_response_code(200);
             echo $json;
         } else {
             http_response_code(401);
             throw new Exception ("Email ou Mot de passe incorrect");
         }
     } catch (Exception $e) {
+        http_response_code(400);
         $array = array(
             "error"=>$e->getMessage()
         );
         $json = json_encode($array);
         echo $json;
-        http_response_code(400);
     }
 }
 ?>

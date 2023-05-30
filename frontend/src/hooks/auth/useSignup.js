@@ -50,5 +50,5 @@ export const useSignup = () => {
         setIsLoading(false);
     }
 
-    return {signup, isLoading, globalError, setEmptyField, emptyField};
+    return {signup, isLoading, globalError, setGlobalError, setEmptyField, emptyField};
 }

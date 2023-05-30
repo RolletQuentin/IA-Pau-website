@@ -10,6 +10,7 @@ import { useSignup } from "../../../hooks/auth/useSignup";
 import MarginContainer from "../../../containers/MarginContainer";
 import { Link } from "react-router-dom";
 import routes from "../../../utils/routes";
+import Select from "../../Input/Select";
 
 const styleInputText = {
     flexGrow: 1
@@ -52,7 +53,7 @@ const styleEndButton = {
 
 const SignupForm = () => {
 
-    const {signup, globalError, emptyField, setEmptyField} = useSignup();
+    const {signup, globalError, setGlobalError, emptyField, setEmptyField} = useSignup();
     const [lastname, setLastname] = useState("");
     const [firstname, setFirstname] = useState("");
     const [level, setLevel] = useState("ing1");
@@ -64,8 +65,18 @@ const SignupForm = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [numEtudiant, setNumEtudiant] = useState("");
 
+    const handleSubmit = () => {
+        if (confirmPassword !== password){
+            setEmptyField(['confirmPassword']);
+            setGlobalError('les mots de passe ne correspondent pas')
+
+        }else{
+            signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )
+        }
+
+    }
     return (
-        <SectionAuthContainer title="Créer Compte" onSubmit={() => signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )}>
+        <SectionAuthContainer title="Créer Compte" onSubmit={handleSubmit}>
             <CenterContainer>
                 <HBox gap="10px">
                     <p style={styleDejaCompte}>Déjà un compte?</p>
@@ -76,13 +87,13 @@ const SignupForm = () => {
             <HBox gap="20px" style={styleOption}>
                 <InputTextDefault
                     placeholder="Nom"
-                    emptyField={emptyField}
                     style={{
                         marginBottom: "20px",
                     }}
                     name="lastname"
                     value={lastname}
                     setValue={setLastname}
+                    emptyField={emptyField}
                     setEmptyField={setEmptyField}
                 />
                 <InputTextDefault
@@ -91,6 +102,8 @@ const SignupForm = () => {
                     name="firstname"
                     value={firstname}
                     setValue={setFirstname}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
             </HBox>
 
@@ -102,6 +115,8 @@ const SignupForm = () => {
                     name="email"
                     value={email}
                     setValue={setEmail}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
 
                 <HBox gap="20px" style={styleOption}>
@@ -110,24 +125,27 @@ const SignupForm = () => {
                         name="numEtudiant"
                         value={numEtudiant}
                         setValue={setNumEtudiant}
+                        emptyField={emptyField}
+                        setEmptyField={setEmptyField}
                     />
                     <InputTextDefault
                         placeholder="Numéro de téléphone"
                         name="phone"
                         value={phone}
                         setValue={setPhone}
+                        emptyField={emptyField}
+                        setEmptyField={setEmptyField}
                     />
                 </HBox>
 
-                <StyledSelect style = {{marginBottom : "20px"}}>
-                    <option >Niveau d'étude</option>
+                <Select>
                     <option >L1</option>
                     <option >L2</option>
                     <option >L3</option>
                     <option >M1</option>
                     <option >M2</option>
                     <option >Doctorat</option>
-                </StyledSelect>
+                </Select>
             </VBox>
 
             <HBox gap="20px" style={styleOption}>
@@ -137,7 +155,8 @@ const SignupForm = () => {
                     name="school"
                     value={school}
                     setValue={setSchool}
-                    
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
                 <InputTextDefault
                     placeholder="Ville"
@@ -145,6 +164,8 @@ const SignupForm = () => {
                     name="city"
                     value={city}
                     setValue={setCity}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
             </HBox>
 
@@ -155,13 +176,18 @@ const SignupForm = () => {
                     name="password"
                     value={password}
                     setValue={setPassword}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
                 <InputTextDefault
                     placeholder="Confirmation mot de passe"
                     style={{...styleInputText, marginBottom : "20px"}}
                     type="password"
+                    name="confirmPassword"
                     value={confirmPassword}
                     setValue={setConfirmPassword}
+                    emptyField={emptyField}
+                    setEmptyField={setEmptyField}
                 />
             </VBox>
 
