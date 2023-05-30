@@ -14,6 +14,7 @@ const routes = {
     adminRessources: "/admin/ressources",
     addUser: "/admin/add-user",
     modifyRessource: "/admin/modify-ressource",
+    modifyDataChallenge: "/admin/modify-data-challenge",
 };
 
 export default routes;

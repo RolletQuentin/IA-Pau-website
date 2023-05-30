@@ -27,6 +27,7 @@ import AdminDataChallenges from "./pages/Admin/AdminDataChallenges";
 import AdminRessources from "./pages/Admin/AdminRessources";
 import AdminAddUser from "./pages/Admin/AdminAddUser";
 import AdminModifyRessource from "./pages/Admin/AdminModifyRessource";
+import AdminModifyDataChallenge from "./pages/Admin/AdminModifyDataChallenge";
 
 function App() {
     const { user } = useAuthContext();
@@ -113,6 +114,16 @@ function App() {
                     exact
                     path={routes.modifyRessource + `/:id`}
                     element={<AdminModifyRessource />}
+                />
+                <Route
+                    exact
+                    path={routes.modifyDataChallenge}
+                    element={<AdminModifyDataChallenge />}
+                />
+                <Route
+                    exact
+                    path={routes.modifyDataChallenge + `/:id`}
+                    element={<AdminModifyDataChallenge />}
                 />
                 <Route path="*" element={<Error404 />} />
             </Routes>
