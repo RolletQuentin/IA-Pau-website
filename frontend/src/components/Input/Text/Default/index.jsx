@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledInput = styled.input`
@@ -15,16 +15,29 @@ const InputTextDefault = ({
     value = "",
     setValue = null,
     name = "",
-    emptyFields = [],
-    removeClassError = () => {},
+    emptyField = [],
+    setEmptyField,
 }) => {
     const [defaultValue, setDefaultValue] = useState(value);
 
+    const removeClassError = (name) => {
+        if (setEmptyField) {
+            setEmptyField(emptyField.filter((f) => f !== name))
+        }
+    }
+
+    useEffect(() => {
+        console.log(emptyField.includes(name))
+    }, [emptyField])
+
     return (
         <StyledInput
-            className={"inputTextDefault" + (emptyFields.includes(name) ? 'error' : '')}
+            className={"inputTextDefault"}
             type={type}
-            style={style}
+            style={{
+                ...style,
+                color: emptyField.includes(name) ? 'var(--error)' : 'inherit'
+            }}
             placeholder={placeholder}
             onChange={(e) => setValue !== null ? setValue(e.target.value) : setDefaultValue(e.target.value)}
             value={setValue !== null ? value : defaultValue}
