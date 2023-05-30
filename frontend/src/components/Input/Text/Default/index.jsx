@@ -27,17 +27,17 @@ const InputTextDefault = ({
     }
 
     useEffect(() => {
-        console.log(emptyField)
-        console.log(name)
         console.log(emptyField.includes(name))
-        console.log("-----------------")
     }, [emptyField])
 
     return (
         <StyledInput
-            className={"inputTextDefault " + (emptyField.includes(name) ? 'error' : '')}
+            className={"inputTextDefault"}
             type={type}
-            style={style}
+            style={{
+                ...style,
+                color: emptyField.includes(name) ? 'var(--error)' : 'inherit'
+            }}
             placeholder={placeholder}
             onChange={(e) => setValue !== null ? setValue(e.target.value) : setDefaultValue(e.target.value)}
             value={setValue !== null ? value : defaultValue}
