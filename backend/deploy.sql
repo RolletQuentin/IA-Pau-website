@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS Questionnaire(
 -- EVENEMENT
 CREATE TABLE IF NOT EXISTS Question(
     IdQuestion INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    Question VARCHAR(512),
     IdQuestionnaire INTEGER(16),
+    Question VARCHAR(512),
     FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire)
 );
 
@@ -202,3 +202,10 @@ INSERT INTO PossederRessource VALUES (4,1);
 INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
 INSERT INTO Questionnaire VALUES (2, 2, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
 INSERT INTO Questionnaire VALUES (3, 3, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
+
+-- Questions --
+-- pour questionnaire 1
+INSERT INTO Question VALUES (1, 1,"Question 1");
+INSERT INTO Question VALUES (2, 1,"Question 2");
+INSERT INTO Question VALUES (3, 1,"Question 3");
+INSERT INTO Question VALUES (4, 1,"Question 4");
