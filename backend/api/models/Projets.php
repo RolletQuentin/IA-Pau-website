@@ -80,7 +80,7 @@ class Projets {
     public function createProjet(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET IdProjet=:IdProjet, IdEvenement=:IdEvenement,
+        $sql = "INSERT INTO " . $this->table . " SET IdEvenement=:IdEvenement,
         Libele=:Libele,
         Description=:Description,
         Image=:Image,
@@ -90,7 +90,6 @@ class Projets {
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdProjet=htmlspecialchars(strip_tags($this->IdProjet));
         $this->IdEvenement=htmlspecialchars(strip_tags($this->IdEvenement));
         $this->Libele=htmlspecialchars(strip_tags($this->Libele));
         $this->Description=htmlspecialchars(strip_tags($this->Description));
@@ -98,7 +97,6 @@ class Projets {
         $this->Entreprise=htmlspecialchars(strip_tags($this->Entreprise));
 
         // Ajout des données protégées
-        $query->bindParam(":IdProjet", $this->IdProjet);
         $query->bindParam(":IdEvenement", $this->IdEvenement);
         $query->bindParam(":Libele", $this->Libele);
         $query->bindParam(":Description", $this->Description);
