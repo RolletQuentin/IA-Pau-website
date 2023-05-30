@@ -127,7 +127,12 @@ function AdminRessources() {
                                     >
                                         Supprimer
                                     </BasicButton>
-                                    <Link>
+                                    <Link
+                                        to={
+                                            routes.modifyRessource +
+                                            `/${IdRessource}`
+                                        }
+                                    >
                                         <BasicButton className="update">
                                             Modifier
                                         </BasicButton>
@@ -135,7 +140,7 @@ function AdminRessources() {
                                 </div>
                             </Button>
                         ))}
-                    <Link className="add-member">
+                    <Link className="add-member" to={routes.modifyRessource}>
                         <BasicButton>Ajouter ressource</BasicButton>
                     </Link>
                 </Button>
