@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import NavbarOffset from "../../components/NavbarOffset";
+import NavbarOffset from "../../../components/NavbarOffset";
 
 const StyledAdminDataChallenges = styled.div``;
 

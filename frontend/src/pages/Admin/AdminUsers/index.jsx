@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import NavbarOffset from "../../components/NavbarOffset";
-import Button from "../../components/Button";
-import { Loader } from "../../utils/Atoms";
-import AbstractUser from "../../assets/abstract-user.png";
-import BasicButton from "../../components/BasicButton";
+import NavbarOffset from "../../../components/NavbarOffset";
+import Button from "../../../components/Button";
+import { Loader } from "../../../utils/Atoms";
+import AbstractUser from "../../../assets/abstract-user.png";
+import BasicButton from "../../../components/BasicButton";
 import { Link } from "react-router-dom";
-import routes from "../../utils/routes";
-import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import routes from "../../../utils/routes";
+import { useAuthContext } from "../../../hooks/auth/useAuthContext";
 import { useEffect } from "react";
 import { useState } from "react";
-import toggleDelete from "../../toggles/toggleDelete";
+import toggleDelete from "../../../toggles/toggleDelete";
 
 const StyledAdminUsers = styled.div`
     margin: auto;
@@ -129,7 +129,7 @@ function AdminUsers() {
                                     >
                                         Supprimer
                                     </BasicButton>
-                                    <Link>
+                                    <Link to={routes.profile + `/${id}`}>
                                         <BasicButton className="update">
                                             Modifier
                                         </BasicButton>
@@ -137,7 +137,7 @@ function AdminUsers() {
                                 </div>
                             </Button>
                         ))}
-                    <Link className="add-member">
+                    <Link className="add-member" to={routes.addUser}>
                         <BasicButton>Ajouter membre</BasicButton>
                     </Link>
                 </Button>
