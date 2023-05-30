@@ -132,9 +132,8 @@ class Questions {
      */
     public function editQuestion(){
         // On écrit la requête
-        $sql = "UPDATE " . $this->table . " SET IdQuestion=:IdQuestion,
-        Question=:Question,
-        IdQuestionnaire=:IdQuestionnaire";
+        $sql = "UPDATE " . $this->table . " SET Question=:Question,
+        IdQuestionnaire=:IdQuestionnaire WHERE IdQuestion=:IdQuestion";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
