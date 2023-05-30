@@ -51,7 +51,12 @@ const styleEndButton = {
 
 
 
-const SignupForm = () => {
+const SignupForm = ({
+    title = "Créer Compte",
+    icon = true,
+    buttonText = "S'enregistrer",
+    firstAuth = true,
+}) => {
 
     const {signup, globalError, setGlobalError, emptyField, setEmptyField} = useSignup();
     const [lastname, setLastname] = useState("");
@@ -73,16 +78,20 @@ const SignupForm = () => {
         }else{
             signup(lastname, firstname, level, phone, school, city, email, password, numEtudiant )
         }
-
     }
+
+    const handlePatch = () => {
+        console.log("le J c'est le Q")
+    }
+
     return (
-        <SectionAuthContainer title="Créer Compte" onSubmit={handleSubmit}>
-            <CenterContainer>
+        <SectionAuthContainer title={title} icon={icon} onSubmit={firstAuth ? handleSubmit : handlePatch}>
+            {firstAuth && <CenterContainer>
                 <HBox gap="10px">
                     <p style={styleDejaCompte}>Déjà un compte?</p>
                     <Link to={routes.login}><p style={styleCreerCompte}>Connectez-vous</p></Link>
                 </HBox>
-            </CenterContainer>
+            </CenterContainer>}
 
             <HBox gap="20px" style={styleOption}>
                 <InputTextDefault
@@ -195,7 +204,7 @@ const SignupForm = () => {
             <VBox>
                 <CenterContainer>
                     <BasicButton style={{ styleEndButton }}>
-                        <h2 style={{ margin: "0" }}>S'enregistrer</h2>
+                        <h2 style={{ margin: "0" }}>{buttonText}</h2>
                     </BasicButton>
                 </CenterContainer>
                 {globalError && <CenterContainer style={{color: "var(--error"}}>
