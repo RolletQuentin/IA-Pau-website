@@ -5,6 +5,7 @@ import {
     Navigate,
 } from "react-router-dom";
 
+import { useAuthContext } from "./hooks/auth/useAuthContext";
 import routes from "./utils/routes";
 
 import Header from "./components/Header";
@@ -21,7 +22,6 @@ import MCQ from "./pages/MCQ";
 import EvaluateMCQ from "./pages/EvaluateMCQ";
 import DataChallengeEdition from "./pages/DataChallengeEdition";
 import Admin from "./pages/Admin";
-import { useAuthContext } from "./hooks/auth/useAuthContext";
 import AdminUsers from "./pages/Admin/AdminUsers";
 import AdminDataChallenges from "./pages/Admin/AdminDataChallenges";
 import AdminRessources from "./pages/Admin/AdminRessources";
@@ -29,6 +29,7 @@ import AdminAddUser from "./pages/Admin/AdminAddUser";
 import AdminModifyRessource from "./pages/Admin/AdminModifyRessource";
 import AdminModifyDataChallenge from "./pages/Admin/AdminModifyDataChallenge";
 import AdminModifyProject from "./pages/Admin/AdminModifyProject";
+import AdminModifyUser from "./pages/Admin/AdminModifyUser";
 import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 
@@ -156,6 +157,16 @@ function App() {
                         exact
                         path={routes.modifyProject + `/:idEvent/:idProject`}
                         element={<AdminModifyProject />}
+                    />
+                    <Route
+                        exact
+                        path={routes.modifyUser}
+                        element={<AdminModifyUser />}
+                    />
+                    <Route
+                        exact
+                        path={routes.modifyUser + `/:id`}
+                        element={<AdminModifyUser />}
                     />
                     <Route path="*" element={<Error404 />} />
                 </Routes>
