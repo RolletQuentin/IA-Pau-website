@@ -47,7 +47,7 @@
         }
 
         if($hasPerm == false){
-            throw new Exception ("Vous n'avez pas récupérer les messages de cette équipe. (" . $typeOfPerm .")");
+            throw new Exception ("Vous n'avez pas récupéré les messages de cette équipe. (" . $typeOfPerm .")");
         }
 
         $arrayOfMessages = array();
@@ -60,7 +60,8 @@
                     "DateMessage"=>$row["DateMessage"],
                     "sender"=>$nom,
                     "IdSender"=>$row["Identifiant"],
-                    "content"=>$row["Contenu"]
+                    "content"=>$row["Contenu"],
+                    "IdMessage"=>$row["IdMessage"]
                 ));
             }
         }
