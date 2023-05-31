@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/getAllRessourcesByProjet/?id=2
+// Exemple utilisation : http://localhost/api/questions/getQuestion/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,48 +18,44 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Projets.php';
+    include_once '../../models/Questions.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les projets
-    $projet = new Projets($db);
+    // On instancie les question
+    $question = new Questions($db);
 
     // On récupère l'Id passé en paramètre 
-    $IdProjet = $_GET['id'];
+    $IdQuestion = $_GET['id'];
 
-    if(!empty($IdProjet)){
-        $projet->IdProjet = $IdProjet;
+    if(!empty($IdQuestion)){
+        $question->IdQuestion = $IdQuestion;
 
-        // On récupère l'evenement
-        $stmt = $projet->getAllRessourcesByProjet();
+        // On récupère la question
+        $question->getQuestion();
 
-        // On vérifie si on a au moins 1 produit
-        if($stmt->rowCount() > 0){
-            // On initialise un tableau associatif
-            $tableauRessources = [];
-            $tableauRessources['Ressources'] = [];
+        // On vérifie si la question existe
+        if(($question->IdQuestion != null) && ($question->IdQuestionnaire != null) && ($question->Question != null)){
 
-            // On parcourt les produits
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                extract($row);
-
-                $prod = [
-                    "IdRessource" => $IdRessource,
-                    "UrlRessource" => $UrlRessource
-                ];
-
-                $tableauRessources['Ressources'][] = $prod;
-            }
-
+            $prod = [
+                "IdQuestion" => $question->IdQuestion,
+                "IdQuestionnaire" => $question->IdQuestionnaire,
+                "Question" => $question->Question
+            ];
             // On envoie le code réponse 200 OK
             http_response_code(200);
 
             // On encode en json et on envoie
-            echo json_encode($tableauRessources);
+            echo json_encode($prod);
+        }else{
+            // 404 Not found
+            http_response_code(404);
+         
+            echo json_encode(array("error" => "La question n'existe pas."));
         }
+        
     }
 }else{
     // On gère l'erreur
