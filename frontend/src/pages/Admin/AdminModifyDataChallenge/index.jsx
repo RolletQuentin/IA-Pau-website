@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import NavbarOffset from "../../../components/NavbarOffset";
 import { useEffect, useState } from "react";
 import { togglePost } from "../../../toggles/togglePost";
@@ -10,6 +10,7 @@ import InputTextDefault from "../../../components/Input/Text/Default";
 import AdminProjects from "../../../components/AdminProjects";
 import AdminGestionnaires from "../../../components/AdminGestionnaires";
 import AdminRessourcesDataChallenge from "../../../components/AdminRessourcesDataChallenge";
+import BasicButton from "../../../components/BasicButton";
 
 const StyledModifyDataChallenge = styled.div`
     display: flex;
@@ -22,6 +23,8 @@ const StyledModifyDataChallenge = styled.div`
 function AdminModifyDataChallenge() {
     const { user } = useAuthContext();
     const { id } = useParams();
+    const navigate = useNavigate();
+    const currentUrl = useLocation();
     const [eventType, setEventType] = useState("");
     const [label, setLabel] = useState("");
     const [description, setDescription] = useState("");
@@ -66,9 +69,38 @@ function AdminModifyDataChallenge() {
             <Button>
                 <h2>Informations Data Challenge</h2>
                 <form
-                    onSubmit={() =>
-                        id === undefined ? togglePost() : togglePut()
-                    }
+                    onSubmit={async () => {
+                        if (id === undefined) {
+                            togglePost(
+                                process.env.REACT_APP_PROXY +
+                                    `/api/evenements/createEvenement/`,
+                                user,
+                                {
+                                    "TypeEvenement": "DataChallenge",
+                                    "Libele": label,
+                                    "Description": description,
+                                    "Recompenses": rewards,
+                                    "Debut": start,
+                                    "Fin": end,
+                                }
+                            );
+                        } else {
+                            togglePut(
+                                process.env.REACT_APP_PROXY +
+                                    `/api/evenements/editEvenement/`,
+                                user,
+                                {
+                                    "IdEvenement": id,
+                                    "TypeEvenement": eventType,
+                                    "Libele": label,
+                                    "Description": description,
+                                    "Recompenses": rewards,
+                                    "Debut": start,
+                                    "Fin": end,
+                                }
+                            );
+                        }
+                    }}
                 >
                     <select>
                         <option value="">Data Challenge</option>
@@ -101,11 +133,16 @@ function AdminModifyDataChallenge() {
                             setValue={setEnd}
                         />
                     </>
+                    <BasicButton>Enregistrer</BasicButton>
                 </form>
             </Button>
-            <AdminProjects id={id} />
-            <AdminRessourcesDataChallenge id={id} />
-            <AdminGestionnaires id={id} />
+            {id !== undefined && (
+                <>
+                    <AdminProjects id={id} />
+                    <AdminRessourcesDataChallenge id={id} />
+                    <AdminGestionnaires id={id} />
+                </>
+            )}
         </StyledModifyDataChallenge>
     );
 }

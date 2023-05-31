@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import BasicButton from "../../components/BasicButton";
 import NavbarOffset from "../../components/NavbarOffset";
 import { Link } from "react-router-dom";
+import VBox from "../../containers/VBox";
+import { useEffect, useState } from "react";
 
 const StyledMyDataChallenge = styled.div`
     display: flex;
@@ -26,28 +28,45 @@ const StyledMyDataChallenge = styled.div`
 `;
 
 function MyDataChallenges() {
+    const [globalError, setGlobalError] = useState("");
+    const [myEvent, setMyEvent] = useState(null);
+
+    useEffect(() => {
+        const fetchEvenements = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEvenements/')
+    
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                setMyEvent(json)
+            }
+        }
+        fetchEvenements()
+    }, [])
+
     return (
         <StyledMyDataChallenge>
             <NavbarOffset />
             <h1>Mes data challenges</h1>
-
-            <Button className="data-challenge">
-                <h2>Titre du data challenge</h2>
-                <Link to={routes.teamView}>
-                    <BasicButton className="data-challenge-button">
-                        Créer équipe
-                    </BasicButton>
-                </Link>
-            </Button>
-
-            <Button className="data-challenge">
-                <h2>Titre du data challenge</h2>
-                <Link to={routes.dataChallenge}>
-                    <BasicButton className="data-challenge-button">
-                        Dossier
-                    </BasicButton>
-                </Link>
-            </Button>
+            {myEvent && myEvent.Evenements &&
+            <VBox>
+                {myEvent.Evenements.map((e, index) => {
+                    <Button className="data-challenge">
+                        <h2>Titre du data challenge</h2>
+                        <Link to={routes.teamView}>
+                            <BasicButton className="data-challenge-button">
+                                Créer équipe
+                            </BasicButton>
+                        </Link>
+                    </Button>
+                })}
+            </VBox>
+            }
         </StyledMyDataChallenge>
     );
 }
