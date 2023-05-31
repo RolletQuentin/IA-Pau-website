@@ -160,6 +160,28 @@ class Evenements {
     }
     
     /**
+     * Lecture de tous les questionnaires d'un evenement
+     *
+     * @return void
+     */
+    public function getAllQuestionnairesByEvent(){
+        // On écrit la requête
+        $sql = "SELECT * FROM Questionnaire NATURAL JOIN Projet WHERE IdEvenement = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdEvenement);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+    /**
      * Lecture de tous les projets d'un evenement
      *
      * @return void
