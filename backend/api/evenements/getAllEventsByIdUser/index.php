@@ -52,7 +52,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                     "Description" => $Description,
                     "Recompenses" => $Recompenses,
                     "Debut" => $Debut,
-                    "Fin" => $Fin
+                    "Fin" => $Fin,
+                    "IdEquipe" => $IdEquipe,
+                    "IdProjet" => $IdProjet
                 ];
 
                 $tableauEvenements['Evenements'][] = $prod;
