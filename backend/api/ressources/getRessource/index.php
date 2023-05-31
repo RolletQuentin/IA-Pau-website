@@ -37,11 +37,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $ressource->getRessource();
 
         // On vérifie si la ressource existe
-        if($ressource->UrlRessource != null){
+        if(($ressource->UrlRessource != null) && ($ressource->NomRessource != null)){
 
             $prod = [
                 "IdRessource" => $ressource->IdRessource,
-                "UrlRessource" => $ressource->UrlRessource
+                "UrlRessource" => $ressource->UrlRessource,
+                "NomRessource" => $ressource->NomRessource
             ];
             // On envoie le code réponse 200 OK
             http_response_code(200);

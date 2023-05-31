@@ -30,11 +30,12 @@ if($_SERVER['REQUEST_METHOD'] == 'PUT'){
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->IdRessource) && !empty($donnees->UrlRessource)) {
+    if(!empty($donnees->IdRessource) && !empty($donnees->UrlRessource) && !empty($donnees->NomRessource)) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $ressource->IdRessource = $donnees->IdRessource;
         $ressource->UrlRessource = $donnees->UrlRessource;
+        $ressource->NomRessource = $donnees->NomRessource;
 
         if($ressource->editRessource()) {
             // Ici la création à fonctionné
