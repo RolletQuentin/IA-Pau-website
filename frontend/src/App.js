@@ -34,7 +34,7 @@ import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 
 function App() {
-    const { user } = useAuthContext();
+    const { user, ready } = useAuthContext();
     return (
         <Router>
             <div
@@ -45,7 +45,7 @@ function App() {
                 }}
             >
                 <Header />
-                <Routes>
+                {ready && <Routes>
                     <Route exact path={routes.home} element={<Home />} />
                     <Route
                         exact
@@ -147,7 +147,7 @@ function App() {
                     <Route
                         exact
                         path={routes.analyseur}
-                        element={<Analyseur />}
+                        element={<Analyseur/>}
                     />
                     <Route
                         exact
@@ -170,8 +170,8 @@ function App() {
                         element={<AdminModifyUser />}
                     />
                     <Route path="*" element={<Error404 />} />
-                </Routes>
-                <Footer />
+                </Routes>}
+                <Footer/>
             </div>
         </Router>
     );
