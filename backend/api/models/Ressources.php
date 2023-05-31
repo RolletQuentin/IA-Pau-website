@@ -8,6 +8,7 @@ class Ressources {
     //object properties
     public $IdRessource;
     public $UrlRessource;
+    public $NomRessource;
 
 
     /**
@@ -63,6 +64,8 @@ class Ressources {
         // On hydrate l'objet
         $this->IdRessource = $row['IdRessource'];
         $this->UrlRessource = $row['UrlRessource'];
+        $this->NomRessource = $row['NomRessource'];
+
     }
 
     /**
@@ -73,19 +76,22 @@ class Ressources {
     public function createRessource(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET UrlRessource=:UrlRessource";
+        $sql = "INSERT INTO " . $this->table . " SET UrlRessource=:UrlRessource, NomRessource=:NomRessource";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
         $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->NomRessource=htmlspecialchars(strip_tags($this->NomRessource));
 
         // Ajout des données protégées
         $query->bindParam(":UrlRessource", $this->UrlRessource);
+        $query->bindParam(":NomRessource", $this->NomRessource);
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdRessource = $this->connexion->lastInsertId();
             return true;
         }
         return false;
@@ -124,7 +130,7 @@ class Ressources {
      */
     public function editRessource(){
         // On écrit la requête
-        $sql = "UPDATE " . $this->table . " SET UrlRessource = :UrlRessource WHERE IdRessource = :IdRessource";
+        $sql = "UPDATE " . $this->table . " SET UrlRessource = :UrlRessource, NomRessource = :NomRessource WHERE IdRessource = :IdRessource";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -132,10 +138,12 @@ class Ressources {
         // On sécurise les données
         $this->IdRessource=htmlspecialchars(strip_tags($this->IdRessource));
         $this->UrlRessource=htmlspecialchars(strip_tags($this->UrlRessource));
+        $this->NomRessource=htmlspecialchars(strip_tags($this->NomRessource));
         
         // On attache les variables
         $query->bindParam(':IdRessource', $this->IdRessource);
         $query->bindParam(':UrlRessource', $this->UrlRessource);
+        $query->bindParam(':NomRessource', $this->NomRessource);
         
         // On exécute
         if($query->execute()){
