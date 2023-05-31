@@ -89,7 +89,7 @@ try {
         throw new Exception ("Date de fin non saisie !");
     }
 
-    include '../../utils/database.php';
+    include_once '../../utils/database.php';
 
     $existeDeja = false;
 
