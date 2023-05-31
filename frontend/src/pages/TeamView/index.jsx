@@ -4,10 +4,15 @@ import routes from "../../utils/routes";
 import { useFetch } from "../../hooks/useFetch";
 import NavbarOffset from "../../components/NavbarOffset";
 import Button from "../../components/Button";
-import AbstractUser from "../../assets/abstract-user.png";
 import BasicButton from "../../components/BasicButton";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import { useEffect, useState } from "react";
+import HBox from "../../containers/HBox";
+import UserNode from "../../components/userNode.js";
+import Select from "../../components/Input/Select";
+import SectionContainer from "../../containers/SectionContainer";
+import VBox from "../../containers/VBox";
 
 const StyledTeamView = styled.div`
     margin: auto;
@@ -24,9 +29,9 @@ const StyledTeamView = styled.div`
     }
 
     .button {
-        margin: 10px;
         background: var(--primary);
         justify-content: space-between;
+        width: auto;
     }
 
     .left {
@@ -43,7 +48,6 @@ const StyledTeamView = styled.div`
 
     .delete {
         background: var(--pastel2);
-        margin-right: 20px;
     }
 
     .add-member {
@@ -58,69 +62,212 @@ const StyledTeamView = styled.div`
 
 function TeamView() {
     const { user } = useAuthContext();
-    const { data, isLoading, error } = useFetch(
-        process.env.REACT_APP_PROXY + "api/user/",
-        {
-            headers: {
-                Authorization: "Bearer " + user.jwt,
-                "Content-Type": "apllication/json",
-            },
+    const { id_team } = useParams();
+
+    const [globalError, setGlobalError] = useState("");
+    const [teamData, setTeamData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false)
+    const [isSaving, setIsSaving] = useState(false)
+
+    useEffect(() => {
+        const fetchTeamData = async () => {
+            setIsLoading(true)
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/?IdEquipe=' + id_team )
+    
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                setTeamData(json)
+                console.log(json)
+            }
+            setIsLoading(false)
         }
-    );
-    const isCaptain = true;
+        fetchTeamData()
+    }, [])
+
+    const setTeamName = (newName) => {
+        const newTeamData = {...teamData}
+        newTeamData.Nom = newName
+        setTeamData(newTeamData)
+    }
+
+    const handleDelete = () => {
+        const fetchDeleteTeam = async () => {
+            setIsSaving(true)
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/delete/?IdEquipe=' + id_team, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            })
+
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                alert(json.error)
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                console.log("saving title")
+            }
+            setIsSaving(false)
+        }
+        fetchDeleteTeam()
+    }
+    
+    const handleSaveTitle = () => {
+        const fetchSaveTitle = async () => {
+            setIsSaving(true)
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/edit/?IdEquipe=' + id_team, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                    "Content-Type": "application.json",
+                },
+                body: JSON.stringify({Nom: teamData.Nom})
+            })
+
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                alert(json.error)
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                console.log("saving title")
+            }
+            setIsSaving(false)
+        }
+        fetchSaveTitle()
+    }
+
+    const addMember = () => {
+        let newMember = prompt("entrer un mail : " ) 
+
+        if (newMember != null) {
+            handleAddMember(newMember)
+        }
+    }
+
+    const handleAddMember = (newMember) => {
+        const fetchSaveTitle = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/invite/?IdEquipe=' + id_team, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                    "Content-Type": "application.json",
+                },
+                body: JSON.stringify({email: newMember})
+            })
+    
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                console.log("member added")
+            }
+        }
+        fetchSaveTitle()
+    }
+
     return (
         <StyledTeamView>
             <NavbarOffset />
             <h1>Mon équipe</h1>
             {isLoading ? (
                 <Loader />
-            ) : (
-                <Button className="section">
-                    <Button className="button">Projet</Button>
-                    <Button className="button">
-                        <div className="left">
-                            <img
-                                src={AbstractUser}
-                                alt="Icone utilisateur"
-                                className="icon"
-                            />
-                            <span>Membre 1</span>
-                        </div>
-                        {isCaptain ? (
-                            <div>
-                                <BasicButton className="delete">
-                                    Supprimer
-                                </BasicButton>
+            ) : teamData && (
+                <SectionContainer style={{width: "600px"}}>
+                    <VBox gap="30px">
+                        <Button className="button">
+                            <HBox style={{width: "100%"}} gap="30px">
+                                {teamData.IdLeader === user.userId ?
+                                <>
+                                <input 
+                                    style={{
+                                        backgroundColor: "#0000",
+                                        border: "none",
+                                        borderBottom: "solid 1px var(--dark-color)",
+                                        flexGrow: 1
+                                    }}
+                                    type="text"
+                                    onChange={(e) => setTeamName(e.target.value)}
+                                    value={teamData.Nom}
+                                />
+                                {isSaving ? 
+                                <Loader/>
+                                :
+                                <BasicButton 
+                                    style={{
+                                        margin: "auto",
+                                        marginRight: 0,
+                                        height:" min-content"
+                                    }}
+                                    onPress={(e) => handleSaveTitle()}
+                                >
+                                    Enregistrer
+                                </BasicButton>}</>:
+                                
+                                <p>
+                                    {teamData.Nom}
+                                </p>
+                                }
+                            </HBox>
+                        </Button>
+                        <Select style={{
+                                margin: "10px",
+                                background: "var(--primary)",
+                                justifyContent: "space-between",
+                                width: "100%",
+                                minHeight: "80px",
+                                margin: 0,
+                                marginBottom: 0,
+                                borderRadius: "30px",
+                                padding: "0 30px"
+                            }}
+                            placeholder="sujet"
+                            options={teamData.projets}
+                        />
+                        {teamData.Users && 
+                        <VBox>
+                        {teamData.Users.map((member, index) => {
+                            return (
+                                <UserNode key={index} editable={teamData.IdLeader === user.userId} member={member} setGlobalError={setGlobalError}/>
+                            )
+                        })}
+                        </VBox>
+                        }
+                        {teamData.IdLeader === user.userId ? (
+                            <div style={{display: "flex"}}>
+                                <Link className="add-member" style={{marginLeft: "auto"}}>
+                                    <BasicButton onPress={addMember}>Ajouter membre</BasicButton>
+                                </Link>
                             </div>
                         ) : null}
-                    </Button>
-                    <Button className="button">
-                        <div className="left">
-                            <img
-                                src={AbstractUser}
-                                alt="Icone utilisateur"
-                                className="icon"
-                            />
-                            <span>Membre 2</span>
-                        </div>
-                        {isCaptain ? (
-                            <div>
-                                <BasicButton className="delete">
-                                    Supprimer
-                                </BasicButton>
-                            </div>
-                        ) : null}
-                    </Button>
-                    {isCaptain ? (
-                        <Link className="add-member">
-                            <BasicButton>Ajouter membre</BasicButton>
-                        </Link>
-                    ) : null}
-                </Button>
+                    </VBox>
+                </SectionContainer>
             )}
-            <Link className="return" to={routes.myDataChallenges}>
-                <BasicButton>Retour aux data challenges</BasicButton>
-            </Link>
+            <HBox className="return" style={{justifyContent: "space-between", width: "100%"}}>    
+                <Link to={routes.myDataChallenges}>
+                    <BasicButton>Retour aux data challenges</BasicButton>
+                </Link>
+                <Link style={{marginLeft: "auto"}}>
+                    <BasicButton className="delete" onPress={handleDelete}>supprimer l'équipe</BasicButton>
+                </Link>
+            </HBox>
         </StyledTeamView>
     );
 }
