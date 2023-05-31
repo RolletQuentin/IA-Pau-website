@@ -43,7 +43,8 @@ function MyDataChallenges() {
             }
     
             if (response.ok) {
-                setMyEvent(json)
+                console.log(json.Evenements)
+                setMyEvent(json.Evenements)
             }
         }
         fetchEvenements()
@@ -53,17 +54,17 @@ function MyDataChallenges() {
         <StyledMyDataChallenge>
             <NavbarOffset />
             <h1>Mes data challenges</h1>
-            {myEvent && myEvent.Evenements &&
+            {myEvent &&
             <VBox>
-                {myEvent.Evenements.map((e, index) => {
-                    <Button className="data-challenge">
-                        <h2>Titre du data challenge</h2>
-                        <Link to={routes.teamView}>
+                {myEvent.map((e, index) => {
+                    return (<Button key={index} className="data-challenge" style={{minWidth: "600px"}}>
+                        <h2>{e.Libele}</h2>
+                        <Link to={routes.myDataChallenges + "/" + 3 + "/" + 3}>
                             <BasicButton className="data-challenge-button">
-                                Créer équipe
+                                Dossier
                             </BasicButton>
                         </Link>
-                    </Button>
+                    </Button>)
                 })}
             </VBox>
             }
