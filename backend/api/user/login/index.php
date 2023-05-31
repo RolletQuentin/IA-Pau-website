@@ -56,13 +56,16 @@ if(!(str_contains($email, "@"))){
     $conn = getConnection();
     $query = "SELECT * From User WHERE Email='" . $email . "';";
     $result = mysqli_query($conn, $query);
-
+    $lastname = "";
+    $firstname = "";
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_assoc($result)){
             
             if(password_verify($mdp, $row["Mdp"])){
                 $validCredentials = true;
                 $userId = $row["Identifiant"];
+                $lastname = $row["Nom"];
+                $firstname = $row["Prenom"];
             }
         }
     }
@@ -91,6 +94,8 @@ if(!(str_contains($email, "@"))){
             $role = getTypeOfUser($userId);
             $array = array(
                 "userId"=>$userId,
+                "lastname"=>$lastname,
+                "firstname"=>$firstname,
                 "role"=>$role,
                 "jwt"=>$jwt
             );
