@@ -5,6 +5,7 @@ import Button from "../../components/Button";
 import Project from "../../components/Project";
 import Ressource from "../../components/Ressources";
 import Team from "../../components/Team";
+import Questionnaire from "../../components/Questionnaire";
 
 const StyledDataChallengeRendu = styled.div`
     width: 900px;
@@ -33,7 +34,7 @@ function DataChallengeRendu() {
                     <Project />
                     <Ressource />
                     <Team />
-                    <Button className="button questionary"></Button>
+                    <Questionnaire />
                 </div>
                 <Messagerie className="messagerie" />
             </div>

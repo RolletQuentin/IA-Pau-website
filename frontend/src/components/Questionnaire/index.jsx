@@ -33,7 +33,8 @@ function Questionnaire() {
             const fetchData = async () => {
                 try {
                     const response = await fetch(
-                        process.env.REACT_APP_PROXY + `/api/=${id_projet}`,
+                        process.env.REACT_APP_PROXY +
+                            `/api/evenements/getAllQuestionnairesByEvent/?id=${id_projet}`,
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -55,9 +56,18 @@ function Questionnaire() {
         <StyledQuestionnaire>
             <h2>Liste de ressources</h2>
             {questionnaires &&
-                questionnaires.map(({ UrlRessource, NomRessource }) => {
-                    return <Button className="item"></Button>;
-                })}
+                questionnaires.map(
+                    ({
+                        IdQuestionnaire,
+                        IdProjet,
+                        Titre,
+                        Sujet,
+                        Debut,
+                        Fin,
+                    }) => {
+                        return <Button className="item"></Button>;
+                    }
+                )}
         </StyledQuestionnaire>
     );
 }
