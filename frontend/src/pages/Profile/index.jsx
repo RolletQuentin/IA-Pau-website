@@ -1,17 +1,19 @@
 import CenterContainer from "../../containers/CenterContainer";
-import ProfileForm from "../../components/Form/Profile";
 import NavbarOffset from "../../components/NavbarOffset";
-
-
+import SignupForm from "../../components/Form/Signup";
 
 function Profile() {
-  
-    return (        
-      <CenterContainer style={{ minWidth: "500px" }}>
-        <NavbarOffset></NavbarOffset>
-        <ProfileForm ></ProfileForm>
-      </CenterContainer>
+    return (
+        <CenterContainer style={{ minWidth: "500px" }}>
+            <NavbarOffset />
+            <SignupForm
+                title="Profil"
+                icon={true}
+                buttonText="Enregistrer"
+                firstAuth={false}
+            />
+        </CenterContainer>
     );
-  }
+}
 
 export default Profile;

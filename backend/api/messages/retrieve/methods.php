@@ -60,7 +60,8 @@
                     "DateMessage"=>$row["DateMessage"],
                     "sender"=>$nom,
                     "IdSender"=>$row["Identifiant"],
-                    "content"=>$row["Contenu"]
+                    "content"=>$row["Contenu"],
+                    "IdMessage"=>$row["IdMessage"]
                 ));
             }
         }
