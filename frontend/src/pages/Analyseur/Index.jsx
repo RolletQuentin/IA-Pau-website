@@ -7,6 +7,7 @@ import MarginContainer from "../../containers/MarginContainer";
 import VBox from "../../containers/VBox";
 import imageMoreInfo from "../../assets/moreInfoAnalyseur.jpg";
 import Chart from 'chart.js/auto';
+import { Pie } from 'react-chartjs-2';
 
 
 const Analyseur = () => {
@@ -113,30 +114,6 @@ const Analyseur = () => {
     return nb;
   }
 
-  const getChart = () => {
-    const ctx = document.getElementById('myChart');
-    console.log("coucou");
-    return (<h1>hello</h1>)
-    /*return new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
-      }
-    });*/
-  }
-
   return (
     <CenterContainer>
       <NavbarOffset />
@@ -147,6 +124,7 @@ const Analyseur = () => {
             <input type="file" id="fileSelector" onChange={handleFileChange} style={{width: "16%", marginLeft: "42%"}}/>
             {lines && <BasicButton onPress={handleAnalyse}>Analyser</BasicButton>}
             </div>
+          <br></br>
           <br></br>
           {responseJSON && (
             <div>
@@ -165,39 +143,93 @@ const Analyseur = () => {
             
             <div>
               <br></br>
+              <br></br>
+              <br></br>
               <div style={{display: "flex", justifyContent: "center"}}>
                 <img style={{width: "30%"}} src={imageMoreInfo}></img>
               </div>
               <br></br>
-              <h2><u>Statistiques détaillées:</u></h2>
-              <div>
-                <p><b>Nombre total de lignes: {responseJSON.NbLignes}</b></p>
-                <p>- {responseJSON.NombreLigneCommentaire} commentaires</p>
-                <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
-                <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
-              </div>
-              <div>
-                <canvas id="myChart"></canvas>
-              </div>
-              {
-                getChart()
-              }
+              <br></br>
+              <br></br>
+              <br></br>
+              <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
+                <tr>
+                  <td style={{border: "none"}}>
+                    <h2><u>Statistiques détaillées:</u></h2>
+                    <div>
+                      <p><b>Nombre total de lignes: {responseJSON.NbLignes}</b></p>
+                      <p>- {responseJSON.NombreLigneCommentaire} commentaires</p>
+                      <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
+                      <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
+                      <p>- {responseJSON.NbImport} librairies importées</p>
+                    </div>
+                  </td>
+                  <td style={{border: "none", width: "60%"}}>
+                    <Pie
+                        data={{
+                          labels: ["Commentaires", "Fonctions", "Hors fonctions"],
+                          datasets: [
+                            {
+                              label: 'Librairies importées',
+                              data: [responseJSON.NombreLigneCommentaire, responseJSON.TotalLignesDansFonctions, responseJSON.LigneCodeHorsFonction],
+                              backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                // Add more colors here if needed
+                              ],
+                            },
+                          ],
+                        }}
+                      />
+                  </td>
+                </tr>
+              </table>
+              <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
+                <tr>
+                <td style={{border: "none", width: "60%"}}>
+                    <Pie
+                        data={{
+                          labels: responseJSON.Fonctions.map((fonction) => fonction.Nom),
+                          datasets: [
+                            {
+                              label: 'Nombre de lignes',
+                              data: responseJSON.Fonctions.map((fonction) => fonction.NbLignes),
+                              backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#F3AB56',
+                              ],
+                            },
+                          ],
+                        }}
+                      />
+                  </td>
+                  <td style={{border: "none"}}>
+                  <h2><u>Fonctions créées - (lignes: {responseJSON.TotalLignesDansFonctions})</u></h2>
+                    {responseJSON.Fonctions.map((fonction, index) => (
+                      <div>
+                        <p>{index+1}. <b>{fonction.Nom}:</b> - (lignes: {fonction.NbLignes})</p>
+                      </div>
+                    ))}
+                      <p>Longueur minimum: {responseJSON.MinLigneFonctions}</p>
+                      <p>Longueur maximum: {responseJSON.MaxLigneFonctions}</p>
+                      <p>Longueur moyenne: {responseJSON.MoyLigneFonctions}</p>
+                  </td>
+                  
+                </tr>
+              </table>
+            
               
-
-              <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
-              {responseJSON.Import.map((library, index) => (
-                <p>- {library} </p>
-              ))}
-              <h2><u>Fonctions créées - (lignes: {responseJSON.TotalLignesDansFonctions})</u></h2>
-              {responseJSON.Fonctions.map((fonction, index) => (
-                <div>
-                  <p>{index+1}. <b>{fonction.Nom}:</b> - (lignes: {fonction.NbLignes})</p>
-                </div>
-              ))}
-                <p>Longueur minimum: {responseJSON.MinLigneFonctions}</p>
-                <p>Longueur maximum: {responseJSON.MaxLigneFonctions}</p>
-                <p>Longueur moyenne: {responseJSON.MoyLigneFonctions}</p>
+                <br></br>
+                <br></br>
+                <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
+                  {responseJSON.Import.map((library, index) => (
+                    <p>- {library} </p>
+                  ))}
             </div>
+            
           )}
           {lines && (
             <VBox>
