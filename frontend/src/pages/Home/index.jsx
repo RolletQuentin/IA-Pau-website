@@ -48,18 +48,14 @@ function Home() {
         <StyledHome>
             <NavbarOffset />
             <h2>Data Challenges</h2>
-            {evenements && evenements.Evenements && (
-                <VBox>
-                    {evenements.Evenements.map((e) => {
-                        return (
-                            <DataChallengeItem
-                                title={e.Libele}
-                                id={e.IdEvenement}
-                            />
-                        );
-                    })}
-                </VBox>
-            )}
+
+            {evenements && evenements.Evenements && <VBox>
+                {evenements.Evenements.map((e, index) => {
+                    return (
+                        <DataChallengeItem key={index} title={e.Libele} id={e.IdEvenement} />
+                    )
+                })}
+            </VBox>}
         </StyledHome>
     );
 }
