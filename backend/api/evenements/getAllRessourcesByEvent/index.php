@@ -48,7 +48,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
                 $prod = [
                     "IdRessource" => $IdRessource,
-                    "UrlRessource" => $UrlRessource
+                    "UrlRessource" => $UrlRessource,
+                    "NomRessource" => $NomRessource
                 ];
 
                 $tableauRessources['Ressources'][] = $prod;
