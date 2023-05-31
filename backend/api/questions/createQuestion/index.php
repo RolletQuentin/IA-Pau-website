@@ -33,10 +33,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(!empty($donnees->Question) && !empty($donnees->IdQuestionnaire)) {
         // Ici on a reçu les données
         // On hydrate notre objet
-        $question->Question = $donnees->Question;
         $question->IdQuestionnaire = $donnees->IdQuestionnaire;
+        $question->Question = $donnees->Question;
 
-        if($questionnaire->createQuestion()) {
+        if($question->createQuestion()) {
             // Ici la création à fonctionné
             // On envoi un code 201 (ajout)
             http_response_code(201);

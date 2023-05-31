@@ -31,6 +31,7 @@ import AdminModifyDataChallenge from "./pages/Admin/AdminModifyDataChallenge";
 import AdminModifyProject from "./pages/Admin/AdminModifyProject";
 import AdminModifyUser from "./pages/Admin/AdminModifyUser";
 import Footer from "./components/Footer";
+import Analyseur from "./pages/Analyseur/Index";
 
 function App() {
     const { user } = useAuthContext();
@@ -142,6 +143,11 @@ function App() {
                         exact
                         path={routes.modifyDataChallenge + `/:id`}
                         element={<AdminModifyDataChallenge />}
+                    />
+                    <Route
+                        exact
+                        path={routes.analyseur}
+                        element={<Analyseur />}
                     />
                     <Route
                         exact

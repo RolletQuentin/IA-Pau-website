@@ -154,11 +154,11 @@ const SignupForm = ({
 
     const handlePatch = () => {
         // user is not created
-        if (user.role === "Administrateur" && id !== undefined) {
+        if (user.role === "Administrateur" && id === undefined) {
             if (confirmPassword !== password) {
                 setEmptyField(["confirmPassword"]);
                 setGlobalError("les mots de passe ne correspondent pas");
-            } else {
+            } else if (role === "Etudiant") {
                 togglePost(
                     process.env.REACT_APP_PROXY + "/api/user/signup/",
                     user,
@@ -174,10 +174,27 @@ const SignupForm = ({
                         numEtudiant,
                     }
                 );
+            } else {
+                togglePost(
+                    process.env.REACT_APP_PROXY +
+                        "/api/user/createGestionnaire/",
+                    user,
+                    {
+                        lastname,
+                        firstname,
+                        phone,
+                        company,
+                        city,
+                        email,
+                        password,
+                        start,
+                        end,
+                    }
+                );
             }
         } else {
             togglePatch(
-                process.env.REACT_APP_PROXY + "/api/user/signup/",
+                process.env.REACT_APP_PROXY + `/api/user/?id=${id}`,
                 user,
                 {
                     lastname,
@@ -187,7 +204,6 @@ const SignupForm = ({
                     school,
                     city,
                     email,
-                    password,
                     numEtudiant,
                 }
             );
