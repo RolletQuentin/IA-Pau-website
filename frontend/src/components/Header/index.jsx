@@ -9,7 +9,6 @@ import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { useLogout } from "../../hooks/auth/useLogout";
 import { useEffect, useState } from "react";
 
-
 const StyledHeader = styled.header`
     width: calc(100% - 60px);
     background: var(--background-color);
@@ -45,8 +44,14 @@ const StyledHeader = styled.header`
 
 function Header() {
     const { user } = useAuthContext();
+    const { logout } = useLogout();
+    const [id, setId] = useState("");
 
-    const {logout} = useLogout();
+    useEffect(() => {
+        if (user) {
+            setId(user.id);
+        }
+    }, [user]);
 
     // to add an animation when we scroll on the page
     const [isFixed, setIsFixed] = useState(false);
@@ -90,7 +95,7 @@ function Header() {
                                 </MyNavLink>
                             </li>
                             <li>
-                                <MyNavLink to={`${routes.profile}/${user.id}`}>
+                                <MyNavLink to={`${routes.profile}/${id}`}>
                                     Profil
                                 </MyNavLink>
                             </li>
@@ -110,7 +115,9 @@ function Header() {
 
             {/* if the user is conected or not*/}
             {user ? (
-                <div onClick={logout} style={{cursor: "pointer"}}>Déconnexion</div>
+                <div onClick={logout} style={{ cursor: "pointer" }}>
+                    Déconnexion
+                </div>
             ) : (
                 <MyNavLink to={routes.login}>Connexion</MyNavLink>
             )}

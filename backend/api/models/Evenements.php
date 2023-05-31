@@ -194,6 +194,7 @@ class Evenements {
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdEvenement = $this->connexion->lastInsertId();
             return true;
         }
         return false;
