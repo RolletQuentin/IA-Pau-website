@@ -234,11 +234,18 @@ INSERT INTO User VALUES (24, "test@test.fr", "Fortin", "Alexis", "imageProfil", 
 INSERT INTO Etudiant VALUES (00000024, "L3", "NomEcole", "NomVille", 24);
 INSERT INTO User VALUES (25, "test@test.fr", "Laplante", "Emma", "imageProfil", 0600000000, "mdp");
 INSERT INTO Etudiant VALUES (00000025, "M1", "NomEcole", "NomVille", 25);
-INSERT INTO User VALUES (26, "test@test.fr", "Barrette", "Louis", "imageProfil", 0600000000, "mdp");
+INSERT INTO User VALUES (26, "test@test.fr", "Dejardin", "Maxime", "imageProfil", 0600000000, "mdp");
 INSERT INTO Etudiant VALUES (00000026, "L3", "NomEcole", "NomVille", 26);
 INSERT INTO User VALUES (27, "test@test.fr", "Lamoureux", "Sophie", "imageProfil", 0600000000, "mdp");
 INSERT INTO Etudiant VALUES (00000027, "M2", "NomEcole", "NomVille", 27);
 
+-- User Gestionnaire (Si interne date > 2100)
+INSERT INTO User VALUES (28, "test@test.fr", "Rimaudiere", "Arthur", "imageProfil", 0600000000, "mdp");
+INSERT INTO Gestionnaire VALUES (1, "NomEntreprise", "Ville", "2023-06-01", "2023-06-17", 28);
+INSERT INTO User VALUES (29, "test@test.fr", "Quentin", "Rollet", "imageProfil", 0600000000, "mdp");
+INSERT INTO Gestionnaire VALUES (2, "IaPau", "Ville", "2023-01-01", "2100-12-31", 29);
+INSERT INTO User VALUES (30, "test@test.fr", "Valentin", "Noailles", "imageProfil", 0600000000, "mdp");
+INSERT INTO Gestionnaire VALUES (3, "IaPau", "Ville", "2023-01-01", "2100-12-31", 30);
 
 -- Evenements --
 INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
@@ -252,6 +259,11 @@ INSERT INTO Projet VALUES (3, 1, "Projet 2", "Description", "Image", "Entreprise
 INSERT INTO Projet VALUES (4, 1, "Projet 3", "Description", "Image", "Entreprise");
 INSERT INTO Projet VALUES (5, 1, "Projet 1", "Description", "Image", "Entreprise"); -- Projets dataChallenge 2
 INSERT INTO Projet VALUES (6, 1, "Projet 2", "Description", "Image", "Entreprise");
+
+-- Gestionnaire par projet
+INSERT INTO Gerer VALUES (1,1);
+INSERT INTO Gerer VALUES (2,1);
+INSERT INTO Gerer VALUES (3,2);
 
 -- Equipe 1 --
 INSERT INTO Equipe VALUES (1, "Equipe 1", 4, 10, "lien Github", 1);
@@ -290,17 +302,61 @@ INSERT INTO Appartenir VALUES (25, 6);
 INSERT INTO Appartenir VALUES (26, 6);
 INSERT INTO Appartenir VALUES (27, 6);
 
-
 -- Ressources --
-INSERT INTO Ressources VALUES (1,"test.com", "nom ressource 1");
-INSERT INTO Ressources VALUES (2,"test.com", "nom ressource 2");
-INSERT INTO Ressources VALUES (3,"test.com", "nom ressource 3");
-INSERT INTO Ressources VALUES (4,"test.com", "nom ressource 4");
-
+-- Ressources Projet 1
+INSERT INTO Ressources VALUES (1,"test.consignes.fr", "Cosigne");
+INSERT INTO Ressources VALUES (2,"test.conseils.fr", "Conseils");
+INSERT INTO Ressources VALUES (3,"test.videoPrensentation.fr", "Vidéo présentation");
+INSERT INTO Ressources VALUES (4,"test.fichier1.fr", "fichier1");
 INSERT INTO PossederRessource VALUES (1,1);
-INSERT INTO PossederRessource VALUES (2,2);
+INSERT INTO PossederRessource VALUES (2,1);
 INSERT INTO PossederRessource VALUES (3,1);
 INSERT INTO PossederRessource VALUES (4,1);
+-- Ressources Projet 2
+INSERT INTO Ressources VALUES (5,"test.consignes2.fr", "Cosigne Projet 2");
+INSERT INTO Ressources VALUES (6,"test.conseils2.fr", "Conseils Projet 2");
+INSERT INTO Ressources VALUES (7,"test.videoPrensentation2.fr", "Vidéo présentation Projet 2");
+INSERT INTO Ressources VALUES (8,"test.fichier2.fr", "fichier2 Projet 2");
+INSERT INTO PossederRessource VALUES (5,2);
+INSERT INTO PossederRessource VALUES (6,2);
+INSERT INTO PossederRessource VALUES (7,2);
+INSERT INTO PossederRessource VALUES (8,2);
+-- Ressources Projet 3
+INSERT INTO Ressources VALUES (9,"test.consignes3.fr", "Cosigne Projet 3");
+INSERT INTO Ressources VALUES (10,"test.conseils3.fr", "Conseils Projet 3");
+INSERT INTO Ressources VALUES (11,"test.videoPrensentation3.fr", "Vidéo présentation Projet 3");
+INSERT INTO Ressources VALUES (12,"test.fichier3.fr", "fichier3 Projet 3");
+INSERT INTO PossederRessource VALUES (9,3);
+INSERT INTO PossederRessource VALUES (10,3);
+INSERT INTO PossederRessource VALUES (11,3);
+INSERT INTO PossederRessource VALUES (12,3);
+-- Ressources Projet 4
+INSERT INTO Ressources VALUES (13,"test.consignes4.fr", "Cosigne Projet 4");
+INSERT INTO Ressources VALUES (14,"test.conseils4.fr", "Conseils Projet 4");
+INSERT INTO Ressources VALUES (15,"test.videoPrensentation4.fr", "Vidéo présentation Projet 4");
+INSERT INTO Ressources VALUES (16,"test.fichier4.fr", "fichier4 Projet 4");
+INSERT INTO PossederRessource VALUES (13,4);
+INSERT INTO PossederRessource VALUES (14,4);
+INSERT INTO PossederRessource VALUES (15,4);
+INSERT INTO PossederRessource VALUES (16,4);
+-- Ressources Projet 5
+INSERT INTO Ressources VALUES (17,"test.consignes5.fr", "Cosigne Projet 5");
+INSERT INTO Ressources VALUES (18,"test.conseils5.fr", "Conseils Projet 5");
+INSERT INTO Ressources VALUES (19,"test.videoPrensentation5.fr", "Vidéo présentation Projet 5");
+INSERT INTO Ressources VALUES (20,"test.fichier5.fr", "fichier5 Projet 5");
+INSERT INTO PossederRessource VALUES (17,5);
+INSERT INTO PossederRessource VALUES (18,5);
+INSERT INTO PossederRessource VALUES (19,5);
+INSERT INTO PossederRessource VALUES (20,5);
+-- Ressources Projet 6
+INSERT INTO Ressources VALUES (21,"test.consignes6.fr", "Cosigne Projet 6");
+INSERT INTO Ressources VALUES (22,"test.conseils6.fr", "Conseils Projet 6");
+INSERT INTO Ressources VALUES (23,"test.videoPrensentation6.fr", "Vidéo présentation Projet 6");
+INSERT INTO Ressources VALUES (24,"test.fichier6.fr", "fichier6 Projet 6");
+INSERT INTO PossederRessource VALUES (21,6);
+INSERT INTO PossederRessource VALUES (22,6);
+INSERT INTO PossederRessource VALUES (23,6);
+INSERT INTO PossederRessource VALUES (24,6);
 
 -- Questionnaires pour DataBattle1 --
 INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire1", "Sujet questionnaire", "2023-07-01", "2023-07-08");
@@ -329,4 +385,3 @@ INSERT INTO Question VALUES (14, 4, "Question 2");
 INSERT INTO Question VALUES (15, 4, "Question 3");
 INSERT INTO Question VALUES (16, 4, "Question 4");
 -- Réponse questionaire par équipe 1 -- A IMPLEMENTER
-
