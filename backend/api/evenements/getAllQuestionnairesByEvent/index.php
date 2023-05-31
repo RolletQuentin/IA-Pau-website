@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/getAllEventsByIdUser/?id=2
+// Exemple utilisation : http://localhost/api/evenements/getAllQuestionnairesByEvent/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -28,43 +28,41 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $evenement = new Evenements($db);
 
     // On récupère l'Id passé en paramètre 
-    $Identifiant = $_GET['id'];
+    $IdEvenement = $_GET['id'];
 
-    if(!empty($Identifiant)){
+    if(!empty($IdEvenement)){
+        $evenement->IdEvenement = $IdEvenement;
 
         // On récupère l'evenement
-        $stmt = $evenement->getAllEventsByIdUser($Identifiant);
+        $stmt = $evenement->getAllQuestionnairesByEvent();
 
         // On vérifie si on a au moins 1 produit
         if($stmt->rowCount() > 0){
             // On initialise un tableau associatif
-            $tableauEvenements = [];
-            $tableauEvenements['Evenements'] = [];
+            $tableauQuestionnaires = [];
+            $tableauQuestionnaires['Questionnaires'] = [];
 
             // On parcourt les produits
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 extract($row);
 
                 $prod = [
-                    "IdEvenement" => $IdEvenement,
-                    "TypeEvenement" => $TypeEvenement,
-                    "Libele" => $Libele,
-                    "Description" => $Description,
-                    "Recompenses" => $Recompenses,
+                    "IdQuestionnaire" => $IdQuestionnaire,
+                    "IdProjet" => $IdProjet,
+                    "Titre" => $Titre,
+                    "Sujet" => $Sujet,
                     "Debut" => $Debut,
-                    "Fin" => $Fin,
-                    "IdEquipe" => $IdEquipe,
-                    "IdProjet" => $IdProjet
+                    "Fin" => $Fin
                 ];
 
-                $tableauEvenements['Evenements'][] = $prod;
+                $tableauQuestionnaires['Questionnaires'][] = $prod;
             }
 
             // On envoie le code réponse 200 OK
             http_response_code(200);
 
             // On encode en json et on envoie
-            echo json_encode($tableauEvenements);
+            echo json_encode($tableauQuestionnaires);
         }
     }
 }else{

@@ -89,7 +89,7 @@ function App() {
                         />
                         <Route
                             exact
-                            path={`${routes.myDataChallenges}/:id_equipe/:id_data_challenge`}
+                            path={`${routes.myDataChallenges}/:id_equipe/:id_project`}
                             element={<DataChallengeRendu />}
                         />
                         <Route

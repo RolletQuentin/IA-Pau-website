@@ -14,13 +14,14 @@ const StyledMessagerie = styled.div`
         flex-direction: column;
         align-items: center;
         margin: auto;
-        width: 100%;
+        width: 400px;
         height: 750px;
         padding: 10px 30px;
     }
 
     & .conversation {
         width: 100%;
+        height: 600px;
         overflow-y: scroll;
         overflow-x: hidden;
         padding: 30px;
@@ -76,7 +77,6 @@ function Messagerie({ className }) {
     const [isLoading, setIsLoading] = useState(false);
     const [content, setContent] = useState("");
     const conversationRef = useRef(null);
-    const [isMouseActive, setIsMouseActive] = useState(false);
 
     // fetch all the messages from one team
     useEffect(() => {
@@ -118,6 +118,32 @@ function Messagerie({ className }) {
         scrollToBottom();
     }, [messages]);
 
+    const addMessage = async () => {
+        if (!content) return;
+
+        try {
+            const response = await togglePost(
+                process.env.REACT_APP_PROXY +
+                    `/api/messages/send/?IdEquipe=${id_equipe}`,
+                user,
+                { content }
+            );
+            const [lastMessage] = messages.slice(-1);
+            const newMessage = {
+                "IdMessage": lastMessage.IdMessage + 1,
+                "sender": `${user.firstname} ${user.lastname}`,
+                "IdSender": user.userId,
+                "content": content,
+            };
+
+            setMessages((prevMessages) => [...prevMessages, newMessage]);
+            setContent("");
+            scrollToBottom();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <StyledMessagerie className={className}>
             <Button className="mainContainer">
@@ -129,17 +155,10 @@ function Messagerie({ className }) {
                         {user &&
                             messages &&
                             messages.map(
-                                ({
-                                    IdMessage,
-                                    DateMessage,
-                                    sender,
-                                    IdSender,
-                                    content,
-                                }) => {
+                                ({ IdMessage, sender, IdSender, content }) => {
                                     return (
                                         <Message
                                             key={IdMessage}
-                                            date={DateMessage}
                                             sender={sender}
                                             idSender={IdSender}
                                             content={content}
@@ -159,16 +178,7 @@ function Messagerie({ className }) {
                     />
                     <button
                         className="material-symbols-outlined send-button"
-                        onClick={() => {
-                            togglePost(
-                                process.env.REACT_APP_PROXY +
-                                    `/api/messages/send/?IdEquipe=${id_equipe}`,
-                                user,
-                                { "content": content }
-                            );
-                            setContent("");
-                            scrollToBottom();
-                        }}
+                        onClick={() => addMessage()}
                     >
                         send
                     </button>

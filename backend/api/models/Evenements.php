@@ -120,8 +120,9 @@ class Evenements {
      */
     public function getAllEventsByIdUser($Identifiant){
         // On écrit la requête
-        $sql = "SELECT * FROM " . $this->table . " WHERE IdEvenement IN (
-            SELECT IdEvenement FROM Appartenir NATURAL JOIN Equipe NATURAL JOIN Projet WHERE Identifiant = ?)";
+        $sql = "SELECT Evenement.IdEvenement, TypeEvenement, Evenement.Libele, Evenement.Description, Recompenses, Debut, Fin, IdEquipe, IdProjet 
+        FROM Appartenir NATURAL JOIN Equipe NATURAL JOIN Projet JOIN Evenement ON Projet.IdEvenement = Evenement.IdEvenement 
+        WHERE Identifiant = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
@@ -158,6 +159,28 @@ class Evenements {
         return $query;
     }
     
+    /**
+     * Lecture de tous les questionnaires d'un evenement
+     *
+     * @return void
+     */
+    public function getAllQuestionnairesByEvent(){
+        // On écrit la requête
+        $sql = "SELECT * FROM Questionnaire NATURAL JOIN Projet WHERE IdEvenement = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdEvenement);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
     /**
      * Lecture de tous les projets d'un evenement
      *
