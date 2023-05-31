@@ -47,9 +47,9 @@ function Home() {
             <NavbarOffset />
             <h2>Data Challenges</h2>
             {evenements && evenements.Evenements && <VBox>
-                {evenements.Evenements.map((e) => {
+                {evenements.Evenements.map((e, index) => {
                     return (
-                        <DataChallengeItem title={e.Libele} id={e.IdEvenement} />
+                        <DataChallengeItem key={index} title={e.Libele} id={e.IdEvenement} />
                     )
                 })}
             </VBox>}
