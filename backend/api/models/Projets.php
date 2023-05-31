@@ -129,6 +129,7 @@ class Projets {
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdProjet = $this->connexion->lastInsertId();
             return true;
         }
         return false;

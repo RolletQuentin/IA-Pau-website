@@ -92,6 +92,7 @@ class Questions {
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdQuestion = $this->connexion->lastInsertId();
             return true;
         }
         return false;
