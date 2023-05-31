@@ -29,6 +29,7 @@
                         array_push($arrayUsers, getUserArrayFromId($row2["Identifiant"]));
                     }
                 }
+                $IdEvenement = getIdEvenementFromProjet($IdProjet);
                 $jsonArray = array(
                     "IdEquipe"=>$idEquipe,
                     "Nom"=>$nom,
@@ -36,7 +37,8 @@
                     "Score"=>$score,
                     "LienProjet"=>$lienProjet,
                     "IdProjet"=>$IdProjet,
-                    "Users"=>$arrayUsers
+                    "Users"=>$arrayUsers,
+                    "IdEvenement"=>$IdEvenement
                 );
                 mysqli_close($conn);
                 return $jsonArray;
