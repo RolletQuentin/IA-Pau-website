@@ -32,13 +32,13 @@ import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 
 function App() {
-    const { user } = useAuthContext();
+    const { user, ready } = useAuthContext();
     return (
         <Router>
             <div style={{minHeight: "100vh", display: "flex", flexDirection: "column"}}>
 
                 <Header />
-                <Routes>
+                {ready && <Routes>
                     <Route exact path={routes.home} element={<Home />} />
                     <Route
                         exact
@@ -135,7 +135,7 @@ function App() {
                         element={<Analyseur/>}
                     />
                     <Route path="*" element={<Error404 />} />
-                </Routes>
+                </Routes>}
                 <Footer/>
             </div>
         </Router>
