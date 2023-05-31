@@ -38,7 +38,7 @@ try {
                 throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
             }
         } else {
-            if(($id == $_GET["id"]) || ($role == "Administrateur")){
+            if(($idToken == $_GET["id"]) || ($role == "Administrateur")){
                 getUserFromId($_GET["id"]);
             } else {
                 throw new Exception ("Pas assez de permissions pour accéder à cette ressource !");
