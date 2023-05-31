@@ -20,36 +20,39 @@ const StyledHome = styled.div`
 `;
 
 function Home() {
-
     const [globalError, setGlobalError] = useState("");
     const [evenements, setEvenements] = useState(null);
 
     useEffect(() => {
         const fetchEvenements = async () => {
-            setGlobalError("")
-            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEvenements/')
-    
+            setGlobalError("");
+            const response = await fetch(
+                process.env.REACT_APP_PROXY +
+                    "/api/evenements/getAllEvenements/"
+            );
+
             const json = await response.json();
-            if (!response.ok) {     
-                console.log(json.error) 
+            if (!response.ok) {
+                console.log(json.error);
                 setGlobalError(json.error);
             }
-    
+
             if (response.ok) {
-                setEvenements(json)
+                setEvenements(json);
             }
-        }
-        fetchEvenements()
-    }, [])
+        };
+        fetchEvenements();
+    }, []);
 
     return (
         <StyledHome>
             <NavbarOffset />
             <h2>Data Challenges</h2>
+
             {evenements && evenements.Evenements && <VBox>
-                {evenements.Evenements.map((e) => {
+                {evenements.Evenements.map((e, index) => {
                     return (
-                        <DataChallengeItem title={e.Libele} id={e.IdEvenement} />
+                        <DataChallengeItem key={index} title={e.Libele} id={e.IdEvenement} />
                     )
                 })}
             </VBox>}
