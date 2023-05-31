@@ -6,6 +6,8 @@ import CenterContainer from "../../containers/CenterContainer";
 import MarginContainer from "../../containers/MarginContainer";
 import VBox from "../../containers/VBox";
 import imageMoreInfo from "../../assets/moreInfoAnalyseur.jpg";
+import Chart from 'chart.js/auto';
+
 
 const Analyseur = () => {
   const [globalError, setGlobalError] = useState("");
@@ -111,6 +113,30 @@ const Analyseur = () => {
     return nb;
   }
 
+  const getChart = () => {
+    const ctx = document.getElementById('myChart');
+    console.log("coucou");
+    return (<h1>hello</h1>)
+    /*return new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });*/
+  }
+
   return (
     <CenterContainer>
       <NavbarOffset />
@@ -150,6 +176,14 @@ const Analyseur = () => {
                 <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
                 <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
               </div>
+              <div>
+                <canvas id="myChart"></canvas>
+              </div>
+              {
+                getChart()
+              }
+              
+
               <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
               {responseJSON.Import.map((library, index) => (
                 <p>- {library} </p>
@@ -168,7 +202,7 @@ const Analyseur = () => {
           {lines && (
             <VBox>
               <h1><u>Votre code:</u></h1>
-              <div style={{backgroundColor: "#1515", borderStyle: "outset", borderColor: "gray", borderRadius: "2%"}}>
+              <div style={{backgroundColor: "#1515", borderStyle: "outset", borderColor: "gray", borderRadius: "20px"}}>
                 <div style={{width: "94%", height: "94%", paddingLeft: "3%", paddingTop: "3%", paddingRight: "3%", paddingBottom: "3%"}}>
                   <code>
                     {lines.map((line, index) => (
