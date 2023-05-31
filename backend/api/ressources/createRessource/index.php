@@ -30,16 +30,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     // On récupère les informations envoyées 
     $donnees = json_decode(file_get_contents("php://input"));
     
-    if(!empty($donnees->UrlRessource)) {
+    if(!empty($donnees->UrlRessource) && !empty($donnees->NomRessource)) {
         // Ici on a reçu les données
         // On hydrate notre objet
         $ressource->UrlRessource = $donnees->UrlRessource;
+        $ressource->NomRessource = $donnees->NomRessource;
 
         if($ressource->createRessource()) {
             // Ici la création à fonctionné
             // On envoi un code 201 (ajout)
             http_response_code(201);
-            echo json_encode(["message" => "L'ajout a été effectué"]);
+            echo json_encode(["IdRessource" => $ressource->IdRessource]);
         } else{
             // La création n'a pas fonctionné
             http_response_code(503);

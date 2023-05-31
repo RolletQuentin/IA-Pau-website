@@ -64,7 +64,7 @@ function AdminRessourcesDataChallenge({ id }) {
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
-        if (user) {
+        if (user && id !== undefined) {
             const fetchData = async () => {
                 try {
                     const response = await fetch(
@@ -91,7 +91,7 @@ function AdminRessourcesDataChallenge({ id }) {
             setIsLoading(true);
             fetchData();
         }
-    }, [user]);
+    }, [user, id]);
 
     return (
         <StyledAdminRessources>
