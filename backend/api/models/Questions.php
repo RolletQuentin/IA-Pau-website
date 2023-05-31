@@ -75,22 +75,19 @@ class Questions {
     public function createQuestion(){
 
         // Ecriture de la requête SQL en y insérant le nom de la table
-        $sql = "INSERT INTO " . $this->table . " SET Question=:Question,
-        IdQuestionnaire=:IdQuestionnaire";
+        $sql = "INSERT INTO " . $this->table . " SET IdQuestionnaire=:IdQuestionnaire,
+        Question=:Question";
 
         // Préparation de la requête
         $query = $this->connexion->prepare($sql);
 
         // Protection contre les injections
-        $this->IdQuestion=htmlspecialchars(strip_tags($this->IdQuestion));
-        $this->Question=htmlspecialchars(strip_tags($this->Question));
         $this->IdQuestionnaire=htmlspecialchars(strip_tags($this->IdQuestionnaire));
-
+        $this->Question=htmlspecialchars(strip_tags($this->Question));
 
         // Ajout des données protégées
-        $query->bindParam(":IdQuestion", $this->IdQuestion);
-        $query->bindParam(":Question", $this->Question);
         $query->bindParam(":IdQuestionnaire", $this->IdQuestionnaire);
+        $query->bindParam(":Question", $this->Question);
 
 
         // Exécution de la requête
@@ -133,11 +130,10 @@ class Questions {
      *
      * @return void
      */
-    public function editQuestionnaire(){
+    public function editQuestion(){
         // On écrit la requête
-        $sql = "UPDATE " . $this->table . " SET IdQuestion=:IdQuestion,
-        Question=:Question,
-        IdQuestionnaire=:IdQuestionnaire";
+        $sql = "UPDATE " . $this->table . " SET Question=:Question,
+        IdQuestionnaire=:IdQuestionnaire WHERE IdQuestion=:IdQuestion";
         
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
