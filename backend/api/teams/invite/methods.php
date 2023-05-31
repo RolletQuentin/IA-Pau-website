@@ -36,8 +36,8 @@
             }
         }
 
-        if($IdEvenement == -1){
-            throw new Exception ("Aucune equipe n'a pu être trouvée !");
+        if($IdProjet == -1){
+            throw new Exception ("Aucune Projet n'a pu être trouvé !");
         }
 
         $role = getRoleFromJWT($token);
