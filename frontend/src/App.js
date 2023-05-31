@@ -45,133 +45,143 @@ function App() {
                 }}
             >
                 <Header />
-                {ready && <Routes>
-                    <Route exact path={routes.home} element={<Home />} />
-                    <Route
-                        exact
-                        path={routes.login}
-                        element={
-                            user ? <Navigate to={routes.home} /> : <Login />
-                        }
-                    />
-                    <Route
-                        exact
-                        path={routes.signup}
-                        element={
-                            user ? <Navigate to={routes.home} /> : <Signup />
-                        }
-                    />
-                    <Route
-                        exact
-                        path={`${routes.profile}/:id_profile`}
-                        element={
-                            !user ? <Navigate to={routes.login} /> : <Profile />
-                        }
-                    />
-                    <Route
-                        exact
-                        path={`${routes.dataChallenge}/:id`}
-                        element={<DataChallengeDetail />}
-                    />
-                    <Route
-                        exact
-                        path={routes.myDataChallenges}
-                        element={<MyDataChallenges />}
-                    />
-                    <Route
-                        exact
-                        path={`${routes.myDataChallenges}/:id_equipe/:id_data_challenge`}
-                        element={<DataChallengeRendu />}
-                    />
-                    <Route
-                        exact
-                        path={`${routes.teamView}/:id_team`}
-                        element={<TeamView />}
-                    />
-                    <Route
-                        exact
-                        path={`${routes.MCQ}/:id_MCQ/:id_question`}
-                        element={<MCQ />}
-                    />
-                    <Route
-                        exact
-                        path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
-                        element={<EvaluateMCQ />}
-                    />
-                    <Route
-                        exact
-                        path={`${routes.dataChallenge}/edit/:id_data_challenge`}
-                        element={<DataChallengeEdition />}
-                    />
-                    <Route exact path={routes.admin} element={<Admin />} />
-                    <Route
-                        exact
-                        path={routes.adminUsers}
-                        element={<AdminUsers />}
-                    />{" "}
-                    <Route
-                        exact
-                        path={routes.adminDataChallenges}
-                        element={<AdminDataChallenges />}
-                    />{" "}
-                    <Route
-                        exact
-                        path={routes.adminRessources}
-                        element={<AdminRessources />}
-                    />
-                    <Route
-                        exact
-                        path={routes.addUser}
-                        element={<AdminAddUser />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyRessource}
-                        element={<AdminModifyRessource />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyRessource + `/:id`}
-                        element={<AdminModifyRessource />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyDataChallenge}
-                        element={<AdminModifyDataChallenge />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyDataChallenge + `/:id`}
-                        element={<AdminModifyDataChallenge />}
-                    />
-                    <Route
-                        exact
-                        path={routes.analyseur}
-                        element={<Analyseur/>}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyProject + `/:idEvent`}
-                        element={<AdminModifyProject />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyProject + `/:idEvent/:idProject`}
-                        element={<AdminModifyProject />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyUser}
-                        element={<AdminModifyUser />}
-                    />
-                    <Route
-                        exact
-                        path={routes.modifyUser + `/:id`}
-                        element={<AdminModifyUser />}
-                    />
-                    <Route path="*" element={<Error404 />} />
-                </Routes>}
-                <Footer/>
+                {ready && (
+                    <Routes>
+                        <Route exact path={routes.home} element={<Home />} />
+                        <Route
+                            exact
+                            path={routes.login}
+                            element={
+                                user ? <Navigate to={routes.home} /> : <Login />
+                            }
+                        />
+                        <Route
+                            exact
+                            path={routes.signup}
+                            element={
+                                user ? (
+                                    <Navigate to={routes.home} />
+                                ) : (
+                                    <Signup />
+                                )
+                            }
+                        />
+                        <Route
+                            exact
+                            path={`${routes.profile}/:id`}
+                            element={
+                                !user ? (
+                                    <Navigate to={routes.login} />
+                                ) : (
+                                    <Profile />
+                                )
+                            }
+                        />
+                        <Route
+                            exact
+                            path={`${routes.dataChallenge}/:id`}
+                            element={<DataChallengeDetail />}
+                        />
+                        <Route
+                            exact
+                            path={routes.myDataChallenges}
+                            element={<MyDataChallenges />}
+                        />
+                        <Route
+                            exact
+                            path={`${routes.myDataChallenges}/:id_equipe/:id_data_challenge`}
+                            element={<DataChallengeRendu />}
+                        />
+                        <Route
+                            exact
+                            path={`${routes.teamView}/:id_team`}
+                            element={<TeamView />}
+                        />
+                        <Route
+                            exact
+                            path={`${routes.MCQ}/:id_MCQ/:id_question`}
+                            element={<MCQ />}
+                        />
+                        <Route
+                            exact
+                            path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
+                            element={<EvaluateMCQ />}
+                        />
+                        <Route
+                            exact
+                            path={`${routes.dataChallenge}/edit/:id_data_challenge`}
+                            element={<DataChallengeEdition />}
+                        />
+                        <Route exact path={routes.admin} element={<Admin />} />
+                        <Route
+                            exact
+                            path={routes.adminUsers}
+                            element={<AdminUsers />}
+                        />{" "}
+                        <Route
+                            exact
+                            path={routes.adminDataChallenges}
+                            element={<AdminDataChallenges />}
+                        />{" "}
+                        <Route
+                            exact
+                            path={routes.adminRessources}
+                            element={<AdminRessources />}
+                        />
+                        <Route
+                            exact
+                            path={routes.addUser}
+                            element={<AdminAddUser />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyRessource}
+                            element={<AdminModifyRessource />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyRessource + `/:id`}
+                            element={<AdminModifyRessource />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyDataChallenge}
+                            element={<AdminModifyDataChallenge />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyDataChallenge + `/:id`}
+                            element={<AdminModifyDataChallenge />}
+                        />
+                        <Route
+                            exact
+                            path={routes.analyseur}
+                            element={<Analyseur />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyProject + `/:idEvent`}
+                            element={<AdminModifyProject />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyProject + `/:idEvent/:idProject`}
+                            element={<AdminModifyProject />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyUser}
+                            element={<AdminModifyUser />}
+                        />
+                        <Route
+                            exact
+                            path={routes.modifyUser + `/:id`}
+                            element={<AdminModifyUser />}
+                        />
+                        <Route path="*" element={<Error404 />} />
+                    </Routes>
+                )}
+                <Footer />
             </div>
         </Router>
     );
