@@ -122,7 +122,8 @@ CREATE TABLE IF NOT EXISTS Message(
 -- RESSOURCES Doit pouvoir etre lié a plusieurs projets il nous manque le lien posseder
 CREATE TABLE IF NOT EXISTS Ressources(
     IdRessource INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
-    UrlRessource VARCHAR(512)
+    UrlRessource VARCHAR(2048),
+    NomRessource VARCHAR(512)
 );
 -- RESSOURCE A ECRIRE
 CREATE TABLE IF NOT EXISTS PossederRessource(
@@ -188,10 +189,10 @@ INSERT INTO Projet VALUES (1, 1, "Projet 1", "Description", "Image", "Entreprise
 INSERT INTO Projet VALUES (2, 1, "Projet 2", "Description", "Image", "Entreprise");
 INSERT INTO Projet VALUES (3, 2, "Projet 3", "Description", "Image", "Entreprise");
 
-INSERT INTO Ressources VALUES (1,"test.com");
-INSERT INTO Ressources VALUES (2,"test.com");
-INSERT INTO Ressources VALUES (3,"test.com");
-INSERT INTO Ressources VALUES (4,"test.com");
+INSERT INTO Ressources VALUES (1,"test.com", "nom ressource 1");
+INSERT INTO Ressources VALUES (2,"test.com", "nom ressource 2");
+INSERT INTO Ressources VALUES (3,"test.com", "nom ressource 3");
+INSERT INTO Ressources VALUES (4,"test.com", "nom ressource 4");
 
 INSERT INTO PossederRessource VALUES (1,1);
 INSERT INTO PossederRessource VALUES (2,2);
