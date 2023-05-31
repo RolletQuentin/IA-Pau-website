@@ -70,7 +70,6 @@ function DataChallengeDetail() {
         const fetchProjets = async () => {
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + id)
-            console.log(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + id)
     
             const json = await response.json();
             if (!response.ok) {     

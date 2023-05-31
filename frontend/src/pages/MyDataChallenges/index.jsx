@@ -6,6 +6,7 @@ import NavbarOffset from "../../components/NavbarOffset";
 import { Link } from "react-router-dom";
 import VBox from "../../containers/VBox";
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 
 const StyledMyDataChallenge = styled.div`
     display: flex;
@@ -30,11 +31,12 @@ const StyledMyDataChallenge = styled.div`
 function MyDataChallenges() {
     const [globalError, setGlobalError] = useState("");
     const [myEvent, setMyEvent] = useState(null);
+    const {user} = useAuthContext();
 
     useEffect(() => {
         const fetchEvenements = async () => {
             setGlobalError("")
-            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEvenements/')
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEventsByIdUser/?id=' + user.userId)
     
             const json = await response.json();
             if (!response.ok) {     
@@ -59,7 +61,7 @@ function MyDataChallenges() {
                 {myEvent.map((e, index) => {
                     return (<Button key={index} className="data-challenge" style={{minWidth: "600px"}}>
                         <h2>{e.Libele}</h2>
-                        <Link to={routes.myDataChallenges + "/" + 3 + "/" + 3}>
+                        <Link to={routes.myDataChallenges + "/" + 3 + "/" + e.IdEvenement}>
                             <BasicButton className="data-challenge-button">
                                 Dossier
                             </BasicButton>

@@ -72,8 +72,37 @@ function TeamView() {
     const [isLoading, setIsLoading] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
     const [redirectMyEvent, setRedirectMyEvent] = useState(false)
+    const [projets, setProjets] = useState([]);
+    const [options, setOptions] = useState([]);
 
     useEffect(() => {
+        console.log(projets)
+        if (projets && projets.length > 0) {
+            let opt = []
+            for (let i = 0; i < projets.length; i++){
+                opt.push(projets[i].Libele)
+            }
+            setOptions(opt)
+        }
+    }, [projets])
+
+    useEffect(() => {
+        const fetchProjets = async (data) => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + data.IdProjet)
+    
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                console.log(json)
+                setProjets(json.Projets)
+            }
+            
+        }
         const fetchTeamData = async () => {
             setIsLoading(true)
             setGlobalError("")
@@ -87,7 +116,7 @@ function TeamView() {
     
             if (response.ok) {
                 setTeamData(json)
-                console.log(json)
+                fetchProjets(json)
             }
             setIsLoading(false)
         }
@@ -239,7 +268,7 @@ function TeamView() {
                                 padding: "0 30px"
                             }}
                             placeholder="sujet"
-                            options={teamData.projets}
+                            options={options}
                         />
                         {teamData.Users && 
                         <VBox>
