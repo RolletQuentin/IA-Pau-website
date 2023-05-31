@@ -120,8 +120,9 @@ class Evenements {
      */
     public function getAllEventsByIdUser($Identifiant){
         // On écrit la requête
-        $sql = "SELECT * FROM " . $this->table . " WHERE IdEvenement IN (
-            SELECT IdEvenement FROM Appartenir NATURAL JOIN Equipe NATURAL JOIN Projet WHERE Identifiant = ?)";
+        $sql = "SELECT Evenement.IdEvenement, TypeEvenement, Evenement.Libele, Evenement.Description, Recompenses, Debut, Fin, IdEquipe, IdProjet 
+        FROM Appartenir NATURAL JOIN Equipe NATURAL JOIN Projet JOIN Evenement ON Projet.IdEvenement = Evenement.IdEvenement 
+        WHERE Identifiant = ?";
 
         // On prépare la requête
         $query = $this->connexion->prepare($sql);
