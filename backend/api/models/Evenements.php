@@ -114,6 +114,29 @@ class Evenements {
     }
 
     /**
+     * Lecture de tous les evenements d'un user
+     *
+     * @return void
+     */
+    public function getAllEventsByIdUser($Identifiant){
+        // On écrit la requête
+        $sql = "SELECT * FROM " . $this->table . " WHERE IdEvenement IN (
+            SELECT IdEvenement FROM Appartenir NATURAL JOIN Equipe NATURAL JOIN Projet WHERE Identifiant = ?)";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $Identifiant);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+    /**
      * Lecture de tous les projets d'un evenement
      *
      * @return void
