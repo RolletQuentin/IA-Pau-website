@@ -26,7 +26,7 @@
                 $r2 = mysqli_query($conn, $query2);
                 if(mysqli_num_rows($r2) > 0) {
                     while($row2 = mysqli_fetch_assoc($r2)){
-                        array_push($arrayUsers, array("id"=>$row2["Identifiant"]));
+                        array_push($arrayUsers, getUserArrayFromId($row2["Identifiant"]));
                     }
                 }
                 $jsonArray = array(
