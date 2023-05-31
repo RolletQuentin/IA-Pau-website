@@ -139,12 +139,30 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
 CREATE TABLE IF NOT EXISTS NoteQuestionnaire(
     IdQuestionnaire INTEGER(16),
     IdEquipe INTEGER(16),
-    Reponse VARCHAR(2048),
     Score INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (IdQuestionnaire, IdEquipe),
     CONSTRAINT fk3 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
     CONSTRAINT fk4 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
 );
+
+CREATE TABLE IF NOT EXISTS ReponseQuestion(
+    IdQuestion INTEGER(16),
+    IdEquipe INTEGER(16),
+    Reponse VARCHAR(4096),
+    CONSTRAINT pkRQuestion PRIMARY KEY (IdQuestion, IdEquipe),
+    CONSTRAINT fkRQuestion1 FOREIGN KEY (IdQuestion) REFERENCES Question (IdQuestion),
+    CONSTRAINT fkRQuestion2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+);
+
+CREATE TABLE IF NOT EXISTS ReponseQuestionnaire(
+    IdQuestionnaire INTEGER(16),
+    IdEquipe INTEGER(16),
+    DateReponse DATE,
+    CONSTRAINT pkRQuestionnaire PRIMARY KEY (IdQuestionnaire, IdEquipe),
+    CONSTRAINT fkRQuestionnaire1 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
+    CONSTRAINT fkRQuestionnaire2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+);
+
 
 -- USER
 CREATE TABLE IF NOT EXISTS Inscrire(

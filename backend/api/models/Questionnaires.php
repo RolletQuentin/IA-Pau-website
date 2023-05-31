@@ -44,6 +44,28 @@ class Questionnaires {
     }
 
     /**
+     * Lecture des Questions d'un Questionnaire
+     *
+     * @return void
+     */
+    public function getAllQuestionsByIdQuestionnaire(){
+        // On écrit la requête
+        $sql = "SELECT * FROM Question WHERE IdQuestionnaire = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdQuestionnaire);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
+    /**
      * Lire un questionnaire
      *
      * @return void
@@ -109,6 +131,38 @@ class Questionnaires {
         // Exécution de la requête
         if($query->execute()){
             $this->IdQuestionnaire = $this->connexion->lastInsertId();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Créer une réponse à un questionnaire
+     *
+     * @return void
+     */
+    public function createReponseQuestionnaireByIdEquipe($IdEquipe, $DateReponse){
+
+        // Ecriture de la requête SQL en y insérant le nom de la table
+        $sql = "INSERT INTO ReponseQuestionnaire SET IdQuestionnaire=:IdQuestionnaire,
+        IdEquipe=:IdEquipe,
+        DateReponse=:DateReponse";
+
+        // Préparation de la requête
+        $query = $this->connexion->prepare($sql);
+
+        // Protection contre les injections
+        $this->IdQuestionnaire=htmlspecialchars(strip_tags($this->IdQuestionnaire));
+        $IdEquipe=htmlspecialchars(strip_tags($IdEquipe));
+        $DateReponse=htmlspecialchars(strip_tags($DateReponse));
+
+        // Ajout des données protégées
+        $query->bindParam(":IdQuestionnaire", $this->IdQuestionnaire);
+        $query->bindParam(":IdEquipe", $IdEquipe);
+        $query->bindParam(":DateReponse", $DateReponse);
+
+        // Exécution de la requête
+        if($query->execute()){
             return true;
         }
         return false;
