@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS User(
     Identifiant INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     Email VARCHAR(128),
     Nom VARCHAR(32),
-    Img VARCHAR(256),
     Prenom VARCHAR(32),
+    Img VARCHAR(256),
     NumTel INTEGER(10),
     Mdp VARCHAR(255)
 );
@@ -182,13 +182,34 @@ INSERT INTO Administrateur (Identifiant) VALUES (1);
 INSERT INTO User (Email, Nom, Prenom, NumTel, Mdp) VALUES ('etudiant@etudiant.fr', 'Etudiant', 'Etudiant', 769590682, '$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O');
 INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
+
+-- User etudiant--
+INSERT INTO User VALUES (4,"test@test.fr", "Dupont", "Jean1", "imageProfil", 0600000000, "mdp"); -- (Notre Leader equipe 1)
+INSERT INTO Etudiant VALUES (00000004, "L3", "NomEcole", "NomVille", 4);
+INSERT INTO User VALUES (5,"test@test.fr", "Dupont", "Jean2", "imageProfil", 0600000000, "mdp"); -- (Nos membres equipe 1)
+INSERT INTO Etudiant VALUES (00000005, "M1", "NomEcole", "NomVille", 5);
+INSERT INTO User VALUES (6,"test@test.fr", "Dupont", "Jean3", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000006, "L3", "NomEcole", "NomVille", 6);
+INSERT INTO User VALUES (7,"test@test.fr", "Dupont", "Jean4", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000007, "M2", "NomEcole", "NomVille", 7);
+
+-- Evenements --
 INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire","2023-01-01", "2023-01-02");
 INSERT INTO Evenement VALUES (2, "DataBattle", "DataBattle1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire", "2023-01-03", "2023-01-04");
 
+-- Projets --
 INSERT INTO Projet VALUES (1, 1, "Projet 1", "Description", "Image", "Entreprise");
 INSERT INTO Projet VALUES (2, 1, "Projet 2", "Description", "Image", "Entreprise");
 INSERT INTO Projet VALUES (3, 2, "Projet 3", "Description", "Image", "Entreprise");
 
+-- Equipe --
+INSERT INTO Equipe VALUES (1, "Equipe 1", 4, 10, "lien Github", 1);
+INSERT INTO Appartenir VALUES (4, 1);
+INSERT INTO Appartenir VALUES (5, 1);
+INSERT INTO Appartenir VALUES (6, 1);
+INSERT INTO Appartenir VALUES (7, 1);
+
+-- Ressources --
 INSERT INTO Ressources VALUES (1,"test.com", "nom ressource 1");
 INSERT INTO Ressources VALUES (2,"test.com", "nom ressource 2");
 INSERT INTO Ressources VALUES (3,"test.com", "nom ressource 3");
