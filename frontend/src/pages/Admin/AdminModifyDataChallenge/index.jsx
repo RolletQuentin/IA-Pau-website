@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
-import { redirect, useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import NavbarOffset from "../../../components/NavbarOffset";
 import { useEffect, useState } from "react";
 import { togglePost } from "../../../toggles/togglePost";
@@ -23,6 +23,8 @@ const StyledModifyDataChallenge = styled.div`
 function AdminModifyDataChallenge() {
     const { user } = useAuthContext();
     const { id } = useParams();
+    const navigate = useNavigate();
+    const currentUrl = useLocation();
     const [eventType, setEventType] = useState("");
     const [label, setLabel] = useState("");
     const [description, setDescription] = useState("");
@@ -67,7 +69,7 @@ function AdminModifyDataChallenge() {
             <Button>
                 <h2>Informations Data Challenge</h2>
                 <form
-                    onSubmit={() => {
+                    onSubmit={async () => {
                         if (id === undefined) {
                             togglePost(
                                 process.env.REACT_APP_PROXY +

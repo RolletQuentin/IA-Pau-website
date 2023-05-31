@@ -91,7 +91,7 @@ function AdminRessourcesDataChallenge({ id }) {
             setIsLoading(true);
             fetchData();
         }
-    }, [user]);
+    }, [user, id]);
 
     return (
         <StyledAdminRessources>
