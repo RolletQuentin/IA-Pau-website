@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             // Ici la création à fonctionné
             // On envoi un code 201 (ajout)
             http_response_code(201);
-            echo json_encode(["message" => "La création a été effectué"]);
+            echo json_encode(["IdQuestionnaire" => $questionnaire->IdQuestionnaire]);
         } else{
             // La création n'a pas fonctionné
             http_response_code(503);

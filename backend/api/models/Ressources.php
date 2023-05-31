@@ -86,6 +86,7 @@ class Ressources {
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdRessource = $this->connexion->lastInsertId();
             return true;
         }
         return false;

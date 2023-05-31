@@ -108,6 +108,7 @@ class Questionnaires {
 
         // Exécution de la requête
         if($query->execute()){
+            $this->IdQuestionnaire = $this->connexion->lastInsertId();
             return true;
         }
         return false;
