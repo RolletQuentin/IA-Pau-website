@@ -8,6 +8,8 @@ const Select = ({
     setEmptyField,
     style,
     options,
+    className,
+    placeholder="filière"
 }) => {
 
     const [defaultValue, setDefaultValue] = useState(value);
@@ -21,20 +23,20 @@ const Select = ({
     return (
         
         <select
-            className={"inputTextDefault"}
+            className={className + " inputTextDefault"}
             style={{
-                ...style,
                 borderRadius: "10px",
                 backgroundColor:" var(--primary)",
                 padding: "10px",
                 marginBottom: "20px",
-                border: emptyField.includes(name) ? 'solid 2px var(--error)' : 'none'
+                border: emptyField.includes(name) ? 'solid 2px var(--error)' : 'none',
+                ...style,
             }}
             onChange={(e) => setValue !== null ? setValue(e.target.value) : setDefaultValue(e.target.value)}
             value={setValue !== null ? value : defaultValue}
             onClick={() => removeClassError(name)}
         >
-            <option value='' hidden disabled>filière</option>
+            <option value='' hidden disabled>{placeholder}</option>
             {options && options.map((opt) => (
                 <option key={opt} value={opt}>{opt}</option>
             ))}
