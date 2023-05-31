@@ -93,6 +93,7 @@
         $IdEvenement = verifyStringToDatabaseInsertion($IdEvent);
         $conn = getConnection();
         $array = array();
+        
         $query = "SELECT * From Equipe AS e INNER JOIN Projet AS p ON p.IdProjet = e.IdProjet INNER JOIN Evenement AS ev ON ev.IdEvenement = p.IdEvenement WHERE p.IdEvenement = " . $IdEvenement . ";";
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0) {

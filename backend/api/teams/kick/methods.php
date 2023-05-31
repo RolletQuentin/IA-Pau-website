@@ -30,8 +30,6 @@
             }
         } else if ($role == "Etudiant"){
 
-            $query = "SELECT * FROM Appartenir WHERE IdEquipe = " . $IdEquipe . " AND Identifiant = ". $id . ";";
-            $result = mysqli_query($conn, $query);
             if($IdLeader == $IdUser){
                 $hasPerm = true;
             } else {
