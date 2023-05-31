@@ -152,31 +152,32 @@ const Analyseur = () => {
               <br></br>
               <br></br>
               <br></br>
+              
               <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
                 <tr>
                   <td style={{border: "none"}}>
                     <h2><u>Statistiques détaillées:</u></h2>
                     <div>
-                      <p><b>Nombre total de lignes: {responseJSON.NbLignes}</b></p>
+                      <p><b>Nombre total de lignes: {parseInt(responseJSON.NbImport-responseJSON.ImportInFonction) + parseInt(responseJSON.TotalLignesDansFonctions)+parseInt(responseJSON.NombreLigneCommentaire)+parseInt(responseJSON.LigneCodeHorsFonction)}</b></p>
                       <p>- {responseJSON.NombreLigneCommentaire} commentaires</p>
                       <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
                       <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
-                      <p>- {responseJSON.NbImport} librairies importées</p>
+                      <p>- {responseJSON.NbImport-responseJSON.ImportInFonction} librairies importées (+{responseJSON.ImportInFonction} import dans des fonctions)</p>
                     </div>
                   </td>
                   <td style={{border: "none", width: "60%"}}>
                     <Pie
                         data={{
-                          labels: ["Commentaires", "Fonctions", "Hors fonctions"],
+                          labels: ["Commentaires", "Fonctions", "Hors fonctions", "Import"],
                           datasets: [
                             {
-                              label: 'Librairies importées',
-                              data: [responseJSON.NombreLigneCommentaire, responseJSON.TotalLignesDansFonctions, responseJSON.LigneCodeHorsFonction],
+                              label: 'Lignes',
+                              data: [responseJSON.NombreLigneCommentaire, responseJSON.TotalLignesDansFonctions, responseJSON.LigneCodeHorsFonction, responseJSON.NbImport - responseJSON.ImportInFonction],
                               backgroundColor: [
                                 '#FF6384',
                                 '#36A2EB',
                                 '#FFCE56',
-                                // Add more colors here if needed
+                                '#A3AB56',
                               ],
                             },
                           ],
@@ -185,6 +186,10 @@ const Analyseur = () => {
                   </td>
                 </tr>
               </table>
+            </div>
+          )}
+          {responseJSON && (responseJSON.NbFonctions > 0) &&(
+              <div>
               <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
                 <tr>
                 <td style={{border: "none", width: "60%"}}>
@@ -199,7 +204,11 @@ const Analyseur = () => {
                                 '#FF6384',
                                 '#36A2EB',
                                 '#FFCE56',
-                                '#F3AB56',
+                                '#A3AB56',
+                                '#B3AB56',
+                                '#C3AB56',
+                                '#D3AB56',
+                                '#E3AB56',
                               ],
                             },
                           ],
@@ -215,16 +224,18 @@ const Analyseur = () => {
                     ))}
                       <p>Longueur minimum: {responseJSON.MinLigneFonctions}</p>
                       <p>Longueur maximum: {responseJSON.MaxLigneFonctions}</p>
-                      <p>Longueur moyenne: {responseJSON.MoyLigneFonctions}</p>
+                      <p>Longueur moyenne: {Math.round(responseJSON.MoyLigneFonctions*100)/100}</p>
                   </td>
                   
                 </tr>
               </table>
-            
-              
+            </div>
+          )}
+          {responseJSON && (responseJSON.NbImport > 0) &&(
+              <div>
                 <br></br>
                 <br></br>
-                <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
+                <h2><u>Librairies importées - (lignes: {responseJSON.NbImport})</u></h2>
                   {responseJSON.Import.map((library, index) => (
                     <p>- {library} </p>
                   ))}
