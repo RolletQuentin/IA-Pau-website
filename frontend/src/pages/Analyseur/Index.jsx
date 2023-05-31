@@ -6,6 +6,9 @@ import CenterContainer from "../../containers/CenterContainer";
 import MarginContainer from "../../containers/MarginContainer";
 import VBox from "../../containers/VBox";
 import imageMoreInfo from "../../assets/moreInfoAnalyseur.jpg";
+import Chart from 'chart.js/auto';
+import { Pie } from 'react-chartjs-2';
+
 
 const Analyseur = () => {
   const [globalError, setGlobalError] = useState("");
@@ -122,6 +125,7 @@ const Analyseur = () => {
             {lines && <BasicButton onPress={handleAnalyse}>Analyser</BasicButton>}
             </div>
           <br></br>
+          <br></br>
           {responseJSON && (
             <div>
               <h1 style={{textAlign: "center"}}>Rechercher un mot:</h1>
@@ -139,36 +143,98 @@ const Analyseur = () => {
             
             <div>
               <br></br>
+              <br></br>
+              <br></br>
               <div style={{display: "flex", justifyContent: "center"}}>
                 <img style={{width: "30%"}} src={imageMoreInfo}></img>
               </div>
               <br></br>
-              <h2><u>Statistiques détaillées:</u></h2>
-              <div>
-                <p><b>Nombre total de lignes: {responseJSON.NbLignes}</b></p>
-                <p>- {responseJSON.NombreLigneCommentaire} commentaires</p>
-                <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
-                <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
-              </div>
-              <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
-              {responseJSON.Import.map((library, index) => (
-                <p>- {library} </p>
-              ))}
-              <h2><u>Fonctions créées - (lignes: {responseJSON.TotalLignesDansFonctions})</u></h2>
-              {responseJSON.Fonctions.map((fonction, index) => (
-                <div>
-                  <p>{index+1}. <b>{fonction.Nom}:</b> - (lignes: {fonction.NbLignes})</p>
-                </div>
-              ))}
-                <p>Longueur minimum: {responseJSON.MinLigneFonctions}</p>
-                <p>Longueur maximum: {responseJSON.MaxLigneFonctions}</p>
-                <p>Longueur moyenne: {responseJSON.MoyLigneFonctions}</p>
+              <br></br>
+              <br></br>
+              <br></br>
+              <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
+                <tr>
+                  <td style={{border: "none"}}>
+                    <h2><u>Statistiques détaillées:</u></h2>
+                    <div>
+                      <p><b>Nombre total de lignes: {responseJSON.NbLignes}</b></p>
+                      <p>- {responseJSON.NombreLigneCommentaire} commentaires</p>
+                      <p>- {responseJSON.TotalLignesDansFonctions} lignes dans des fonctions</p>
+                      <p>- {responseJSON.LigneCodeHorsFonction} lignes hors fonctions</p>
+                      <p>- {responseJSON.NbImport} librairies importées</p>
+                    </div>
+                  </td>
+                  <td style={{border: "none", width: "60%"}}>
+                    <Pie
+                        data={{
+                          labels: ["Commentaires", "Fonctions", "Hors fonctions"],
+                          datasets: [
+                            {
+                              label: 'Librairies importées',
+                              data: [responseJSON.NombreLigneCommentaire, responseJSON.TotalLignesDansFonctions, responseJSON.LigneCodeHorsFonction],
+                              backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                // Add more colors here if needed
+                              ],
+                            },
+                          ],
+                        }}
+                      />
+                  </td>
+                </tr>
+              </table>
+              <table style={{borderCollapse: "collapse", marginLeft: "auto", marginRight: "auto"}}>
+                <tr>
+                <td style={{border: "none", width: "60%"}}>
+                    <Pie
+                        data={{
+                          labels: responseJSON.Fonctions.map((fonction) => fonction.Nom),
+                          datasets: [
+                            {
+                              label: 'Nombre de lignes',
+                              data: responseJSON.Fonctions.map((fonction) => fonction.NbLignes),
+                              backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#F3AB56',
+                              ],
+                            },
+                          ],
+                        }}
+                      />
+                  </td>
+                  <td style={{border: "none"}}>
+                  <h2><u>Fonctions créées - (lignes: {responseJSON.TotalLignesDansFonctions})</u></h2>
+                    {responseJSON.Fonctions.map((fonction, index) => (
+                      <div>
+                        <p>{index+1}. <b>{fonction.Nom}:</b> - (lignes: {fonction.NbLignes})</p>
+                      </div>
+                    ))}
+                      <p>Longueur minimum: {responseJSON.MinLigneFonctions}</p>
+                      <p>Longueur maximum: {responseJSON.MaxLigneFonctions}</p>
+                      <p>Longueur moyenne: {responseJSON.MoyLigneFonctions}</p>
+                  </td>
+                  
+                </tr>
+              </table>
+            
+              
+                <br></br>
+                <br></br>
+                <h2><u>Librairies importées: - (lignes: {responseJSON.NbImport})</u></h2>
+                  {responseJSON.Import.map((library, index) => (
+                    <p>- {library} </p>
+                  ))}
             </div>
+            
           )}
           {lines && (
             <VBox>
               <h1><u>Votre code:</u></h1>
-              <div style={{backgroundColor: "#1515", borderStyle: "outset", borderColor: "gray", borderRadius: "2%"}}>
+              <div style={{backgroundColor: "#1515", borderStyle: "outset", borderColor: "gray", borderRadius: "20px"}}>
                 <div style={{width: "94%", height: "94%", paddingLeft: "3%", paddingTop: "3%", paddingRight: "3%", paddingBottom: "3%"}}>
                   <code>
                     {lines.map((line, index) => (
