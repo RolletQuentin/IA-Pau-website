@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS PossederRessource(
 CREATE TABLE IF NOT EXISTS NoteQuestionnaire(
     IdQuestionnaire INTEGER(16),
     IdEquipe INTEGER(16),
-    Reponse VARCHAR(256),
+    Reponse VARCHAR(2048),
     Score INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (IdQuestionnaire, IdEquipe),
     CONSTRAINT fk3 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
@@ -184,30 +184,112 @@ INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
 
 -- User etudiant--
-INSERT INTO User VALUES (4,"test@test.fr", "Dupont", "Jean1", "imageProfil", 0600000000, "mdp"); -- (Notre Leader equipe 1)
+-- Ceux de l'équipe 1 (Sur DataBattle)
+INSERT INTO User VALUES (4,"test@test.fr", "Dupont", "Jean", "imageProfil", 0600000000, "mdp"); -- (Notre Leader equipe 1)
 INSERT INTO Etudiant VALUES (00000004, "L3", "NomEcole", "NomVille", 4);
-INSERT INTO User VALUES (5,"test@test.fr", "Dupont", "Jean2", "imageProfil", 0600000000, "mdp"); -- (Nos membres equipe 1)
+INSERT INTO User VALUES (5,"test@test.fr", "Dupont", "Paul", "imageProfil", 0600000000, "mdp"); -- (Nos membres equipe 1)
 INSERT INTO Etudiant VALUES (00000005, "M1", "NomEcole", "NomVille", 5);
-INSERT INTO User VALUES (6,"test@test.fr", "Dupont", "Jean3", "imageProfil", 0600000000, "mdp");
+INSERT INTO User VALUES (6,"test@test.fr", "Dupont", "Bob", "imageProfil", 0600000000, "mdp");
 INSERT INTO Etudiant VALUES (00000006, "L3", "NomEcole", "NomVille", 6);
-INSERT INTO User VALUES (7,"test@test.fr", "Dupont", "Jean4", "imageProfil", 0600000000, "mdp");
+INSERT INTO User VALUES (7,"test@test.fr", "Dupont", "Quentin", "imageProfil", 0600000000, "mdp");
 INSERT INTO Etudiant VALUES (00000007, "M2", "NomEcole", "NomVille", 7);
+-- Ceux de l'équipe 2 (Sur DataBattle)
+INSERT INTO User VALUES (8, "test@test.fr", "Martin", "Sophie", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000008, "L3", "NomEcole", "NomVille", 8);
+INSERT INTO User VALUES (9, "test@test.fr", "Lefebvre", "Alexandre", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000009, "M1", "NomEcole", "NomVille", 9);
+INSERT INTO User VALUES (10, "test@test.fr", "Dubois", "Emma", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000010, "L3", "NomEcole", "NomVille", 10);
+INSERT INTO User VALUES (11, "test@test.fr", "Roux", "Lucas", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000011, "M2", "NomEcole", "NomVille", 11);
+-- Ceux de l'équipe 3 (Sur DataChallenge1 Projet 1)
+INSERT INTO User VALUES (12, "test@test.fr", "Leclerc", "Camille", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000012, "L3", "NomEcole", "NomVille", 12);
+INSERT INTO User VALUES (13, "test@test.fr", "Girard", "Inès", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000013, "M1", "NomEcole", "NomVille", 13);
+INSERT INTO User VALUES (14, "test@test.fr", "Fournier", "Arthur", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000014, "L3", "NomEcole", "NomVille", 14);
+INSERT INTO User VALUES (15, "test@test.fr", "Moreau", "Léa", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000015, "M2", "NomEcole", "NomVille", 15);
+-- Ceux de l'équipe 4 (Sur DataChallenge1 Projet 2)
+INSERT INTO User VALUES (16, "test@test.fr", "Dupuis", "Maxime", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000016, "L3", "NomEcole", "NomVille", 16);
+INSERT INTO User VALUES (17, "test@test.fr", "Marchand", "Laura", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000017, "M1", "NomEcole", "NomVille", 17);
+INSERT INTO User VALUES (18, "test@test.fr", "Noel", "Antoine", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000018, "L3", "NomEcole", "NomVille", 18);
+INSERT INTO User VALUES (19, "test@test.fr", "Lemoine", "Julie", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000019, "M2", "NomEcole", "NomVille", 19);
+-- Ceux de l'équipe 5 (Sur DataChallenge2 Projet 1)
+INSERT INTO User VALUES (20, "test@test.fr", "Roy", "Nicolas", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000020, "L3", "NomEcole", "NomVille", 20);
+INSERT INTO User VALUES (21, "test@test.fr", "Morin", "Catherine", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000021, "M1", "NomEcole", "NomVille", 21);
+INSERT INTO User VALUES (22, "test@test.fr", "Gagnon", "Thomas", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000022, "L3", "NomEcole", "NomVille", 22);
+INSERT INTO User VALUES (23, "test@test.fr", "Bouchard", "Mathilde", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000023, "M2", "NomEcole", "NomVille", 23);
+-- Ceux de l'équipe 6 (Sur DataChallenge2 Projet 2)
+INSERT INTO User VALUES (24, "test@test.fr", "Fortin", "Alexis", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000024, "L3", "NomEcole", "NomVille", 24);
+INSERT INTO User VALUES (25, "test@test.fr", "Laplante", "Emma", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000025, "M1", "NomEcole", "NomVille", 25);
+INSERT INTO User VALUES (26, "test@test.fr", "Barrette", "Louis", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000026, "L3", "NomEcole", "NomVille", 26);
+INSERT INTO User VALUES (27, "test@test.fr", "Lamoureux", "Sophie", "imageProfil", 0600000000, "mdp");
+INSERT INTO Etudiant VALUES (00000027, "M2", "NomEcole", "NomVille", 27);
+
 
 -- Evenements --
-INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire","2023-01-01", "2023-01-02");
-INSERT INTO Evenement VALUES (2, "DataBattle", "DataBattle1", "Description", "1er 2000€, 2eme Switch, 3eme dictionnaire", "2023-01-03", "2023-01-04");
+INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
+INSERT INTO Evenement VALUES (2, "DataBattle", "DataBattle1", "Description", "1er 5000€, 2eme 3000€, 3eme 1000€", "2023-07-01", "2023-07-31");
+INSERT INTO Evenement VALUES (3, "DataChallenge", "DataChallenge2", "Description", "1er 3500€, 2eme 2000€, 3eme 1000€","2023-06-17", "2023-06-18");
 
 -- Projets --
-INSERT INTO Projet VALUES (1, 1, "Projet 1", "Description", "Image", "Entreprise");
-INSERT INTO Projet VALUES (2, 1, "Projet 2", "Description", "Image", "Entreprise");
-INSERT INTO Projet VALUES (3, 2, "Projet 3", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (1, 2, "Nom du projet du DataBattle", "Description", "Image", "Entreprise"); -- Projet du DataBattle
+INSERT INTO Projet VALUES (2, 1, "Projet 1", "Description", "Image", "Entreprise"); -- Projets dataChallenge 1
+INSERT INTO Projet VALUES (3, 1, "Projet 2", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (4, 1, "Projet 3", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (5, 1, "Projet 1", "Description", "Image", "Entreprise"); -- Projets dataChallenge 2
+INSERT INTO Projet VALUES (6, 1, "Projet 2", "Description", "Image", "Entreprise");
 
--- Equipe --
+-- Equipe 1 --
 INSERT INTO Equipe VALUES (1, "Equipe 1", 4, 10, "lien Github", 1);
 INSERT INTO Appartenir VALUES (4, 1);
 INSERT INTO Appartenir VALUES (5, 1);
 INSERT INTO Appartenir VALUES (6, 1);
 INSERT INTO Appartenir VALUES (7, 1);
+-- Equipe 2 --
+INSERT INTO Equipe VALUES (2, "Equipe 2", 8, 14, "lien Github", 1);
+INSERT INTO Appartenir VALUES (8, 2);
+INSERT INTO Appartenir VALUES (9, 2);
+INSERT INTO Appartenir VALUES (10, 2);
+INSERT INTO Appartenir VALUES (11, 2);
+-- Equipe 3 --
+INSERT INTO Equipe VALUES (3, "Equipe 3", 12, 18, "lien Github", 2);
+INSERT INTO Appartenir VALUES (12, 3);
+INSERT INTO Appartenir VALUES (13, 3);
+INSERT INTO Appartenir VALUES (14, 3);
+INSERT INTO Appartenir VALUES (15, 3);
+-- Equipe 4 --
+INSERT INTO Equipe VALUES (4, "Equipe 4", 16, 6, "lien Github", 3);
+INSERT INTO Appartenir VALUES (16, 4);
+INSERT INTO Appartenir VALUES (17, 4);
+INSERT INTO Appartenir VALUES (18, 4);
+INSERT INTO Appartenir VALUES (19, 4);
+-- Equipe 5 --
+INSERT INTO Equipe VALUES (5, "Equipe 5", 20, 12, "lien Github", 5);
+INSERT INTO Appartenir VALUES (20, 5);
+INSERT INTO Appartenir VALUES (21, 5);
+INSERT INTO Appartenir VALUES (22, 5);
+INSERT INTO Appartenir VALUES (23, 5);
+-- Equipe 6 --
+INSERT INTO Equipe VALUES (6, "Equipe 6", 24, 19, "lien Github", 6);
+INSERT INTO Appartenir VALUES (24, 6);
+INSERT INTO Appartenir VALUES (25, 6);
+INSERT INTO Appartenir VALUES (26, 6);
+INSERT INTO Appartenir VALUES (27, 6);
+
 
 -- Ressources --
 INSERT INTO Ressources VALUES (1,"test.com", "nom ressource 1");
@@ -220,14 +302,31 @@ INSERT INTO PossederRessource VALUES (2,2);
 INSERT INTO PossederRessource VALUES (3,1);
 INSERT INTO PossederRessource VALUES (4,1);
 
--- Questionnaires --
-INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
-INSERT INTO Questionnaire VALUES (2, 2, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
-INSERT INTO Questionnaire VALUES (3, 3, "Titre questionnaire", "Sujet questionnaire", "2023-01-03", "2023-01-04");
-
+-- Questionnaires pour DataBattle1 --
+INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire1", "Sujet questionnaire", "2023-07-01", "2023-07-08");
+INSERT INTO Questionnaire VALUES (2, 1, "Titre questionnaire2", "Sujet questionnaire", "2023-07-08", "2023-07-15");
+INSERT INTO Questionnaire VALUES (3, 1, "Titre questionnaire3", "Sujet questionnaire", "2023-07-15", "2023-07-22");
+INSERT INTO Questionnaire VALUES (4, 1, "Titre questionnaire4", "Sujet questionnaire", "2023-07-22", "2023-07-29");
 -- Questions --
 -- pour questionnaire 1
 INSERT INTO Question VALUES (1, 1,"Question 1");
 INSERT INTO Question VALUES (2, 1,"Question 2");
 INSERT INTO Question VALUES (3, 1,"Question 3");
 INSERT INTO Question VALUES (4, 1,"Question 4");
+-- pour questionnaire 2
+INSERT INTO Question VALUES (5, 2, "Question 1");
+INSERT INTO Question VALUES (6, 2, "Question 2");
+INSERT INTO Question VALUES (7, 2, "Question 3");
+INSERT INTO Question VALUES (8, 2, "Question 4");
+-- pour questionnaire 3
+INSERT INTO Question VALUES (9, 3, "Question 1");
+INSERT INTO Question VALUES (10, 3, "Question 2");
+INSERT INTO Question VALUES (11, 3, "Question 3");
+INSERT INTO Question VALUES (12, 3, "Question 4");
+-- pour questionnaire 4
+INSERT INTO Question VALUES (13, 4, "Question 1");
+INSERT INTO Question VALUES (14, 4, "Question 2");
+INSERT INTO Question VALUES (15, 4, "Question 3");
+INSERT INTO Question VALUES (16, 4, "Question 4");
+-- Réponse questionaire par équipe 1 -- A IMPLEMENTER
+
