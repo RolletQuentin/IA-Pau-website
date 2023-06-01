@@ -22,10 +22,11 @@ const Analyseur = () => {
 
             fileReader.onload = (event) => {
                 const fileContent = event.target.result;
-                const allLines = fileContent.split(/\r\n|\n/);
+                let allLines = fileContent.split(/\r\n|\n/);
 
                 allLines.forEach((line) => {
-                    lines.push(line);
+                    let lineModif = line.replaceAll("\t", "    ");
+                    lines.push(lineModif);
                 });
 
                 resolve(lines);
@@ -59,10 +60,13 @@ const Analyseur = () => {
     const handleAnalyse = async () => {
         setGlobalError("");
         if (lines) {
-            const response = await fetch(process.env.REACT_APP_JAVA_PATH + "/getdata/", {
-                method: "POST",
-                body: lines.join("\n"),
-            });
+            const response = await fetch(
+                process.env.REACT_APP_JAVA_PATH + "/getdata/",
+                {
+                    method: "POST",
+                    body: lines.join("\n"),
+                }
+            );
 
             const json = await response.json();
 
@@ -250,7 +254,10 @@ const Analyseur = () => {
                                         </div>
                                     </td>
                                     <td
-                                        style={{ border: "none", width: "60%" }}
+                                        style={{
+                                            border: "none",
+                                            width: "60%",
+                                        }}
                                     >
                                         <Pie
                                             data={{
@@ -296,7 +303,10 @@ const Analyseur = () => {
                             >
                                 <tr>
                                     <td
-                                        style={{ border: "none", width: "60%" }}
+                                        style={{
+                                            border: "none",
+                                            width: "60%",
+                                        }}
                                     >
                                         <Pie
                                             data={{
@@ -428,5 +438,4 @@ const Analyseur = () => {
         </CenterContainer>
     );
 };
-
 export default Analyseur;

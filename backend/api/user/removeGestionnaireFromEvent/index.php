@@ -76,7 +76,7 @@ try {
         $query3 = "DELETE FROM Gerer WHERE IdGestionnaire=" . $IdGestionnaire . " AND IdEvenement=" . $IdEvenement . ";";
         mysqli_query($conn, $query3);
 
-        json_encode(array("sucess" => true));
+        echo json_encode(array("sucess" => true));
         http_response_code(200);
 
     } else {
