@@ -26,6 +26,8 @@ const Invitation = ({
                     Authorization: `Bearer ${user.jwt}`,
                 },
             })
+            console.log(process.env.REACT_APP_PROXY + '/api/teams/join/?IdEquipe=' + invitation.IdEquipe)
+            console.log(`Bearer ${user.jwt}`)
             await verifyAuth();
 
             const json = await response.json();
