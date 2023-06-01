@@ -220,7 +220,6 @@ function TeamView() {
 
     return (
         <StyledTeamView>
-            <NavbarOffset />
             <h1>Mon équipe</h1>
             {isLoading ? (
                 <Loader />

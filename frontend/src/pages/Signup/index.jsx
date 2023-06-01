@@ -5,7 +5,6 @@ import CenterContainer from "../../containers/CenterContainer";
 function Signup() {
     return(
         <CenterContainer style = {{minWidth: "500px"}}> 
-            <NavbarOffset/>
             <SignupForm></SignupForm>
         </CenterContainer>
     )

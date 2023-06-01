@@ -5,7 +5,6 @@ import SignupForm from "../../components/Form/Signup";
 function Profile() {
     return (
         <CenterContainer style={{ minWidth: "500px" }}>
-            <NavbarOffset />
             <SignupForm
                 title="Profil"
                 icon={true}

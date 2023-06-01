@@ -33,6 +33,7 @@ import AdminModifyUser from "./pages/Admin/AdminModifyUser";
 import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 import AdminAddGestionnaire from "./pages/Admin/AdminAddGestionnaire";
+import NavbarOffset from "./components/NavbarOffset";
 
 function App() {
     const { user, ready } = useAuthContext();
@@ -46,6 +47,7 @@ function App() {
                 }}
             >
                 <Header />
+                <NavbarOffset/>
                 {ready && (
                     <Routes>
                         <Route exact path={routes.home} element={<Home />} />
