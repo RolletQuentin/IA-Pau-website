@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS Equipe (
     Score INTEGER(16),
     LienProjet VARCHAR(512),
     IdProjet INTEGER(16),
-    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet)
+    FOREIGN KEY (IdProjet) REFERENCES Projet (IdProjet) ON DELETE CASCADE
 );
 
 -- USER
@@ -73,8 +73,8 @@ CREATE TABLE IF NOT EXISTS User(
 CREATE TABLE IF NOT EXISTS Preinscription(
     Identifiant INTEGER(16),
     IdEquipe INTEGER(16),
-    CONSTRAINT fkPréInsc1 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant),
-    CONSTRAINT fkPréInsc2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe),
+    CONSTRAINT fkPréInsc1 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE,
+    CONSTRAINT fkPréInsc2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE,
     CONSTRAINT pkPréInsc PRIMARY KEY (Identifiant, IdEquipe)
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS Etudiant(
     Ecole VARCHAR(32),
     Ville VARCHAR(32),
     Identifiant INTEGER(16),
-    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant)
+    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE
 );
 
 -- USER
@@ -96,14 +96,14 @@ CREATE TABLE IF NOT EXISTS Gestionnaire(
     Debut DATE,
     Fin DATE,
     Identifiant INTEGER(16),
-    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant)
+    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE
 );
 
 -- USER
 CREATE TABLE IF NOT EXISTS Administrateur(
     IdAdmin INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     Identifiant INTEGER(16),
-    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant)
+    FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE
 );
 
 -- EVENEMENT (Bizarre, un message peut être envoyé à un dataChallenge, à un projet, à une éuipe, à un user)
@@ -115,8 +115,8 @@ CREATE TABLE IF NOT EXISTS Message(
     IdSender INTEGER(16),
     Contenu VARCHAR(4096),
     IdEquipe INTEGER(16),
-    CONSTRAINT fk1 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement),
-    CONSTRAINT fk2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+    CONSTRAINT fk1 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE,
+    CONSTRAINT fk2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
 -- RESSOURCES Doit pouvoir etre lié a plusieurs projets il nous manque le lien posseder
@@ -141,8 +141,8 @@ CREATE TABLE IF NOT EXISTS NoteQuestionnaire(
     IdEquipe INTEGER(16),
     Score INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (IdQuestionnaire, IdEquipe),
-    CONSTRAINT fk3 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
-    CONSTRAINT fk4 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+    CONSTRAINT fk3 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire) ON DELETE CASCADE,
+    CONSTRAINT fk4 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ReponseQuestion(
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS ReponseQuestion(
     IdEquipe INTEGER(16),
     Reponse VARCHAR(4096),
     CONSTRAINT pkRQuestion PRIMARY KEY (IdQuestion, IdEquipe),
-    CONSTRAINT fkRQuestion1 FOREIGN KEY (IdQuestion) REFERENCES Question (IdQuestion),
-    CONSTRAINT fkRQuestion2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+    CONSTRAINT fkRQuestion1 FOREIGN KEY (IdQuestion) REFERENCES Question (IdQuestion) ON DELETE CASCADE,
+    CONSTRAINT fkRQuestion2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS ReponseQuestionnaire(
@@ -159,8 +159,8 @@ CREATE TABLE IF NOT EXISTS ReponseQuestionnaire(
     IdEquipe INTEGER(16),
     DateReponse DATE,
     CONSTRAINT pkRQuestionnaire PRIMARY KEY (IdQuestionnaire, IdEquipe),
-    CONSTRAINT fkRQuestionnaire1 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire),
-    CONSTRAINT fkRQuestionnaire2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+    CONSTRAINT fkRQuestionnaire1 FOREIGN KEY (IdQuestionnaire) REFERENCES Questionnaire (IdQuestionnaire) ON DELETE CASCADE,
+    CONSTRAINT fkRQuestionnaire2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
 
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS Inscrire(
     Identifiant INTEGER(16),
     IdEvenement INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (Identifiant, IdEvenement),
-    CONSTRAINT fk5 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant),
-    CONSTRAINT fk6 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+    CONSTRAINT fk5 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE,
+    CONSTRAINT fk6 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE
 );
 
 -- USER (User appartenir à Equipe)
@@ -178,8 +178,8 @@ CREATE TABLE IF NOT EXISTS Appartenir(
     Identifiant INTEGER(16),
     IdEquipe INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (Identifiant, IdEquipe),
-    CONSTRAINT fk7 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant),
-    CONSTRAINT fk8 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe)
+    CONSTRAINT fk7 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE,
+    CONSTRAINT fk8 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
 -- USER & EVENEMENT
@@ -187,8 +187,8 @@ CREATE TABLE IF NOT EXISTS Gerer(
     IdGestionnaire INTEGER(16),
     IdEvenement INTEGER(16),
     CONSTRAINT p1 PRIMARY KEY (IdEvenement, IdGestionnaire),
-    CONSTRAINT fk9 FOREIGN KEY (IdGestionnaire) REFERENCES Gestionnaire (IdGestionnaire),
-    CONSTRAINT fk10 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement)
+    CONSTRAINT fk9 FOREIGN KEY (IdGestionnaire) REFERENCES Gestionnaire (IdGestionnaire) ON DELETE CASCADE,
+    CONSTRAINT fk10 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE
 );
 
 
