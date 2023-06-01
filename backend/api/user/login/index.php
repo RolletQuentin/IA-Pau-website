@@ -77,7 +77,7 @@ if(!(str_contains($email, "@"))){
 
             $secretKey  = '2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12';
             $issuedAt   = new DateTimeImmutable();
-            $expire     = $issuedAt->modify('+1 minutes')->getTimestamp();      
+            $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      
             $serverName = "api.iapau.cytech";
 
             $data = [

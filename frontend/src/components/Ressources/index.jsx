@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import Button from "../Button";
 import RessourceIcon from "../../assets/files.png";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledRessource = styled(Button)`
     display: flex;
@@ -32,6 +33,7 @@ function Ressource() {
     const { user } = useAuthContext();
     const { id_project } = useParams();
     const [ressources, setRessources] = useState("");
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id_project !== undefined && user) {
@@ -47,9 +49,11 @@ function Ressource() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setRessources(json.Ressources);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };

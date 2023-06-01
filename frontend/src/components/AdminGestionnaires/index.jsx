@@ -80,12 +80,12 @@ function AdminGestionnaires({ id_event, className }) {
                             },
                         }
                     );
-                    verifyAuth()
+                    await verifyAuth()
                     const json = await response.json();
                     const events = json;
                     setData(events);
                 } catch (err) {
-                    verifyAuth()
+                    await verifyAuth()
                     setError(err);
                     console.error(err);
                 } finally {

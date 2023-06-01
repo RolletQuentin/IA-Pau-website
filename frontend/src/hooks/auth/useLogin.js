@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
+import { useVerifyAuth } from "./useVerifyAuth";
 
 export const useLogin = (fakeRole = null) => {
     // error
@@ -22,7 +23,6 @@ export const useLogin = (fakeRole = null) => {
                     'Content-Type': 'application/json'
                 }
             })
-    
             const json = await response.json();
             if (!response.ok) {      
                 setGlobalError(json.error);
