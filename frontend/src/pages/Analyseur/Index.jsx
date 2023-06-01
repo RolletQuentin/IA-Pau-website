@@ -25,10 +25,11 @@ const Analyseur = () => {
   
       fileReader.onload = (event) => {
         const fileContent = event.target.result;
-        const allLines = fileContent.split(/\r\n|\n/);
+        let allLines = fileContent.split(/\r\n|\n/);
         
         allLines.forEach((line) => {
-          lines.push(line);
+          let lineModif = line.replaceAll("\t", "    ");
+          lines.push(lineModif);
         });
   
         resolve(lines);
@@ -62,7 +63,7 @@ const Analyseur = () => {
   const handleAnalyse = async () => {
     setGlobalError("");
     if (lines) {
-      const response = await fetch("http://localhost:8000/getdata/", {
+      const response = await fetch("http://localhost:8081/getdata/", {
         method: "POST",
         body: lines.join("\n"),
       });
@@ -84,7 +85,7 @@ const Analyseur = () => {
     setGlobalError("");
     const pattern = document.getElementById("searchBAR").value;
     if (lines && pattern != "") {
-      const response = await fetch("http://localhost:8000/search/?search=" + pattern, {
+      const response = await fetch("http://localhost:8081/search/?search=" + pattern, {
         method: "POST",
         body: lines.join("\n"),
       });

@@ -13,6 +13,10 @@ if ($method == "OPTIONS") {
 }
 // --
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once('../../utils/StringCorrection.php');
 
 $entityBody = file_get_contents('php://input');
@@ -44,21 +48,20 @@ try {
     include_once('../methods.php');
 
     $arrayOfGestionnaire = array();
-    $query = "SELECT * FROM Gestionnaire AS g INNER JOIN User AS u ON u.Identifiant = g.Identifiant;";
+    $query = "SELECT * FROM Gestionnaire;";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0){
 
         while($row = mysqli_fetch_array($result)){
             $Id = $row["Identifiant"];
             $userArray = getUserArrayFromId($Id);
+            var_dump($userArray);
             array_push($arrayOfGestionnaire, $userArray);
         }
 
-    } else {
-        throw new Exception ("Le data challenge n'existe pas !");
-    }
+    } 
 
-    json_encode($arrayOfGestionnaire);
+    echo json_encode($arrayOfGestionnaire);
     http_response_code(200);
 
 } catch (Exception $e){
