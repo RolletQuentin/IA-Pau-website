@@ -124,7 +124,7 @@ function TeamView() {
     
             if (response.ok) {
                 setTeamData(json)
-                fetchProjets(json)
+                await fetchProjets(json)
             }
         }
         const fetchPendingInvitation = async () => {
@@ -134,7 +134,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             } )
-            verifyAuth();
+            await verifyAuth();
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -170,7 +170,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             })
-
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -197,7 +197,7 @@ function TeamView() {
                 },
                 body: JSON.stringify({Nom: teamData.Nom})
             })
-
+            await verifyAuth()
             console.log({Nom: teamData.Nom})
             if (!response.ok) {     
             
@@ -228,7 +228,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             } )
-            verifyAuth();
+            await verifyAuth();
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -249,6 +249,7 @@ function TeamView() {
                 },
                 body: JSON.stringify({email: newMember})
             })
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -272,7 +273,7 @@ function TeamView() {
                 <SectionContainer style={{width: "600px"}}>
                     <VBox gap="30px">
                         <Button className="button">
-                            <HBox style={{width: "100%"}} gap="30px">
+                            <HBox style={{width: "100%"}} gap="50px">
                                 {teamData.IdLeader === user.userId || user.role === "Administrateur" ?
                                 <>
                                 <input 
@@ -280,7 +281,8 @@ function TeamView() {
                                         backgroundColor: "#0000",
                                         border: "none",
                                         borderBottom: "solid 1px var(--dark-color)",
-                                        flexGrow: 1
+                                        flexGrow: 1,
+                                        height: "40px"
                                     }}
                                     type="text"
                                     onChange={(e) => setTeamName(e.target.value)}
@@ -311,7 +313,7 @@ function TeamView() {
                                 background: "var(--primary)",
                                 justifyContent: "space-between",
                                 width: "100%",
-                                minHeight: "80px",
+                                minHeight: "40px",
                                 margin: 0,
                                 marginBottom: 0,
                                 borderRadius: "30px",
