@@ -27,7 +27,47 @@
         }
 
         $IdUser = getUserIdFromJWT($token);
+        $query = "SELECT * FROM Equipe WHERE IdEquipe = " . $IdEquipe . ";";
+        $result = mysqli_query($conn, $query);
+        $IdProjet = -1;
+        if(mysqli_num_rows($result) > 0) {
+            if($row = mysqli_fetch_assoc($result)){
+                $IdProjet = $row["IdProjet"];
+            }
+        }
+
+        if($IdProjet == -1){
+            throw new Exception ("Aucune Projet n'a pu être trouvé !");
+        }
+
+        $role = getRoleFromJWT($token);
         $IdLeader = getIdOfLeader($IdEquipe);
+
+        $IdEvenement = getIdEvenementFromProjet($IdProjet);
+
+        $hasPerm = false;
+        $typeOfPerm = "";
+        if($role == "Administrateur"){
+            $hasPerm = true;
+        } else if ($role == "Gestionnaire"){
+            $arrayGestionnaire = getArrayOfGestionnaireOfEvent($IdEvenement);
+            if(in_array($IdUser, $arrayGestionnaire) && AccountIsActive($IdUser)){
+                $hasPerm = true;
+            } else {
+                $typeOfPerm = "Not manager of this event";
+            }
+        } else if ($role == "Etudiant"){
+
+            if($IdLeader == $IdUser){
+                $hasPerm = true;
+            } else {
+                $typeOfPerm = "not captain of this team.";
+            }
+        }
+
+        if($hasPerm == false){
+            throw new Exception ("Vous n'avez pas récupéré les messages de cette équipe. (" . $typeOfPerm .")");
+        }
 
         if($IdLeader != $IdUser){
             throw new Exception ("Il faut être le leader de l'équipe pour pré inscrire un utilisateur.");

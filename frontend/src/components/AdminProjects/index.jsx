@@ -57,7 +57,7 @@ const StyledAdminProjects = styled.div`
     }
 `;
 
-function AdminProjects({ id }) {
+function AdminProjects({ id, className }) {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
@@ -94,7 +94,7 @@ function AdminProjects({ id }) {
         }
     }, [id, user]);
     return (
-        <StyledAdminProjects>
+        <StyledAdminProjects className={className}>
             {isLoading ? (
                 <Loader />
             ) : (
