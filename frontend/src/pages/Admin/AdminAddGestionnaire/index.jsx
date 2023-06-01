@@ -86,12 +86,12 @@ function AdminAddGestionnaire() {
                             },
                         }
                     );
-                    verifyAuth();
+                    await verifyAuth();
                     const json = await response.json();
                     const gestionnaires = json;
                     setData(gestionnaires);
                 } catch (err) {
-                    verifyAuth();
+                    await verifyAuth();
                     setError(err);
                     console.error(err);
                 } finally {

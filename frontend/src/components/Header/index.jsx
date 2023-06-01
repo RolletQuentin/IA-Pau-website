@@ -88,11 +88,11 @@ function Header() {
                     {/* if the user is connected*/}
                     {user ? (
                         <>
-                            <li>
+                            {user.role !== "Administrateur" && <li>
                                 <MyNavLink to={routes.myDataChallenges}>
                                     Mes datas challenges
                                 </MyNavLink>
-                            </li>
+                            </li>}
                             <li>
                                 <MyNavLink
                                     to={`${routes.profile}/${user.userId}`}

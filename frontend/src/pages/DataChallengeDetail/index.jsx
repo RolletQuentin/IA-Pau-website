@@ -9,6 +9,7 @@ import MarginContainer from "../../containers/MarginContainer";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import routes from "../../utils/routes";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 function DataChallengeDetail() {
     const [globalError, setGlobalError] = useState("")
@@ -19,6 +20,7 @@ function DataChallengeDetail() {
     const [projets, setProjets] = useState([])
     const {id} = useParams();
     const {user} = useAuthContext();
+    const {verifyAuth} = useVerifyAuth()
     
     const handleCreateTeam = () => {
         const fetchHasTeam = async () => {
@@ -51,7 +53,7 @@ function DataChallengeDetail() {
                     IdProjet: projets[0].IdProjet
                 })
             })
-    
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
