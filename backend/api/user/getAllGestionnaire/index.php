@@ -55,7 +55,6 @@ try {
         while($row = mysqli_fetch_array($result)){
             $Id = $row["Identifiant"];
             $userArray = getUserArrayFromId($Id);
-            var_dump($userArray);
             array_push($arrayOfGestionnaire, $userArray);
         }
 
