@@ -237,6 +237,24 @@ Grâce à ces diagrammes, nous avons réalisé une maquette pour nous assurer de
 ![Administrateur : Administrer Ressources](images/maquette/Administrateur/9.png){height=100%}
 
 
+### Postman
+
+Nous avons adopté une approche de développement où nous avons séparé le backend (API PHP) du frontend de notre application. Pour documenter et tester les différentes requêtes de notre API, nous avons utilisé Postman.
+
+Postman est un outil très pratique qui nous permet de documenter et d'explorer les fonctionnalités de notre API. Nous pouvons créer des collections de requêtes, définir les paramètres et les en-têtes nécessaires, et tester chaque requête pour nous assurer qu'elle fonctionne correctement.
+
+En utilisant Postman, nous avons pu établir une documentation complète de notre API, y compris les différentes routes, les méthodes HTTP supportées, les paramètres requis et facultatifs, ainsi que les réponses attendues. Cela facilite la collaboration avec notre équipe de développement frontend, car ils peuvent consulter la documentation pour comprendre comment interagir avec l'API et utiliser les données retournées.
+
+De plus, Postman nous a permis de tester chaque requête individuellement pour nous assurer que notre API répond correctement et renvoie les données attendues. Nous avons pu vérifier les résultats et traiter les erreurs éventuelles pour améliorer la robustesse et la fiabilité de notre application.
+
+En résumé, l'utilisation de Postman pour documenter et tester notre API PHP nous a permis de faciliter la communication et la collaboration entre le backend et le frontend de notre application, en assurant une compréhension commune des fonctionnalités de l'API et en garantissant son bon fonctionnement.
+
+![Postman toutes nos requêtes](images/postman/requetes.jpg){height=100%}
+
+![Postman exemple 1](images/postman/exemple_createEvenement.png){height=100%}
+
+![Postman exemple 2](images/postman/exemple2.jpg){height=100%}
+
 ## Présentation des modèles de données 
 
 Lors de la conception de notre application, nous avons réalisé une modélisation des données en utilisant un Modèle Conceptuel de Données (MCD) et en construisant une Base de Données (BDD) en conséquence. Cette étape est cruciale pour définir la structure des données et les relations entre les différentes entités de notre système.
@@ -265,17 +283,22 @@ Ces choix de modélisation nous permettent de stocker et de gérer efficacement 
 
 Expliquer nos étapes, on a commencé brainstorming, fait les diagrammes séquence, use case puis BDD et maquette, creation equipes BACK ET FRONT, ensuite on a développé Backend et Front end symbiose.
 
+## Présentation du développement des composants React (EQUIPE FRONT !!!!!!!!!)
+
+
+## Présentation du web service REST PHP (PARLER DE LA SECURISATION)
+
+Parler de la sécurisation PHP avec JWT
+
+## Présentation de l'API Java (ARTHUR !!!!!!!!!!)
+
+Description du fonctionnement de l'analyseur de code et de la visualisation des résultats.
+
+Mettre graphe.
+
 ## Description des fonctionnalités implémentées
 
-Descriptions fonctionnalités implémentés
-
-## Présentation du web service REST et de l'API en Java pour l'analyse de code source
-
-PARTIE ARTHUR
-
-## Description de la visualisation des résultats d'analyse de code source
-
-PARTIE ARTHUR Mettre Graphe
+Descriptions fonctionnalités implémentés et mettre des images. 
 
 # Résultats et évaluation
 
@@ -313,6 +336,7 @@ En résumé, ce projet de fin d'année a été une occasion unique de mettre en 
 
 ## Récapitulation des réalisations
 
+SUREMENT RIEN
 
 
 ## Retour sur les apprentissages et les difficultés rencontrées
@@ -325,6 +349,10 @@ Surement rien ici.
 
 ## Fichiers de code source pertinents
 
+Surement rien
+
 ## Documentation technique
+
+Surement rien
 
 ## Capture d'écran de l'application ou lien vers une démo en ligne
