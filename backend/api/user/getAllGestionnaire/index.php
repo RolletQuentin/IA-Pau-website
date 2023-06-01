@@ -54,7 +54,20 @@ try {
 
         while($row = mysqli_fetch_array($result)){
             $Id = $row["Identifiant"];
+            $IdGestionnaire = $row["IdGestionnaire"];
+
+            $arrayOfEvenements = array();
+            $query2 = "SELECT * FROM Gerer WHERE IdGestionnaire = " . $IdGestionnaire . ";";
+            $result2 = mysqli_query($conn, $query2);
+
+            if(mysqli_num_rows($result2) > 0){
+                while($row2 = mysqli_fetch_array($result2)){
+                    array_push($arrayOfEvenements, $row2["IdEvenement"]);
+                }
+            }
+
             $userArray = getUserArrayFromId($Id);
+            array_push($userArray, $arrayOfEvenements);
             array_push($arrayOfGestionnaire, $userArray);
         }
 
