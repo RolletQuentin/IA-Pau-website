@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/getAllRessourcesByEvent/?id=2
+// Exemple utilisation : http://localhost/api/evenements/getAllQuestionnairesByEvent/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -34,32 +34,35 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $evenement->IdEvenement = $IdEvenement;
 
         // On récupère l'evenement
-        $stmt = $evenement->getAllRessourcesByEvent();
+        $stmt = $evenement->getAllQuestionnairesByEvent();
 
         // On vérifie si on a au moins 1 produit
         if($stmt->rowCount() > 0){
             // On initialise un tableau associatif
-            $tableauRessources = [];
-            $tableauRessources['Ressources'] = [];
+            $tableauQuestionnaires = [];
+            $tableauQuestionnaires['Questionnaires'] = [];
 
             // On parcourt les produits
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 extract($row);
 
                 $prod = [
-                    "IdRessource" => $IdRessource,
-                    "UrlRessource" => $UrlRessource,
-                    "NomRessource" => $NomRessource
+                    "IdQuestionnaire" => $IdQuestionnaire,
+                    "IdProjet" => $IdProjet,
+                    "Titre" => $Titre,
+                    "Sujet" => $Sujet,
+                    "Debut" => $Debut,
+                    "Fin" => $Fin
                 ];
 
-                $tableauRessources['Ressources'][] = $prod;
+                $tableauQuestionnaires['Questionnaires'][] = $prod;
             }
 
             // On envoie le code réponse 200 OK
             http_response_code(200);
 
             // On encode en json et on envoie
-            echo json_encode($tableauRessources);
+            echo json_encode($tableauQuestionnaires);
         }
     }
 }else{

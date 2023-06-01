@@ -1,5 +1,5 @@
 <?php
-// Exemple utilisation : http://localhost/api/evenements/getAllRessourcesByEvent/?id=2
+// Exemple utilisation : http://localhost/api/questionnaires/getAllQuestionsByIdQuestionnaire/?id=2
 // Headers requis
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -18,48 +18,48 @@ if ($method == "OPTIONS") {
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     // On inclut les fichiers de configuration et d'accès aux données
     include_once '../../config/Database.php';
-    include_once '../../models/Evenements.php';
+    include_once '../../models/Questionnaires.php';
 
     // On instancie la base de données
     $database = new Database();
     $db = $database->getConnection();
 
-    // On instancie les evenements
-    $evenement = new Evenements($db);
+    // On instancie les questionnaires
+    $questionnaire = new Questionnaires($db);
 
     // On récupère l'Id passé en paramètre 
-    $IdEvenement = $_GET['id'];
+    $IdQuestionnaire = $_GET['id'];
 
-    if(!empty($IdEvenement)){
-        $evenement->IdEvenement = $IdEvenement;
+    if(!empty($IdQuestionnaire)){
+        $questionnaire->IdQuestionnaire = $IdQuestionnaire;
 
         // On récupère l'evenement
-        $stmt = $evenement->getAllRessourcesByEvent();
+        $stmt = $questionnaire->getAllQuestionsByIdQuestionnaire();
 
         // On vérifie si on a au moins 1 produit
         if($stmt->rowCount() > 0){
             // On initialise un tableau associatif
-            $tableauRessources = [];
-            $tableauRessources['Ressources'] = [];
+            $tableauQuestions = [];
+            $tableauQuestions['Questions'] = [];
 
             // On parcourt les produits
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 extract($row);
 
                 $prod = [
-                    "IdRessource" => $IdRessource,
-                    "UrlRessource" => $UrlRessource,
-                    "NomRessource" => $NomRessource
+                    "IdQuestion" => $IdQuestion,
+                    "IdQuestionnaire" => $IdQuestionnaire,
+                    "Question" => $Question
                 ];
 
-                $tableauRessources['Ressources'][] = $prod;
+                $tableauQuestions['Questions'][] = $prod;
             }
 
             // On envoie le code réponse 200 OK
             http_response_code(200);
 
             // On encode en json et on envoie
-            echo json_encode($tableauRessources);
+            echo json_encode($tableauQuestions);
         }
     }
 }else{

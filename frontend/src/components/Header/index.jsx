@@ -45,13 +45,6 @@ const StyledHeader = styled.header`
 function Header() {
     const { user } = useAuthContext();
     const { logout } = useLogout();
-    const [id, setId] = useState("");
-
-    useEffect(() => {
-        if (user) {
-            setId(user.id);
-        }
-    }, [user]);
 
     // to add an animation when we scroll on the page
     const [isFixed, setIsFixed] = useState(false);
@@ -95,7 +88,9 @@ function Header() {
                                 </MyNavLink>
                             </li>
                             <li>
-                                <MyNavLink to={`${routes.profile}/${id}`}>
+                                <MyNavLink
+                                    to={`${routes.profile}/${user.userId}`}
+                                >
                                     Profil
                                 </MyNavLink>
                             </li>

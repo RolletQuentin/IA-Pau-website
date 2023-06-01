@@ -11,7 +11,7 @@ function DataChallengeItem({ id, title }) {
             <HBox style={{minWidth: "600px"}} gap="20px">
                 <p style={{margin: 0}}>{title}</p>
                 <Link to={`${routes.dataChallenge}/${id}`} style={{marginLeft: "auto"}}>
-                    <BasicButton style={{height: "min-content", padding: "5px 20px"}}>infos</BasicButton>
+                    <BasicButton style={{height: "min-content", padding: "5px 20px"}}><h2>infos</h2></BasicButton>
                 </Link>
             </HBox>
         </SectionContainer>
