@@ -12,6 +12,7 @@ import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 import routes from "../../../utils/routes";
 
 const StyledAdminRessources = styled.div`
+
     display: flex;
     flex-direction: column;
     align-items: center;
