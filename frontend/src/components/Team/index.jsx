@@ -6,6 +6,7 @@ import Button from "../Button";
 import InputTextDefault from "../Input/Text/Default";
 import BasicButton from "../BasicButton";
 import { togglePatch } from "../../toggles/togglePatch";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledTeam = styled(Button)`
     display: flex;
@@ -28,6 +29,7 @@ function Team() {
     const { id_equipe } = useParams();
     const [data, setData] = useState({});
     const [githubLink, setGithubLink] = useState("");
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id_equipe !== undefined && user) {
@@ -43,10 +45,12 @@ function Team() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setData(json);
                     setGithubLink(json.LienProjet);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };

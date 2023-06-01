@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import Button from "../Button";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledProject = styled(Button)`
     display: flex;
@@ -26,6 +27,7 @@ function Project() {
     const [label, setLabel] = useState("");
     const [description, setDescription] = useState("");
     const [company, setCompany] = useState("");
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id_project !== undefined && user) {
@@ -41,11 +43,13 @@ function Project() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setLabel(json["Libele"]);
                     setDescription(json["Description"]);
                     setCompany(json["Entreprise"]);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };

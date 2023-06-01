@@ -8,6 +8,7 @@ import routes from "../../utils/routes";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { useState, useEffect } from "react";
 import toggleDelete from "../../toggles/toggleDelete";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledAdminRessources = styled.div`
     width: 900px;
@@ -61,6 +62,7 @@ function AdminRessourcesDataChallenge({ id, className }) {
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const {verifyAuth} = useVerifyAuth()
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
@@ -77,10 +79,12 @@ function AdminRessourcesDataChallenge({ id, className }) {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     const ressources = json.Ressources;
                     setData(ressources);
                 } catch (err) {
+                    await verifyAuth()
                     setError(err);
                     console.error(err);
                 } finally {
