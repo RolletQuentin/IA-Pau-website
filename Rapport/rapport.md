@@ -34,7 +34,8 @@ Au cours de notre première année à l'école d'ingénieurs CY-Tech Pau, nous a
 
 ## Contexte et objectifs du projet
 
-Ce projet a été conçu dans le but de nous permettre d'appliquer concrètement les compétences que nous avons acquises tout au long de notre première année. En travaillant en équipe, nous avons eu l'occasion de collaborer avec des camarades de promotion, formant ainsi des équipes aléatoires, afin de développer nos compétences en travail d'équipe et de renforcer notre capacité à travailler avec autrui. L'objectif principal était de concevoir un site permettant aux utilisateurs de s'inscrire et de participer aux DataBattles et Data Challenges proposés par l'association IAPau.
+Ce projet a été conçu dans le but de nous permettre d'appliquer concrètement les compétences que nous avons acquises tout au long de notre première année. En travaillant en équipe, nous avons eu l'occasion de collaborer avec des camarades de promotion, formant ainsi des équipes aléatoires, afin de développer nos compétences en travail d'équipe et de renforcer notre capacité à travailler avec autrui.
+L'objectif principal était de concevoir un site permettant aux utilisateurs de s'inscrire et de participer aux Data Challenges et Data Battles proposés par l'association IA Pau, ainsi que de permettre aux Gestionnaires de gérer ces Data Challenges/Battles et aux Administrateurs de gérer en plus des Data Challenges/Battles les utilisateurs et ressources du site. 
 
 # Analyse des besoins
 
@@ -45,7 +46,7 @@ L'association IA Pau est une organisation à but non lucratif qui organise diver
 ## Description du déroulement d'un data challenge
 
 Un Data Challenge est une compétition sur un weekend dans laquelle plusieurs équipes s'affrontent pour résoudre un problème spécifique en utilisant des techniques de traitement et d'analyse des données. Les équipes sont évaluées en fonction de la qualité de leurs résultats et de leur approche méthodologique.
-Un Data Battle est une variante du Data Challenge qui se déroule sur une période d'un mois. Il se compose d'un projet unique et les équipes participantes doivent répondre à des questionnaires hebdomadaires. Un podium est affiché sur la page d'accueil du site, mis à jour chaque semaine en fonction des résultats des questionnaires.
+Un Data Battle est une variante du Data Challenge qui se déroule sur une période d'un mois, il se compose d'un projet unique et les équipes participantes doivent répondre à des questionnaires hebdomadaires. Un podium est affiché sur la page d'accueil du site, mis à jour chaque semaine en fonction des résultats des questionnaires.
 
 ## Identification des besoins et enjeux de l'application
 
@@ -136,6 +137,8 @@ S'ils cliquent sur participer ils sont invités à se connecter où à créer un
 Front : Serveur React
 
 Back : Api PHP, Api Java
+
+Docker
 
 ## Présentation des modèles de données (BDD, MCD)
 
