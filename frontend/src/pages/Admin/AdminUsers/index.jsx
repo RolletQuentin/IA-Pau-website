@@ -10,6 +10,7 @@ import { useAuthContext } from "../../../hooks/auth/useAuthContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import toggleDelete from "../../../toggles/toggleDelete";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const StyledAdminUsers = styled.div`
     margin: auto;
@@ -64,6 +65,7 @@ function AdminUsers() {
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const {verifyAuth} = useVerifyAuth()
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
@@ -79,9 +81,11 @@ function AdminUsers() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setData(json);
                 } catch (err) {
+                    await verifyAuth()
                     setError(err);
                     console.error(err);
                 } finally {

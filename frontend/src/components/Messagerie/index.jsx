@@ -7,6 +7,7 @@ import Message from "../Message";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { togglePost } from "../../toggles/togglePost";
 import { Loader } from "../../utils/Atoms";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledMessagerie = styled.div`
     & .mainContainer {
@@ -77,6 +78,7 @@ function Messagerie({ className }) {
     const [isLoading, setIsLoading] = useState(false);
     const [content, setContent] = useState("");
     const conversationRef = useRef(null);
+    const {verifyAuth} = useVerifyAuth()
 
     // fetch all the messages from one team
     useEffect(() => {
@@ -93,10 +95,12 @@ function Messagerie({ className }) {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setMessages(json);
                     scrollToBottom();
                 } catch (error) {
+                    await verifyAuth()
                     console.error(error);
                 } finally {
                     setIsLoading(false);

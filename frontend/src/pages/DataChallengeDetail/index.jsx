@@ -19,7 +19,7 @@ function DataChallengeDetail() {
     const [projets, setProjets] = useState([])
     const {id} = useParams();
     const {user} = useAuthContext();
-
+    
     const handleCreateTeam = () => {
         const fetchHasTeam = async () => {
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/me/?IdEvent=' + id, {

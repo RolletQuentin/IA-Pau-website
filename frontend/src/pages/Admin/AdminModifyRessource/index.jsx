@@ -8,6 +8,7 @@ import BasicButton from "../../../components/BasicButton";
 import { togglePut } from "../../../toggles/togglePut";
 import { togglePost } from "../../../toggles/togglePost";
 import Button from "../../../components/Button";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const StyledAdminRessources = styled.div`
     display: flex;
@@ -33,6 +34,7 @@ function AdminModifyRessource() {
     const { user } = useAuthContext();
     const { id } = useParams();
     const [urlRessource, setUrlRessource] = useState("");
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id !== undefined && user) {
@@ -48,9 +50,11 @@ function AdminModifyRessource() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setUrlRessource(json["UrlRessource"]);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };
