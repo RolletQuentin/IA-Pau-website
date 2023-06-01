@@ -17,11 +17,25 @@ const StyledDataChallengeRendu = styled.div`
     & .main {
         display: flex;
         flex-direction: row;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    & .left {
+        display: flex;
+        flex-direction: column;
         align-items: center;
+        margin-right: 20px;
+        height: 100%;
+    }
+
+    & .left > div {
+        margin-bottom: 20px;
     }
 
     & .messagerie {
-        margin: 70px 20px 20px 20px;
+        flex: 1;
+        height: 100%;
     }
 `;
 

@@ -13,9 +13,13 @@ const StyledAddUser = styled.div`
 function AdminAddUser() {
     return (
         <StyledAddUser>
-            <h1>Ajouter un utilisateur</h1>
-            <div></div>
-            <SignupForm />
+            <NavbarOffset />
+            <SignupForm
+                title="Ajouter / Modifier utilisateur"
+                icon={false}
+                buttonText="Enregistrer"
+                firstAuth={false}
+            />
         </StyledAddUser>
     );
 }

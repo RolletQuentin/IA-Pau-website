@@ -77,15 +77,15 @@ if(!(str_contains($email, "@"))){
 
             $secretKey  = '2z5ef(tv4tSJJLFS5v(15t15ADS1v(t4e5vazdza?../.PKr4d12';
             $issuedAt   = new DateTimeImmutable();
-            $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      // Add 60 seconds
+            $expire     = $issuedAt->modify('+60 minutes')->getTimestamp();      
             $serverName = "api.iapau.cytech";
 
             $data = [
-                'iat'  => $issuedAt->getTimestamp(),         // time when the token was generated
-                'iss'  => $serverName,                       // Issuer
-                'nbf'  => $issuedAt->getTimestamp(),         // Not before
-                'exp'  => $expire,                           // Expire
-                'userId' => $userId,                         // User ID
+                'iat'  => $issuedAt->getTimestamp(),         
+                'iss'  => $serverName,                       
+                'nbf'  => $issuedAt->getTimestamp(),         
+                'exp'  => $expire,                           
+                'userId' => $userId,                         
             ];
             $jwt = JWT::encode(
                 $data,
