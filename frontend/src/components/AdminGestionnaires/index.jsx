@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import BasicButton from "../../components/BasicButton";
 import { Loader } from "../../utils/Atoms";
 import Button from "../../components/Button";
-import toggleDelete from "../../toggles/toggleDelete";
-import DataChallengeIcon from "../../assets/data-challenges.png";
+import AbstractUser from "../../assets/abstract-user.png";
+import axios from "axios";
 
 const StyledAdminProjects = styled.div`
     margin: auto;
@@ -57,7 +57,7 @@ const StyledAdminProjects = styled.div`
     }
 `;
 
-function AdminGestionnaires({ id, className }) {
+function AdminGestionnaires({ id_event, className }) {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
@@ -65,12 +65,12 @@ function AdminGestionnaires({ id, className }) {
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
-        if (user && id !== undefined) {
+        if (user && id_event !== undefined) {
             const fetchData = async () => {
                 try {
                     const response = await fetch(
                         process.env.REACT_APP_PROXY +
-                            `/api/evenements/getGestionnaire/?IdEvent=${id}`,
+                            `/api/evenements/getGestionnaire/?IdEvent=${id_event}`,
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -79,7 +79,7 @@ function AdminGestionnaires({ id, className }) {
                         }
                     );
                     const json = await response.json();
-                    const events = json.Projets;
+                    const events = json;
                     setData(events);
                 } catch (err) {
                     setError(err);
@@ -92,7 +92,29 @@ function AdminGestionnaires({ id, className }) {
             setIsLoading(true);
             fetchData();
         }
-    }, [id, user]);
+    }, [id_event, user]);
+
+    const toggleDelete = async (url, user, data) => {
+        console.log("salut");
+        // eslint-disable-next-line no-restricted-globals
+        const confirmResponse = confirm(
+            `Êtes-vous sûr de vouloir supprimer cet élément ?`
+        );
+        if (confirmResponse) {
+            try {
+                await axios.delete(url, {
+                    headers: {
+                        Authorization: `Bearer ${user.jwt}`,
+                        "Content-Type": "application/json",
+                    },
+                    data: JSON.stringify(data),
+                });
+                console.log("Élément supprimé avec succès");
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     return (
         <StyledAdminProjects className={className}>
@@ -102,30 +124,37 @@ function AdminGestionnaires({ id, className }) {
                 <Button className="section">
                     <h2>Gestionnaire(s)</h2>
                     {data &&
-                        data.map(({ IdProjet, Libele }) => (
-                            <Button key={IdProjet} className="button">
+                        data.map(({ id, email, lastname, firstname }) => (
+                            <Button key={id} className="button">
                                 <div className="left">
                                     <img
-                                        src={DataChallengeIcon}
-                                        alt="Icone data challenge"
+                                        src={AbstractUser}
+                                        alt="Icone utilisateur"
                                         className="icon"
                                     />
-                                    <span>{Libele}</span>
+                                    <span>
+                                        {firstname} {lastname}
+                                    </span>
                                 </div>
+                                <span>{email}</span>
                                 <div>
                                     <BasicButton
                                         className="delete"
                                         onPress={() =>
                                             toggleDelete(
                                                 process.env.REACT_APP_PROXY +
-                                                    `/api/evenements/deleteEvenement/?id=${IdProjet}`,
-                                                user
+                                                    `/api/user/removeGestionnaireFromEvent/`,
+                                                user,
+                                                {
+                                                    "IdEvent": id_event,
+                                                    "IdUser": id,
+                                                }
                                             )
                                         }
                                     >
-                                        Supprimer
+                                        Retirer
                                     </BasicButton>
-                                    <Link to={routes.profile + `/${IdProjet}`}>
+                                    <Link to={routes.addUser + `/${id}`}>
                                         <BasicButton className="update">
                                             Modifier
                                         </BasicButton>
@@ -135,7 +164,7 @@ function AdminGestionnaires({ id, className }) {
                         ))}
                     <Link
                         className="add-member"
-                        to={routes.addGestionnaire + `/${id}`}
+                        to={routes.addGestionnaire + `/${id_event}`}
                     >
                         <BasicButton>Ajouter gestionnaire</BasicButton>
                     </Link>
