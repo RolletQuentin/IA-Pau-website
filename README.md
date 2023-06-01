@@ -1,25 +1,19 @@
 # IA-Pau-website
 
 ## Comment lancer le projet ?
-Lancer le serveur MySQL
+
+Il faut dans un premier temps build le projet dans un conteneur docker. L'option -d permet de lancer le conteneur en arrière plan.
+
 ```
-sudo service mysql start
+docker compose up --build -d
 ```
 
-Lancer le serveur php
+Il faut ensuite lancer le serveur java
+
 ```
-cd backend
-composer install
-php -S localhost:8080 --docroot=backend
+java -jar backend/AnalyseurDeCode.jar
 ```
 
-Lancer le serveur node
-```
-cd frontend
-npm install
-npm start
-```
+Et enfin rendez-vous à l'adresse http://localhost:8765
 
-
-## Dépendences
-sudo apt install php7.4-mysql
+Attention : Comme le site fonction en local (localhost), il existe un problème avec Mozilla Firefox qui empêche certaines reqêtes au serveur PHP, il est préférable d'utiliser Google Chrome.
