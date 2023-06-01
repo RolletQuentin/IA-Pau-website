@@ -118,7 +118,7 @@
             $userArray = getUserArrayFromId($IdUser);
             array_push($arrayResult, array("email"=>$userArray["email"], "lastname"=>$userArray["lastname"], "firstname"=>$userArray["firstname"], "id"=>$userArray["id"]));
         }
-        mysqli_close($result);
+        mysqli_close($conn);
         http_response_code(200);
         echo json_encode($arrayResult);
     }

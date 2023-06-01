@@ -16,6 +16,7 @@ import VBox from "../../containers/VBox";
 import {
     Navigate,
 } from "react-router-dom";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledTeamView = styled.div`
     margin: auto;
@@ -75,6 +76,8 @@ function TeamView() {
     const [redirectAllEvent, setRedirectAllEvent] = useState(false)
     const [projets, setProjets] = useState([]);
     const [options, setOptions] = useState([]);
+    const [pendingInvitations, setPendingInvitations] = useState([]);
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         console.log(projets)
@@ -110,7 +113,6 @@ function TeamView() {
             
         }
         const fetchTeamData = async () => {
-            setIsLoading(true)
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/?IdEquipe=' + id_team )
     
@@ -124,9 +126,33 @@ function TeamView() {
                 setTeamData(json)
                 fetchProjets(json)
             }
+        }
+        const fetchPendingInvitation = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/invitations/?IdEquipe=' + id_team, {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            } )
+            verifyAuth();
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                setPendingInvitations(json)
+            }
+        }
+        
+        const fetchAll = async() => {
+            setIsLoading(true)
+            await fetchTeamData();
+            await fetchPendingInvitation();
             setIsLoading(false)
         }
-        fetchTeamData()
+        fetchAll()
     }, [])
 
     const setTeamName = (newName) => {
@@ -195,6 +221,24 @@ function TeamView() {
     }
 
     const handleAddMember = (newMember) => {
+        const fetchPendingInvitation = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/invitations/?IdEquipe=' + id_team, {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            } )
+            verifyAuth();
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                setPendingInvitations(json)
+            }
+        }
         const fetchSaveTitle = async () => {
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/invite/?IdEquipe=' + id_team, {
@@ -213,6 +257,7 @@ function TeamView() {
     
             if (response.ok) {
                 console.log("member added")
+                fetchPendingInvitation()
             }
         }
         fetchSaveTitle()
@@ -276,13 +321,27 @@ function TeamView() {
                             options={options}
                         />
                         {teamData.Users && 
+                        <>
+                        <h2>Team Members</h2>
                         <VBox>
                         {teamData.Users.map((member, index) => {
+                            
                             return (
-                                <UserNode key={index} editable={teamData.IdLeader === user.userId || user.role === "Administrateur"} member={member} setGlobalError={setGlobalError}/>
+                                <UserNode key={index} editable={user.role === "Administrateur" || (member.id === user.userId && teamData.IdLeader !== user.userId)} member={member} setGlobalError={setGlobalError}/>
+                                )
+                            })}
+                        </VBox>
+                            </>
+                        }
+                        {pendingInvitations && pendingInvitations.length > 0 && 
+                        <><h2>Pending Invitation</h2>
+                        <VBox>
+                        {pendingInvitations.map((invitation, index) => {
+                            return (
+                                <UserNode key={index} member={invitation} setGlobalError={setGlobalError}/>
                             )
                         })}
-                        </VBox>
+                        </VBox></>
                         }
                         {teamData.IdLeader === user.userId || user.role === "Administrateur" ? (
                             <div style={{display: "flex"}}>

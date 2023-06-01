@@ -111,6 +111,17 @@ function Header() {
                             </MyNavLink>
                         </li>
                     ) : null}
+
+                    {/* if the user is a Student */}
+                    {user && user.role === "Etudiant" ? (
+                        <li>
+                            <MyNavLink to={routes.invitations}>
+                            <span className="material-symbols-outlined">
+                            mail
+                            </span>
+                            </MyNavLink>
+                        </li>
+                    ) : null}
                 </ul>
             </nav>
 
