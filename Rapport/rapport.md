@@ -41,7 +41,11 @@ L'objectif principal était de concevoir un site permettant aux utilisateurs de 
 
 ## Présentation du contexte de l'association IA PAU
 
-L'association IA Pau est une organisation à but non lucratif qui organise divers événements liés à l'intelligence artificielle, dont les Data Challenges et les Data Battles.
+L’association IA PAU est une association à but non lucratif qui rassemble chercheurs, enseignants, étudiants, entrepreneurs, particuliers autour de la thématique du traitement des données et propose de rapprocher la sphère économique, le monde académique et le grand public en organisant des événements et des projets collaboratifs.
+Son objectif est de vulgariser et partager les connaissances autour de ce progrès majeur du XXIème siècle qui suscite de nombreuses interrogations scientifiques, technologiques, éthiques, et démocratiques.
+L’intelligence artificielle, de plus en plus présente dans notre quotidien et dans les médias, suscite de nombreuses interrogations. Alors qu’elle est parfois présentée comme une simple évolution de l’informatique, seulement capable de reproduire des comportements observés dans une grande quantité de données, les progrès réalisés ces cinq dernières années par l’IA questionnent sur les ingrédients et les limites des technologies de l’intelligence artificielle.
+L’ association IA PAU a pour ambition de démystifier l’intelligence artificielle en la rendant accessible au plus grand nombre en proposant des événements d’acculturation, d’information et de partage. Elle favorise et accompagne également des projets collaboratifs entre entreprises, associations, collectivités et étudiants pour faciliter les échanges dans le domaine de l’Intelligence Artificielle et pour instaurer une dynamique collective pérenne dans le territoire.
+
 
 ## Description du déroulement d'un data challenge
 
@@ -50,109 +54,216 @@ Un Data Battle est une variante du Data Challenge qui se déroule sur une pério
 
 ## Identification des besoins et enjeux de l'application
 
-L'objectif de l'application que nous devons développer est de fournir une plateforme en ligne permettant aux utilisateurs de s'inscrire et de participer aux Data Challenges et aux Data Battles organisés par l'association IA Pau. Les principaux besoins et enjeux identifiés sont :
+L'objectif de l'application que nous devons développer est de fournir une plateforme en ligne permettant aux utilisateurs de s'inscrire et de participer aux Datas Challenges et aux Dats Battles organisés par l'association IA Pau. Les principaux besoins et enjeux identifiés sont :
 
-- VISITEUR : Accès aux informations des Data Challenges et Battles pour tous les visiteurs non inscrits.
 
-- VISITEUR : Affichage du podium (pour les DataBattle) : Un podium doit être affiché sur la page d'accueil du site, montrant le classement des équipes en fonction de leurs performances dans les questionnaires.
+- VISITEUR : Accès aux informations des Data Challenges et Battles.
 
-- ÉTUDIANT : Inscription des utilisateurs : Les utilisateurs doivent pouvoir s'inscrire sur le site en fournissant leurs informations personnelles.
 
-- ÉTUDIANT : Gestion des équipes : Les utilisateurs doivent avoir la possibilité de former des équipes ou de rejoindre des équipes existantes pour participer aux compétitions.
+- VISITEUR (Uniquement pour Data Battle) : Le podium doit être affiché sur la page d'accueil du site, montrant le classement des équipes en fonction de leurs performances dans les questionnaires. Il doit être actualisé toutes les semaines après la date de rendu des questionnaires hebdomadaires.
 
-- ÉTUDIANT : Soumission des résultats : Les équipes participantes doivent pouvoir soumettre leurs résultats pour évaluation.
 
-- ÉTUDIANT : Communication avec les gestionnaires par messages.
+- VISITEUR : Les visiteurs doivent pouvoir s'inscrire sur le site en fournissant leurs informations personnelles.
 
-- ÉTUDIANT : Questionnaires hebdomadaires (pour les DataBattle) : Les équipes doivent pouvoir répondre aux questionnaires hebdomadaires pour accumuler des points et améliorer leur classement.
 
-- GESTIONNAIRE : Accéder à tous les Data Challenges et Battle que l'on gère.
+- ÉTUDIANT : Les étudiants doivent avoir la possibilité de former des équipes ou de rejoindre des équipes existantes pour participer aux compétitions.
 
-- GESTIONNAIRE : Echanger des messages avec tous les Étudiants d'un Data Challenges et Battles et d'un Projet en particulier et même d'une équipe en particulier.
 
-- GESTIONNAIRE : Création de questionnaires, voir les réponses des équipes et les noter.
+- ÉTUDIANT : Les équipes participantes à un Data Challenge ou un Data Battle doivent pouvoir soumettre leurs résultats pour évaluation.
 
-- ADMINISTRATEUR : Gestion pour les Administrateurs : Les Administrateurs du sites doivent pouvoir créer, éditer et supprimer des Administrateurs, Gestionnaires et Étudiants, des Data Challenges, Battle et des Projets. 
+
+- ÉTUDIANT : Les étudians doivent pouvoir communiquer avec les gestionnaires des evenements par messages.
+
+
+- ÉTUDIANT (Uniquement pour Data Battle) : Les équipes doivent pouvoir répondre aux questionnaires hebdomadaires pour accumuler des points et améliorer leur classement.
+
+
+- GESTIONNAIRE : Les gestionnaires doivent accéder à tous les Data Challenges et Battle qu'ils gèrent.
+
+
+- GESTIONNAIRE : Les gestionnaires doivent pouvoir échanger des messages avec tous les Étudiants d'un Data Challenge/Battle,  d'un Projet et d'une équipe.
+
+
+- GESTIONNAIRE : Les gestionnaires doivent pouvoir créer des questionnaires, consulter les réponses des équipes et les noter.
+
+
+- ADMINISTRATEUR : Les Administrateurs du site doivent pouvoir créer, éditer et supprimer des Administrateurs, Gestionnaires et Étudiants, des Data Challenges, Battle, des Projets et des ressources.
+
 
 Nous détaillerons plus bas les besoins et enjeux, ainsi que les fonctionnalités spécifiques à mettre en place pour répondre à ces exigences.
 
+
 # Spécifications fonctionnelles
 
-## Présentation des différents profils utilisateurs (administrateurs, gestionnaires, étudiants, visiteurs)
+## Présentation des différents profils utilisateurs
 
-Le site accueille quatre types d'utilisateurs, des Administrateurs, des Gestionnaires (interne ou externe), des Étudiants et des visiteurs.
+Le site accueille quatre types d'utilisateurs, des Administrateurs, des Gestionnaires (interne ou externe), des Étudiants et des Visiteurs.
 
 ## Description des fonctionnalités d'administration
 
-L'Administrateur peut accéder à un panneau principal où il peut administrer les Utilisateurs, les DataChallenges ainsi que les ressources.
+L'Administrateur peut accéder à un panneau principal où il peut administrer les Utilisateurs, les Data Challenges ainsi que les ressources.
 
-- Utilisateurs :
+### Administration des utilisateurs
 
-Lorsqu'il administre les utilisateurs il peut modifier les informations des utilisateurs, créer un utilisateur (Administrateur, Étudiant ou Gestionnaire).
-Il éxiste deux types de gestionnaire, le gestionnaire interne (fait partie de IA Pau, pas de date de fin d'activation) et le gestionnaire externe.
+L'administrateur pour modifier les données de tous les utilisateurs. Il peut également créer d'autres comptes Administrateurs, créer des comptes Étudiants et des comptes Gestionnaires.
+Il peut également gérer les équipes des utilisateurs.
 
-- DataChallenges :
+### Administration des Data Challenges/Battles
 
-Nous pouvons créer, modifier ou supprimer un DataChallenge. Un DataChallenge à deux type : DataChallenge ou DataBattle.
-Si nous choisissons de créer un DataChallenge, nous pouvons créer plusieurs projets pour ce DataChallenge alors que si nous choisissons de créer un DataBattle, nous ne pouvons ajouter qu'un projet.
+L'administrateur peur créer, modifier ou supprimer des Data Challenges/Battles. Créer des projets à l'intérieur des Data Challenges/Battles (un unique projet pour les Data Battles). Assigner des Gestionnaires aux Datas Challenges/Battles. Ajouter des ressources aux Datas Challenges/Battles ainsi qu'à tous les projets.
 
-Nous pouvons ajouter des ressources au DataChallenge ainsi qu'à tous les projets.
-Lier des gestionnaires.
+### Administration des Ressources
 
-- Ressources : 
-
-Nous pouvons gérer nos ressources, les supprimer, les modifier ainsi qu'en ajouter.
+L'administrateur peut créer, modifier ou supprimer des ressources.
 
 ## Description des fonctionnalités pour les gestionnaires
 
-Le gestionnaire n'a pas beaucoup de fonctionnalités, son compte est crée par un Administrateur. Il peut être assigné à un/des DataChallenge et à un/des Projets.
-Il peut modifier son profil afin de redéfinir son mot de passe.
-Il peut accéder aux dataChallenges / battles qu'il gère.
+Il existe deux types de gestionnaire, le gestionnaire interne (fait partie de IA Pau, pas de date de fin d'activation) et le gestionnaire externe (gestionnaire temporaire le temps d'un Data Challenge/Battle venant d'une entreprise extérieure).
 
-S'il clic sur un DataChallenge ou un Projet, il peut envoyer des messages à tous les membres du DataChallenge/Projet. Il peut également assister aux dossier des étudiants afin de voir leur lien gitHub etc..
+Seul un Administrateur peut créer un compte Gestionnaire et l'assigner à des Datas Challenges/Battles.
 
-S'il clic sur un DataBattle il peut envoyer des messages à tous les membres du DataBattle. Il peut également créer des questions pour le questionnaire du DataBattle.
+Le gestionnaire peut éditer son profil et ainsi redéfinir son mot de passe, il peut accéder aux Datas Challenges/Battles qu'il gère.
 
+S'il clic sur un Data Challenge/Battle, il peut envoyer des messages à tous ses membres, s'il clic sur un projet d'un Data Challenge, il peut envoyer des messages à tous les membres du projet et s'il clic sur une équipe il peut envoyer un message à tous les membres d'une équipe. Il peut également accéder aux dossiers des équipes afin de voir leur lien GitHub et de les noter à la fin de l'évènement.
+
+S'il clic sur un DataBattle il peut envoyer des messages à tous les membres du DataBattle. Il peut également créer des questions pour le questionnaire du DataBattle, ainsi que noter les réponses des équipes.
 
 ## Description des fonctionnalités principales pour les étudiants connectés
 
-Un étudiant connecté peut consulter la même page d'accueil qu'un étudiant non connecté et ainsi voir les DataChallenges/Battles, leurs informations et y participer.
-Si un étudiant connecté choisi d'y participer cela crée une équipe et le met chef. Il peut ensuite choisir un nom d'équpe, le projet auquel il souhaite participer (seulement si DataChallenges <=> projets multiples) et inviter des utilisateurs à rejoindre son équipe. Les membres de l'équipe qui ne sont pas le chef peuvent uniquement accéder aux informations de l'équipe (nom équipe et nom des membres).
-Une fois qu'un étudiant connecté participe à un DataChallenge il accède à toutes les informations du DataChallenge peut consulter les ressources, s'il est chef d'équipe il peut ajouter le lien GitHub du projet. De plus il peut voir les messages que le gestionnaire lui envoi.
-Un fois qu'un étudiant connecté participe à un DataBattle en plus de tout ce qui est écrit ci-dessus, l'utilisateur peut voir les questionnaires et s'il est le chef il peut y répondre.
+Un étudiant connecté peut consulter la même page d'accueil qu'un étudiant non connecté et ainsi voir les Data Challenges/Battles, leurs informations et y participer.
+
+Si un étudiant connecté choisi de participer à un événement, cela crée une équipe et le met capitaine. Il peut ensuite choisir un nom d'équipe, le projet auquel il souhaite participer (seulement pour les Data Challenges, car il n'y a qu'un projet unique pour les Data Battle) et inviter d'autres Étudiants à rejoindre son équipe.
+
+Les membres de l'équipe qui ne sont pas capitaine peuvent uniquement accéder aux informations de l'équipe (projet choisi par le capitaine, nom équipe et nom des membres).
+
+Une fois qu'un étudiant connecté participe à un Data Challenge il accède à toutes les informations du DataChallenge, peut consulter les ressources, échanger des messages avec les gestionnaires de l'évènement. De plus, s'il est capitaine, il peut ajouter le lien GitHub du projet.
+
+Une fois qu'un étudiant connecté participe à un Data Battle en plus de tout ce qui est écrit ci-dessus, l'utilisateur peut voir les questionnaires et s'il est capitaine, il peut y répondre.
 
 ## Description des fonctionnalités des utilisateurs non connectés
 
-Les visiteurs voient la page d'accueil avec tous les DataChallenges/Battles, peuvent consulter les informations et choisir d'y participer.
-S'ils cliquent sur participer ils sont invités à se connecter où à créer un compte.
+Les visiteurs voient la page d'accueil avec tous les Data Challenges/Battles, peuvent consulter les informations et choisir d'y participer. S'ils cliquent sur participer ils sont invités à se connecter ou à créer un compte.
 
 # Conception et architecture
 
 ## Présentation de l'architecture globale de l'application
 
-
+L'architecture globale de l'application se compose d'un front-end développé avec React, un back-end utilisant des API en PHP et Java, un serveur MySQL pour gérer la base de données, le tout étant conteneurisé à l'aide de Docker. Cette architecture permet une conception modulaire et flexible de l'application, facilitant son développement, sa gestion des données et son déploiement sur différents environnements.
 
 ## Description des choix technologiques et des outils utilisés
 
-Front : Serveur React
+Front : React est une bibliothèque JavaScript populaire pour la création d'interfaces utilisateur interactives et réactives. Il offre une approche déclarative et modulaire du développement d'applications web, ce qui facilite la création et la gestion de composants réutilisables. React permet également une mise à jour efficace et optimisée de l'interface utilisateur, grâce à son algorithme de rendu virtuel. Son écosystème riche et sa grande communauté de développeurs en font un choix solide pour le développement de l'interface utilisateur d'une application web.
 
-Back : Api PHP, Api Java
+Back : L'utilisation d'API PHP et Java offre une flexibilité dans le choix des technologies de développement du backend. PHP est un langage de script côté serveur largement utilisé, connu pour sa facilité d'apprentissage et sa compatibilité avec de nombreux systèmes d'exploitation et serveurs web. Java, quant à lui, est un langage de programmation polyvalent et robuste, souvent utilisé pour le développement d'applications d'entreprise et de services web. Ces deux langages offrent une grande variété de bibliothèques et de frameworks pour faciliter le développement, la gestion des données et la communication avec d'autres services.
 
-Docker
+Serveur MySQL : MySQL est un système de gestion de base de données relationnelle largement utilisé. Il offre une grande fiabilité, des performances élevées et une compatibilité avec de nombreux langages de programmation. En utilisant MySQL, l'application peut stocker et gérer les données de manière efficace et sécurisée.
 
-## Présentation des modèles de données (BDD, MCD)
+Docker : Docker est une technologie de conteneurisation qui permet de créer et de gérer des conteneurs légers et portables pour les applications. En utilisant Docker, il devient plus facile de déployer et de gérer l'application sur différents environnements, en assurant la portabilité et la cohérence du système. Les conteneurs Docker permettent également d'isoler les différentes parties de l'application, facilitant ainsi la gestion des dépendances et la scalabilité horizontale. Docker simplifie le déploiement de l'application et réduit les problèmes potentiels liés à la configuration de l'environnement de production.
 
-Présenter la MCD et la BDD (Il faut les mettre à jour avant)
+En résumé, l'utilisation de React pour le frontend, des API PHP et Java pour le backend, et Docker pour la conteneurisation, offre une combinaison solide de technologies qui permet une conception modulaire, une flexibilité de développement et un déploiement simplifié de l'application. Ces choix sont basés sur la popularité, la facilité d'utilisation, la robustesse et la compatibilité des technologies, ainsi que sur la disponibilité d'une vaste communauté de développeurs et de ressources pour les soutenir.
 
-## Présentation des diagrammes pertinents (séquence, use case, etc.)
+## Présentation des diagrammes et de la maquette
 
-On ajoute les diagrammes ici
+Avant de commencer la conception du modèle conceptuel de données (MCD) et de la base de données (BDD), nous avons réalisé plusieurs diagrammes spécifiques afin de mieux appréhender le projet et visualiser les fonctionnalités ainsi que les pages que nous devrons développer. Ces diagrammes nous ont permis de nous approprier le projet et d'avoir une vision claire de sa structure et de son fonctionnement. Ils constituent une étape préliminaire importante dans le processus de conception de l'application.
+
+### Diagramme use case
+
+Dans un premier temps, nous avons créé un diagramme de cas d'utilisation qui illustre toutes les interactions de nos utilisateurs avec le système.
+
+![Diagramme use case](images/diagramme_use_case.jpg){height=100%}
+
+### Diagramme pages
+
+Ensuite, nous avons élaboré des diagrammes pour visualiser les pages que nous devrons développer et leurs interactions.
+
+![Diagramme page 1](images/diagramme_page1.jpg){height=100%}
+
+![Diagramme page 2](images/diagramme_page2.jpg){height=100%}
+
+### Maquette
+
+Grâce à ces diagrammes, nous avons réalisé une maquette pour nous assurer de développer un site cohérent et pour faciliter la répartition des tâches entre les membres de l'équipe.
+
+#### Utilisateur non connecté
+
+![Visiteur : Accueil](images/maquette/Visiteur/nonConnect%C3%A9_Accueil.png){height=100%}
+
+![Visiteur : Infos Evenement](images/maquette/Visiteur/nonConnect%C3%A9_DataChallengeExemple.png){height=100%}
+
+![Visiteur : Connexion](images/maquette/Visiteur/nonConnect%C3%A9_Connexion.png){height=100%}
+
+![Visiteur : Créer compte](images/maquette/Visiteur/nonConnect%C3%A9_Cr%C3%A9erCompte.png){height=100%}
+
+#### Utilisateur connecté
+
+![Étudiant connecté : Mes évènements](images/maquette/Etudiant/Connect%C3%A9_MesDataChallenges.png){height=100%}
+
+![Étudiant connecté : Créer équipe](images/maquette/Etudiant/Connect%C3%A9_MesDataChallengesEexmpleCreerEquipe.png){height=100%}
+
+![Étudiant connecté : Voir équipe](images/maquette/Etudiant/Connect%C3%A9_MesDataChallengesExempleVoirEquipe(PasChef).png){height=100%}
+
+![Étudiant connecté : Information projet suivi](images/maquette/Etudiant/Connect%C3%A9_MesDataChallengesExempleEquipe.png){height=100%}
+
+![Étudiant connecté : Profil](images/maquette/Etudiant/Connect%C3%A9_MesDataChallengesExemple.png){height=100%}
+
+#### Gestionnaire
+
+![Gestionnaire : Mes évènements](images/maquette/Gestionnaire/Mes_evenements.png){height=100%}
+
+![Gestionnaire : Gestion Data Challenge](images/maquette/Gestionnaire/Gestionnaire_DataChallengesExemple.png){height=100%}
+
+![Gestionnaire : Gestion Data Battle](images/maquette/Gestionnaire/Gestionnaire_ProjetExemple.png){height=100%}
+
+![Gestionnaire : Profil](images/maquette/Gestionnaire/profil.png){height=100%}
+
+#### Administrateur
+
+![Administrateur : Administrer](images/maquette/Administrateur/1.png){height=100%}
+
+![Administrateur : Administrer Utilisateurs](images/maquette/Administrateur/2.png){height=100%}
+
+![Administrateur : Administrer Utilisateurs -> Admin/Étudiant](images/maquette/Administrateur/3.png){height=100%}
+
+![Administrateur : Administrer Utilisateurs -> Gestionnaire](images/maquette/Administrateur/4.png){height=100%}
+
+![Administrateur : Administrer Evenements](images/maquette/Administrateur/5.png){height=100%}
+
+![Administrateur : Administrer Evenements -> Data Challenge](images/maquette/Administrateur/6.png){height=100%}
+
+![Administrateur : Administrer Evenements -> Data Battle](images/maquette/Administrateur/7.png){height=100%}
+
+![Administrateur : Administrer Evenements -> Data Challenge -> Projet](images/maquette/Administrateur/8.png){height=100%}
+
+![Administrateur : Administrer Ressources](images/maquette/Administrateur/9.png){height=100%}
+
+
+## Présentation des modèles de données 
+
+Lors de la conception de notre application, nous avons réalisé une modélisation des données en utilisant un Modèle Conceptuel de Données (MCD) et en construisant une Base de Données (BDD) en conséquence. Cette étape est cruciale pour définir la structure des données et les relations entre les différentes entités de notre système.
+
+Nous avons récemment mis à jour notre Modèle Conceptuel de Données (MCD) et notre Base de Données (BDD) pour prendre en compte les nouvelles fonctionnalités et les évolutions de notre application. Les choix de modélisation ont été faits en tenant compte de la nature des données à stocker, des relations entre les entités et des contraintes de notre système.
+
+![MCD](images/mcd.png){height=100%}
+
+Pour répondre aux besoins de notre application, nous avons fait les choix de modélisation suivants :
+
+- Table "Evenement" : Nous avons créé une table "Evenement" pour stocker les informations relatives aux événements, tels que les Data Challenges et les Data Battles. Cette table contient des attributs tels que "TypeEvenement" (pour distinguer les différents types d'événements), "Libele" (le titre de l'événement), "Description" (une brève description de l'événement), "Recompenses" (les récompenses associées à l'événement) et les dates de début et de fin de l'événement.
+
+- Tables "Projet" et "Questionnaire" : Nous avons créé une table "Projet" pour stocker les informations sur les projets associés à un événement. Chaque projet est lié à un événement spécifique. De plus, nous avons ajouté une table "Questionnaire" pour stocker les informations sur les questionnaires associés à chaque projet. Cette modélisation nous permet de lier plusieurs questionnaires à un projet spécifique.
+
+- Tables "Equipe" et "User" : Nous avons créé une table "Equipe" pour stocker les informations sur les équipes participantes. Chaque équipe est liée à un projet spécifique. De plus, nous avons une table "User" pour stocker les informations sur les utilisateurs, tels que leur nom, prénom, adresse e-mail, etc. Les utilisateurs peuvent appartenir à une équipe spécifique, ce qui est modélisé par une relation "Appartenir" entre les tables "User" et "Equipe".
+
+- Tables de relations et de liens : Nous avons créé des tables de relations pour modéliser les liens entre les entités. Par exemple, nous avons une table "Preinscription" pour stocker les préinscriptions des utilisateurs à des équipes spécifiques, une table "NoteQuestionnaire" pour stocker les notes attribuées par une équipe à un questionnaire, et une table "ReponseQuestion" pour stocker les réponses des équipes aux questions du questionnaire.
+
+- Contraintes d'intégrité référentielle : Nous avons utilisé des contraintes d'intégrité référentielle pour garantir la cohérence des données entre les tables. Par exemple, nous avons défini des clés étrangères pour relier les entités entre elles et assurer la suppression en cascade des enregistrements liés lorsque des entités parentes sont supprimées.
+
+Ces choix de modélisation nous permettent de stocker et de gérer efficacement les données de notre application, en assurant la cohérence et l'intégrité des informations.
 
 # Développement et implémentation
 
 ## Présentation des différentes étapes de développement
 
-Expliquer nos étapes, on a commencé brainstorming, fait les diagrammes séquence, use case puis BDD et maquette, ensuite on a développé Backend et Front end symbiose.
+Expliquer nos étapes, on a commencé brainstorming, fait les diagrammes séquence, use case puis BDD et maquette, creation equipes BACK ET FRONT, ensuite on a développé Backend et Front end symbiose.
 
 ## Description des fonctionnalités implémentées
 
