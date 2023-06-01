@@ -37,8 +37,8 @@ const Select = ({
             onClick={() => removeClassError(name)}
         >
             <option value='' hidden disabled>{placeholder}</option>
-            {options && options.map((opt) => (
-                <option key={opt} value={opt}>{opt}</option>
+            {options && options.map((opt, index) => (
+                <option key={index} value={opt}>{opt}</option>
             ))}
         </select>
     )
