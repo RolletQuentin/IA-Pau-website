@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS Administrateur(
     FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE
 );
 
--- EVENEMENT (Bizarre, un message peut être envoyé à un dataChallenge, à un projet, à une éuipe, à un user)
+-- EVENEMENT (Bizarre, un message peut etre envoye a un dataChallenge, a un projet, a une euipe, a un user)
 -- IMPLEMENTE GESTION MESSAGE PRIVE ET BOUCLER POUR LES AUTRES ? REDONDANCE DONNEES ? REVOIR MODELISATION MESSAGE !!!!!!!!!
 CREATE TABLE IF NOT EXISTS Message(
     IdMessage INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
@@ -119,7 +119,7 @@ CREATE TABLE IF NOT EXISTS Message(
     CONSTRAINT fk2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE
 );
 
--- RESSOURCES Doit pouvoir etre lié a plusieurs projets il nous manque le lien posseder
+-- RESSOURCES Doit pouvoir etre lie a plusieurs projets il nous manque le lien posseder
 CREATE TABLE IF NOT EXISTS Ressources(
     IdRessource INTEGER(16) PRIMARY KEY AUTO_INCREMENT,
     UrlRessource VARCHAR(2048),
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS Inscrire(
     CONSTRAINT fk6 FOREIGN KEY (IdEvenement) REFERENCES Evenement (IdEvenement) ON DELETE CASCADE
 );
 
--- USER (User appartenir à Equipe)
+-- USER (User appartenir a Equipe)
 CREATE TABLE IF NOT EXISTS Appartenir(
     Identifiant INTEGER(16),
     IdEquipe INTEGER(16),
@@ -202,7 +202,7 @@ INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 
 
 -- User etudiant--
--- Ceux de l'équipe 1 (Sur DataBattle)
+-- Ceux de l'equipe 1 (Sur DataBattle)
 INSERT INTO User VALUES (4,"test@test.fr", "Dupont", "Jean", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O"); -- (Notre Leader equipe 1)
 INSERT INTO Etudiant VALUES (00000004, "L3", "NomEcole", "NomVille", 4);
 INSERT INTO User VALUES (5,"test1@test.fr", "Dupont", "Paul", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O"); -- (Nos membres equipe 1)
@@ -211,7 +211,7 @@ INSERT INTO User VALUES (6,"test2@test.fr", "Dupont", "Bob", "imageProfil", 0600
 INSERT INTO Etudiant VALUES (00000006, "L3", "NomEcole", "NomVille", 6);
 INSERT INTO User VALUES (7,"test3@test.fr", "Dupont", "Quentin", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000007, "M2", "NomEcole", "NomVille", 7);
--- Ceux de l'équipe 2 (Sur DataBattle)
+-- Ceux de l'equipe 2 (Sur DataBattle)
 INSERT INTO User VALUES (8, "test4@test.fr", "Martin", "Sophie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000008, "L3", "NomEcole", "NomVille", 8);
 INSERT INTO User VALUES (9, "test5@test.fr", "Lefebvre", "Alexandre", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
@@ -220,16 +220,16 @@ INSERT INTO User VALUES (10, "test6@test.fr", "Dubois", "Emma", "imageProfil", 0
 INSERT INTO Etudiant VALUES (00000010, "L3", "NomEcole", "NomVille", 10);
 INSERT INTO User VALUES (11, "test7@test.fr", "Roux", "Lucas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000011, "M2", "NomEcole", "NomVille", 11);
--- Ceux de l'équipe 3 (Sur DataChallenge1 Projet 1)
+-- Ceux de l'equipe 3 (Sur DataChallenge1 Projet 1)
 INSERT INTO User VALUES (12, "test8@test.fr", "Leclerc", "Camille", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000012, "L3", "NomEcole", "NomVille", 12);
-INSERT INTO User VALUES (13, "test9@test.fr", "Girard", "Inès", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (13, "test9@test.fr", "Girard", "Ines", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000013, "M1", "NomEcole", "NomVille", 13);
 INSERT INTO User VALUES (14, "test10@test.fr", "Fournier", "Arthur", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000014, "L3", "NomEcole", "NomVille", 14);
-INSERT INTO User VALUES (15, "test11@test.fr", "Moreau", "Léa", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (15, "test11@test.fr", "Moreau", "Lea", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000015, "M2", "NomEcole", "NomVille", 15);
--- Ceux de l'équipe 4 (Sur DataChallenge1 Projet 2)
+-- Ceux de l'equipe 4 (Sur DataChallenge1 Projet 2)
 INSERT INTO User VALUES (16, "test12@test.fr", "Dupuis", "Maxime", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000016, "L3", "NomEcole", "NomVille", 16);
 INSERT INTO User VALUES (17, "test13@test.fr", "Marchand", "Laura", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
@@ -238,7 +238,7 @@ INSERT INTO User VALUES (18, "test14@test.fr", "Noel", "Antoine", "imageProfil",
 INSERT INTO Etudiant VALUES (00000018, "L3", "NomEcole", "NomVille", 18);
 INSERT INTO User VALUES (19, "test15@test.fr", "Lemoine", "Julie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000019, "M2", "NomEcole", "NomVille", 19);
--- Ceux de l'équipe 5 (Sur DataChallenge2 Projet 1)
+-- Ceux de l'equipe 5 (Sur DataChallenge2 Projet 1)
 INSERT INTO User VALUES (20, "test16@test.fr", "Roy", "Nicolas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000020, "L3", "NomEcole", "NomVille", 20);
 INSERT INTO User VALUES (21, "test17@test.fr", "Morin", "Catherine", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
@@ -247,7 +247,7 @@ INSERT INTO User VALUES (22, "test18@test.fr", "Gagnon", "Thomas", "imageProfil"
 INSERT INTO Etudiant VALUES (00000022, "L3", "NomEcole", "NomVille", 22);
 INSERT INTO User VALUES (23, "test19@test.fr", "Bouchard", "Mathilde", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000023, "M2", "NomEcole", "NomVille", 23);
--- Ceux de l'équipe 6 (Sur DataChallenge2 Projet 2)
+-- Ceux de l'equipe 6 (Sur DataChallenge2 Projet 2)
 INSERT INTO User VALUES (24, "test20@test.fr", "Fortin", "Alexis", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000024, "L3", "NomEcole", "NomVille", 24);
 INSERT INTO User VALUES (25, "test21@test.fr", "Laplante", "Emma", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
@@ -266,17 +266,17 @@ INSERT INTO User VALUES (30, "gest3@test.fr", "Valentin", "Noailles", "imageProf
 INSERT INTO Gestionnaire VALUES (3, "IaPau", "Ville", "2023-01-01", "2100-12-31", 30);
 
 -- Evenements --
-INSERT INTO Evenement VALUES (1, "DataBattle", "Cyberdéfense des entreprises", "Rejoignez-nous pour l'événement exclusif de lancement de CyberShield, la solution révolutionnaire en matière de cybersécurité. Cet événement d'une journée rassemblera les principaux experts en sécurité informatique, les professionnels de l'industrie et les décideurs pour discuter des défis actuels de la cybersécurité et des meilleures pratiques pour protéger les entreprises contre les menaces numériques.", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
-INSERT INTO Evenement VALUES (2, "DataChallenge", "Eco Challenge", "Rejoignez notre projet de développement en lien avec l'écologie et devenez un acteur clé dans la préservation de notre planète. Nous vous offrons l'opportunité de créer des solutions technologiques innovantes qui contribueront à un avenir durable. Avec notre équipe passionnée d'experts en développement et d'écologistes, vous serez immergé dans un environnement de travail dynamique et motivant.", "1er 5000€, 2eme 3000€, 3eme 1000€", "2023-07-01", "2023-07-31");
-INSERT INTO Evenement VALUES (3, "DataChallenge", "Another random Challenge", "Rejoignez notre projet de développement en lien avec l'écologie et devenez un acteur clé dans la préservation de notre planète. Nous vous offrons l'opportunité de créer des solutions technologiques innovantes qui contribueront à un avenir durable. Avec notre équipe passionnée d'experts en développement et d'écologistes, vous serez immergé dans un environnement de travail dynamique et motivant. ------- 2", "1er 3500€, 2eme 2000€, 3eme 1000€","2023-06-17", "2023-06-18");
+INSERT INTO Evenement VALUES (1, "DataBattle", "Cyberdefense des entreprises", "Rejoignez-nous pour l'evenement exclusif de lancement de CyberShield, la solution revolutionnaire en matiere de cybersecurite. Cet evenement d'une journee rassemblera les principaux experts en securite informatique, les professionnels de l'industrie et les decideurs pour discuter des defis actuels de la cybersecurite et des meilleures pratiques pour proteger les entreprises contre les menaces numeriques.", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
+INSERT INTO Evenement VALUES (2, "DataChallenge", "Eco Challenge", "Rejoignez notre projet de developpement en lien avec l'ecologie et devenez un acteur cle dans la preservation de notre planete. Nous vous offrons l'opportunite de creer des solutions technologiques innovantes qui contribueront a un avenir durable. Avec notre equipe passionnee d'experts en developpement et d'ecologistes, vous serez immerge dans un environnement de travail dynamique et motivant.", "1er 5000€, 2eme 3000€, 3eme 1000€", "2023-07-01", "2023-07-31");
+INSERT INTO Evenement VALUES (3, "DataChallenge", "Another random Challenge", "Rejoignez notre projet de developpement en lien avec l'ecologie et devenez un acteur cle dans la preservation de notre planete. Nous vous offrons l'opportunite de creer des solutions technologiques innovantes qui contribueront a un avenir durable. Avec notre equipe passionnee d'experts en developpement et d'ecologistes, vous serez immerge dans un environnement de travail dynamique et motivant. ------- 2", "1er 3500€, 2eme 2000€, 3eme 1000€","2023-06-17", "2023-06-18");
 
 -- Projets --
-INSERT INTO Projet VALUES (1, 1, "CyberShield", "Le projet CyberShield vise à développer une solution avancée de cybersécurité pour protéger les entreprises contre les cyberattaques et les menaces en ligne. En combinant des technologies de pointe telles que l'intelligence artificielle et l'apprentissage automatique, CyberShield offre une défense proactive et adaptative contre les intrusions malveillantes, les logiciels malveillants et les attaques de phishing. La plateforme analyse en temps réel le trafic réseau, détecte les comportements suspects et bloque les tentatives d'intrusion. Elle fournit également des rapports détaillés et des analyses de vulnérabilité pour renforcer la résilience des systèmes informatiques. CyberShield permet aux entreprises de se concentrer sur leurs activités principales en leur offrant une protection solide et fiable contre les menaces cybernétiques.", "IMAGE", "Secure Tech Solutions"); -- Projet du DataBattle
-INSERT INTO Projet VALUES (2, 2, "EcoTechClean", "EcoTechClean est une plateforme en ligne dédiée à la promotion et à la vente de produits de nettoyage écologiques et durables pour les particuliers et les entreprises. Notre objectif est de faciliter l'accès à des solutions respectueuses de l'environnement, tout en garantissant une efficacité optimale. Grâce à notre vaste gamme de produits soigneusement sélectionnés, allant des nettoyants multi-usages aux produits spécialisés, les utilisateurs peuvent maintenir un environnement propre et sain sans compromettre la planète. Notre site web convivial offre une expérience d'achat pratique et informative, avec des descriptions détaillées, des conseils d'utilisation et des évaluations des produits. Faites un pas vers un avenir plus propre avec EcoTechClean !", "IMAGE", "CleanEarth Solutions"); -- Projets dataChallenge 1
-INSERT INTO Projet VALUES (3, 2, "EcoLink", "EcoLink est une plateforme en ligne qui vise à encourager et faciliter les échanges de produits et services écologiques entre les particuliers. L'objectif principal d'EcoLink est de promouvoir un mode de vie durable en favorisant la réutilisation et le partage des ressources. Les utilisateurs peuvent créer des profils, lister les articles qu'ils souhaitent donner, vendre ou échanger, et interagir avec d'autres membres de la communauté. L'interface conviviale d'EcoLink permet une navigation facile et intuitive, facilitant ainsi les échanges et renforçant les liens sociaux autour de la durabilité. Rejoignez EcoLink dès aujourd'hui et contribuez à construire un avenir plus respectueux de l'environnement.", "IMAGE", "GreenShare");
-INSERT INTO Projet VALUES (4, 2, "EcoWave", "EcoWave est un projet novateur qui vise à développer une technologie révolutionnaire pour la production d'énergie propre à partir des vagues océaniques. En utilisant des convertisseurs d'énergie spécialement conçus, EcoWave exploite la force des vagues pour générer de l'électricité renouvelable de manière efficace et respectueuse de l'environnement. Cette technologie prometteuse offre une solution durable pour répondre aux besoins croissants en énergie tout en réduisant les émissions de carbone et en préservant les écosystèmes marins.", "IMAGE", "Ocean Power Tech");
-INSERT INTO Projet VALUES (5, 2, "Smart Garden", "SmartGarden est un projet innovant qui vise à révolutionner l'expérience de jardinage en utilisant des technologies intelligentes. Il offre aux amateurs de jardinage une solution complète pour cultiver des plantes saines et prospères, même sans avoir de connaissances approfondies en horticulture. Grâce à un système automatisé de surveillance et de contrôle, SmartGarden ajuste automatiquement l'arrosage, l'éclairage et les nutriments pour chaque plante, en fonction de ses besoins spécifiques. Les utilisateurs peuvent suivre et gérer leur jardin à distance via une application mobile conviviale, qui fournit des conseils personnalisés, des alertes en cas de problèmes et des informations sur les plantes. Avec SmartGarden, tout le monde peut désormais profiter d'un jardinage simple, intelligent et gratifiant.", "IMAGE", "GreenTech Solutions"); -- Projets dataChallenge 2
-INSERT INTO Projet VALUES (6, 2, "Plateforme écologique Connectée", "Le projet de la Plateforme Écologique Connectée vise à développer une solution technologique novatrice pour encourager et faciliter les comportements écologiques au quotidien. Grâce à une combinaison de capteurs intelligents, d'applications mobiles conviviales et de données environnementales, cette plateforme permet aux utilisateurs de suivre et de réduire leur empreinte carbone, de gérer efficacement leur consommation d'énergie, d'eau et de ressources, et de promouvoir des habitudes de vie durables. Elle offre également des conseils personnalisés, des défis écologiques et des incitations pour encourager les utilisateurs à adopter des pratiques respectueuses de l'environnement. La Plateforme Écologique Connectée constitue ainsi une solution globale pour contribuer à la préservation de notre planète.", "IMAGE", "Eco Tech Solution");
+INSERT INTO Projet VALUES (1, 1, "CyberShield", "Le projet CyberShield vise a developper une solution avancee de cybersecurite pour proteger les entreprises contre les cyberattaques et les menaces en ligne. En combinant des technologies de pointe telles que l'intelligence artificielle et l'apprentissage automatique, CyberShield offre une defense proactive et adaptative contre les intrusions malveillantes, les logiciels malveillants et les attaques de phishing. La plateforme analyse en temps reel le trafic reseau, detecte les comportements suspects et bloque les tentatives d'intrusion. Elle fournit egalement des rapports detailles et des analyses de vulnerabilite pour renforcer la resilience des systemes informatiques. CyberShield permet aux entreprises de se concentrer sur leurs activites principales en leur offrant une protection solide et fiable contre les menaces cybernetiques.", "IMAGE", "Secure Tech Solutions"); -- Projet du DataBattle
+INSERT INTO Projet VALUES (2, 2, "EcoTechClean", "EcoTechClean est une plateforme en ligne dediee a la promotion et a la vente de produits de nettoyage ecologiques et durables pour les particuliers et les entreprises. Notre objectif est de faciliter l'acces a des solutions respectueuses de l'environnement, tout en garantissant une efficacite optimale. Grâce a notre vaste gamme de produits soigneusement selectionnes, allant des nettoyants multi-usages aux produits specialises, les utilisateurs peuvent maintenir un environnement propre et sain sans compromettre la planete. Notre site web convivial offre une experience d'achat pratique et informative, avec des descriptions detaillees, des conseils d'utilisation et des evaluations des produits. Faites un pas vers un avenir plus propre avec EcoTechClean !", "IMAGE", "CleanEarth Solutions"); -- Projets dataChallenge 1
+INSERT INTO Projet VALUES (3, 2, "EcoLink", "EcoLink est une plateforme en ligne qui vise a encourager et faciliter les echanges de produits et services ecologiques entre les particuliers. L'objectif principal d'EcoLink est de promouvoir un mode de vie durable en favorisant la reutilisation et le partage des ressources. Les utilisateurs peuvent creer des profils, lister les articles qu'ils souhaitent donner, vendre ou echanger, et interagir avec d'autres membres de la communaute. L'interface conviviale d'EcoLink permet une navigation facile et intuitive, facilitant ainsi les echanges et renforçant les liens sociaux autour de la durabilite. Rejoignez EcoLink des aujourd'hui et contribuez a construire un avenir plus respectueux de l'environnement.", "IMAGE", "GreenShare");
+INSERT INTO Projet VALUES (4, 2, "EcoWave", "EcoWave est un projet novateur qui vise a developper une technologie revolutionnaire pour la production d'energie propre a partir des vagues oceaniques. En utilisant des convertisseurs d'energie specialement conçus, EcoWave exploite la force des vagues pour generer de l'electricite renouvelable de maniere efficace et respectueuse de l'environnement. Cette technologie prometteuse offre une solution durable pour repondre aux besoins croissants en energie tout en reduisant les emissions de carbone et en preservant les ecosystemes marins.", "IMAGE", "Ocean Power Tech");
+INSERT INTO Projet VALUES (5, 2, "Smart Garden", "SmartGarden est un projet innovant qui vise a revolutionner l'experience de jardinage en utilisant des technologies intelligentes. Il offre aux amateurs de jardinage une solution complete pour cultiver des plantes saines et prosperes, meme sans avoir de connaissances approfondies en horticulture. Grâce a un systeme automatise de surveillance et de contrôle, SmartGarden ajuste automatiquement l'arrosage, l'eclairage et les nutriments pour chaque plante, en fonction de ses besoins specifiques. Les utilisateurs peuvent suivre et gerer leur jardin a distance via une application mobile conviviale, qui fournit des conseils personnalises, des alertes en cas de problemes et des informations sur les plantes. Avec SmartGarden, tout le monde peut desormais profiter d'un jardinage simple, intelligent et gratifiant.", "IMAGE", "GreenTech Solutions"); -- Projets dataChallenge 2
+INSERT INTO Projet VALUES (6, 2, "Plateforme ecologique Connectee", "Le projet de la Plateforme ecologique Connectee vise a developper une solution technologique novatrice pour encourager et faciliter les comportements ecologiques au quotidien. Grâce a une combinaison de capteurs intelligents, d'applications mobiles conviviales et de donnees environnementales, cette plateforme permet aux utilisateurs de suivre et de reduire leur empreinte carbone, de gerer efficacement leur consommation d'energie, d'eau et de ressources, et de promouvoir des habitudes de vie durables. Elle offre egalement des conseils personnalises, des defis ecologiques et des incitations pour encourager les utilisateurs a adopter des pratiques respectueuses de l'environnement. La Plateforme ecologique Connectee constitue ainsi une solution globale pour contribuer a la preservation de notre planete.", "IMAGE", "Eco Tech Solution");
 
 -- Gestionnaire par projet
 INSERT INTO Gerer VALUES (1,1);
@@ -324,7 +324,7 @@ INSERT INTO Appartenir VALUES (27, 6);
 -- Ressources Projet 1
 INSERT INTO Ressources VALUES (1,"test.consignes.fr", "Cosigne");
 INSERT INTO Ressources VALUES (2,"test.conseils.fr", "Conseils");
-INSERT INTO Ressources VALUES (3,"test.videoPrensentation.fr", "Vidéo présentation");
+INSERT INTO Ressources VALUES (3,"test.videoPrensentation.fr", "Video presentation");
 INSERT INTO Ressources VALUES (4,"test.fichier1.fr", "fichier1");
 INSERT INTO PossederRessource VALUES (1,1);
 INSERT INTO PossederRessource VALUES (2,1);
@@ -333,7 +333,7 @@ INSERT INTO PossederRessource VALUES (4,1);
 -- Ressources Projet 2
 INSERT INTO Ressources VALUES (5,"doc1.db_ia.fr", "Cosigne Projet 2");
 INSERT INTO Ressources VALUES (6,"doc3.db_ia.fr", "Conseils Projet 2");
-INSERT INTO Ressources VALUES (7,"dataset.mydata.fr/1515159", "Vidéo présentation Projet 2");
+INSERT INTO Ressources VALUES (7,"dataset.mydata.fr/1515159", "Video presentation Projet 2");
 INSERT INTO Ressources VALUES (8,"try2.code.fr", "fichier2");
 INSERT INTO PossederRessource VALUES (5,2);
 INSERT INTO PossederRessource VALUES (6,2);
@@ -342,7 +342,7 @@ INSERT INTO PossederRessource VALUES (8,2);
 -- Ressources Projet 3
 INSERT INTO Ressources VALUES (9,"test.consignes3.fr", "Cosigne Projet 3");
 INSERT INTO Ressources VALUES (10,"test.conseils3.fr", "Conseils Projet 3");
-INSERT INTO Ressources VALUES (11,"test.videoPrensentation3.fr", "Vidéo présentation Projet 3");
+INSERT INTO Ressources VALUES (11,"test.videoPrensentation3.fr", "Video presentation Projet 3");
 INSERT INTO Ressources VALUES (12,"test.fichier3.fr", "fichier3 Projet 3");
 INSERT INTO PossederRessource VALUES (9,3);
 INSERT INTO PossederRessource VALUES (10,3);
@@ -351,7 +351,7 @@ INSERT INTO PossederRessource VALUES (12,3);
 -- Ressources Projet 4
 INSERT INTO Ressources VALUES (13,"test.consignes4.fr", "Cosigne Projet 4");
 INSERT INTO Ressources VALUES (14,"test.conseils4.fr", "Conseils Projet 4");
-INSERT INTO Ressources VALUES (15,"test.videoPrensentation4.fr", "Vidéo présentation Projet 4");
+INSERT INTO Ressources VALUES (15,"test.videoPrensentation4.fr", "Video presentation Projet 4");
 INSERT INTO Ressources VALUES (16,"test.fichier4.fr", "fichier4 Projet 4");
 INSERT INTO PossederRessource VALUES (13,4);
 INSERT INTO PossederRessource VALUES (14,4);
@@ -360,7 +360,7 @@ INSERT INTO PossederRessource VALUES (16,4);
 -- Ressources Projet 5
 INSERT INTO Ressources VALUES (17,"test.consignes5.fr", "Cosigne Projet 5");
 INSERT INTO Ressources VALUES (18,"test.conseils5.fr", "Conseils Projet 5");
-INSERT INTO Ressources VALUES (19,"test.videoPrensentation5.fr", "Vidéo présentation Projet 5");
+INSERT INTO Ressources VALUES (19,"test.videoPrensentation5.fr", "Video presentation Projet 5");
 INSERT INTO Ressources VALUES (20,"test.fichier5.fr", "fichier5 Projet 5");
 INSERT INTO PossederRessource VALUES (17,5);
 INSERT INTO PossederRessource VALUES (18,5);
@@ -369,7 +369,7 @@ INSERT INTO PossederRessource VALUES (20,5);
 -- Ressources Projet 6
 INSERT INTO Ressources VALUES (21,"test.consignes6.fr", "Cosigne Projet 6");
 INSERT INTO Ressources VALUES (22,"test.conseils6.fr", "Conseils Projet 6");
-INSERT INTO Ressources VALUES (23,"test.videoPrensentation6.fr", "Vidéo présentation Projet 6");
+INSERT INTO Ressources VALUES (23,"test.videoPrensentation6.fr", "Video presentation Projet 6");
 INSERT INTO Ressources VALUES (24,"test.fichier6.fr", "fichier6 Projet 6");
 INSERT INTO PossederRessource VALUES (21,6);
 INSERT INTO PossederRessource VALUES (22,6);
@@ -383,23 +383,23 @@ INSERT INTO Questionnaire VALUES (3, 1, "Ocaml", "Attrapez la bosse de la progra
 INSERT INTO Questionnaire VALUES (4, 1, "VotreOrdi.quiz", "Testez vos connaissances sur votre ordinateur !", "2023-07-22", "2023-07-29");
 -- Questions --
 -- pour questionnaire 1
-INSERT INTO Question VALUES (1, 1,"Quelles sont les différences entre les méthodes equals() et == en Java et quand devrait-on les utiliser ?");
-INSERT INTO Question VALUES (2, 1,"Quelle est la différence entre une classe abstraite et une interface en Java ?");
-INSERT INTO Question VALUES (3, 1,"Quels sont les avantages de l'utilisation des classes abstraites en Java et comment peuvent-elles être utilisées dans la conception de programmes orientés objet ?");
-INSERT INTO Question VALUES (4, 1,"Quels sont les avantages du polymorphisme en Java et comment pouvez-vous les exploiter dans votre code pour améliorer la flexibilité et la maintenabilité de votre programme ?");
+INSERT INTO Question VALUES (1, 1,"Quelles sont les differences entre les methodes equals() et == en Java et quand devrait-on les utiliser ?");
+INSERT INTO Question VALUES (2, 1,"Quelle est la difference entre une classe abstraite et une interface en Java ?");
+INSERT INTO Question VALUES (3, 1,"Quels sont les avantages de l'utilisation des classes abstraites en Java et comment peuvent-elles etre utilisees dans la conception de programmes orientes objet ?");
+INSERT INTO Question VALUES (4, 1,"Quels sont les avantages du polymorphisme en Java et comment pouvez-vous les exploiter dans votre code pour ameliorer la flexibilite et la maintenabilite de votre programme ?");
 -- pour questionnaire 2
-INSERT INTO Question VALUES (5, 2, "Quelle est la différence entre un tableau statique et un tableau dynamique en C ?");
-INSERT INTO Question VALUES (6, 2, "Comment déclarer et utiliser une fonction en C ?");
-INSERT INTO Question VALUES (7, 2, "Qu'est-ce qu'un pointeur en C et comment pouvez-vous l'utiliser pour manipuler des données ?");
-INSERT INTO Question VALUES (8, 2, "Quelles sont les principales différences entre les structures et les unions en C et comment décidez-vous de les utiliser dans votre programme ?");
+INSERT INTO Question VALUES (5, 2, "Quelle est la difference entre un tableau statique et un tableau dynamique en C ?");
+INSERT INTO Question VALUES (6, 2, "Comment declarer et utiliser une fonction en C ?");
+INSERT INTO Question VALUES (7, 2, "Qu'est-ce qu'un pointeur en C et comment pouvez-vous l'utiliser pour manipuler des donnees ?");
+INSERT INTO Question VALUES (8, 2, "Quelles sont les principales differences entre les structures et les unions en C et comment decidez-vous de les utiliser dans votre programme ?");
 -- pour questionnaire 3
-INSERT INTO Question VALUES (9, 3, "Quelle est la différence entre les types primitifs et les types composés en OCaml, et comment déclarez-vous des variables de chaque type ?");
-INSERT INTO Question VALUES (10, 3, "Quelle est la syntaxe pour définir une fonction récursive en OCaml, et comment pouvez-vous l'utiliser pour résoudre des problèmes récursifs ?");
-INSERT INTO Question VALUES (11, 3, "Qu'est-ce que le pattern matching en OCaml, et comment pouvez-vous l'utiliser pour effectuer des opérations conditionnelles sur les valeurs d'un type de données personnalisé ?");
-INSERT INTO Question VALUES (12, 3, "Qu'est-ce qu'une fonction d'ordre supérieur en OCaml, et comment pouvez-vous l'utiliser pour manipuler des fonctions comme des valeurs de première classe ?");
+INSERT INTO Question VALUES (9, 3, "Quelle est la difference entre les types primitifs et les types composes en OCaml, et comment declarez-vous des variables de chaque type ?");
+INSERT INTO Question VALUES (10, 3, "Quelle est la syntaxe pour definir une fonction recursive en OCaml, et comment pouvez-vous l'utiliser pour resoudre des problemes recursifs ?");
+INSERT INTO Question VALUES (11, 3, "Qu'est-ce que le pattern matching en OCaml, et comment pouvez-vous l'utiliser pour effectuer des operations conditionnelles sur les valeurs d'un type de donnees personnalise ?");
+INSERT INTO Question VALUES (12, 3, "Qu'est-ce qu'une fonction d'ordre superieur en OCaml, et comment pouvez-vous l'utiliser pour manipuler des fonctions comme des valeurs de premiere classe ?");
 -- pour questionnaire 4
-INSERT INTO Question VALUES (13, 4, "Qu'est-ce qu'un système d'exploitation et quel est son rôle essentiel dans un ordinateur ?");
-INSERT INTO Question VALUES (14, 4, "Quelle est la différence entre la mémoire vive (RAM) et le stockage (disque dur ou SSD) dans un ordinateur, et comment sont-ils utilisés ?");
+INSERT INTO Question VALUES (13, 4, "Qu'est-ce qu'un systeme d'exploitation et quel est son rôle essentiel dans un ordinateur ?");
+INSERT INTO Question VALUES (14, 4, "Quelle est la difference entre la memoire vive (RAM) et le stockage (disque dur ou SSD) dans un ordinateur, et comment sont-ils utilises ?");
 INSERT INTO Question VALUES (15, 4, "Qu'est-ce qu'un processeur (CPU) et quel est son rôle dans le fonctionnement global d'un ordinateur ?");
-INSERT INTO Question VALUES (16, 4, "Qu'est-ce qu'un réseau informatique et comment les ordinateurs sont-ils connectés les uns aux autres pour partager des informations et des ressources ?");
--- Réponse questionaire par équipe 1 -- A IMPLEMENTER
+INSERT INTO Question VALUES (16, 4, "Qu'est-ce qu'un reseau informatique et comment les ordinateurs sont-ils connectes les uns aux autres pour partager des informations et des ressources ?");
+-- Reponse questionaire par equipe 1 -- A IMPLEMENTER
