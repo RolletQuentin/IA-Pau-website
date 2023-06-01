@@ -28,7 +28,7 @@
                 }
             }
             $IdEvement = -1;
-            $query = "SELECT * FROM Evenement as e INNER JOIN Projet AS p ON p.IdEvenement = e.IdEvenement INNER JOIN Equipe as eq ON eq.IdProjet = p.IdProjet WHERE IdEquipe = " . $IdEquipe . ";";
+            $query = "SELECT * FROM Evenement as e INNER JOIN Projet AS p ON p.IdEvenement = e.IdEvenement INNER JOIN Equipe as eq ON eq.IdProjet = p.IdProjet WHERE eq.IdEquipe = " . $IdEquipe . ";";
             $result = mysqli_query($conn, $query);
             if(mysqli_num_rows($result) > 0){
                 if($row = mysqli_fetch_array($result)){

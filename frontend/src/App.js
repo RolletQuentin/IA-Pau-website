@@ -139,6 +139,11 @@ function App() {
                         />
                         <Route
                             exact
+                            path={routes.addUser + "/:id"}
+                            element={<AdminAddUser />}
+                        />
+                        <Route
+                            exact
                             path={routes.modifyRessource}
                             element={<AdminModifyRessource />}
                         />
