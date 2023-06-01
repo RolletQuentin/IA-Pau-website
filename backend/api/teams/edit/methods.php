@@ -69,6 +69,29 @@
             $query = "UPDATE Equipe SET Nom = '" . $newNom . "' WHERE IdEquipe=" . $IdEquipe . ";";
             mysqli_query($conn, $query);
         }
+        if(!(empty($body["IdProjet"]))){
+
+            $IdProjet = verifyStringToDatabaseInsertion($body["IdProjet"]);
+
+            $ProjetValide = false;
+            $query = "SELECT * FROM Projet WHERE IdProjet = ". $IdProjet . ";";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0){
+                while($row = mysqli_fetch_array($result)){
+                    if($row["IdEvenement"] == $IdEvenement){
+                        $ProjetValide = true;
+                    }
+                }
+            }
+
+            if($ProjetValide == false){
+                throw new Exception ("Le projet ne fais pas parti du bon événement ");
+            }
+
+            $newNom = verifyStringToDatabaseInsertion($body["Nom"]);
+            $query = "UPDATE Equipe SET IdProjet = " . $IdProjet . " WHERE IdEquipe=" . $IdEquipe . ";";
+            mysqli_query($conn, $query);
+        }
         if(!(empty($body["LienProjet"]))){
             $newLienProjet = verifyStringToDatabaseInsertion($body["LienProjet"]);
             $query = "UPDATE Equipe SET LienProjet = '" . $newLienProjet . "' WHERE IdEquipe=" . $IdEquipe . ";";
