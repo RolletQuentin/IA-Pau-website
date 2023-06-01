@@ -7,7 +7,6 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-BDDCredentials.php
 frontend/package-lock.json
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
@@ -76,7 +75,6 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
-.env
 .env.development.local
 .env.test.local
 .env.production.local
