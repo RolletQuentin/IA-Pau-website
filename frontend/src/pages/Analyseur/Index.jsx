@@ -59,7 +59,7 @@ const Analyseur = () => {
     const handleAnalyse = async () => {
         setGlobalError("");
         if (lines) {
-            const response = await fetch("http://localhost:8000/getdata/", {
+            const response = await fetch(process.env.REACT_APP_JAVA_PATH + "/getdata/", {
                 method: "POST",
                 body: lines.join("\n"),
             });
@@ -82,7 +82,7 @@ const Analyseur = () => {
         const pattern = document.getElementById("searchBAR").value;
         if (lines && pattern !== "") {
             const response = await fetch(
-                "http://localhost:8000/search/?search=" + pattern,
+                process.env.REACT_APP_JAVA_PATH + "/search/?search=" + pattern,
                 {
                     method: "POST",
                     body: lines.join("\n"),
