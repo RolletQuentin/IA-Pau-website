@@ -34,6 +34,7 @@ const Invitation = ({
             const json = await response.json();
             
             if (!response.ok) {     
+                console.log(json.error)
                 setGlobalError(json.error);
             }
             if (response.ok) {

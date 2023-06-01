@@ -32,7 +32,7 @@ function AdminModifyDataChallenge() {
                         id={id}
                         className="container"
                     />
-                    <AdminGestionnaires id={id} className="container" />
+                    <AdminGestionnaires id_event={id} className="container" />
                 </>
             )}
         </StyledModifyDataChallenge>

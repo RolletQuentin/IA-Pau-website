@@ -84,108 +84,198 @@ function App() {
                         <Route
                             exact
                             path={`${routes.dataChallenge}/:id`}
-                            element={<DataChallengeDetail />}
+                            element={
+                                <DataChallengeDetail />
+                            }
                         />
                         <Route
                             exact
                             path={routes.myDataChallenges}
-                            element={<MyDataChallenges />}
+                            element={
+                                user && (user.role == "Etudiant" || user.role == "Gestionnaire")?(
+                                    <MyDataChallenges />
+                                ) : ( <Navigate to={routes.login}/>)  
+                        }
                         />
                         <Route
                             exact
                             path={`${routes.myDataChallenges}/:id_equipe/:id_project`}
-                            element={<DataChallengeRendu />}
+                            element={
+                                user && (user.role == "Etudiant" || user.role == "Gestionnaire")?(
+                                    <DataChallengeRendu/>
+                                ) :( <Navigate to={routes.login}/>)
+                                }
                         />
                         <Route
                             exact
                             path={`${routes.teamView}/:id_team`}
-                            element={<TeamView />}
+                            element={
+                                user && (user.role == "Etudiant" || user.role == "Administrateur")?
+                                (<TeamView/>
+                                ):( <Navigate to={routes.login}/>)
+                            
+                            }
                         />
                         <Route
                             exact
                             path={`${routes.MCQ}/:id_MCQ/:id_question`}
-                            element={<MCQ />}
+                            element={
+                                user?
+                                (<MCQ/>
+                                ):( <Navigate to={routes.login}/>)
+                            }
                         />
                         <Route
                             exact
                             path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
-                            element={<EvaluateMCQ />}
+                            element={
+                            user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                (<EvaluateMCQ />
+                                ):( <Navigate to={routes.login}/>)
+                            }
                         />
                         <Route
                             exact
                             path={`${routes.dataChallenge}/edit/:id_data_challenge`}
-                            element={<DataChallengeEdition />}
+                            element={
+                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                (<DataChallengeEdition />
+                                ):( <Navigate to={routes.login}/>)
+                            }
+                                
                         />
                         <Route exact path={routes.admin} element={<Admin />} />
                         <Route
                             exact
                             path={routes.adminUsers}
-                            element={<AdminUsers />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminUsers />) : (<Navigate to={routes.login}/>)
+                            }
                         />{" "}
                         <Route
                             exact
                             path={routes.adminDataChallenges}
-                            element={<AdminDataChallenges />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminDataChallenges/>
+                                ):(<Navigate to={routes.login}/>)
+                            }
                         />{" "}
                         <Route
                             exact
                             path={routes.adminRessources}
-                            element={<AdminRessources />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminRessources />
+                                ):(<Navigate to={routes.login}/>)
+                        }
                         />
                         <Route
                             exact
                             path={routes.addUser}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminAddUser/>
+                                ):(<Navigate to={routes.login}/>) 
+                        }
+                        />
+                        <Route
+                            exact
+                            path={routes.addUser + "/:id"}
                             element={<AdminAddUser />}
                         />
                         <Route
                             exact
                             path={routes.modifyRessource}
-                            element={<AdminModifyRessource />}
+                            element={
+                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                (<AdminModifyRessource/>
+                                ):(<Navigate to={routes.login}/>) 
+                            }
                         />
                         <Route
                             exact
                             path={routes.modifyRessource + `/:id`}
-                            element={<AdminModifyRessource />}
+                            element={
+                            
+                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                (<AdminModifyRessource/>
+                                ):(<Navigate to={routes.login}/>) 
+                        }
                         />
                         <Route
                             exact
                             path={routes.modifyDataChallenge}
-                            element={<AdminModifyDataChallenge />}
+                            element={
+                            
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyDataChallenge/>
+                                ):(<Navigate to={routes.login}/>) 
+                            
+                            }
                         />
                         <Route
                             exact
                             path={routes.modifyDataChallenge + `/:id`}
-                            element={<AdminModifyDataChallenge />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyDataChallenge/>
+                                ):(<Navigate to={routes.login}/>) 
+                            }
                         />
                         <Route
                             exact
                             path={routes.analyseur}
-                            element={<Analyseur />}
+                            element={
+                            <Analyseur />
+                           }
                         />
                         <Route
                             exact
                             path={routes.modifyProject + `/:idEvent`}
-                            element={<AdminModifyProject />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyProject />
+                                ):(<Navigate to={routes.login}/>) 
+                            
+                        }
                         />
                         <Route
                             exact
                             path={routes.modifyProject + `/:idEvent/:idProject`}
-                            element={<AdminModifyProject />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyProject />
+                                ):(<Navigate to={routes.login}/>)
+                        }
                         />
                         <Route
                             exact
                             path={routes.modifyUser}
-                            element={<AdminModifyUser />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyUser />
+                                ):(<Navigate to={routes.login}/>)
+                            }
                         />
                         <Route
                             exact
                             path={routes.modifyUser + `/:id`}
-                            element={<AdminModifyUser />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminModifyUser />
+                                ):(<Navigate to={routes.login}/>)
+                            }
                         />
                         <Route
                             exact
                             path={routes.addGestionnaire + `/:id_event`}
-                            element={<AdminAddGestionnaire />}
+                            element={
+                                user && (user.role == "Administrateur")?
+                                (<AdminAddGestionnaire />
+                                ):(<Navigate to={routes.login}/>)
+                            }
                         />
                         <Route
                             exact

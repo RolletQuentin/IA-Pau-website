@@ -57,6 +57,7 @@ const SignupForm = ({
     icon = true,
     buttonText = "S'enregistrer",
     firstAuth = true,
+    idPost = "",
 }) => {
     const { user } = useAuthContext();
     const { id } = useParams();
