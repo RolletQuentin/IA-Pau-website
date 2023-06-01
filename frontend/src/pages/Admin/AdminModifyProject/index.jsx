@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import InputTextDefault from "../../../components/Input/Text/Default";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
@@ -8,6 +8,8 @@ import { togglePut } from "../../../toggles/togglePut";
 import { togglePost } from "../../../toggles/togglePost";
 import Button from "../../../components/Button";
 import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
+
+import routes from "../../../utils/routes";
 
 const StyledAdminProject = styled.div`
     display: flex;
@@ -129,6 +131,10 @@ function AdminModifyProject() {
                     <BasicButton>Envoyer</BasicButton>
                 </form>
             </Button>
+            <br></br>
+            <Link className="return" to={routes.adminDataChallenges}>
+                <BasicButton>Retour</BasicButton>
+            </Link>
         </StyledAdminProject>
     );
 }

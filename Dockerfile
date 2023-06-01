@@ -17,16 +17,11 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Étape 3 : Configuration du serveur Java
-FROM openjdk:11 AS java-server
-WORKDIR /app/backend
-COPY backend/AnalyseurDeCode.jar /app/backend/
-
 # Étape 4 : Configuration du serveur MySQL
 FROM mysql:8 AS mysql-server
 ENV MYSQL_ROOT_PASSWORD=root_password
 ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=password
+ENV MYSQL_PASSWORD=ltkZPbxzP3m8HA6c
 ENV MYSQL_DATABASE=IA_Pau_database
 
 # Copie du fichier deploy.sql pour initialiser la base de données
@@ -38,7 +33,6 @@ RUN chmod +x /docker-entrypoint-initdb.d/init-database.sh
 
 # Étape 5 : Assemblage des composants
 FROM php-server AS final
-COPY --from=java-server /app/backend/AnalyseurDeCode.jar /app/backend/
 COPY --from=frontend-builder /app/frontend/build/ /var/www/html/
 
 # Configuration du fichier BDDCredentials

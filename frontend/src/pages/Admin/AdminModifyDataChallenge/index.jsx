@@ -6,6 +6,11 @@ import AdminGestionnaires from "../../../components/AdminGestionnaires";
 import AdminRessourcesDataChallenge from "../../../components/AdminRessourcesDataChallenge";
 import AdminInfosDataChallenge from "../../../components/AdminInfosDataChallenge";
 
+import { Link } from "react-router-dom";
+import routes from "../../../utils/routes";
+import Button from "../../../components/Button";
+import BasicButton from "../../../components/BasicButton";
+
 const StyledModifyDataChallenge = styled.div`
     display: flex;
     flex-direction: column;
@@ -35,6 +40,11 @@ function AdminModifyDataChallenge() {
                     <AdminGestionnaires id_event={id} className="container" />
                 </>
             )}
+            
+            <br></br>
+            <Link className="return" to={routes.adminDataChallenges}>
+                <BasicButton>Retour menu administrer Data Challenges</BasicButton>
+            </Link>
         </StyledModifyDataChallenge>
     );
 }
