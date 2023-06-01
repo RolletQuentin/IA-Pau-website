@@ -15,27 +15,44 @@ const Analyseur = () => {
     const [responseJSON, setResponseJSON] = useState(null);
     const [responseSEARCH, setResponseSEARCH] = useState(null);
 
-    const readLinesFromFile = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            const lines = [];
-
-            fileReader.onload = (event) => {
-                const fileContent = event.target.result;
-                const allLines = fileContent.split(/\r\n|\n/);
-
-                allLines.forEach((line) => {
-                    lines.push(line);
-                });
-
-                resolve(lines);
-            };
-
-            fileReader.onerror = (event) => {
-                reject(event.target.error);
-            };
-
-            fileReader.readAsText(file);
+  const readLinesFromFile = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      const lines = [];
+  
+      fileReader.onload = (event) => {
+        const fileContent = event.target.result;
+        let allLines = fileContent.split(/\r\n|\n/);
+        
+        allLines.forEach((line) => {
+          let lineModif = line.replaceAll("\t", "    ");
+          lines.push(lineModif);
+        });
+  
+        resolve(lines);
+      };
+  
+      fileReader.onerror = (event) => {
+        reject(event.target.error);
+      };
+  
+      fileReader.readAsText(file);
+    });
+  };
+  
+  // Usage
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+  
+    if (selectedFile) {
+      readLinesFromFile(selectedFile)
+        .then((lines) => {
+          // Process the lines here
+          console.log(lines.join("\n"));
+          setLines(lines);
+        })
+        .catch((error) => {
+          console.error("Error reading file:", error);
         });
     };
 
