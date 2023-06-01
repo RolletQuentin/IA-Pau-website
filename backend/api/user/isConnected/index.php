@@ -27,6 +27,6 @@ try {
 
 } catch (Exception $e){
     echo json_encode(array("Connected"=>false));
-    http_response_code(400);
+    http_response_code(200);
 }
 ?>

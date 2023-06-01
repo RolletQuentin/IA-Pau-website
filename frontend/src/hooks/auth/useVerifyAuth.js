@@ -13,18 +13,16 @@ export const useVerifyAuth = () => {
         })
         const json = await response.json();
         
-        /*if (false && response.ok) {
-            if (json.error === "session expired") {
+        if (response.ok) {
+            if (!json.Connected) {
                 alert("session expired");
                 logout();
-            }else if (json.error === "request is not authorized"){
-                alert("request is not authorized");
+            }else{
+                console.log("connected")
             }
-        }else{*/
-            console.log("herreeee")
-            console.log(json)
-            console.log("endddd herrre")
-        //}        
+        }else{
+            console.log(json.error)
+        }        
     }
 
     return {verifyAuth};
