@@ -1,5 +1,5 @@
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Route,
     Routes,
     Navigate,
@@ -92,7 +92,7 @@ function App() {
                             exact
                             path={routes.myDataChallenges}
                             element={
-                                user && (user.role == "Etudiant" || user.role == "Gestionnaire")?(
+                                user && (user.role === "Etudiant" || user.role === "Gestionnaire")?(
                                     <MyDataChallenges />
                                 ) : ( <Navigate to={routes.login}/>)  
                         }
@@ -101,7 +101,7 @@ function App() {
                             exact
                             path={`${routes.myDataChallenges}/:id_equipe/:id_project`}
                             element={
-                                user && (user.role == "Etudiant" || user.role == "Gestionnaire")?(
+                                user && (user.role === "Etudiant" || user.role === "Gestionnaire")?(
                                     <DataChallengeRendu/>
                                 ) :( <Navigate to={routes.login}/>)
                                 }
@@ -110,7 +110,7 @@ function App() {
                             exact
                             path={`${routes.teamView}/:id_team`}
                             element={
-                                user && (user.role == "Etudiant" || user.role == "Administrateur")?
+                                user && (user.role === "Etudiant" || user.role === "Administrateur")?
                                 (<TeamView/>
                                 ):( <Navigate to={routes.login}/>)
                             
@@ -129,7 +129,7 @@ function App() {
                             exact
                             path={`${routes.evaluateMCQ}/:id_MCQ/:id_team`}
                             element={
-                            user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                            user && (user.role === "Administrateur" || user.role === "Gestionnaire")?
                                 (<EvaluateMCQ />
                                 ):( <Navigate to={routes.login}/>)
                             }
@@ -138,18 +138,25 @@ function App() {
                             exact
                             path={`${routes.dataChallenge}/edit/:id_data_challenge`}
                             element={
-                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                user && (user.role === "Administrateur" || user.role === "Gestionnaire")?
                                 (<DataChallengeEdition />
                                 ):( <Navigate to={routes.login}/>)
                             }
                                 
                         />
-                        <Route exact path={routes.admin} element={<Admin />} />
+                        <Route
+                            exact
+                            path={routes.admin}
+                            element={
+                                user && (user.role === "Administrateur") ?
+                                <Admin /> : 
+                                <Navigate to={routes.login} /> 
+                            } />
                         <Route
                             exact
                             path={routes.adminUsers}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminUsers />) : (<Navigate to={routes.login}/>)
                             }
                         />{" "}
@@ -157,7 +164,7 @@ function App() {
                             exact
                             path={routes.adminDataChallenges}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminDataChallenges/>
                                 ):(<Navigate to={routes.login}/>)
                             }
@@ -166,7 +173,7 @@ function App() {
                             exact
                             path={routes.adminRessources}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminRessources />
                                 ):(<Navigate to={routes.login}/>)
                         }
@@ -175,7 +182,7 @@ function App() {
                             exact
                             path={routes.addUser}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminAddUser/>
                                 ):(<Navigate to={routes.login}/>) 
                         }
@@ -189,7 +196,7 @@ function App() {
                             exact
                             path={routes.modifyRessource}
                             element={
-                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                user && (user.role === "Administrateur" || user.role === "Gestionnaire")?
                                 (<AdminModifyRessource/>
                                 ):(<Navigate to={routes.login}/>) 
                             }
@@ -199,7 +206,7 @@ function App() {
                             path={routes.modifyRessource + `/:id`}
                             element={
                             
-                                user && (user.role == "Administrateur" || user.role == "Gestionnaire")?
+                                user && (user.role === "Administrateur" || user.role === "Gestionnaire")?
                                 (<AdminModifyRessource/>
                                 ):(<Navigate to={routes.login}/>) 
                         }
@@ -209,7 +216,7 @@ function App() {
                             path={routes.modifyDataChallenge}
                             element={
                             
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyDataChallenge/>
                                 ):(<Navigate to={routes.login}/>) 
                             
@@ -219,7 +226,7 @@ function App() {
                             exact
                             path={routes.modifyDataChallenge + `/:id`}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyDataChallenge/>
                                 ):(<Navigate to={routes.login}/>) 
                             }
@@ -235,7 +242,7 @@ function App() {
                             exact
                             path={routes.modifyProject + `/:idEvent`}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyProject />
                                 ):(<Navigate to={routes.login}/>) 
                             
@@ -245,7 +252,7 @@ function App() {
                             exact
                             path={routes.modifyProject + `/:idEvent/:idProject`}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyProject />
                                 ):(<Navigate to={routes.login}/>)
                         }
@@ -254,7 +261,7 @@ function App() {
                             exact
                             path={routes.modifyUser}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyUser />
                                 ):(<Navigate to={routes.login}/>)
                             }
@@ -263,7 +270,7 @@ function App() {
                             exact
                             path={routes.modifyUser + `/:id`}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminModifyUser />
                                 ):(<Navigate to={routes.login}/>)
                             }
@@ -272,7 +279,7 @@ function App() {
                             exact
                             path={routes.addGestionnaire + `/:id_event`}
                             element={
-                                user && (user.role == "Administrateur")?
+                                user && (user.role === "Administrateur")?
                                 (<AdminAddGestionnaire />
                                 ):(<Navigate to={routes.login}/>)
                             }
