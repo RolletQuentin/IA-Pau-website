@@ -65,6 +65,29 @@ class Questionnaires {
         return $query;
     }
 
+
+    /**
+     * Lecture des Réponses d'un Questionnaire
+     *
+     * @return void
+     */
+    public function getAllReponsesQuestionsByIdQuestionnaire(){
+        // On écrit la requête
+        $sql = "SELECT * FROM ReponseQuestion NATURAL JOIN Question WHERE IdQuestionnaire = ?";
+
+        // On prépare la requête
+        $query = $this->connexion->prepare($sql);
+
+        // On attache l'id
+        $query->bindParam(1, $this->IdQuestionnaire);
+
+        // On exécute la requête
+        $query->execute();
+
+        // On retourne le résultat
+        return $query;
+    }
+
     /**
      * Lire un questionnaire
      *
