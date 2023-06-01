@@ -124,7 +124,7 @@ function TeamView() {
     
             if (response.ok) {
                 setTeamData(json)
-                fetchProjets(json)
+                await fetchProjets(json)
             }
         }
         const fetchPendingInvitation = async () => {
@@ -134,7 +134,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             } )
-            verifyAuth();
+            await verifyAuth();
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -170,7 +170,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             })
-
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -197,7 +197,7 @@ function TeamView() {
                 },
                 body: JSON.stringify({Nom: teamData.Nom})
             })
-
+            await verifyAuth()
             console.log({Nom: teamData.Nom})
             if (!response.ok) {     
             
@@ -228,7 +228,7 @@ function TeamView() {
                     Authorization: `Bearer ${user.jwt}`,
                 },
             } )
-            verifyAuth();
+            await verifyAuth();
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -249,6 +249,7 @@ function TeamView() {
                 },
                 body: JSON.stringify({email: newMember})
             })
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
