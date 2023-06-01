@@ -15,44 +15,28 @@ const Analyseur = () => {
     const [responseJSON, setResponseJSON] = useState(null);
     const [responseSEARCH, setResponseSEARCH] = useState(null);
 
-  const readLinesFromFile = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      const lines = [];
-  
-      fileReader.onload = (event) => {
-        const fileContent = event.target.result;
-        let allLines = fileContent.split(/\r\n|\n/);
-        
-        allLines.forEach((line) => {
-          let lineModif = line.replaceAll("\t", "    ");
-          lines.push(lineModif);
-        });
-  
-        resolve(lines);
-      };
-  
-      fileReader.onerror = (event) => {
-        reject(event.target.error);
-      };
-  
-      fileReader.readAsText(file);
-    });
-  };
-  
-  // Usage
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-  
-    if (selectedFile) {
-      readLinesFromFile(selectedFile)
-        .then((lines) => {
-          // Process the lines here
-          console.log(lines.join("\n"));
-          setLines(lines);
-        })
-        .catch((error) => {
-          console.error("Error reading file:", error);
+    const readLinesFromFile = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            const lines = [];
+
+            fileReader.onload = (event) => {
+                const fileContent = event.target.result;
+                let allLines = fileContent.split(/\r\n|\n/);
+
+                allLines.forEach((line) => {
+                    let lineModif = line.replaceAll("\t", "    ");
+                    lines.push(lineModif);
+                });
+
+                resolve(lines);
+            };
+
+            fileReader.onerror = (event) => {
+                reject(event.target.error);
+            };
+
+            fileReader.readAsText(file);
         });
     };
 
@@ -76,10 +60,13 @@ const Analyseur = () => {
     const handleAnalyse = async () => {
         setGlobalError("");
         if (lines) {
-            const response = await fetch(process.env.REACT_APP_JAVA_PATH + "/getdata/", {
-                method: "POST",
-                body: lines.join("\n"),
-            });
+            const response = await fetch(
+                process.env.REACT_APP_JAVA_PATH + "/getdata/",
+                {
+                    method: "POST",
+                    body: lines.join("\n"),
+                }
+            );
 
             const json = await response.json();
 
@@ -268,7 +255,10 @@ const Analyseur = () => {
                                         </div>
                                     </td>
                                     <td
-                                        style={{ border: "none", width: "60%" }}
+                                        style={{
+                                            border: "none",
+                                            width: "60%",
+                                        }}
                                     >
                                         <Pie
                                             data={{
@@ -314,7 +304,10 @@ const Analyseur = () => {
                             >
                                 <tr>
                                     <td
-                                        style={{ border: "none", width: "60%" }}
+                                        style={{
+                                            border: "none",
+                                            width: "60%",
+                                        }}
                                     >
                                         <Pie
                                             data={{
@@ -446,5 +439,4 @@ const Analyseur = () => {
         </CenterContainer>
     );
 };
-}
 export default Analyseur;
