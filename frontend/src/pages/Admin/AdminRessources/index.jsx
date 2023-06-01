@@ -97,7 +97,6 @@ function AdminRessources() {
 
     return (
         <StyledAdminRessources>
-            <NavbarOffset />
             <h1>Administrer ressources</h1>
             {isLoading ? (
                 <Loader />

@@ -23,6 +23,7 @@ const StyledHome = styled.div`
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: 30px;
+        width: inherit;
     }
 
     .data-challenge-button {
@@ -57,7 +58,6 @@ function Home() {
 
     return (
         <StyledHome>
-            <NavbarOffset />
             <h1>Data Challenges</h1>
 
             {evenements && evenements.Evenements && <VBox gap="0">

@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const StyledNavbarOffset = styled.div`
-    height: ${(props) => (props.isFixed ? "50px" : "95px")};
+    transition: height 0.4s;
+    height: ${(props) => (props.size + "px")};
     width: 100%;
 `;
 
 function NavbarOffset() {
-    const [isFixed, setIsFixed] = useState(false);
-    function scrollFunction() {
-        if (
-            document.body.scrollTop > 80 ||
-            document.documentElement.scrollTop > 80
-        ) {
-            setIsFixed(true);
-        } else {
-            setIsFixed(false);
+    // to add an animation when we scroll on the page
+    const [size, setSize] = useState(60);
+    
+    
+    useEffect(() => {
+        function scrollFunction() {
+            if (
+                document.body.scrollTop - size > 5 ||
+                document.documentElement.scrollTop - size > 5
+            ) {
+                setSize(60);
+            } else {
+                setSize(100);
+            }
         }
-    }
-    window.onscroll = function () {
         scrollFunction();
-    };
-    return <StyledNavbarOffset isFixed={isFixed}></StyledNavbarOffset>;
+        window.addEventListener("scroll", scrollFunction);
+        return () => {
+            window.removeEventListener("scroll", scrollFunction);
+        };
+    }, []);
+    return <StyledNavbarOffset size={size}></StyledNavbarOffset>;
 }
 
 export default NavbarOffset;

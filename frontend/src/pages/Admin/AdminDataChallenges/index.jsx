@@ -96,7 +96,6 @@ function AdminDataChallenges() {
     }, [user]);
     return (
         <StyledAdminDataChallenges>
-            <NavbarOffset />
             <h1>Administrer Data Challenges</h1>
             {isLoading ? (
                 <Loader />
