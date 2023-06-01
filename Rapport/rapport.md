@@ -283,7 +283,7 @@ Ces choix de modélisation nous permettent de stocker et de gérer efficacement 
 
 Notre projet de développement s'est déroulé en plusieurs étapes bien définies. Tout d'abord, nous avons commencé par un brainstorming pour s'impreigner des idées et des concepts. Ensuite, nous avons élaboré un diagramme use case et des diagrammes de pages afin de décrire les interactions et les fonctionnalités de notre système. Une fois cette étape terminée, nous avons créé une maquette qui représente visuellement l'interface utilisateur de notre application. Dans le même temps, Arthur et Maxime ont travaillé sur la réalisation de la base de données (BDD), tandis que Patrice s'occupait du développement de la maquette. Parallèlement, Quentin et Valentin ont créé les composants React en suivant la maquette. Une fois la BDD terminée, Maxime a rejoint l'équipe Front-end pour collaborer avec Quentin et Valentin. Arthur, de son côté, a commencé à créer l'API PHP pour le Backend. Une fois la maquette finalisée, Patrice a rejoint l'équipe Back-end. Après avoir achevé le développement du Backend, Arthur a pris en charge la création de l'API Java, tandis que Patrice s'est concentré sur la rédaction du rapport final du projet. Cette approche collaborative a permis une symbiose entre les équipes Back-end et Front-end, assurant ainsi une progression efficace et un développement cohérent de notre application.
 
-## Présentation du développement des composants React (!!!!!!!!! EQUIPE FRONT A MODIFIER !!!!!!!!!)
+## Présentation du développement des composants React
 
 Pour le front-end nous avons adopté une approche basée sur la maquette pour le développement des composants React. En se référant à la conception visuelle de l'interface utilisateur, nous avons créé des composants réutilisables.
 
@@ -351,70 +351,116 @@ Enfin, les différentes lignes d’importation sont spécifiées afin de savoir 
 
 ### Le Visiteur peut consulter les événements et consulter leurs informations
 
-Mettre deux screenshot <=> 2 premières slides maquette
-Sur la page d'accueil d'un Data Battle, on voit le classement des équipe en fonction de leurs résultats aux questionnaires hebdomadaires.
+![Site : Visiteur -> Accueil](images/site/visiteur/Visiteur_accueil.png){height=100%}
 
-### Le Visiteur peur se connecter s'il a un compte
+![Site : Visiteur -> Data Battle](images/site/visiteur/Visiteur_info_data_battle.png){height=100%}
 
+![Site : Visiteur -> Data Challenge](images/site/visiteur/visiteur_dataChallenge.png){height=100%}
 
-### Le Visiteur peur se créer un compte
+### Le Visiteur peur se connecter s'il a un compte ou créer un compte
 
-### L'Étudiant peut consulter ses événements
+![Site : Visiteur -> Connexion](images/site/visiteur/visiteur_connexion.png){height=100%}
 
-### L'Étudiant peut créer une équipe
+![Site : Visiteur -> Créer un compte](images/site/visiteur/Visiteur_creer_compte.png){height=100%}
 
-Lorsqu'il crée une équipe il devient capitaine et il peut choisir le nom de l'équipe et le projet auquel il veut participer puis inviter d'autres étudiant à se joindre à lui. 
+### L'Étudiant possède la même page d'accueil que le visiteur
 
-### L'Étudiant peut accepter une invitation à rejoindre une équipe
+![Site : Étudiant -> Accueil](images/site/etudiant/etudiant_accueil.png){height=100%}
 
+### L'Étudiant peut participer à un événement (Rejoindre une équipe ou en créer une)
+
+Soit il peut rejoindre une équipe en acceptant une invitation. Il peut consulter ses invitations en cliquant sur la petite enveloppe dans le menu.
+
+![Site : Étudiant -> Invitation](images/site/etudiant/etudiant_invitations.png){height=100%}
+
+Soit il peut décider de créer une équipe en cliquant sur "Participer" et ainsi choisir le nom de son équipe, le Projet auquel il souhaite participer (via un menu déroulant) et inviter des étudiants à se joindre à lui. S'il crée une équipe il sera le capitaine.
+
+![Site : Étudiant -> Créer équipe](images/site/etudiant/etudiant_creer_equipe.png){height=100%}
+
+### L'Étudiant peut consulter les événements auquels il participe et communiquer avec les gestionnaires
+
+![Site : Étudiant -> Mes événements](images/site/etudiant/etudiant_mes_evenements.png){height=100%}
+
+Dans ce dossier il peut acceder aux fichiers du projet, communiquer avec le gestionnaire via une messagerie, enregistrer un lien GitHub s'il est le capitaine de l'équipe.
+
+![Site : Étudiant -> Mes événements -> Data Challenge](images/site/etudiant/){height=100%} !!!!!!!!! PHOTO A FAIRE!!!!!!!!
+
+Il peut également répondre à des questionnaires si l'événément est un Data Battle.
+
+![Site : Étudiant -> Mes événements -> Data Battle](images/site/etudiant/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
 
 ### L'Étudiant peut consulter son équipe
 
-
-### L'Étudiant peut consulter le Projet
-
-Sur cette page il peut communiquer via la messagerie avec les gestionnaires du projet. S'il est capitaine d'équipe il peut également envoyer un lien GitHub.
-Dans le cas d'un Data Battle le capitaine peut répondre à des questionnaires hebdomadaires.
+!!!!!!!!!!!!!!!! PROBLEME, ON PEUT PAS CONSULTER INFO MEMBRE EQUIPE !!!!!!!!!!!
 
 ### L'Étudiant peut modifier son profil
 
+![Site : Étudiant -> Modifier profil](images/site/etudiant/etudiant_modifier_profil.png){height=100%}
+
 ### Le Gestionnaire peut consulter les événements qu'il gère
 
-### Le Gestionnaire peut gérer un Data Challenge
+### Le gestionnaire peut gérer un événément
 
-Il peut noter les équipes pour chaque projet.
-Il peut envoyer des messages via la messagerie à toutes les équipes du Data Challenge, à toutes les équipes de chaque Projet ainsi qu'à toutes les équipes individuellement.
+Pour tout type d'événement il peut envoyer des messages via la messagerie à toutes les équipes du Data Challenge, à toutes les équipes de chaque Projet ainsi qu'à toutes les équipes individuellement.
 
-### Le Gestionnaire peut gérer un Data Battle
 
-Il peut créer des questionnaires, des questions, noter les équipes.
-Il peut envoyer des messages via la messagerie à toutes les équipes du Data Battle ainsi qu'à toutes les équipes de chaque Projet.
+Pour un Data Challenge, le gestionnaire peut noter les équipes pour chaque projet.
+
+![Site : Gestionnaire -> Data Challenge](images/site/gestionnaire/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
+
+Pour un Data Battle, il peut en plus créer des questionnaires, des questions, noter les équipes pour chaque questionnaire.
+
+![Site : Gestionnaire -> Data Battle](images/site/gestionnaire/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
 
 ### Le Gestionnaire peut modifier son profil
+
+![Site : Gestionnaire -> Modifier profil](images/site/gestionnaire/gestionnaire_profil.png){height=100%}
 
 ### L'Administrateur accède à un panneau d'administration
 
 Sur ce panneau il peut chosir d'administrer les Utilisateurs, les Evenements ainsi que les Ressources.
 
+![Site : Administrateur -> Panneau administrateur](images/site/administrateur/admin_page_principale.png){height=100%}
+
 ### L'Administrateur gère les utilisateurs
 
 Il peut créer, éditer, supprimer des utilisateurs. Il est le seul à pouvoir créer des Administrateurs et des Gestionnaires.
 
-### L'Administrateur gère les Data Challenges
+![Site : Administrateur -> Utilisateurs](images/site/administrateur/admin_users.png){height=100%}
 
-Il voit l'état des Data Challenges, peut en créer, en modifier et en supprimer.
+![Site : Administrateur -> Créer utilisateur](images/site/administrateur/admin_users_ajouter.png){height=100%}
 
-### L'Administrateur créer un Data Challenge
+![Site : Administrateur -> Modifier utilisateurs](images/site/administrateur/admin_users_modifier.png){height=100%}
 
-### L'Administrateur crée un Projet
+### L'Administrateur gère les événements
 
-### L'Administrateur crée un Data Battle
+Il peut en créer, éditer et supprimer des événements. Il choisit via un menu déroullant s'il veut créer un Data Challenge on un Data Battle.
 
-### L'Administrateur peut créer, modifier, supprimer des Ressources
+![Site : Administrateur -> Évenements](images/site/administrateur/admin_%C3%A9v%C3%A9nements.png){height=100%}
 
-## Liste des fonctionnalités restantes à implémenter (FACULTATIF !!!!!!!!!!!!)
+![Site : Administrateur -> Créer/Modifier Évenements](images/site/administrateur/admin_evenements_modifier_creer.png){height=100%}
 
-Ici on parle des fonctionnalités restantes à implémenter et au cahier des charges
+### L'Administrateur gère les ressources
+
+Il peut en créer, éditer et supprimer des ressources.
+
+![Site : Administrateur -> Ressources](images/site/administrateur/admin_ressources.png){height=100%}
+
+![Site : Administrateur -> Créer/Modifier Évenements](images/site/administrateur/admin_ressource_modifier_creer.png){height=100%}  
+
+### Analyseur de code python
+
+Tous les utilisateurs, visiteur inclus peuvent utiliser l'analyseur de code python. Il permet de récupérer des informations sur un fichier python envoyé et de les visualiser grace à des diagrammes.
+
+
+
+## Liste des fonctionnalités restantes à implémenter
+
+### Classement des équipe sur la page d'accueil des Datas Battles
+
+Sur la page d'accueil d'un Data Battle, on voit le classement des équipe en fonction de leurs résultats aux questionnaires hebdomadaires.
+
+### Administrateur créer, éditer, supprimer questionnaire et questions pour Data Battle
 
 # Conclusion 
 
