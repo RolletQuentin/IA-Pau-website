@@ -107,15 +107,19 @@ function DataChallengeDetail() {
             }
         }
         const fetchHasTeam = async () => {
-            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/me/?IdEvent=' + id)
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/me/?IdEvent=' + id, {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+            })
             const json = await response.json();
             
             if (response.ok) {
                 setTeam({...json, hasTeam: true});
                 console.log(json)
             }else{
-                console.log(json)
                 setTeam({hasTeam: false})
+                console.log(json)
             }
             
         }
@@ -160,7 +164,7 @@ function DataChallengeDetail() {
                             <BasicButton style={{padding: "5px 20px"}}>{(!user ) ? "Participer" : "Dossier"}</BasicButton>
                         </Link>:
                         user.role !== "Administrateur" && <div style={{marginLeft: "auto"}}>
-                            <BasicButton onPress={handleCreateTeam} style={{padding: "5px 20px"}}>Participer</BasicButton>
+                            <BasicButton onPress={handleCreateTeam} style={{padding: "5px 20px"}}>{"Participer" + team.hasTeam}</BasicButton>
                         </div>
                     }
                 </div>}
