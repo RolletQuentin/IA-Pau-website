@@ -9,6 +9,7 @@ import { Loader } from "../../../utils/Atoms";
 import Button from "../../../components/Button";
 import toggleDelete from "../../../toggles/toggleDelete";
 import DataChallengeIcon from "../../../assets/data-challenges.png";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const StyledAdminDataChallenges = styled.div`
     margin: auto;
@@ -63,6 +64,7 @@ function AdminDataChallenges() {
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const {verifyAuth} = useVerifyAuth()
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
@@ -79,10 +81,12 @@ function AdminDataChallenges() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     const events = json.Evenements;
                     setData(events);
                 } catch (err) {
+                    await verifyAuth()
                     setError(err);
                     console.error(err);
                 } finally {
