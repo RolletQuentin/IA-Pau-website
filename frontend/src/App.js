@@ -34,6 +34,7 @@ import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 import AdminAddGestionnaire from "./pages/Admin/AdminAddGestionnaire";
 import NavbarOffset from "./components/NavbarOffset";
+import Invitations from "./pages/Invitations.js/Index";
 
 function App() {
     const { user, ready } = useAuthContext();
@@ -185,6 +186,11 @@ function App() {
                             exact
                             path={routes.addGestionnaire + `/:id_event`}
                             element={<AdminAddGestionnaire />}
+                        />
+                        <Route
+                            exact
+                            path={routes.invitations}
+                            element={!user ? <Navigate to={routes.login}/> : ( user.role === "Etudiant" ? <Invitations /> : <Navigate to={routes.home}/>)}
                         />
                         <Route path="*" element={<Error404 />} />
                     </Routes>

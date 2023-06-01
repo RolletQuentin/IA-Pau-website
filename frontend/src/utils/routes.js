@@ -19,6 +19,7 @@ const routes = {
     modifyProject: "/admin/modify-project",
     modifyUser: "/admin/modify-user",
     addGestionnaire: "/admin/add-gestionnaire",
+    invitations: "/invitations"
 };
 
 export default routes;
