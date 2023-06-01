@@ -1,7 +1,5 @@
-import NavbarOffset from "../../components/NavbarOffset";
 import Messagerie from "../../components/Messagerie";
 import styled from "styled-components";
-import Button from "../../components/Button";
 import Project from "../../components/Project";
 import Ressource from "../../components/Ressources";
 import Team from "../../components/Team";
@@ -47,7 +45,7 @@ function DataChallengeRendu() {
                     <Project />
                     <Ressource />
                     <Team />
-                    <Questionnaire />
+                    {/* <Questionnaire /> */}
                 </div>
                 <Messagerie className="messagerie" />
             </div>

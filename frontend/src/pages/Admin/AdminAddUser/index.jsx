@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SignupForm from "../../../components/Form/Signup";
 import NavbarOffset from "../../../components/NavbarOffset";
+import { useParams } from "react-router-dom";
 
 const StyledAddUser = styled.div`
     margin: auto;
@@ -11,11 +12,15 @@ const StyledAddUser = styled.div`
 `;
 
 function AdminAddUser() {
+    const { id } = useParams();
+
     return (
         <StyledAddUser>
             <NavbarOffset />
             <SignupForm
-                title="Ajouter / Modifier utilisateur"
+                title={
+                    (id === undefined ? "Ajouter" : "Modifier") + " utilisateur"
+                }
                 icon={false}
                 buttonText="Enregistrer"
                 firstAuth={false}
