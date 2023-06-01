@@ -272,7 +272,7 @@ function TeamView() {
                 <SectionContainer style={{width: "600px"}}>
                     <VBox gap="30px">
                         <Button className="button">
-                            <HBox style={{width: "100%"}} gap="30px">
+                            <HBox style={{width: "100%"}} gap="50px">
                                 {teamData.IdLeader === user.userId || user.role === "Administrateur" ?
                                 <>
                                 <input 
@@ -280,7 +280,8 @@ function TeamView() {
                                         backgroundColor: "#0000",
                                         border: "none",
                                         borderBottom: "solid 1px var(--dark-color)",
-                                        flexGrow: 1
+                                        flexGrow: 1,
+                                        height: "40px"
                                     }}
                                     type="text"
                                     onChange={(e) => setTeamName(e.target.value)}
@@ -311,7 +312,7 @@ function TeamView() {
                                 background: "var(--primary)",
                                 justifyContent: "space-between",
                                 width: "100%",
-                                minHeight: "80px",
+                                minHeight: "40px",
                                 margin: 0,
                                 marginBottom: 0,
                                 borderRadius: "30px",
