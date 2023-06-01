@@ -96,7 +96,6 @@ function AdminUsers() {
 
     return (
         <StyledAdminUsers>
-            <NavbarOffset />
             <h1>Administrer utilisateurs</h1>
             {isLoading ? (
                 <Loader />

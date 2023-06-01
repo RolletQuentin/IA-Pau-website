@@ -23,7 +23,6 @@ function AdminModifyDataChallenge() {
 
     return (
         <StyledModifyDataChallenge>
-            <NavbarOffset />
             <h1>Ajouter / Modifier un Data Challenge</h1>
             <AdminInfosDataChallenge className="container" />
             {id !== undefined && (

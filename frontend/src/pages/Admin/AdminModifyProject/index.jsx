@@ -54,7 +54,6 @@ function AdminModifyProject() {
 
     return (
         <StyledAdminProject>
-            <NavbarOffset />
             <h1>Ajouter / Modifier un projet</h1>
             <Button>
                 <form
