@@ -9,8 +9,6 @@ import { togglePut } from "../../../toggles/togglePut";
 import { togglePost } from "../../../toggles/togglePost";
 import Button from "../../../components/Button";
 import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
-
-import { Link } from "react-router-dom";
 import routes from "../../../utils/routes";
 
 const StyledAdminRessources = styled.div`
