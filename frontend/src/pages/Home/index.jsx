@@ -65,9 +65,9 @@ function Home() {
                     return (
                         <Button key={index} className="data-challenge" style={{minWidth: "600px"}}>
                         <h2>{e.Libele}</h2>
-                        <Link to={routes.myDataChallenges + "/" + e.IdEquipe + "/" + e.IdProjet}>
+                        <Link to={`${routes.dataChallenge}/${e.IdEvenement}`}>
                             <BasicButton className="data-challenge-button">
-                                Dossier
+                                Infos
                             </BasicButton>
                         </Link>
                     </Button>
