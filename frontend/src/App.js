@@ -34,7 +34,7 @@ import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
 import AdminAddGestionnaire from "./pages/Admin/AdminAddGestionnaire";
 import NavbarOffset from "./components/NavbarOffset";
-import Invitations from "./pages/Invitations.js/Index";
+import Invitations from "./pages/Invitations/Index";
 
 function App() {
     const { user, ready } = useAuthContext();

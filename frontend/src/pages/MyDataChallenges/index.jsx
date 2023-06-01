@@ -41,7 +41,7 @@ function MyDataChallenges() {
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEventsByIdUser/?id=' + user.userId)
     
             try{
-                verifyAuth();
+                await verifyAuth();
                 const json = await response.json();
                 if (!response.ok) {     
                     console.log(json.error) 
@@ -53,6 +53,7 @@ function MyDataChallenges() {
                     setMyEvent(json.Evenements)
                 }
             }catch{
+                await verifyAuth()
                 console.log("json is empty")
             }
         }

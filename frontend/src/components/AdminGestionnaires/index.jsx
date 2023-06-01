@@ -8,6 +8,7 @@ import { Loader } from "../../utils/Atoms";
 import Button from "../../components/Button";
 import AbstractUser from "../../assets/abstract-user.png";
 import axios from "axios";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledAdminProjects = styled.div`
     margin: auto;
@@ -62,6 +63,7 @@ function AdminGestionnaires({ id_event, className }) {
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const {verifyAuth} = useVerifyAuth()
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
@@ -78,10 +80,12 @@ function AdminGestionnaires({ id_event, className }) {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     const events = json;
                     setData(events);
                 } catch (err) {
+                    await verifyAuth()
                     setError(err);
                     console.error(err);
                 } finally {
@@ -113,6 +117,7 @@ function AdminGestionnaires({ id_event, className }) {
             } catch (error) {
                 console.error(error);
             }
+            verifyAuth()
         }
     };
 
@@ -141,7 +146,7 @@ function AdminGestionnaires({ id_event, className }) {
                                     <BasicButton
                                         className="delete"
                                         onPress={() =>
-                                            toggleDelete(
+                                            {toggleDelete(
                                                 process.env.REACT_APP_PROXY +
                                                     `/api/user/removeGestionnaireFromEvent/`,
                                                 user,
@@ -150,6 +155,8 @@ function AdminGestionnaires({ id_event, className }) {
                                                     "IdUser": id,
                                                 }
                                             )
+                                            verifyAuth()
+                                        }
                                         }
                                     >
                                         Retirer

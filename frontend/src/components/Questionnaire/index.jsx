@@ -6,6 +6,7 @@ import Button from "../Button";
 import InputTextDefault from "../Input/Text/Default";
 import BasicButton from "../BasicButton";
 import { togglePatch } from "../../toggles/togglePatch";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledQuestionnaire = styled(Button)`
     display: flex;
@@ -27,6 +28,7 @@ function Questionnaire() {
     const { user } = useAuthContext();
     const { id_projet } = useParams();
     const [questionnaires, setQuestionnaires] = useState();
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id_projet !== undefined && user) {
@@ -42,9 +44,11 @@ function Questionnaire() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setQuestionnaires(json.Questionnaires);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };

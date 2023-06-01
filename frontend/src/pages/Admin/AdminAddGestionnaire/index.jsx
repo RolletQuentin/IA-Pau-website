@@ -9,6 +9,7 @@ import BasicButton from "../../../components/BasicButton";
 import AbstractUser from "../../../assets/abstract-user.png";
 import { Loader } from "../../../utils/Atoms";
 import { togglePost } from "../../../toggles/togglePost";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const StyledAddGestionnaire = styled.div`
     display: flex;
@@ -68,6 +69,7 @@ function AdminAddGestionnaire() {
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const { verifyAuth } = useVerifyAuth();
 
     // récupération des données pour récuper tout les utilisateurs
     useEffect(() => {
@@ -76,7 +78,7 @@ function AdminAddGestionnaire() {
                 try {
                     const response = await fetch(
                         process.env.REACT_APP_PROXY +
-                            `/api/users/getAllGestionnaire/`,
+                            "/api/user/getAllGestionnaire/",
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -84,10 +86,12 @@ function AdminAddGestionnaire() {
                             },
                         }
                     );
+                    verifyAuth();
                     const json = await response.json();
-                    const events = json.Projets;
-                    setData(events);
+                    const gestionnaires = json;
+                    setData(gestionnaires);
                 } catch (err) {
+                    verifyAuth();
                     setError(err);
                     console.error(err);
                 } finally {
@@ -98,6 +102,7 @@ function AdminAddGestionnaire() {
             setIsLoading(true);
             fetchData();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     return (
@@ -132,18 +137,18 @@ function AdminAddGestionnaire() {
                                     <div>
                                         <BasicButton
                                             className="update"
-                                            onClick={() =>
+                                            onPress={() => {
                                                 togglePost(
                                                     process.env
                                                         .REACT_APP_PROXY +
-                                                        "api/user/addGestionnaireToEvent/",
+                                                        "/api/user/addGestionnaireToEvent/",
                                                     user,
                                                     {
                                                         "IdEvent": id_event,
                                                         "IdUser": id,
                                                     }
-                                                )
-                                            }
+                                                );
+                                            }}
                                         >
                                             Ajouter
                                         </BasicButton>
