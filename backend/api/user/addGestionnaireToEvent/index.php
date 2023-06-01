@@ -69,7 +69,7 @@ try {
         $query = "INSERT INTO Gerer (IdGestionnaire, IdEvenement) VALUES (" . $IdGestionnaire . "," . $IdEvenement . ");";
         $result = mysqli_query($conn, $query);
 
-        json_encode(array("sucess" => true));
+        echo json_encode(array("sucess" => true));
         http_response_code(200);
 
     } else {
