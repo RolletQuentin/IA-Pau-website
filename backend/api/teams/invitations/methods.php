@@ -116,7 +116,7 @@
         $arrayResult = array();
         foreach($array as $IdUser){
             $userArray = getUserArrayFromId($IdUser);
-            array_push($arrayResult, array("email"=>$userArray["email"]));
+            array_push($arrayResult, array("email"=>$userArray["email"], "lastname"=>$userArray["lastname"], "firstname"=>$userArray["firstname"], "id"=>$userArray["id"]));
         }
         mysqli_close($result);
         http_response_code(200);
