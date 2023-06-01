@@ -130,7 +130,6 @@ function DataChallengeDetail() {
 
     return (
         <CenterContainer>
-            <NavbarOffset/>
             {data_challenge && team && projets ? 
             <VBox style={{
                 width: "80vw",

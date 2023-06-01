@@ -60,7 +60,6 @@ function AdminModifyRessource() {
 
     return (
         <StyledAdminRessources>
-            <NavbarOffset />
             <h1>Ajouter / Modifier une ressource</h1>
             <Button className="container">
                 <form
