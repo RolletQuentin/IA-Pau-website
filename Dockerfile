@@ -1,7 +1,7 @@
 # Étape 1 : Construction de l'application React
 FROM node:latest AS frontend-builder
 WORKDIR /app/frontend
-COPY frontend/package.json frontend/package-lock.json /app/frontend/
+COPY frontend/package.json /app/frontend/
 RUN npm install
 COPY frontend/ /app/frontend/
 RUN npm run build
