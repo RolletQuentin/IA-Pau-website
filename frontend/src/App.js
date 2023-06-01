@@ -32,6 +32,7 @@ import AdminModifyProject from "./pages/Admin/AdminModifyProject";
 import AdminModifyUser from "./pages/Admin/AdminModifyUser";
 import Footer from "./components/Footer";
 import Analyseur from "./pages/Analyseur/Index";
+import AdminAddGestionnaire from "./pages/Admin/AdminAddGestionnaire";
 
 function App() {
     const { user, ready } = useAuthContext();
@@ -177,6 +178,11 @@ function App() {
                             exact
                             path={routes.modifyUser + `/:id`}
                             element={<AdminModifyUser />}
+                        />
+                        <Route
+                            exact
+                            path={routes.addGestionnaire + `/:id_event`}
+                            element={<AdminAddGestionnaire />}
                         />
                         <Route path="*" element={<Error404 />} />
                     </Routes>
