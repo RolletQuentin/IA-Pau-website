@@ -12,6 +12,7 @@ import routes from "../../utils/routes";
 
 function DataChallengeDetail() {
     const [globalError, setGlobalError] = useState("")
+    const [hasProjet, setHasProjet] = useState(true)
     const [redirectToTeamView, setRedirectToTeamView] = useState(false)
     const [team, setTeam] = useState(null)
     const [data_challenge, setDataChallenge] = useState(null);
@@ -70,17 +71,21 @@ function DataChallengeDetail() {
         const fetchProjets = async () => {
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + id)
-            console.log(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + id)
     
-            const json = await response.json();
-            if (!response.ok) {     
-                console.log(json.error) 
-                setGlobalError(json.error);
-            }
-    
-            if (response.ok) {
-                console.log(json)
-                setProjets(json.Projets)
+            try{
+                const json = await response.json();
+                if (!response.ok) {     
+                    console.log(json.error) 
+                    setGlobalError(json.error);
+                }
+        
+                if (response.ok) {
+                    console.log(json)
+                    setProjets(json.Projets)
+                }
+            }catch{
+                console.log("response is empty")
+                setHasProjet(false)
             }
             
         }
@@ -147,7 +152,7 @@ function DataChallengeDetail() {
                     })}
                     </VBox>
                 </SectionContainer>
-                <div style={{display: "flex"}}>
+                {hasProjet && <div style={{display: "flex"}}>
                     {(!user || (team && team.hasTeam && user)) ? 
                         <Link style={{marginLeft: "auto"}}
                         to={
@@ -162,7 +167,7 @@ function DataChallengeDetail() {
                             <BasicButton onPress={handleCreateTeam} style={{padding: "5px 20px"}}>Participer</BasicButton>
                         </div>
                     }
-                </div>
+                </div>}
             </VBox> :
             <MarginContainer margin={"30px"}>
                 {globalError ?
