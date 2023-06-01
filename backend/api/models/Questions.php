@@ -99,6 +99,37 @@ class Questions {
     }
 
     /**
+     * Créer une réponse
+     *
+     * @return void
+     */
+    public function createReponseByIdQuestion($IdEquipe,$Reponse){
+
+        // Ecriture de la requête SQL en y insérant le nom de la table
+        $sql = "INSERT INTO ReponseQuestion SET IdQuestion=:IdQuestion,
+        IdEquipe=:IdEquipe, Reponse=:Reponse";
+
+        // Préparation de la requête
+        $query = $this->connexion->prepare($sql);
+
+        // Protection contre les injections
+        $this->IdQuestion=htmlspecialchars(strip_tags($this->IdQuestion));
+        $IdEquipe=htmlspecialchars(strip_tags($IdEquipe));
+        $Reponse=htmlspecialchars(strip_tags($Reponse));
+
+        // Ajout des données protégées
+        $query->bindParam(":IdQuestion", $this->IdQuestion);
+        $query->bindParam(":IdEquipe", $IdEquipe);
+        $query->bindParam(":Reponse", $Reponse);
+
+        // Exécution de la requête
+        if($query->execute()){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Supprimer une question
      *
      * @return void

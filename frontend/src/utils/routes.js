@@ -18,6 +18,7 @@ const routes = {
     analyseur: "/analyseur",
     modifyProject: "/admin/modify-project",
     modifyUser: "/admin/modify-user",
+    addGestionnaire: "/admin/add-gestionnaire",
 };
 
 export default routes;

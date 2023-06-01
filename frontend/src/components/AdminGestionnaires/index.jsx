@@ -57,7 +57,7 @@ const StyledAdminProjects = styled.div`
     }
 `;
 
-function AdminGestionnaires({ id }) {
+function AdminGestionnaires({ id, className }) {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
@@ -93,8 +93,9 @@ function AdminGestionnaires({ id }) {
             fetchData();
         }
     }, [id, user]);
+
     return (
-        <StyledAdminProjects>
+        <StyledAdminProjects className={className}>
             {isLoading ? (
                 <Loader />
             ) : (
@@ -132,7 +133,10 @@ function AdminGestionnaires({ id }) {
                                 </div>
                             </Button>
                         ))}
-                    <Link className="add-member" to={routes.modifyUser}>
+                    <Link
+                        className="add-member"
+                        to={routes.addGestionnaire + `/${id}`}
+                    >
                         <BasicButton>Ajouter gestionnaire</BasicButton>
                     </Link>
                 </Button>
