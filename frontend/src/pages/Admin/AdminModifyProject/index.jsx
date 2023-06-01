@@ -8,6 +8,7 @@ import BasicButton from "../../../components/BasicButton";
 import { togglePut } from "../../../toggles/togglePut";
 import { togglePost } from "../../../toggles/togglePost";
 import Button from "../../../components/Button";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const StyledAdminProject = styled.div`
     display: flex;
@@ -24,6 +25,7 @@ function AdminModifyProject() {
     const [description, setDescription] = useState("");
     const [urlImage, setUrlImage] = useState("");
     const [company, setCompany] = useState("");
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (idProject !== undefined && user) {
@@ -39,12 +41,14 @@ function AdminModifyProject() {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setLabel(json["Libele"]);
                     setDescription(json["Description"]);
                     setUrlImage(json["Image"]);
                     setCompany(json["Entreprise"]);
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };
