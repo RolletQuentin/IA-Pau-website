@@ -331,10 +331,10 @@ INSERT INTO PossederRessource VALUES (2,1);
 INSERT INTO PossederRessource VALUES (3,1);
 INSERT INTO PossederRessource VALUES (4,1);
 -- Ressources Projet 2
-INSERT INTO Ressources VALUES (5,"doc1.db_ia.fr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut lectus a sem aliquam tincidunt. Quisque cursus quam id purus eleifend, at ultrices nisi feugiat. Vivamus posuere lorem id libero cursus, eu aliquam urna eleifend. ");
-INSERT INTO Ressources VALUES (6,"doc3.db_ia.fr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut lectus a sem aliquam tincidunt. Quisque cursus quam id purus eleifend, at ultrices nisi feugiat. Vivamus posuere lorem id libero cursus, eu aliquam urna eleifend. ");
-INSERT INTO Ressources VALUES (7,"dataset.mydata.fr/1515159", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut lectus a sem aliquam tincidunt. Quisque cursus quam id purus eleifend, at ultrices nisi feugiat. Vivamus posuere lorem id libero cursus, eu aliquam urna eleifend. ");
-INSERT INTO Ressources VALUES (8,"try2.code.fr", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut lectus a sem aliquam tincidunt. Quisque cursus quam id purus eleifend, at ultrices nisi feugiat. Vivamus posuere lorem id libero cursus, eu aliquam urna eleifend. ");
+INSERT INTO Ressources VALUES (5,"doc1.db_ia.fr", "Cosigne Projet 2");
+INSERT INTO Ressources VALUES (6,"doc3.db_ia.fr", "Conseils Projet 2");
+INSERT INTO Ressources VALUES (7,"dataset.mydata.fr/1515159", "Vidéo présentation Projet 2");
+INSERT INTO Ressources VALUES (8,"try2.code.fr", "fichier2");
 INSERT INTO PossederRessource VALUES (5,2);
 INSERT INTO PossederRessource VALUES (6,2);
 INSERT INTO PossederRessource VALUES (7,2);
