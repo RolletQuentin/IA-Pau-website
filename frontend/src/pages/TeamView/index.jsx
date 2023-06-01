@@ -13,6 +13,9 @@ import UserNode from "../../components/userNode.js";
 import Select from "../../components/Input/Select";
 import SectionContainer from "../../containers/SectionContainer";
 import VBox from "../../containers/VBox";
+import {
+    Navigate,
+} from "react-router-dom";
 
 const StyledTeamView = styled.div`
     margin: auto;
@@ -68,8 +71,44 @@ function TeamView() {
     const [teamData, setTeamData] = useState(null);
     const [isLoading, setIsLoading] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
+    const [redirectMyEvent, setRedirectMyEvent] = useState(false)
+    const [redirectAllEvent, setRedirectAllEvent] = useState(false)
+    const [projets, setProjets] = useState([]);
+    const [options, setOptions] = useState([]);
 
     useEffect(() => {
+        console.log(projets)
+        if (projets && projets.length > 0) {
+            let opt = []
+            for (let i = 0; i < projets.length; i++){
+                opt.push(projets[i].Libele)
+            }
+            setOptions(opt)
+        }
+    }, [projets])
+
+    useEffect(() => {
+        const fetchProjets = async (data) => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + data.IdProjet)
+    
+            try{
+                const json = await response.json();
+                if (!response.ok) {     
+                    console.log(json.error) 
+                    setGlobalError(json.error);
+                }
+        
+                if (response.ok) {
+                    console.log(json)
+                    setProjets(json.Projets)
+                }
+            }catch{
+                console.log("response is empty")
+                setRedirectAllEvent(true)
+            }
+            
+        }
         const fetchTeamData = async () => {
             setIsLoading(true)
             setGlobalError("")
@@ -83,7 +122,7 @@ function TeamView() {
     
             if (response.ok) {
                 setTeamData(json)
-                console.log(json)
+                fetchProjets(json)
             }
             setIsLoading(false)
         }
@@ -98,7 +137,6 @@ function TeamView() {
 
     const handleDelete = () => {
         const fetchDeleteTeam = async () => {
-            setIsSaving(true)
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/delete/?IdEquipe=' + id_team, {
                 method: "DELETE",
@@ -115,9 +153,8 @@ function TeamView() {
             }
     
             if (response.ok) {
-                console.log("saving title")
+                setRedirectMyEvent(true)
             }
-            setIsSaving(false)
         }
         fetchDeleteTeam()
     }
@@ -127,23 +164,22 @@ function TeamView() {
             setIsSaving(true)
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/edit/?IdEquipe=' + id_team, {
-                method: "POST",
+                method: "PATCH",
                 headers: {
                     Authorization: `Bearer ${user.jwt}`,
-                    "Content-Type": "application.json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({Nom: teamData.Nom})
             })
 
-            const json = await response.json();
+            console.log({Nom: teamData.Nom})
             if (!response.ok) {     
-                console.log(json.error) 
-                alert(json.error)
-                setGlobalError(json.error);
+            
             }
-    
+            
             if (response.ok) {
                 console.log("saving title")
+                const json = await response.json();
             }
             setIsSaving(false)
         }
@@ -169,7 +205,6 @@ function TeamView() {
                 },
                 body: JSON.stringify({email: newMember})
             })
-    
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -194,7 +229,7 @@ function TeamView() {
                     <VBox gap="30px">
                         <Button className="button">
                             <HBox style={{width: "100%"}} gap="30px">
-                                {teamData.IdLeader === user.userId ?
+                                {teamData.IdLeader === user.userId || user.role === "Administrateur" ?
                                 <>
                                 <input 
                                     style={{
@@ -239,18 +274,18 @@ function TeamView() {
                                 padding: "0 30px"
                             }}
                             placeholder="sujet"
-                            options={teamData.projets}
+                            options={options}
                         />
                         {teamData.Users && 
                         <VBox>
                         {teamData.Users.map((member, index) => {
                             return (
-                                <UserNode key={index} editable={teamData.IdLeader === user.userId} member={member} setGlobalError={setGlobalError}/>
+                                <UserNode key={index} editable={teamData.IdLeader === user.userId || user.role === "Administrateur"} member={member} setGlobalError={setGlobalError}/>
                             )
                         })}
                         </VBox>
                         }
-                        {teamData.IdLeader === user.userId ? (
+                        {teamData.IdLeader === user.userId || user.role === "Administrateur" ? (
                             <div style={{display: "flex"}}>
                                 <Link className="add-member" style={{marginLeft: "auto"}}>
                                     <BasicButton onPress={addMember}>Ajouter membre</BasicButton>
@@ -259,15 +294,18 @@ function TeamView() {
                         ) : null}
                     </VBox>
                 </SectionContainer>
-            )}
+                )}
             <HBox className="return" style={{justifyContent: "space-between", width: "100%"}}>    
                 <Link to={routes.myDataChallenges}>
                     <BasicButton>Retour aux data challenges</BasicButton>
                 </Link>
+                {teamData && (teamData.IdLeader === user.userId || user.role === "Administrateur") &&
                 <Link style={{marginLeft: "auto"}}>
                     <BasicButton className="delete" onPress={handleDelete}>supprimer l'équipe</BasicButton>
-                </Link>
+                </Link>}
             </HBox>
+            {redirectMyEvent && <Navigate to={routes.myDataChallenges}/>}
+            {redirectAllEvent && <Navigate to={routes.dataChallenge}/>}
         </StyledTeamView>
     );
 }

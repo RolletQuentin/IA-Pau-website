@@ -6,6 +6,7 @@ import NavbarOffset from "../../components/NavbarOffset";
 import { Link } from "react-router-dom";
 import VBox from "../../containers/VBox";
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../../hooks/auth/useAuthContext";
 
 const StyledMyDataChallenge = styled.div`
     display: flex;
@@ -30,20 +31,27 @@ const StyledMyDataChallenge = styled.div`
 function MyDataChallenges() {
     const [globalError, setGlobalError] = useState("");
     const [myEvent, setMyEvent] = useState(null);
+    const {user} = useAuthContext();
 
     useEffect(() => {
         const fetchEvenements = async () => {
             setGlobalError("")
-            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEvenements/')
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEventsByIdUser/?id=' + user.userId)
     
-            const json = await response.json();
-            if (!response.ok) {     
-                console.log(json.error) 
-                setGlobalError(json.error);
-            }
-    
-            if (response.ok) {
-                setMyEvent(json)
+            try{
+
+                const json = await response.json();
+                if (!response.ok) {     
+                    console.log(json.error) 
+                    setGlobalError(json.error);
+                }
+        
+                if (response.ok) {
+                    console.log(json.Evenements)
+                    setMyEvent(json.Evenements)
+                }
+            }catch{
+                console.log("json is empty")
             }
         }
         fetchEvenements()
@@ -53,17 +61,17 @@ function MyDataChallenges() {
         <StyledMyDataChallenge>
             <NavbarOffset />
             <h1>Mes data challenges</h1>
-            {myEvent && myEvent.Evenements &&
-            <VBox>
-                {myEvent.Evenements.map((e, index) => {
-                    <Button className="data-challenge">
-                        <h2>Titre du data challenge</h2>
-                        <Link to={routes.teamView}>
+            {myEvent &&
+            <VBox gap="0">
+                {myEvent.map((e, index) => {
+                    return (<Button key={index} className="data-challenge" style={{minWidth: "600px", width: "inherit"}}>
+                        <h2>{e.Libele}</h2>
+                        <Link to={routes.myDataChallenges + "/" + e.IdEquipe + "/" + e.IdProjet}>
                             <BasicButton className="data-challenge-button">
-                                Créer équipe
+                                Dossier
                             </BasicButton>
                         </Link>
-                    </Button>
+                    </Button>)
                 })}
             </VBox>
             }

@@ -93,6 +93,7 @@ function AdminGestionnaires({ id, className }) {
             fetchData();
         }
     }, [id, user]);
+
     return (
         <StyledAdminProjects className={className}>
             {isLoading ? (
@@ -132,7 +133,10 @@ function AdminGestionnaires({ id, className }) {
                                 </div>
                             </Button>
                         ))}
-                    <Link className="add-member" to={routes.modifyUser}>
+                    <Link
+                        className="add-member"
+                        to={routes.addGestionnaire + `/${id}`}
+                    >
                         <BasicButton>Ajouter gestionnaire</BasicButton>
                     </Link>
                 </Button>
