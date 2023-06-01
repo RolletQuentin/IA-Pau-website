@@ -15,6 +15,18 @@ const StyledAdminRessources = styled.div`
     align-items: center;
     margin: auto;
     width: 500px;
+
+    & .container {
+        min-height: 80px;
+    }
+
+    & form {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 `;
 
 function AdminModifyRessource() {
@@ -50,7 +62,7 @@ function AdminModifyRessource() {
         <StyledAdminRessources>
             <NavbarOffset />
             <h1>Ajouter / Modifier une ressource</h1>
-            <Button>
+            <Button className="container">
                 <form
                     onSubmit={() =>
                         id === undefined
