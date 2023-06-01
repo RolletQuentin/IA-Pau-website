@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:80"
+      - "8765:80"
     depends_on:
       - php
       - java
@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
+      - "8764:80"
     depends_on:
       - mysql
 
@@ -24,7 +24,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8081:8080"
+      - "8763:8081"
     depends_on:
       - mysql
 
