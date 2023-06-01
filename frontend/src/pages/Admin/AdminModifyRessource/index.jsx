@@ -10,7 +10,6 @@ import Button from "../../../components/Button";
 import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 import MarginContainer from "../../../containers/MarginContainer";
 import routes from "../../../utils/routes";
-
 const StyledAdminRessources = styled.div`
 
     display: flex;
