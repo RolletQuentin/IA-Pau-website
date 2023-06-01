@@ -69,10 +69,6 @@
             throw new Exception ("Vous n'avez pas récupéré les messages de cette équipe. (" . $typeOfPerm .")");
         }
 
-        if($IdLeader != $IdUser){
-            throw new Exception ("Il faut être le leader de l'équipe pour pré inscrire un utilisateur.");
-        }
-
         $query = "SELECT * From Appartenir WHERE IdEquipe = ". $IdEquipe .";";
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0) {
