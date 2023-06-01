@@ -70,7 +70,7 @@ function Ressource() {
                         return (
                             <Button className="item" key={IdRessource}>
                                 <img src={RessourceIcon} alt="Icone files" />
-                                <Link to={UrlRessource}>{NomRessource}</Link>
+                                <a href={UrlRessource}>{NomRessource}</a>
                             </Button>
                         );
                     }
