@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NavbarOffset from "../../components/NavbarOffset";
 import BasicButton from "../../components/BasicButton";
 import SectionContainer from "../../containers/SectionContainer";
@@ -6,6 +6,7 @@ import CenterContainer from "../../containers/CenterContainer";
 import MarginContainer from "../../containers/MarginContainer";
 import VBox from "../../containers/VBox";
 import imageMoreInfo from "../../assets/moreInfoAnalyseur.jpg";
+import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 
 const Analyseur = () => {
@@ -55,11 +56,10 @@ const Analyseur = () => {
         }
     };
 
-    console.log(process.env.JAVA_API_PROXY);
     const handleAnalyse = async () => {
         setGlobalError("");
         if (lines) {
-            const response = await fetch("http://localhost:8081/getdata/", {
+            const response = await fetch("http://localhost:8000/getdata/", {
                 method: "POST",
                 body: lines.join("\n"),
             });
@@ -82,7 +82,7 @@ const Analyseur = () => {
         const pattern = document.getElementById("searchBAR").value;
         if (lines && pattern !== "") {
             const response = await fetch(
-                "http://localhost:8081/search/?search=" + pattern,
+                "http://localhost:8000/search/?search=" + pattern,
                 {
                     method: "POST",
                     body: lines.join("\n"),
@@ -106,7 +106,12 @@ const Analyseur = () => {
     const getSpaceBefore = (str) => {
         let nb = 0;
         let secur = 0;
-        while (str != null && str !== "" && str.startsWith(" ") && secur < 30) {
+        while (
+            str !== null &&
+            str !== "" &&
+            str.startsWith(" ") &&
+            secur < 30
+        ) {
             nb += 10;
             secur++;
             str = str.replace(" ", "");
@@ -173,7 +178,7 @@ const Analyseur = () => {
                                 <img
                                     style={{ width: "30%" }}
                                     src={imageMoreInfo}
-                                    alt="plus d'informations"
+                                    alt="plus d informations"
                                 ></img>
                             </div>
                             <br></br>
