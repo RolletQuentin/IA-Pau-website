@@ -205,78 +205,78 @@ INSERT INTO Etudiant VALUES (225618948, "L3", "CyTech", "Pau", 2);
 -- Ceux de l'équipe 1 (Sur DataBattle)
 INSERT INTO User VALUES (4,"test@test.fr", "Dupont", "Jean", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O"); -- (Notre Leader equipe 1)
 INSERT INTO Etudiant VALUES (00000004, "L3", "NomEcole", "NomVille", 4);
-INSERT INTO User VALUES (5,"test@test.fr", "Dupont", "Paul", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O"); -- (Nos membres equipe 1)
+INSERT INTO User VALUES (5,"test1@test.fr", "Dupont", "Paul", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O"); -- (Nos membres equipe 1)
 INSERT INTO Etudiant VALUES (00000005, "M1", "NomEcole", "NomVille", 5);
-INSERT INTO User VALUES (6,"test@test.fr", "Dupont", "Bob", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (6,"test2@test.fr", "Dupont", "Bob", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000006, "L3", "NomEcole", "NomVille", 6);
-INSERT INTO User VALUES (7,"test@test.fr", "Dupont", "Quentin", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (7,"test3@test.fr", "Dupont", "Quentin", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000007, "M2", "NomEcole", "NomVille", 7);
 -- Ceux de l'équipe 2 (Sur DataBattle)
-INSERT INTO User VALUES (8, "test@test.fr", "Martin", "Sophie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (8, "test4@test.fr", "Martin", "Sophie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000008, "L3", "NomEcole", "NomVille", 8);
-INSERT INTO User VALUES (9, "test@test.fr", "Lefebvre", "Alexandre", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (9, "test5@test.fr", "Lefebvre", "Alexandre", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000009, "M1", "NomEcole", "NomVille", 9);
-INSERT INTO User VALUES (10, "test@test.fr", "Dubois", "Emma", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (10, "test6@test.fr", "Dubois", "Emma", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000010, "L3", "NomEcole", "NomVille", 10);
-INSERT INTO User VALUES (11, "test@test.fr", "Roux", "Lucas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (11, "test7@test.fr", "Roux", "Lucas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000011, "M2", "NomEcole", "NomVille", 11);
 -- Ceux de l'équipe 3 (Sur DataChallenge1 Projet 1)
-INSERT INTO User VALUES (12, "test@test.fr", "Leclerc", "Camille", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (12, "test8@test.fr", "Leclerc", "Camille", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000012, "L3", "NomEcole", "NomVille", 12);
-INSERT INTO User VALUES (13, "test@test.fr", "Girard", "Inès", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (13, "test9@test.fr", "Girard", "Inès", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000013, "M1", "NomEcole", "NomVille", 13);
-INSERT INTO User VALUES (14, "test@test.fr", "Fournier", "Arthur", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (14, "test10@test.fr", "Fournier", "Arthur", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000014, "L3", "NomEcole", "NomVille", 14);
-INSERT INTO User VALUES (15, "test@test.fr", "Moreau", "Léa", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (15, "test11@test.fr", "Moreau", "Léa", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000015, "M2", "NomEcole", "NomVille", 15);
 -- Ceux de l'équipe 4 (Sur DataChallenge1 Projet 2)
-INSERT INTO User VALUES (16, "test@test.fr", "Dupuis", "Maxime", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (16, "test12@test.fr", "Dupuis", "Maxime", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000016, "L3", "NomEcole", "NomVille", 16);
-INSERT INTO User VALUES (17, "test@test.fr", "Marchand", "Laura", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (17, "test13@test.fr", "Marchand", "Laura", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000017, "M1", "NomEcole", "NomVille", 17);
-INSERT INTO User VALUES (18, "test@test.fr", "Noel", "Antoine", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (18, "test14@test.fr", "Noel", "Antoine", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000018, "L3", "NomEcole", "NomVille", 18);
-INSERT INTO User VALUES (19, "test@test.fr", "Lemoine", "Julie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (19, "test15@test.fr", "Lemoine", "Julie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000019, "M2", "NomEcole", "NomVille", 19);
 -- Ceux de l'équipe 5 (Sur DataChallenge2 Projet 1)
-INSERT INTO User VALUES (20, "test@test.fr", "Roy", "Nicolas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (20, "test16@test.fr", "Roy", "Nicolas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000020, "L3", "NomEcole", "NomVille", 20);
-INSERT INTO User VALUES (21, "test@test.fr", "Morin", "Catherine", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (21, "test17@test.fr", "Morin", "Catherine", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000021, "M1", "NomEcole", "NomVille", 21);
-INSERT INTO User VALUES (22, "test@test.fr", "Gagnon", "Thomas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (22, "test18@test.fr", "Gagnon", "Thomas", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000022, "L3", "NomEcole", "NomVille", 22);
-INSERT INTO User VALUES (23, "test@test.fr", "Bouchard", "Mathilde", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (23, "test19@test.fr", "Bouchard", "Mathilde", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000023, "M2", "NomEcole", "NomVille", 23);
 -- Ceux de l'équipe 6 (Sur DataChallenge2 Projet 2)
-INSERT INTO User VALUES (24, "test@test.fr", "Fortin", "Alexis", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (24, "test20@test.fr", "Fortin", "Alexis", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000024, "L3", "NomEcole", "NomVille", 24);
-INSERT INTO User VALUES (25, "test@test.fr", "Laplante", "Emma", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (25, "test21@test.fr", "Laplante", "Emma", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000025, "M1", "NomEcole", "NomVille", 25);
-INSERT INTO User VALUES (26, "test@test.fr", "Dejardin", "Maxime", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (26, "test22@test.fr", "Dejardin", "Maxime", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000026, "L3", "NomEcole", "NomVille", 26);
-INSERT INTO User VALUES (27, "test@test.fr", "Lamoureux", "Sophie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (27, "test23@test.fr", "Lamoureux", "Sophie", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Etudiant VALUES (00000027, "M2", "NomEcole", "NomVille", 27);
 
 -- User Gestionnaire (Si interne date > 2100)
-INSERT INTO User VALUES (28, "test@test.fr", "Rimaudiere", "Arthur", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (28, "gest1@test.fr", "Rimaudiere", "Arthur", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Gestionnaire VALUES (1, "NomEntreprise", "Ville", "2023-06-01", "2023-06-17", 28);
-INSERT INTO User VALUES (29, "test@test.fr", "Quentin", "Rollet", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (29, "gest2@test.fr", "Quentin", "Rollet", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Gestionnaire VALUES (2, "IaPau", "Ville", "2023-01-01", "2100-12-31", 29);
-INSERT INTO User VALUES (30, "test@test.fr", "Valentin", "Noailles", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
+INSERT INTO User VALUES (30, "gest3@test.fr", "Valentin", "Noailles", "imageProfil", 0600000000, "$2y$10$t3JBKvbPU0OMqA/zwP/7deivYYJMtxVpH.uO9sAKziX6bsEMc2n9O");
 INSERT INTO Gestionnaire VALUES (3, "IaPau", "Ville", "2023-01-01", "2100-12-31", 30);
 
 -- Evenements --
-INSERT INTO Evenement VALUES (1, "DataChallenge", "DataChallenge1", "Description", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
-INSERT INTO Evenement VALUES (2, "DataBattle", "DataBattle1", "Description", "1er 5000€, 2eme 3000€, 3eme 1000€", "2023-07-01", "2023-07-31");
-INSERT INTO Evenement VALUES (3, "DataChallenge", "DataChallenge2", "Description", "1er 3500€, 2eme 2000€, 3eme 1000€","2023-06-17", "2023-06-18");
+INSERT INTO Evenement VALUES (1, "DataBattle", "Cyberdéfense des entreprises", "Rejoignez-nous pour l'événement exclusif de lancement de CyberShield, la solution révolutionnaire en matière de cybersécurité. Cet événement d'une journée rassemblera les principaux experts en sécurité informatique, les professionnels de l'industrie et les décideurs pour discuter des défis actuels de la cybersécurité et des meilleures pratiques pour protéger les entreprises contre les menaces numériques.", "1er 2000€, 2eme 1000€, 3eme 500€","2023-06-10", "2023-06-11");
+INSERT INTO Evenement VALUES (2, "DataChallenge", "Eco Challenge", "Rejoignez notre projet de développement en lien avec l'écologie et devenez un acteur clé dans la préservation de notre planète. Nous vous offrons l'opportunité de créer des solutions technologiques innovantes qui contribueront à un avenir durable. Avec notre équipe passionnée d'experts en développement et d'écologistes, vous serez immergé dans un environnement de travail dynamique et motivant.", "1er 5000€, 2eme 3000€, 3eme 1000€", "2023-07-01", "2023-07-31");
+INSERT INTO Evenement VALUES (3, "DataChallenge", "Another random Challenge", "Rejoignez notre projet de développement en lien avec l'écologie et devenez un acteur clé dans la préservation de notre planète. Nous vous offrons l'opportunité de créer des solutions technologiques innovantes qui contribueront à un avenir durable. Avec notre équipe passionnée d'experts en développement et d'écologistes, vous serez immergé dans un environnement de travail dynamique et motivant. ------- 2", "1er 3500€, 2eme 2000€, 3eme 1000€","2023-06-17", "2023-06-18");
 
 -- Projets --
-INSERT INTO Projet VALUES (1, 2, "Nom du projet du DataBattle", "Description", "Image", "Entreprise"); -- Projet du DataBattle
-INSERT INTO Projet VALUES (2, 1, "Projet 1", "Description", "Image", "Entreprise"); -- Projets dataChallenge 1
-INSERT INTO Projet VALUES (3, 1, "Projet 2", "Description", "Image", "Entreprise");
-INSERT INTO Projet VALUES (4, 1, "Projet 3", "Description", "Image", "Entreprise");
-INSERT INTO Projet VALUES (5, 1, "Projet 1", "Description", "Image", "Entreprise"); -- Projets dataChallenge 2
-INSERT INTO Projet VALUES (6, 1, "Projet 2", "Description", "Image", "Entreprise");
+INSERT INTO Projet VALUES (1, 1, "CyberShield", "Le projet CyberShield vise à développer une solution avancée de cybersécurité pour protéger les entreprises contre les cyberattaques et les menaces en ligne. En combinant des technologies de pointe telles que l'intelligence artificielle et l'apprentissage automatique, CyberShield offre une défense proactive et adaptative contre les intrusions malveillantes, les logiciels malveillants et les attaques de phishing. La plateforme analyse en temps réel le trafic réseau, détecte les comportements suspects et bloque les tentatives d'intrusion. Elle fournit également des rapports détaillés et des analyses de vulnérabilité pour renforcer la résilience des systèmes informatiques. CyberShield permet aux entreprises de se concentrer sur leurs activités principales en leur offrant une protection solide et fiable contre les menaces cybernétiques.", "IMAGE", "Secure Tech Solutions"); -- Projet du DataBattle
+INSERT INTO Projet VALUES (2, 2, "EcoTechClean", "EcoTechClean est une plateforme en ligne dédiée à la promotion et à la vente de produits de nettoyage écologiques et durables pour les particuliers et les entreprises. Notre objectif est de faciliter l'accès à des solutions respectueuses de l'environnement, tout en garantissant une efficacité optimale. Grâce à notre vaste gamme de produits soigneusement sélectionnés, allant des nettoyants multi-usages aux produits spécialisés, les utilisateurs peuvent maintenir un environnement propre et sain sans compromettre la planète. Notre site web convivial offre une expérience d'achat pratique et informative, avec des descriptions détaillées, des conseils d'utilisation et des évaluations des produits. Faites un pas vers un avenir plus propre avec EcoTechClean !", "IMAGE", "CleanEarth Solutions"); -- Projets dataChallenge 1
+INSERT INTO Projet VALUES (3, 2, "EcoLink", "EcoLink est une plateforme en ligne qui vise à encourager et faciliter les échanges de produits et services écologiques entre les particuliers. L'objectif principal d'EcoLink est de promouvoir un mode de vie durable en favorisant la réutilisation et le partage des ressources. Les utilisateurs peuvent créer des profils, lister les articles qu'ils souhaitent donner, vendre ou échanger, et interagir avec d'autres membres de la communauté. L'interface conviviale d'EcoLink permet une navigation facile et intuitive, facilitant ainsi les échanges et renforçant les liens sociaux autour de la durabilité. Rejoignez EcoLink dès aujourd'hui et contribuez à construire un avenir plus respectueux de l'environnement.", "IMAGE", "GreenShare");
+INSERT INTO Projet VALUES (4, 2, "EcoWave", "EcoWave est un projet novateur qui vise à développer une technologie révolutionnaire pour la production d'énergie propre à partir des vagues océaniques. En utilisant des convertisseurs d'énergie spécialement conçus, EcoWave exploite la force des vagues pour générer de l'électricité renouvelable de manière efficace et respectueuse de l'environnement. Cette technologie prometteuse offre une solution durable pour répondre aux besoins croissants en énergie tout en réduisant les émissions de carbone et en préservant les écosystèmes marins.", "IMAGE", "Ocean Power Tech");
+INSERT INTO Projet VALUES (5, 2, "Smart Garden", "SmartGarden est un projet innovant qui vise à révolutionner l'expérience de jardinage en utilisant des technologies intelligentes. Il offre aux amateurs de jardinage une solution complète pour cultiver des plantes saines et prospères, même sans avoir de connaissances approfondies en horticulture. Grâce à un système automatisé de surveillance et de contrôle, SmartGarden ajuste automatiquement l'arrosage, l'éclairage et les nutriments pour chaque plante, en fonction de ses besoins spécifiques. Les utilisateurs peuvent suivre et gérer leur jardin à distance via une application mobile conviviale, qui fournit des conseils personnalisés, des alertes en cas de problèmes et des informations sur les plantes. Avec SmartGarden, tout le monde peut désormais profiter d'un jardinage simple, intelligent et gratifiant.", "IMAGE", "GreenTech Solutions"); -- Projets dataChallenge 2
+INSERT INTO Projet VALUES (6, 2, "Plateforme écologique Connectée", "Le projet de la Plateforme Écologique Connectée vise à développer une solution technologique novatrice pour encourager et faciliter les comportements écologiques au quotidien. Grâce à une combinaison de capteurs intelligents, d'applications mobiles conviviales et de données environnementales, cette plateforme permet aux utilisateurs de suivre et de réduire leur empreinte carbone, de gérer efficacement leur consommation d'énergie, d'eau et de ressources, et de promouvoir des habitudes de vie durables. Elle offre également des conseils personnalisés, des défis écologiques et des incitations pour encourager les utilisateurs à adopter des pratiques respectueuses de l'environnement. La Plateforme Écologique Connectée constitue ainsi une solution globale pour contribuer à la préservation de notre planète.", "IMAGE", "Eco Tech Solution");
 
 -- Gestionnaire par projet
 INSERT INTO Gerer VALUES (1,1);
@@ -284,37 +284,37 @@ INSERT INTO Gerer VALUES (2,1);
 INSERT INTO Gerer VALUES (3,2);
 
 -- Equipe 1 --
-INSERT INTO Equipe VALUES (1, "Equipe 1", 4, 10, "lien Github", 1);
+INSERT INTO Equipe VALUES (1, "CodeWarrios", 4, 10, "https://github.com/CodeWarrios/random-repo", 1);
 INSERT INTO Appartenir VALUES (4, 1);
 INSERT INTO Appartenir VALUES (5, 1);
 INSERT INTO Appartenir VALUES (6, 1);
 INSERT INTO Appartenir VALUES (7, 1);
 -- Equipe 2 --
-INSERT INTO Equipe VALUES (2, "Equipe 2", 8, 14, "lien Github", 1);
+INSERT INTO Equipe VALUES (2, "WhaleCode", 8, 14, "https://github.com/WhaleCode/repo", 1);
 INSERT INTO Appartenir VALUES (8, 2);
 INSERT INTO Appartenir VALUES (9, 2);
 INSERT INTO Appartenir VALUES (10, 2);
 INSERT INTO Appartenir VALUES (11, 2);
 -- Equipe 3 --
-INSERT INTO Equipe VALUES (3, "Equipe 3", 12, 18, "lien Github", 2);
+INSERT INTO Equipe VALUES (3, "CodeWave", 12, 18, "https://github.com/CodeWave/repository", 2);
 INSERT INTO Appartenir VALUES (12, 3);
 INSERT INTO Appartenir VALUES (13, 3);
 INSERT INTO Appartenir VALUES (14, 3);
 INSERT INTO Appartenir VALUES (15, 3);
 -- Equipe 4 --
-INSERT INTO Equipe VALUES (4, "Equipe 4", 16, 6, "lien Github", 3);
+INSERT INTO Equipe VALUES (4, "WebTech Wizards", 16, 6, "https://github.com/WebTechWizards/random-repository", 3);
 INSERT INTO Appartenir VALUES (16, 4);
 INSERT INTO Appartenir VALUES (17, 4);
 INSERT INTO Appartenir VALUES (18, 4);
 INSERT INTO Appartenir VALUES (19, 4);
 -- Equipe 5 --
-INSERT INTO Equipe VALUES (5, "Equipe 5", 20, 12, "lien Github", 5);
+INSERT INTO Equipe VALUES (5, "PixelPioneers", 20, 12, "https://github.com/PixelPioneers/repo", 5);
 INSERT INTO Appartenir VALUES (20, 5);
 INSERT INTO Appartenir VALUES (21, 5);
 INSERT INTO Appartenir VALUES (22, 5);
 INSERT INTO Appartenir VALUES (23, 5);
 -- Equipe 6 --
-INSERT INTO Equipe VALUES (6, "Equipe 6", 24, 19, "lien Github", 6);
+INSERT INTO Equipe VALUES (6, "PixelCrafters", 24, 19, "https://github.com/PixelCrafters/random-repository", 6);
 INSERT INTO Appartenir VALUES (24, 6);
 INSERT INTO Appartenir VALUES (25, 6);
 INSERT INTO Appartenir VALUES (26, 6);
@@ -331,10 +331,10 @@ INSERT INTO PossederRessource VALUES (2,1);
 INSERT INTO PossederRessource VALUES (3,1);
 INSERT INTO PossederRessource VALUES (4,1);
 -- Ressources Projet 2
-INSERT INTO Ressources VALUES (5,"test.consignes2.fr", "Cosigne Projet 2");
-INSERT INTO Ressources VALUES (6,"test.conseils2.fr", "Conseils Projet 2");
-INSERT INTO Ressources VALUES (7,"test.videoPrensentation2.fr", "Vidéo présentation Projet 2");
-INSERT INTO Ressources VALUES (8,"test.fichier2.fr", "fichier2 Projet 2");
+INSERT INTO Ressources VALUES (5,"doc1.db_ia.fr", "Cosigne Projet 2");
+INSERT INTO Ressources VALUES (6,"doc3.db_ia.fr", "Conseils Projet 2");
+INSERT INTO Ressources VALUES (7,"dataset.mydata.fr/1515159", "Vidéo présentation Projet 2");
+INSERT INTO Ressources VALUES (8,"try2.code.fr", "fichier2");
 INSERT INTO PossederRessource VALUES (5,2);
 INSERT INTO PossederRessource VALUES (6,2);
 INSERT INTO PossederRessource VALUES (7,2);
@@ -377,29 +377,29 @@ INSERT INTO PossederRessource VALUES (23,6);
 INSERT INTO PossederRessource VALUES (24,6);
 
 -- Questionnaires pour DataBattle1 --
-INSERT INTO Questionnaire VALUES (1, 1, "Titre questionnaire1", "Sujet questionnaire", "2023-07-01", "2023-07-08");
-INSERT INTO Questionnaire VALUES (2, 1, "Titre questionnaire2", "Sujet questionnaire", "2023-07-08", "2023-07-15");
-INSERT INTO Questionnaire VALUES (3, 1, "Titre questionnaire3", "Sujet questionnaire", "2023-07-15", "2023-07-22");
-INSERT INTO Questionnaire VALUES (4, 1, "Titre questionnaire4", "Sujet questionnaire", "2023-07-22", "2023-07-29");
+INSERT INTO Questionnaire VALUES (1, 1, "Questionnaire JAVA", "Testez vos connaissances du langage java !", "2023-07-01", "2023-07-08");
+INSERT INTO Questionnaire VALUES (2, 1, "C a vous !", "Testez vos connaissances du langage C", "2023-07-08", "2023-07-15");
+INSERT INTO Questionnaire VALUES (3, 1, "Ocaml", "Attrapez la bosse de la programmation !", "2023-07-15", "2023-07-22");
+INSERT INTO Questionnaire VALUES (4, 1, "VotreOrdi.quiz", "Testez vos connaissances sur votre ordinateur !", "2023-07-22", "2023-07-29");
 -- Questions --
 -- pour questionnaire 1
-INSERT INTO Question VALUES (1, 1,"Question 1");
-INSERT INTO Question VALUES (2, 1,"Question 2");
-INSERT INTO Question VALUES (3, 1,"Question 3");
-INSERT INTO Question VALUES (4, 1,"Question 4");
+INSERT INTO Question VALUES (1, 1,"Quelles sont les différences entre les méthodes equals() et == en Java et quand devrait-on les utiliser ?");
+INSERT INTO Question VALUES (2, 1,"Quelle est la différence entre une classe abstraite et une interface en Java ?");
+INSERT INTO Question VALUES (3, 1,"Quels sont les avantages de l'utilisation des classes abstraites en Java et comment peuvent-elles être utilisées dans la conception de programmes orientés objet ?");
+INSERT INTO Question VALUES (4, 1,"Quels sont les avantages du polymorphisme en Java et comment pouvez-vous les exploiter dans votre code pour améliorer la flexibilité et la maintenabilité de votre programme ?");
 -- pour questionnaire 2
-INSERT INTO Question VALUES (5, 2, "Question 1");
-INSERT INTO Question VALUES (6, 2, "Question 2");
-INSERT INTO Question VALUES (7, 2, "Question 3");
-INSERT INTO Question VALUES (8, 2, "Question 4");
+INSERT INTO Question VALUES (5, 2, "Quelle est la différence entre un tableau statique et un tableau dynamique en C ?");
+INSERT INTO Question VALUES (6, 2, "Comment déclarer et utiliser une fonction en C ?");
+INSERT INTO Question VALUES (7, 2, "Qu'est-ce qu'un pointeur en C et comment pouvez-vous l'utiliser pour manipuler des données ?");
+INSERT INTO Question VALUES (8, 2, "Quelles sont les principales différences entre les structures et les unions en C et comment décidez-vous de les utiliser dans votre programme ?");
 -- pour questionnaire 3
-INSERT INTO Question VALUES (9, 3, "Question 1");
-INSERT INTO Question VALUES (10, 3, "Question 2");
-INSERT INTO Question VALUES (11, 3, "Question 3");
-INSERT INTO Question VALUES (12, 3, "Question 4");
+INSERT INTO Question VALUES (9, 3, "Quelle est la différence entre les types primitifs et les types composés en OCaml, et comment déclarez-vous des variables de chaque type ?");
+INSERT INTO Question VALUES (10, 3, "Quelle est la syntaxe pour définir une fonction récursive en OCaml, et comment pouvez-vous l'utiliser pour résoudre des problèmes récursifs ?");
+INSERT INTO Question VALUES (11, 3, "Qu'est-ce que le pattern matching en OCaml, et comment pouvez-vous l'utiliser pour effectuer des opérations conditionnelles sur les valeurs d'un type de données personnalisé ?");
+INSERT INTO Question VALUES (12, 3, "Qu'est-ce qu'une fonction d'ordre supérieur en OCaml, et comment pouvez-vous l'utiliser pour manipuler des fonctions comme des valeurs de première classe ?");
 -- pour questionnaire 4
-INSERT INTO Question VALUES (13, 4, "Question 1");
-INSERT INTO Question VALUES (14, 4, "Question 2");
-INSERT INTO Question VALUES (15, 4, "Question 3");
-INSERT INTO Question VALUES (16, 4, "Question 4");
+INSERT INTO Question VALUES (13, 4, "Qu'est-ce qu'un système d'exploitation et quel est son rôle essentiel dans un ordinateur ?");
+INSERT INTO Question VALUES (14, 4, "Quelle est la différence entre la mémoire vive (RAM) et le stockage (disque dur ou SSD) dans un ordinateur, et comment sont-ils utilisés ?");
+INSERT INTO Question VALUES (15, 4, "Qu'est-ce qu'un processeur (CPU) et quel est son rôle dans le fonctionnement global d'un ordinateur ?");
+INSERT INTO Question VALUES (16, 4, "Qu'est-ce qu'un réseau informatique et comment les ordinateurs sont-ils connectés les uns aux autres pour partager des informations et des ressources ?");
 -- Réponse questionaire par équipe 1 -- A IMPLEMENTER
