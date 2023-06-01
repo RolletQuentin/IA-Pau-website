@@ -3,9 +3,6 @@ import BasicButton from "../BasicButton";
 import { Loader } from "../../utils/Atoms";
 import Button from "../Button";
 import AbstractUser from "../../assets/abstract-user.png";
-import HBox from "../../containers/HBox";
-import VBox from "../../containers/VBox";
-import { useParams } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
@@ -29,7 +26,7 @@ const Invitation = ({
                     Authorization: `Bearer ${user.jwt}`,
                 },
             })
-            verifyAuth();
+            await verifyAuth();
 
             const json = await response.json();
             
