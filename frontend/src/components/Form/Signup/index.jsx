@@ -87,10 +87,6 @@ const SignupForm = ({
     const [confirmPassword, setConfirmPassword] = useState("");
 
     useEffect(() => {
-        console.log("start");
-        console.log(firstAuth);
-        console.log(id);
-        console.log(user);
         if (!firstAuth && id !== undefined && user) {
             const fetchData = async () => {
                 try {

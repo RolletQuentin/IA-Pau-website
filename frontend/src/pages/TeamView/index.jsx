@@ -72,6 +72,7 @@ function TeamView() {
     const [isLoading, setIsLoading] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
     const [redirectMyEvent, setRedirectMyEvent] = useState(false)
+    const [redirectAllEvent, setRedirectAllEvent] = useState(false)
     const [projets, setProjets] = useState([]);
     const [options, setOptions] = useState([]);
 
@@ -91,15 +92,20 @@ function TeamView() {
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllProjetsByEvent/?id=' + data.IdProjet)
     
-            const json = await response.json();
-            if (!response.ok) {     
-                console.log(json.error) 
-                setGlobalError(json.error);
-            }
-    
-            if (response.ok) {
-                console.log(json)
-                setProjets(json.Projets)
+            try{
+                const json = await response.json();
+                if (!response.ok) {     
+                    console.log(json.error) 
+                    setGlobalError(json.error);
+                }
+        
+                if (response.ok) {
+                    console.log(json)
+                    setProjets(json.Projets)
+                }
+            }catch{
+                console.log("response is empty")
+                setRedirectAllEvent(true)
             }
             
         }
@@ -299,6 +305,7 @@ function TeamView() {
                 </Link>}
             </HBox>
             {redirectMyEvent && <Navigate to={routes.myDataChallenges}/>}
+            {redirectAllEvent && <Navigate to={routes.dataChallenge}/>}
         </StyledTeamView>
     );
 }
