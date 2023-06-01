@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { togglePost } from "../../toggles/togglePost";
 import { togglePut } from "../../toggles/togglePut";
@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 import InputTextDefault from "../../components/Input/Text/Default";
 import BasicButton from "../../components/BasicButton";
 import Select from "../Input/Select";
+import routes from "../../utils/routes";
 
 const StyledModifyInfoDataChallenge = styled.div`
     display: flex;
@@ -55,6 +56,8 @@ function AdminInfosDataChallenge({ className }) {
     const [rewards, setRewards] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [globalError, setGlobalError] = useState("");
+    const [redirectPatch, setRedirectPatch] = useState(null)
 
     useEffect(() => {
         if (id !== undefined && user) {
@@ -66,7 +69,6 @@ function AdminInfosDataChallenge({ className }) {
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
-                                "Content-Type": "application/json",
                             },
                         }
                     );
@@ -85,43 +87,76 @@ function AdminInfosDataChallenge({ className }) {
             fetchData();
         }
     }, [id, user]);
+
+    const sendRequest = async (e) => {
+        e.preventDefault();
+        const post = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + `/api/evenements/createEvenement/`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                    "Content-Type": "application.json",
+                },
+                body: JSON.stringify({
+                    "TypeEvenement": "DataChallenge",
+                    "Libele": label,
+                    "Description": description,
+                    "Recompenses": rewards,
+                    "Debut": start,
+                    "Fin": end,
+                })
+            })
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                setRedirectPatch(json.IdEvenement)
+            }
+        }
+        const patch = async () => {
+            setGlobalError("")
+            const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/editEvenement/', {
+                method: "PATCH",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                    "Content-Type": "application.json",
+                },
+                body: JSON.stringify({
+                    "IdEvenement": id,
+                    "TypeEvenement": eventType,
+                    "Libele": label,
+                    "Description": description,
+                    "Recompenses": rewards,
+                    "Debut": start,
+                    "Fin": end,
+                })
+            })
+            const json = await response.json();
+            if (!response.ok) {     
+                console.log(json.error) 
+                setGlobalError(json.error);
+            }
+    
+            if (response.ok) {
+                console.log(json)
+            }
+        }
+        if (id === undefined) {
+            post();
+        } else {
+            patch();
+        }
+    }
     return (
         <StyledModifyInfoDataChallenge className={className}>
             <Button className="section">
                 <h2>Informations Data Challenge</h2>
                 <form
-                    onSubmit={async () => {
-                        if (id === undefined) {
-                            togglePost(
-                                process.env.REACT_APP_PROXY +
-                                    `/api/evenements/createEvenement/`,
-                                user,
-                                {
-                                    "TypeEvenement": "DataChallenge",
-                                    "Libele": label,
-                                    "Description": description,
-                                    "Recompenses": rewards,
-                                    "Debut": start,
-                                    "Fin": end,
-                                }
-                            );
-                        } else {
-                            togglePut(
-                                process.env.REACT_APP_PROXY +
-                                    `/api/evenements/editEvenement/`,
-                                user,
-                                {
-                                    "IdEvenement": id,
-                                    "TypeEvenement": eventType,
-                                    "Libele": label,
-                                    "Description": description,
-                                    "Recompenses": rewards,
-                                    "Debut": start,
-                                    "Fin": end,
-                                }
-                            );
-                        }
-                    }}
+                    onSubmit={sendRequest}
                 >
                     <Select
                         style={{ flexGrow: 1 }}
@@ -160,6 +195,7 @@ function AdminInfosDataChallenge({ className }) {
                     </div>
                 </form>
             </Button>
+            {redirectPatch && <Navigate to={routes.modifyDataChallenge + '/' + redirectPatch} />}
         </StyledModifyInfoDataChallenge>
     );
 }
