@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import InputTextDefault from "../../../components/Input/Text/Default";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
