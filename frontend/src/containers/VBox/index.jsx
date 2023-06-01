@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const VBox = ({
     children,
@@ -6,6 +6,9 @@ const VBox = ({
     style,
     ...content
 }) => {
+    useEffect(() => {
+        console.log(children)
+    }, [])
     return (
         <div 
             className="vBox"
