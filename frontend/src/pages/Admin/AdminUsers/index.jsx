@@ -128,7 +128,7 @@ function AdminUsers() {
                                     >
                                         Supprimer
                                     </BasicButton>
-                                    <Link to={routes.profile + `/${id}`}>
+                                    <Link to={routes.addUser + `/${id}`}>
                                         <BasicButton className="update">
                                             Modifier
                                         </BasicButton>
