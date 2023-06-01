@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import NavbarOffset from "../../../components/NavbarOffset";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import InputTextDefault from "../../../components/Input/Text/Default";
@@ -14,7 +13,20 @@ const StyledAdminProject = styled.div`
     flex-direction: column;
     align-items: center;
     margin: auto;
-    width: 500px;
+    /* width: 500px; */
+
+    & .main form {
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    & .main form input,
+    & .main form button {
+        margin: 10px;
+    }
 `;
 
 function AdminModifyProject() {
@@ -52,12 +64,11 @@ function AdminModifyProject() {
         }
     }, [idProject, user]);
 
-    const handleSubmit = async(e) => {
-        e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         if (idProject === undefined) {
             await togglePost(
-                process.env.REACT_APP_PROXY +
-                    `/api/projets/createProjet/`,
+                process.env.REACT_APP_PROXY + `/api/projets/createProjet/`,
                 user,
                 {
                     "IdEvenement": `${idEvent}`,
@@ -66,12 +77,11 @@ function AdminModifyProject() {
                     "Image": urlImage,
                     "Entreprise": company,
                 }
-            )
-            alert("success")
-        }else{
+            );
+            alert("success");
+        } else {
             togglePut(
-                process.env.REACT_APP_PROXY +
-                    `/api/projets/editProjet/`,
+                process.env.REACT_APP_PROXY + `/api/projets/editProjet/`,
                 user,
                 {
                     "IdProjet": `${idProject}`,
@@ -81,17 +91,17 @@ function AdminModifyProject() {
                     "Image": urlImage,
                     "Entreprise": company,
                 }
-            )
-        } 
-    }
+            );
+        }
+    };
 
     return (
         <StyledAdminProject>
-            <h1>Ajouter / Modifier un projet</h1>
-            <Button>
-                <form
-                    onSubmit={(e) => handleSubmit(e)}
-                >
+            <h1>
+                {idProject === undefined ? "Ajouter" : "Modifier"} un projet
+            </h1>
+            <Button className="main">
+                <form onSubmit={(e) => handleSubmit(e)}>
                     <InputTextDefault
                         placeholder="Libele"
                         value={label}
