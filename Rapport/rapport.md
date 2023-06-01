@@ -347,19 +347,74 @@ Enfin, les différentes lignes d’importation sont spécifiées afin de savoir 
 
 ![API Java : Imports](images/apiJava/Imports.png){height=30%}
 
-## Description des fonctionnalités implémentées (A FAIRE !!!!!!!!!!!!)
+## Description des fonctionnalités implémentées (A FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
 
-Descriptions fonctionnalités implémentés et mettre des images. 
+### Le Visiteur peut consulter les événements et consulter leurs informations
 
-# Perspectives et améliorations futures (FACULTATIF !!!!!!!!!!!!)
+Mettre deux screenshot <=> 2 premières slides maquette
+Sur la page d'accueil d'un Data Battle, on voit le classement des équipe en fonction de leurs résultats aux questionnaires hebdomadaires.
+
+### Le Visiteur peur se connecter s'il a un compte
+
+
+### Le Visiteur peur se créer un compte
+
+### L'Étudiant peut consulter ses événements
+
+### L'Étudiant peut créer une équipe
+
+Lorsqu'il crée une équipe il devient capitaine et il peut choisir le nom de l'équipe et le projet auquel il veut participer puis inviter d'autres étudiant à se joindre à lui. 
+
+### L'Étudiant peut accepter une invitation à rejoindre une équipe
+
+
+### L'Étudiant peut consulter son équipe
+
+
+### L'Étudiant peut consulter le Projet
+
+Sur cette page il peut communiquer via la messagerie avec les gestionnaires du projet. S'il est capitaine d'équipe il peut également envoyer un lien GitHub.
+Dans le cas d'un Data Battle le capitaine peut répondre à des questionnaires hebdomadaires.
+
+### L'Étudiant peut modifier son profil
+
+### Le Gestionnaire peut consulter les événements qu'il gère
+
+### Le Gestionnaire peut gérer un Data Challenge
+
+Il peut noter les équipes pour chaque projet.
+Il peut envoyer des messages via la messagerie à toutes les équipes du Data Challenge, à toutes les équipes de chaque Projet ainsi qu'à toutes les équipes individuellement.
+
+### Le Gestionnaire peut gérer un Data Battle
+
+Il peut créer des questionnaires, des questions, noter les équipes.
+Il peut envoyer des messages via la messagerie à toutes les équipes du Data Battle ainsi qu'à toutes les équipes de chaque Projet.
+
+### Le Gestionnaire peut modifier son profil
+
+### L'Administrateur accède à un panneau d'administration
+
+Sur ce panneau il peut chosir d'administrer les Utilisateurs, les Evenements ainsi que les Ressources.
+
+### L'Administrateur gère les utilisateurs
+
+Il peut créer, éditer, supprimer des utilisateurs. Il est le seul à pouvoir créer des Administrateurs et des Gestionnaires.
+
+### L'Administrateur gère les Data Challenges
+
+Il voit l'état des Data Challenges, peut en créer, en modifier et en supprimer.
+
+### L'Administrateur créer un Data Challenge
+
+### L'Administrateur crée un Projet
+
+### L'Administrateur crée un Data Battle
+
+### L'Administrateur peut créer, modifier, supprimer des Ressources
 
 ## Liste des fonctionnalités restantes à implémenter (FACULTATIF !!!!!!!!!!!!)
 
 Ici on parle des fonctionnalités restantes à implémenter et au cahier des charges
-
-## Propositions d'améliorations et d'évolutions pour l'application (FACULTATIF !!!!!!!!!!!!)
-
-Ici on parle des fonctionnalités qu'on pourrait implémenter mais qui ne sont pas au cahier des charges
 
 # Conclusion 
 
@@ -385,7 +440,7 @@ Malgré ces difficultés, nous avons considéré cette expérience comme une occ
 
 En conclusion, bien que nous ayons rencontré des défis lors de la mise en œuvre de notre projet, nous avons pu surmonter ces difficultés grâce à notre détermination, notre auto-formation et notre collaboration étroite en tant qu'équipe. Ces expériences d'apprentissage nous ont permis d'améliorer nos compétences techniques et de développer une approche plus réfléchie et méthodique du développement logiciel. Nous recommandons vivement une formation sur le versionnage des projets dès les premières étapes de l'apprentissage de l'ingénierie pour faciliter les futurs projets et favoriser une collaboration harmonieuse entre les développeurs.
 
-## Remerciements (!!!!!!!!!!!! ON GARDE ???? !!!!!!!!!!)
+## Remerciements
 
 Nous tenons à exprimer nos sincères remerciements pour l'intérêt que vous portez à notre rapport. Au cours de ce projet, nous avons consacré de nombreuses heures de travail, de réflexion et de collaboration pour atteindre les objectifs que nous nous étions fixés. Cela n'aurait pas été possible sans le soutien et la contribution de nombreuses personnes et nous aimerions profiter de cette occasion pour les remercier.
 
