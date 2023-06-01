@@ -27,19 +27,19 @@
                     array_push($teamsOfUser, $row["IdEquipe"]);
                 }
             }
-            $IdEvement = -1;
+            $IdEvenement = -1;
             $query = "SELECT * FROM Evenement as e INNER JOIN Projet AS p ON p.IdEvenement = e.IdEvenement INNER JOIN Equipe as eq ON eq.IdProjet = p.IdProjet WHERE eq.IdEquipe = " . $IdEquipe . ";";
             $result = mysqli_query($conn, $query);
             if(mysqli_num_rows($result) > 0){
                 if($row = mysqli_fetch_array($result)){
-                    $IdEvement = $row["IdEvenement"];
+                    $IdEvenement = $row["IdEvenement"];
                 }
             }
-
-            if($IdEvement == -1){
+            
+            if($IdEvenement == -1){
                 throw new Exception ("Votre équipe n'est pas valide !");
             }
-
+            
             $arrayOfTeamsInEvent = array();
             $query = "SELECT * FROM Evenement as e INNER JOIN Projet AS p ON p.IdEvenement = e.IdEvenement INNER JOIN Equipe as eq ON eq.IdProjet = p.IdProjet WHERE e.IdEvenement = " . $IdEvenement . ";";
             $result = mysqli_query($conn, $query);
