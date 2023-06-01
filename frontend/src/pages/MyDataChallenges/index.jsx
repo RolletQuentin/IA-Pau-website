@@ -38,15 +38,20 @@ function MyDataChallenges() {
             setGlobalError("")
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEventsByIdUser/?id=' + user.userId)
     
-            const json = await response.json();
-            if (!response.ok) {     
-                console.log(json.error) 
-                setGlobalError(json.error);
-            }
-    
-            if (response.ok) {
-                console.log(json.Evenements)
-                setMyEvent(json.Evenements)
+            try{
+
+                const json = await response.json();
+                if (!response.ok) {     
+                    console.log(json.error) 
+                    setGlobalError(json.error);
+                }
+        
+                if (response.ok) {
+                    console.log(json.Evenements)
+                    setMyEvent(json.Evenements)
+                }
+            }catch{
+                console.log("json is empty")
             }
         }
         fetchEvenements()
@@ -57,11 +62,11 @@ function MyDataChallenges() {
             <NavbarOffset />
             <h1>Mes data challenges</h1>
             {myEvent &&
-            <VBox>
+            <VBox gap="0">
                 {myEvent.map((e, index) => {
-                    return (<Button key={index} className="data-challenge" style={{minWidth: "600px"}}>
+                    return (<Button key={index} className="data-challenge" style={{minWidth: "600px", width: "inherit"}}>
                         <h2>{e.Libele}</h2>
-                        <Link to={routes.myDataChallenges + "/" + 3 + "/" + e.IdEvenement}>
+                        <Link to={routes.myDataChallenges + "/" + e.IdEquipe + "/" + e.IdProjet}>
                             <BasicButton className="data-challenge-button">
                                 Dossier
                             </BasicButton>
