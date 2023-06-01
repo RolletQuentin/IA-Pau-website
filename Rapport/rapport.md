@@ -281,34 +281,42 @@ Ces choix de modélisation nous permettent de stocker et de gérer efficacement 
 
 ## Présentation des différentes étapes de développement
 
-Expliquer nos étapes, on a commencé brainstorming, fait les diagrammes séquence, use case puis BDD et maquette, creation equipes BACK ET FRONT, ensuite on a développé Backend et Front end symbiose.
+Notre projet de développement s'est déroulé en plusieurs étapes bien définies. Tout d'abord, nous avons commencé par un brainstorming pour s'impreigner des idées et des concepts. Ensuite, nous avons élaboré un diagramme use case et des diagrammes de pages afin de décrire les interactions et les fonctionnalités de notre système. Une fois cette étape terminée, nous avons créé une maquette qui représente visuellement l'interface utilisateur de notre application. Dans le même temps, Arthur et Maxime ont travaillé sur la réalisation de la base de données (BDD), tandis que Patrice s'occupait du développement de la maquette. Parallèlement, Quentin et Valentin ont créé les composants React en suivant la maquette. Une fois la BDD terminée, Maxime a rejoint l'équipe Front-end pour collaborer avec Quentin et Valentin. Arthur, de son côté, a commencé à créer l'API PHP pour le Backend. Une fois la maquette finalisée, Patrice a rejoint l'équipe Back-end. Après avoir achevé le développement du Backend, Arthur a pris en charge la création de l'API Java, tandis que Patrice s'est concentré sur la rédaction du rapport final du projet. Cette approche collaborative a permis une symbiose entre les équipes Back-end et Front-end, assurant ainsi une progression efficace et un développement cohérent de notre application.
 
 ## Présentation du développement des composants React (EQUIPE FRONT !!!!!!!!!)
 
+!!!!!!!!!!!!!!!!!!!!!!!! EXPLICATION DE LEUR FACON DE DEVELOPPER LEUR COMPSANT REACT !!!!
 
-## Présentation du web service REST PHP (PARLER DE LA SECURISATION)
+## Présentation de l'API PHP
 
-Parler de la sécurisation PHP avec JWT
+Nous avons développé une API PHP pour permettre aux développeurs Front-end utilisant React d'accéder et de modifier la base de données (serveur MySQL). Tout d'abord, nous avons engagé des discussions approfondies avec les développeurs Front-end pour comprendre leurs besoins en termes de requêtes. Après avoir identifié ces besoins, nous avons établi une liste de priorités pour le développement des différentes requêtes.
+
+En nous basant sur cette liste, nous avons commencé à implémenter les requêtes en fonction de leur ordre de priorité. Nous avons également maintenu une disponibilité constante pour créer de nouvelles requêtes en réponse aux besoins émergents des développeurs Front-end et pour apporter des correctifs aux requêtes existantes en cas d'erreurs ou de problèmes.
+
+Pour faciliter les tests et la documentation de nos requêtes, nous avons utilisé Postman. Cela nous a permis de tester efficacement chaque requête et de fournir une documentation claire aux développeurs Front-end, afin qu'ils puissent facilement comprendre comment utiliser l'API.
+
+Il convient de noter que la partie de l'API développée par Arthur est codée de manière procédurale, tandis que la partie réalisée par Patrice est codée selon une approche orientée objet. Nous avons fait ce choix en nous basant sur nos préférences et nos habitudes de développement, tout en nous assurant de lire et renvoyer les données au format JSON structuré de la même manière afin que cela soit transparant pour les développeurs Front-end.
+
+En plus de fournir les fonctionnalités nécessaires, nous avons accordé une attention particulière à la sécurité de notre API. Pour garantir la confidentialité des informations sensibles et éviter les vulnérabilités potentielles, nous avons mis en place des mesures de sécurisation telles que l'authentification et l'autorisation.
+
+Pour gérer l'authentification, nous avons utilisé JSON Web Tokens (JWT). Lorsqu'un utilisateur se connecte, notre API génère un token de connexion contenant des informations d'identification cryptées. Ce token est ensuite renvoyé à l'utilisateur et doit être inclus dans chaque requête subséquente en tant qu'en-tête d'autorisation.
+
+Lorsque notre API reçoit une requête avec un token d'autorisation, elle vérifie la validité du token et extrait les informations d'identification correspondantes. Cela nous permet d'identifier l'utilisateur et de déterminer s'il est autorisé à accéder aux ressources demandées ou à effectuer des modifications dans la base de données.
+
+Nous avons également mis en place des mécanismes d'autorisation pour définir les droits d'accès des utilisateurs. En fonction de leur type d'utilisateur (administrateur, gestionnaire, etudiant, visiteur), nous avons défini des permissions spécifiques qui déterminent les actions qu'ils peuvent effectuer sur les données.
+
+En fournissant cette couche de sécurité supplémentaire, nous nous sommes assurés que seuls les utilisateurs authentifiés et autorisés peuvent accéder aux données sensibles et effectuer des modifications dans notre système. Cela protège non seulement les informations confidentielles, mais garantit également l'intégrité de notre base de données.
+
+Dans l'ensemble, notre API PHP a été développée en tenant compte des besoins des développeurs Front-end, avec une approche souple pour créer de nouvelles requêtes et apporter des améliorations. Nous avons veillé à maintenir une compatibilité transparente avec les développeurs Front-end en fournissant une documentation claire et en utilisant des formats de données standardisés. De plus, nous avons mis en place des mesures de sécurité solides, telles que l'authentification basée sur JWT, pour protéger les données sensibles et assurer la confidentialité des informations. Cette approche globale de sécurité a joué un rôle essentiel dans le succès de notre projet de développement.
 
 ## Présentation de l'API Java (ARTHUR !!!!!!!!!!)
 
 Description du fonctionnement de l'analyseur de code et de la visualisation des résultats.
-
 Mettre graphe.
 
 ## Description des fonctionnalités implémentées
 
 Descriptions fonctionnalités implémentés et mettre des images. 
-
-# Résultats et évaluation
-
-## Présentation des résultats obtenus par l'application
-
-Parler des réultats obtenus par l'app
-
-## Évaluation de la conformité des fonctionnalités par rapport aux attentes
-
-Présentation de la conformité des fonctionnalités par rapport aux attendes
 
 # Perspectives et améliorations futures
 
@@ -328,31 +336,22 @@ Notre mission consistait à concevoir et à développer un site internet interac
 
 L'une des principales fonctionnalités que nous avons développées était le système d'inscription aux Data Battles et aux Data Challenges. Les utilisateurs pouvaient créer un compte, se connecter et choisir parmi les différentes compétitions disponibles. Le site devait également permettre aux utilisateurs de consulter les informations détaillées sur chaque compétition, telles que les dates, les règles et les récompenses.
 
-Nous avons également inclus des fonctionnalités de suivi des progrès et de classement, où les utilisateurs pouvaient suivre leur évolution tout au long des compétitions et comparer leurs résultats avec ceux des autres participants. Cela favorisait un esprit de compétition sain et stimulant, encourageant les utilisateurs à s'impliquer davantage et à améliorer leurs compétences en matière d'intelligence artificielle.
+Nous avons également inclus des fonctionnalités de suivi des progrès et de classement pour les Data Battles, où les utilisateurs pouvaient suivre leur évolution tout au long des compétitions et comparer leurs résultats avec ceux des autres participants. Cela favorisait un esprit de compétition sain et stimulant, encourageant les utilisateurs à s'impliquer davantage et à améliorer leurs compétences en matière d'intelligence artificielle.
 
 En outre, nous avons accordé une attention particulière à la convivialité du site, en veillant à ce qu'il soit accessible à tous les utilisateurs, quel que soit leur niveau de compétence en informatique. Nous avons optimisé l'interface utilisateur, en mettant l'accent sur la simplicité et la clarté, afin de garantir une expérience utilisateur fluide et agréable.
 
 En résumé, ce projet de fin d'année a été une occasion unique de mettre en pratique nos compétences et connaissances en développement web tout en travaillant en équipe. Nous sommes fiers d'avoir contribué à la création d'un site internet complet et dynamique pour l'association IA Pau, offrant aux utilisateurs une plateforme interactive pour s'inscrire et participer aux compétitions liées à l'intelligence artificielle. Ce projet nous a permis d'acquérir une expérience précieuse et de nous préparer pour les défis à venir dans notre parcours d'ingénieur.
 
-## Récapitulation des réalisations
-
-SUREMENT RIEN
-
-
 ## Retour sur les apprentissages et les difficultés rencontrées
 
-Parler des difficultés à utiliser GitHub, on a du s'auto former, une formation au sein de l'école en première année d'ing serait superbe. Cours sur le versionning. Taille du projet particulièrement longue.
+Au cours de notre projet, nous avons rencontré certaines difficultés liées à l'utilisation de GitHub. En tant qu'équipe, nous avons dû nous former par nous-mêmes pour apprendre à utiliser efficacement Git et GitHub. Une formation dédiée sur le versionnage des projets aurait été bénéfique, en particulier lors de notre première année d'ingénierie. Cela aurait permis de mieux comprendre les bonnes pratiques de collaboration, de gestion des branches, et de résolution des conflits.
 
-# Annexes
+La taille du projet a également posé un défi. Avec de nombreuses fonctionnalités et différentes parties à développer, il a fallu une bonne organisation et une communication constante pour maintenir la cohérence et la qualité du code. La gestion des dépendances, des versions et des mises à jour a également été un aspect important du projet qui nécessitait une attention particulière.
 
-Surement rien ici.
+Malgré ces difficultés, nous avons considéré cette expérience comme une occasion d'apprentissage précieuse. Nous avons acquis une compréhension plus approfondie du développement d'applications web, de la conception de bases de données, de l'utilisation d'outils tels que Docker et Postman, ainsi que de la collaboration en équipe.
 
-## Fichiers de code source pertinents
+En conclusion, bien que nous ayons rencontré des défis lors de la mise en œuvre de notre projet, nous avons pu surmonter ces difficultés grâce à notre détermination, notre auto-formation et notre collaboration étroite en tant qu'équipe. Ces expériences d'apprentissage nous ont permis d'améliorer nos compétences techniques et de développer une approche plus réfléchie et méthodique du développement logiciel. Nous recommandons vivement une formation sur le versionnage des projets dès les premières étapes de l'apprentissage de l'ingénierie pour faciliter les futurs projets et favoriser une collaboration harmonieuse entre les développeurs.
 
-Surement rien
+## Remerciements
 
-## Documentation technique
-
-Surement rien
-
-## Capture d'écran de l'application ou lien vers une démo en ligne
+ECRIRE REMERCIEMENTS !!!!!!!!!!!!!!!!!
