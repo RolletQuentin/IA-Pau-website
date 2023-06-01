@@ -14,6 +14,7 @@ import Select from "../../Input/Select";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
 import { togglePatch } from "../../../toggles/togglePatch";
 import { togglePost } from "../../../toggles/togglePost";
+import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
 const styleInputText = {
     flexGrow: 1,
@@ -87,6 +88,8 @@ const SignupForm = ({
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
+    const {verifyAuth} = useVerifyAuth()
+
     useEffect(() => {
         if (!firstAuth && id !== undefined && user) {
             const fetchData = async () => {
@@ -100,6 +103,7 @@ const SignupForm = ({
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setLastname(json.lastname);
                     setFirstname(json.firstname);
@@ -126,6 +130,7 @@ const SignupForm = ({
                             break;
                     }
                 } catch (err) {
+                    await verifyAuth()
                     console.error(err);
                 }
             };

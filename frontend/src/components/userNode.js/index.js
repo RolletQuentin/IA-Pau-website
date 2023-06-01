@@ -7,6 +7,7 @@ import HBox from "../../containers/HBox";
 import VBox from "../../containers/VBox";
 import { useParams } from "react-router-dom";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 
 const UserNode = ({
@@ -19,6 +20,7 @@ const UserNode = ({
 
     const {id_team} = useParams();
     const [isDeleting, setIsDeleting] = useState(false)
+    const {verifyAuth} = useVerifyAuth()
 
     const handleDelete = (id) => {
         const fetchDelete = async () => {
@@ -31,6 +33,7 @@ const UserNode = ({
                     Authorization: `Bearer ${user.jwt}`,
                 },
             })
+            await verifyAuth()
     
             const json = await response.json();
             if (!response.ok) {     

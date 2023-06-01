@@ -9,6 +9,7 @@ import InputTextDefault from "../../components/Input/Text/Default";
 import BasicButton from "../../components/BasicButton";
 import Select from "../Input/Select";
 import routes from "../../utils/routes";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledModifyInfoDataChallenge = styled.div`
     display: flex;
@@ -58,6 +59,7 @@ function AdminInfosDataChallenge({ className }) {
     const [end, setEnd] = useState("");
     const [globalError, setGlobalError] = useState("");
     const [redirectPatch, setRedirectPatch] = useState(null)
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         if (id !== undefined && user) {
@@ -72,6 +74,7 @@ function AdminInfosDataChallenge({ className }) {
                             },
                         }
                     );
+                    await verifyAuth()
                     const json = await response.json();
                     setEventType(json["TypeEvenement"]);
                     setLabel(json["Libele"]);
@@ -107,6 +110,7 @@ function AdminInfosDataChallenge({ className }) {
                     "Fin": end,
                 })
             })
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
@@ -135,6 +139,7 @@ function AdminInfosDataChallenge({ className }) {
                     "Fin": end,
                 })
             })
+            await verifyAuth()
             const json = await response.json();
             if (!response.ok) {     
                 console.log(json.error) 
