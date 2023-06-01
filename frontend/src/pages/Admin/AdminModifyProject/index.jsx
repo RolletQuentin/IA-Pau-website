@@ -52,39 +52,45 @@ function AdminModifyProject() {
         }
     }, [idProject, user]);
 
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        if (idProject === undefined) {
+            await togglePost(
+                process.env.REACT_APP_PROXY +
+                    `/api/projets/createProjet/`,
+                user,
+                {
+                    "IdEvenement": `${idEvent}`,
+                    "Libele": label,
+                    "Description": description,
+                    "Image": urlImage,
+                    "Entreprise": company,
+                }
+            )
+            alert("success")
+        }else{
+            togglePut(
+                process.env.REACT_APP_PROXY +
+                    `/api/projets/editProjet/`,
+                user,
+                {
+                    "IdProjet": `${idProject}`,
+                    "IdEvenement": `${idEvent}`,
+                    "Libele": label,
+                    "Description": description,
+                    "Image": urlImage,
+                    "Entreprise": company,
+                }
+            )
+        } 
+    }
+
     return (
         <StyledAdminProject>
             <h1>Ajouter / Modifier un projet</h1>
             <Button>
                 <form
-                    onSubmit={() =>
-                        idProject === undefined
-                            ? togglePost(
-                                  process.env.REACT_APP_PROXY +
-                                      `/api/projets/createProjet/`,
-                                  user,
-                                  {
-                                      "IdEvenement": `${idEvent}`,
-                                      "Libele": label,
-                                      "Description": description,
-                                      "Image": urlImage,
-                                      "Entreprise": company,
-                                  }
-                              )
-                            : togglePut(
-                                  process.env.REACT_APP_PROXY +
-                                      `/api/projets/editProjet/`,
-                                  user,
-                                  {
-                                      "IdProjet": `${idProject}`,
-                                      "IdEvenement": `${idEvent}`,
-                                      "Libele": label,
-                                      "Description": description,
-                                      "Image": urlImage,
-                                      "Entreprise": company,
-                                  }
-                              )
-                    }
+                    onSubmit={(e) => handleSubmit(e)}
                 >
                     <InputTextDefault
                         placeholder="Libele"
