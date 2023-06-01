@@ -26,7 +26,7 @@ COPY backend/AnalyseurDeCode.jar /app/backend/
 FROM mysql:8 AS mysql-server
 ENV MYSQL_ROOT_PASSWORD=root_password
 ENV MYSQL_USER=user
-ENV MYSQL_PASSWORD=password
+ENV MYSQL_PASSWORD=ltkZPbxzP3m8HA6c
 ENV MYSQL_DATABASE=IA_Pau_database
 
 # Copie du fichier deploy.sql pour initialiser la base de données
