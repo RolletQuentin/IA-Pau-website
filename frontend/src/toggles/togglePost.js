@@ -1,7 +1,5 @@
 // import axios from "axios";
 
-import { useVerifyAuth } from "../hooks/auth/useVerifyAuth";
-
 // export const togglePost = async (url, user, data) => {
 //     const config = {
 //         method: "post",
@@ -24,7 +22,6 @@ import { useVerifyAuth } from "../hooks/auth/useVerifyAuth";
 // };
 
 export const togglePost = async (url, user, data) => {
-    const {verifyAuth} = useVerifyAuth()
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -34,12 +31,10 @@ export const togglePost = async (url, user, data) => {
                 "Content-Type": "application/json",
             },
         });
-        await verifyAuth()
         const json = await response.json();
         console.log(json);
         return json;
     } catch (error) {
-        await verifyAuth()
         console.error(error);
     }
 };
