@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import InputTextDefault from "../../../components/Input/Text/Default";
 import { useAuthContext } from "../../../hooks/auth/useAuthContext";
@@ -9,7 +9,6 @@ import { togglePost } from "../../../toggles/togglePost";
 import Button from "../../../components/Button";
 import { useVerifyAuth } from "../../../hooks/auth/useVerifyAuth";
 
-import { Link } from "react-router-dom";
 import routes from "../../../utils/routes";
 
 const StyledAdminProject = styled.div`
