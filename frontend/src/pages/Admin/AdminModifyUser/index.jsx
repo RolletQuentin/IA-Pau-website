@@ -20,6 +20,7 @@ function AdminModifyUser() {
                 firstAuth={false}
             />
         </StyledModifyUser>
+        
     );
 }
 

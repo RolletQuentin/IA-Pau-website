@@ -4,6 +4,9 @@ import Project from "../../components/Project";
 import Ressource from "../../components/Ressources";
 import Team from "../../components/Team";
 import Questionnaire from "../../components/Questionnaire";
+import VBox from "../../containers/VBox";
+import HBox from "../../containers/HBox";
+import BasicButton from "../../components/BasicButton";
 
 const StyledDataChallengeRendu = styled.div`
     width: 900px;
@@ -40,7 +43,7 @@ const StyledDataChallengeRendu = styled.div`
 function DataChallengeRendu() {
     return (
         <StyledDataChallengeRendu>
-            <div className="main">
+            <HBox className="main">
                 <div className="left">
                     <Project />
                     <Ressource />
@@ -48,7 +51,7 @@ function DataChallengeRendu() {
                     {/* <Questionnaire /> */}
                 </div>
                 <Messagerie className="messagerie" />
-            </div>
+            </HBox>
         </StyledDataChallengeRendu>
     );
 }
