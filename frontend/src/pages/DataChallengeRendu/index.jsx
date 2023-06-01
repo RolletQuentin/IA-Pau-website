@@ -28,7 +28,6 @@ const StyledDataChallengeRendu = styled.div`
 function DataChallengeRendu() {
     return (
         <StyledDataChallengeRendu>
-            <NavbarOffset />
             <div className="main">
                 <div className="left">
                     <Project />

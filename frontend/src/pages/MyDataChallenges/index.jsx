@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import VBox from "../../containers/VBox";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
+import { useVerifyAuth } from "../../hooks/auth/useVerifyAuth";
 
 const StyledMyDataChallenge = styled.div`
     display: flex;
@@ -32,6 +33,7 @@ function MyDataChallenges() {
     const [globalError, setGlobalError] = useState("");
     const [myEvent, setMyEvent] = useState(null);
     const {user} = useAuthContext();
+    const {verifyAuth} = useVerifyAuth()
 
     useEffect(() => {
         const fetchEvenements = async () => {
@@ -39,7 +41,7 @@ function MyDataChallenges() {
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/evenements/getAllEventsByIdUser/?id=' + user.userId)
     
             try{
-
+                verifyAuth();
                 const json = await response.json();
                 if (!response.ok) {     
                     console.log(json.error) 
@@ -59,7 +61,6 @@ function MyDataChallenges() {
 
     return (
         <StyledMyDataChallenge>
-            <NavbarOffset />
             <h1>Mes data challenges</h1>
             {myEvent &&
             <VBox gap="0">

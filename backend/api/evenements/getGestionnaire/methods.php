@@ -13,6 +13,7 @@
             throw new Exception ("Vous n'avez pas les permissions nécessaires.");
         }
 
+
         $array = getArrayOfGestionnaireOfEvent($IdEvenement);
         $arrayRetour = array();
         foreach($array as $UserId){

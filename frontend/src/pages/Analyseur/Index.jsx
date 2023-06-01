@@ -125,7 +125,6 @@ const Analyseur = () => {
 
     return (
         <CenterContainer>
-            <NavbarOffset />
             <MarginContainer margin="30px">
                 <SectionContainer style={{ width: "80vw" }}>
                     <br></br>

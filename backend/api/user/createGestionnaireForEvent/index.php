@@ -107,7 +107,18 @@ try {
         throw new Exception ("Le mail est déjà utilisé dans la bdd");
     } else {
 
+        if(empty($_GET["IdEvent"])){
+            throw new Exception ("Merci de choisir un IdEvent");
+        }
+
         $conn = getConnection();
+        $IdEvenement = verifyStringToDatabaseInsertion($_GET["IdEvent"]);
+
+        $query = "SELECT * FROM Evenement WHERE IdEvenement = " . $IdEvenement . ";";
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) == 0){
+            throw new Exception ("L'événement n'existe pas !");
+        }
 
         $encoded_password = password_hash($mdp, PASSWORD_DEFAULT);
 
@@ -120,11 +131,34 @@ try {
         if(mysqli_num_rows($result) > 0){
             if($row = mysqli_fetch_assoc($result)){
                 $id = $row["Identifiant"];
+                $IdGestionnaire = $row["IdGestionnaire"];
             }
         }
-        $query = "INSERT INTO Gestionnaire (Entreprise, Ville, Debut, Fin, Identifiant) VALUES ('". $Entreprise ."', '". $ville ."', '". $debut ."', '". $fin ."' , ". $id .");";
-        $result = mysqli_query($conn, $query);
 
+        $query = "INSERT INTO Gestionnaire (Entreprise, Ville, Debut, Fin, Identifiant) VALUES ('". $Entreprise ."', '". $ville ."', '". $debut ."', '". $fin ."' , ". $id .");";
+        mysqli_query($conn, $query);
+        
+        $query = "SELECT * FROM Gestionnaire WHERE Identifiant = ". $id .";";
+        $result = mysqli_query($conn, $query);
+        $IdGestionnaire = -1;
+        if(mysqli_num_rows($result) > 0){
+            if($row = mysqli_fetch_assoc($result)){
+                $id = $row["Identifiant"];
+                $IdGestionnaire = $row["IdGestionnaire"];
+            }
+        }
+
+        if($IdGestionnaire == -1 || $id == -1){
+            $query = "DELETE FROM Gestionnaire WHERE IdGestionnaire = ". $IdGestionnaire . ";";
+            mysqli_query($conn, $query);
+            $query = "DELETE FROM User WHERE Identifiant = " . $id . ";";
+            mysqli_query($conn, $query);
+            throw new Exception ("Erreur lors de l'insertion de la donnée (" . $IdGestionnaire . ";". $id . ")");
+        }
+
+        $query = "INSERT INTO Gerer (IdGestionnaire, IdEvenement) VALUES (". $IdGestionnaire .", ". $IdEvenement . ");";
+        $result = mysqli_query($conn, $query);
+        
         $array = array(
             "success"=>true
         );
