@@ -10,7 +10,6 @@ RUN npm run build
 FROM php:7.4-apache AS php-server
 WORKDIR /var/www/html
 COPY backend/api/ /var/www/html/api/
-COPY backend/vendor/ /var/www/html/vendor/
 COPY backend/deploy.sql /docker-entrypoint-initdb.d/
 COPY backend/composer.json backend/composer.lock /var/www/html/
 RUN apt-get update && apt-get install -y unzip
@@ -29,7 +28,13 @@ ENV MYSQL_ROOT_PASSWORD=root_password
 ENV MYSQL_USER=user
 ENV MYSQL_PASSWORD=password
 ENV MYSQL_DATABASE=IA_Pau_database
+
+# Copie du fichier deploy.sql pour initialiser la base de données
 COPY backend/deploy.sql /docker-entrypoint-initdb.d/
+
+# Ajout du script d'initialisation personnalisé pour créer les tables
+COPY backend/init-database.sh /docker-entrypoint-initdb.d/init-database.sh
+RUN chmod +x /docker-entrypoint-initdb.d/init-database.sh
 
 # Étape 5 : Assemblage des composants
 FROM php-server AS final
@@ -37,6 +42,6 @@ COPY --from=java-server /app/backend/AnalyseurDeCode.jar /app/backend/
 COPY --from=frontend-builder /app/frontend/build/ /var/www/html/
 
 # Configuration du fichier BDDCredentials
-RUN sed -i "s/localhost/$MYSQL_DATABASE/g" /var/www/html/api/utils/BDDCredentials.php
-RUN sed -i "s/user/$MYSQL_USER/g" /var/www/html/api/utils/BDDCredentials.php
-RUN sed -i "s/password/$MYSQL_PASSWORD/g" /var/www/html/api/utils/BDDCredentials.php
+# RUN sed -i "s/localhost/$MYSQL_DATABASE/g" /var/www/html/api/utils/BDDCredentials.php
+# RUN sed -i "s/user/$MYSQL_USER/g" /var/www/html/api/utils/BDDCredentials.php
+# RUN sed -i "s/password/$MYSQL_PASSWORD/g" /var/www/html/api/utils/BDDCredentials.php

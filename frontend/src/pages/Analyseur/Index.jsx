@@ -6,13 +6,10 @@ import CenterContainer from "../../containers/CenterContainer";
 import MarginContainer from "../../containers/MarginContainer";
 import VBox from "../../containers/VBox";
 import imageMoreInfo from "../../assets/moreInfoAnalyseur.jpg";
-import Chart from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 
 const Analyseur = () => {
     const [globalError, setGlobalError] = useState("");
-    const [fileContent, setFileContent] = useState("");
-    const [file, setFile] = useState(null);
     const [lines, setLines] = useState(null);
     const [responseJSON, setResponseJSON] = useState(null);
     const [responseSEARCH, setResponseSEARCH] = useState(null);
@@ -58,16 +55,14 @@ const Analyseur = () => {
         }
     };
 
+    console.log(process.env.JAVA_API_PROXY);
     const handleAnalyse = async () => {
         setGlobalError("");
         if (lines) {
-            const response = await fetch(
-                process.env.JAVA_API_PROXY + "/getdata/",
-                {
-                    method: "POST",
-                    body: lines.join("\n"),
-                }
-            );
+            const response = await fetch("http://localhost:8081/getdata/", {
+                method: "POST",
+                body: lines.join("\n"),
+            });
 
             const json = await response.json();
 
@@ -85,9 +80,9 @@ const Analyseur = () => {
     const handleSearch = async () => {
         setGlobalError("");
         const pattern = document.getElementById("searchBAR").value;
-        if (lines && pattern != "") {
+        if (lines && pattern !== "") {
             const response = await fetch(
-                "http://localhost:8000/search/?search=" + pattern,
+                "http://localhost:8081/search/?search=" + pattern,
                 {
                     method: "POST",
                     body: lines.join("\n"),
@@ -111,7 +106,7 @@ const Analyseur = () => {
     const getSpaceBefore = (str) => {
         let nb = 0;
         let secur = 0;
-        while (str != null && str != "" && str.startsWith(" ") && secur < 30) {
+        while (str != null && str !== "" && str.startsWith(" ") && secur < 30) {
             nb += 10;
             secur++;
             str = str.replace(" ", "");
@@ -178,6 +173,7 @@ const Analyseur = () => {
                                 <img
                                     style={{ width: "30%" }}
                                     src={imageMoreInfo}
+                                    alt="plus d'informations"
                                 ></img>
                             </div>
                             <br></br>
@@ -242,7 +238,9 @@ const Analyseur = () => {
                                                 {responseJSON.NbImport -
                                                     responseJSON.ImportInFonction}{" "}
                                                 librairies importées (+
-                                                {responseJSON.ImportInFonction}{" "}
+                                                {
+                                                    responseJSON.ImportInFonction
+                                                }{" "}
                                                 import dans des fonctions)
                                             </p>
                                         </div>
