@@ -36,7 +36,6 @@ const StyledMyDataChallenge = styled.div`
 function Admin() {
     return (
         <StyledMyDataChallenge>
-            <NavbarOffset />
             <h1>Administrer</h1>
 
             <Button className="admin-section">

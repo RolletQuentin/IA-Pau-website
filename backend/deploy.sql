@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS User(
 CREATE TABLE IF NOT EXISTS Preinscription(
     Identifiant INTEGER(16),
     IdEquipe INTEGER(16),
-    CONSTRAINT fkPréInsc1 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE,
-    CONSTRAINT fkPréInsc2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE,
-    CONSTRAINT pkPréInsc PRIMARY KEY (Identifiant, IdEquipe)
+    CONSTRAINT fkPreInsc1 FOREIGN KEY (Identifiant) REFERENCES User (Identifiant) ON DELETE CASCADE,
+    CONSTRAINT fkPreInsc2 FOREIGN KEY (IdEquipe) REFERENCES Equipe (IdEquipe) ON DELETE CASCADE,
+    CONSTRAINT pkPreInsc PRIMARY KEY (Identifiant, IdEquipe)
 );
 
 -- USER

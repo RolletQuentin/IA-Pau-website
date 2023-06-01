@@ -13,7 +13,6 @@ const StyledModifyUser = styled.div`
 function AdminModifyUser() {
     return (
         <StyledModifyUser>
-            <NavbarOffset />
             <SignupForm
                 title="Ajouter / Modifier un utilisateur"
                 icon={false}

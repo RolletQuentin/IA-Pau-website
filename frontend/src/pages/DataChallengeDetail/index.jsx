@@ -130,7 +130,6 @@ function DataChallengeDetail() {
 
     return (
         <CenterContainer>
-            <NavbarOffset/>
             {data_challenge && team && projets ? 
             <VBox style={{
                 width: "80vw",
@@ -141,7 +140,6 @@ function DataChallengeDetail() {
                 <SectionContainer>
                     <h1>Description :</h1>
                     <span>{data_challenge.Description}</span>
-                    <span>{"-" + team.hasTeam}</span>
                     <h1>Recompenses : </h1>
                     <span>{data_challenge.Recompenses}</span>
                     <h1>Projet : </h1>
