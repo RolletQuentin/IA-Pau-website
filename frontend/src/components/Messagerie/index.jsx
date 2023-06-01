@@ -126,23 +126,32 @@ function Messagerie({ className }) {
         if (!content) return;
 
         try {
-            const response = await togglePost(
-                process.env.REACT_APP_PROXY +
-                    `/api/messages/send/?IdEquipe=${id_equipe}`,
-                user,
-                { content }
-            );
-            const [lastMessage] = messages.slice(-1);
-            const newMessage = {
-                "IdMessage": lastMessage.IdMessage + 1,
-                "sender": `${user.firstname} ${user.lastname}`,
-                "IdSender": user.userId,
-                "content": content,
-            };
+            const response = await fetch(process.env.REACT_APP_PROXY + `/api/messages/send/?IdEquipe=${id_equipe}`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`,
+                },
+                body: JSON.stringify({content}),
+            });
+            const json = await response.json();
+            if (response.ok){
+                const [lastMessage] = messages.slice(-1);
+                console.log(lastMessage)
+                const newId = lastMessage ? lastMessage.IdMessage + 1 : 0
+                const newMessage = {
+                    "IdMessage": newId,
+                    "sender": `${user.firstname} ${user.lastname}`,
+                    "IdSender": user.userId,
+                    "content": content,
+                };
+                setMessages((prevMessages) => [...prevMessages, newMessage]);
+                setContent("");
+                scrollToBottom();
+            }else{
+                console.log(json.error)
+                alert(json.error)
+            }
 
-            setMessages((prevMessages) => [...prevMessages, newMessage]);
-            setContent("");
-            scrollToBottom();
         } catch (error) {
             console.error(error);
         }
