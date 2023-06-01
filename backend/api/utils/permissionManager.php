@@ -166,7 +166,7 @@
     function getArrayOfGestionnaireOfEvent($IdEvenement){
         $retour = array();
         $conn = getConnection();
-        $query = "SELECT * From Gerer AS g INNER JOIN Gestionnaire AS ge ON g.IdGestionnaire = ge.IdGestionnaire WHERE g.IdEvenement=". $IdEvenement . ";";
+        $query = "SELECT * From Gerer AS g INNER JOIN Gestionnaire AS ge ON g.IdGestionnaire = ge.IdGestionnaire INNER JOIN Evenement AS e ON e.IdEvenement = g.IdEvenement WHERE g.IdEvenement=". $IdEvenement . ";";
         $result = mysqli_query($conn, $query);
         if(mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)){
