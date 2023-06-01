@@ -347,7 +347,7 @@ Enfin, les différentes lignes d’importation sont spécifiées afin de savoir 
 
 ![API Java : Imports](images/apiJava/Imports.png){height=30%}
 
-## Description des fonctionnalités implémentées (A FAIRE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+## Description des fonctionnalités implémentées
 
 ### Le Visiteur peut consulter les événements et consulter leurs informations
 
@@ -383,15 +383,15 @@ Soit il peut décider de créer une équipe en cliquant sur "Participer" et ains
 
 Dans ce dossier il peut acceder aux fichiers du projet, communiquer avec le gestionnaire via une messagerie, enregistrer un lien GitHub s'il est le capitaine de l'équipe.
 
-![Site : Étudiant -> Mes événements -> Data Challenge](images/site/etudiant/){height=100%} !!!!!!!!! PHOTO A FAIRE!!!!!!!!
-
-Il peut également répondre à des questionnaires si l'événément est un Data Battle.
-
-![Site : Étudiant -> Mes événements -> Data Battle](images/site/etudiant/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
+![Site : Étudiant -> Un Data Challenge](images/site/etudiant/etudiant_mes_data_challenge_battle.png){height=100%}
 
 ### L'Étudiant peut consulter son équipe
 
-!!!!!!!!!!!!!!!! PROBLEME, ON PEUT PAS CONSULTER INFO MEMBRE EQUIPE !!!!!!!!!!!
+![Site : Étudiant -> Voir équipe](images/site/etudiant/etudiant_consulter_equipe.png){height=100%}
+
+S'il est le capitaine il peut en plus ajouter des membres et renomer l'équipe.
+
+![Site : Étudiant -> Voir équipe](images/site/etudiant/etudiant_consulter_equipe_chef.png){height=100%}
 
 ### L'Étudiant peut modifier son profil
 
@@ -399,18 +399,9 @@ Il peut également répondre à des questionnaires si l'événément est un Data
 
 ### Le Gestionnaire peut consulter les événements qu'il gère
 
-### Le gestionnaire peut gérer un événément
+### Le Gestionnaire peut gérer un événément
 
 Pour tout type d'événement il peut envoyer des messages via la messagerie à toutes les équipes du Data Challenge, à toutes les équipes de chaque Projet ainsi qu'à toutes les équipes individuellement.
-
-
-Pour un Data Challenge, le gestionnaire peut noter les équipes pour chaque projet.
-
-![Site : Gestionnaire -> Data Challenge](images/site/gestionnaire/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
-
-Pour un Data Battle, il peut en plus créer des questionnaires, des questions, noter les équipes pour chaque questionnaire.
-
-![Site : Gestionnaire -> Data Battle](images/site/gestionnaire/){height=100%} !!!!!!!PHOTO A FAIRE !!!!!!!!!!!!!!
 
 ### Le Gestionnaire peut modifier son profil
 
@@ -448,11 +439,16 @@ Il peut en créer, éditer et supprimer des ressources.
 
 ![Site : Administrateur -> Créer/Modifier Évenements](images/site/administrateur/admin_ressource_modifier_creer.png){height=100%}  
 
+### L'Administrateur peut gérer son profil
+
+![Site : Administrateur -> Ressources](images/site/administrateur/admin_profil.png){height=100%}
+
+
 ### Analyseur de code python
 
 Tous les utilisateurs, visiteur inclus peuvent utiliser l'analyseur de code python. Il permet de récupérer des informations sur un fichier python envoyé et de les visualiser grace à des diagrammes.
 
-
+![Site : Analyseur](images/site/visiteur/analyseur.png){height=100%}
 
 ## Liste des fonctionnalités restantes à implémenter
 
@@ -461,6 +457,12 @@ Tous les utilisateurs, visiteur inclus peuvent utiliser l'analyseur de code pyth
 Sur la page d'accueil d'un Data Battle, on voit le classement des équipe en fonction de leurs résultats aux questionnaires hebdomadaires.
 
 ### Administrateur créer, éditer, supprimer questionnaire et questions pour Data Battle
+
+### L'étudiant peut répondre à des questionnaires si l'événement est un Data Battle
+
+### Pour un Data Challenge, le gestionnaire peut noter les équipes pour chaque projet.
+
+### Pour un Data Battle, il peut en plus créer des questionnaires, des questions, noter les équipes pour chaque questionnaire.
 
 # Conclusion 
 
@@ -499,3 +501,7 @@ Nous souhaitons également exprimer notre reconnaissance envers les personnes qu
 Enfin, nous tenons à remercier nos proches, nos familles et nos amis, qui nous ont soutenus tout au long de ce projet. Leur soutien moral, leurs encouragements et leur compréhension ont été essentiels pour nous permettre de nous consacrer pleinement à cette aventure.
 
 En conclusion, nous tenons à exprimer notre profonde gratitude envers toutes les personnes qui ont contribué de près ou de loin à la réalisation de ce projet. Votre soutien, votre collaboration et votre confiance ont été les clés de notre réussite. Nous sommes fiers du travail accompli et nous vous remercions sincèrement pour votre précieuse contribution.
+
+# Lien GitHub
+
+https://github.com/RolletQuentin/IA-Pau-website
