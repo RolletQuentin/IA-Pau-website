@@ -30,22 +30,23 @@ header-includes: |
 
 ## Présentation du projet ING1 GI
 
-Au cours de notre première année à l'école d'ingénieurs CY-Tech Pau, nous avons eu l'opportunité de mettre en pratique nos connaissances et compétences acquises en informatique en réalisant un projet de fin d'année. Notre projet consistait à développer un site internet complet et dynamique pour l'association IA Pau.
+Au cours de notre première année à l'école d'ingénieurs CY-Tech Pau, nous avons eu l'opportunité de mettre en pratique nos connaissances et compétences acquises en informatique en réalisant un projet de fin d'année. Notre projet consistait à développer un site internet complet et dynamique pour l'association IAPau.
 
 ## Contexte et objectifs du projet
 
-Ce projet a été conçu dans le but de nous permettre d'appliquer concrètement les compétences que nous avons acquises tout au long de notre première année. En travaillant en équipe, nous avons eu l'occasion de collaborer avec des camarades de classe, formant ainsi des équipes aléatoires, afin de développer nos compétences en travail d'équipe et de renforcer notre capacité à travailler avec autrui. L'objectif principal était de concevoir un site permettant aux utilisateurs de s'inscrire et de participer aux Data Battles et Data Challenges proposés par l'association IA Pau.
+Ce projet a été conçu dans le but de nous permettre d'appliquer concrètement les compétences que nous avons acquises tout au long de notre première année. En travaillant en équipe, nous avons eu l'occasion de collaborer avec des camarades de promotion, formant ainsi des équipes aléatoires, afin de développer nos compétences en travail d'équipe et de renforcer notre capacité à travailler avec autrui.
+L'objectif principal était de concevoir un site permettant aux utilisateurs de s'inscrire et de participer aux Data Challenges et Data Battles proposés par l'association IA Pau, ainsi que de permettre aux Gestionnaires de gérer ces Data Challenges/Battles et aux Administrateurs de gérer en plus des Data Challenges/Battles les utilisateurs et ressources du site. 
 
 # Analyse des besoins
 
 ## Présentation du contexte de l'association IA PAU
 
-L'association IA Pau est une organisation à but non lucratif qui organise divers événements, dont les Data Challenges et les Data Battles.
+L'association IA Pau est une organisation à but non lucratif qui organise divers événements liés à l'intelligence artificielle, dont les Data Challenges et les Data Battles.
 
 ## Description du déroulement d'un data challenge
 
 Un Data Challenge est une compétition sur un weekend dans laquelle plusieurs équipes s'affrontent pour résoudre un problème spécifique en utilisant des techniques de traitement et d'analyse des données. Les équipes sont évaluées en fonction de la qualité de leurs résultats et de leur approche méthodologique.
-Un Data Battle est une variante du Data Challenge qui se déroule sur une période d'un mois. Il se compose d'un projet unique et les équipes participantes doivent répondre à des questionnaires hebdomadaires. Un podium est affiché sur la page d'accueil du site, mis à jour chaque semaine en fonction des résultats des questionnaires.
+Un Data Battle est une variante du Data Challenge qui se déroule sur une période d'un mois, il se compose d'un projet unique et les équipes participantes doivent répondre à des questionnaires hebdomadaires. Un podium est affiché sur la page d'accueil du site, mis à jour chaque semaine en fonction des résultats des questionnaires.
 
 ## Identification des besoins et enjeux de l'application
 
@@ -77,14 +78,9 @@ Nous détaillerons plus bas les besoins et enjeux, ainsi que les fonctionnalité
 
 # Spécifications fonctionnelles
 
-## Présentation des différents profils utilisateurs (administrateurs, gestionnaires, étudiants)
+## Présentation des différents profils utilisateurs (administrateurs, gestionnaires, étudiants, visiteurs)
 
-Le site accueille quatre types d'utilisateurs, des Administrateurs, des Gestionnaires (interne ou externe), des étudiants non connectés et des Étudiants.
-
-## Description des fonctionnalités des utilisateurs non connectés
-
-Les étudiants non connectés voient la page d'accueil avec tous les DataChallenges/Battles, peuvent consulter les informations et choisir d'y participer.
-S'ils cliquent sur participer ils sont inviter à se connecter où à créer un compte.
+Le site accueille quatre types d'utilisateurs, des Administrateurs, des Gestionnaires (interne ou externe), des Étudiants et des visiteurs.
 
 ## Description des fonctionnalités d'administration
 
@@ -125,38 +121,70 @@ Si un étudiant connecté choisi d'y participer cela crée une équipe et le met
 Une fois qu'un étudiant connecté participe à un DataChallenge il accède à toutes les informations du DataChallenge peut consulter les ressources, s'il est chef d'équipe il peut ajouter le lien GitHub du projet. De plus il peut voir les messages que le gestionnaire lui envoi.
 Un fois qu'un étudiant connecté participe à un DataBattle en plus de tout ce qui est écrit ci-dessus, l'utilisateur peut voir les questionnaires et s'il est le chef il peut y répondre.
 
+## Description des fonctionnalités des utilisateurs non connectés
+
+Les visiteurs voient la page d'accueil avec tous les DataChallenges/Battles, peuvent consulter les informations et choisir d'y participer.
+S'ils cliquent sur participer ils sont invités à se connecter où à créer un compte.
 
 # Conception et architecture
 
 ## Présentation de l'architecture globale de l'application
 
+
+
 ## Description des choix technologiques et des outils utilisés
+
+Front : Serveur React
+
+Back : Api PHP, Api Java
+
+Docker
 
 ## Présentation des modèles de données (BDD, MCD)
 
+Présenter la MCD et la BDD (Il faut les mettre à jour avant)
+
 ## Présentation des diagrammes pertinents (séquence, use case, etc.)
+
+On ajoute les diagrammes ici
 
 # Développement et implémentation
 
 ## Présentation des différentes étapes de développement
 
+Expliquer nos étapes, on a commencé brainstorming, fait les diagrammes séquence, use case puis BDD et maquette, ensuite on a développé Backend et Front end symbiose.
+
 ## Description des fonctionnalités implémentées
+
+Descriptions fonctionnalités implémentés
 
 ## Présentation du web service REST et de l'API en Java pour l'analyse de code source
 
+PARTIE ARTHUR
+
 ## Description de la visualisation des résultats d'analyse de code source
+
+PARTIE ARTHUR Mettre Graphe
 
 # Résultats et évaluation
 
 ## Présentation des résultats obtenus par l'application
 
+Parler des réultats obtenus par l'app
+
 ## Évaluation de la conformité des fonctionnalités par rapport aux attentes
+
+Présentation de la conformité des fonctionnalités par rapport aux attendes
 
 # Perspectives et améliorations futures
 
 ## Liste des fonctionnalités restantes à implémenter
 
+Ici on parle des fonctionnalités restantes à implémenter et au cahier des charges
+
 ## Propositions d'améliorations et d'évolutions pour l'application
+
+Ici on parle des fonctionnalités qu'on pourrait implémenter mais qui ne sont pas au cahier des charges
 
 # Conclusion 
 
@@ -174,9 +202,15 @@ En résumé, ce projet de fin d'année a été une occasion unique de mettre en 
 
 ## Récapitulation des réalisations
 
+
+
 ## Retour sur les apprentissages et les difficultés rencontrées
 
+Parler des difficultés à utiliser GitHub, on a du s'auto former, une formation au sein de l'école en première année d'ing serait superbe. Cours sur le versionning. Taille du projet particulièrement longue.
+
 # Annexes
+
+Surement rien ici.
 
 ## Fichiers de code source pertinents
 

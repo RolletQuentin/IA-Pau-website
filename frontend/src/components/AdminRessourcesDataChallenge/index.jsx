@@ -56,7 +56,7 @@ const StyledAdminRessources = styled.div`
     }
 `;
 
-function AdminRessourcesDataChallenge({ id }) {
+function AdminRessourcesDataChallenge({ id, className }) {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [error, setError] = useState("");
@@ -94,7 +94,7 @@ function AdminRessourcesDataChallenge({ id }) {
     }, [user, id]);
 
     return (
-        <StyledAdminRessources>
+        <StyledAdminRessources className={className}>
             {isLoading ? (
                 <Loader />
             ) : (

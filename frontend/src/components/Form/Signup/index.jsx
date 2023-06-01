@@ -90,7 +90,6 @@ const SignupForm = ({
         if (!firstAuth && id !== undefined && user) {
             const fetchData = async () => {
                 try {
-                    console.log("ouiii");
                     const response = await fetch(
                         process.env.REACT_APP_PROXY + `/api/user/?id=${id}`,
                         {

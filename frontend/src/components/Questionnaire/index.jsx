@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/auth/useAuthContext";
 import Button from "../Button";
@@ -33,7 +33,8 @@ function Questionnaire() {
             const fetchData = async () => {
                 try {
                     const response = await fetch(
-                        process.env.REACT_APP_PROXY + `/api/=${id_projet}`,
+                        process.env.REACT_APP_PROXY +
+                            `/api/evenements/getAllQuestionnairesByEvent/?id=${id_projet}`,
                         {
                             headers: {
                                 Authorization: "Bearer " + user.jwt,
@@ -53,11 +54,24 @@ function Questionnaire() {
 
     return (
         <StyledQuestionnaire>
-            <h2>Liste de ressources</h2>
+            <h2>Questionnaires</h2>
             {questionnaires &&
-                questionnaires.map(({ UrlRessource, NomRessource }) => {
-                    return <Button className="item"></Button>;
-                })}
+                questionnaires.map(
+                    ({
+                        IdQuestionnaire,
+                        IdProjet,
+                        Titre,
+                        Sujet,
+                        Debut,
+                        Fin,
+                    }) => {
+                        return (
+                            <Button className="item" key={IdQuestionnaire}>
+                                <Link>{Titre}</Link>
+                            </Button>
+                        );
+                    }
+                )}
         </StyledQuestionnaire>
     );
 }
