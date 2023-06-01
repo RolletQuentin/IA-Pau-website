@@ -13,7 +13,6 @@ const StyledAddUser = styled.div`
 function AdminAddUser() {
     return (
         <StyledAddUser>
-            <NavbarOffset />
             <h1>Ajouter un utilisateur</h1>
             <div></div>
             <SignupForm />
