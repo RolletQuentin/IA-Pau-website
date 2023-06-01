@@ -16,8 +16,16 @@ const StyledProject = styled(Button)`
     & .item {
         width: 400px;
         background: var(--primary);
-        height: 40px;
         margin: 10px;
+    }
+
+    & .description {
+        background: var(--primary);
+        width: 100%; /* Set the width to 100% /
+        max-width: 400px; / Set a maximum width to prevent it from exceeding 400px */
+        margin-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 `;
 
