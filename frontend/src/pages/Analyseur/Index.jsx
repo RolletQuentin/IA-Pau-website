@@ -446,5 +446,5 @@ const Analyseur = () => {
         </CenterContainer>
     );
 };
-
+}
 export default Analyseur;
