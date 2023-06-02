@@ -108,9 +108,6 @@ function DataChallengeDetail() {
         }
         const fetchHasTeam = async () => {
             const response = await fetch(process.env.REACT_APP_PROXY + '/api/teams/me/?IdEvent=' + id, {
-                headers: {
-                    Authorization: `Bearer ${user.jwt}`,
-                },
             })
             const json = await response.json();
             
